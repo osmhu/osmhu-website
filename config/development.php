@@ -3,7 +3,7 @@
 // MySQL connection details
 define('DB_USERNAME',    'osmhu');
 define('DB_PASSWORD',    'Eidoh5zo');
-define('DB_HOST',        'localhost');
+define('DB_HOST',        '127.0.0.1');
 define('DB_DATABASE',    'osm_hu');
 
 // PostgreSQL connection details

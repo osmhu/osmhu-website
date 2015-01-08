@@ -1,0 +1,11 @@
+mysql:
+  image: mysql:5.6.22
+  environment:
+    MYSQL_ROOT_PASSWORD: Eidoh5zo
+    MYSQL_USER: osmhu
+    MYSQL_PASSWORD: Eidoh5zo
+    MYSQL_DATABASE: osm_hu
+  volumes:
+    - ./data:/var/lib/mysql
+  ports:
+    - "3306:3306"
