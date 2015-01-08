@@ -84,7 +84,7 @@ function openPopup () {
 	}).openPopup();
 
 	$('#popup-share-close').on('click', function () {
-		share.close();
+		closePopup();
 		return false;
 	});
 
