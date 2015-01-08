@@ -46,3 +46,9 @@
 	font-size: 14px;
 	border-right: 1px solid #8c8c8c;
 }
+
+@media all and (max-width: 699px) {
+	#map-container {
+		left: 0 !important;
+	}
+}

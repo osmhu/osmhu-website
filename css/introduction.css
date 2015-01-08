@@ -79,3 +79,12 @@
 	left: 259px;
 	cursor: pointer;
 }
+
+@media all and (max-width: 699px) {
+	#introduction {
+		display: none !important;
+	}
+	#introduction-toggler {
+		display: none !important;
+	}
+}
