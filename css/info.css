@@ -1,0 +1,190 @@
+/* Info pages are pages with text information */
+body.info h1, body.info #content h2 {
+	color: #444;
+}
+body.info h3 {
+	font-family: "Bitstream Vera Sans", sans-serif;
+	font-weight: normal;
+	color: #942F43;
+}
+body.info #nav, body.info #content {
+	font-size: 15px;
+	font-family: Arial;
+}
+body.info #nav {
+	margin: 0px 6px 6px 6px;
+	float: left; 
+	width: 256px;
+}
+body.info #nav ul.submenu {
+	margin: -1px 0 1em 0;
+	padding: 0;
+	width: 95%;
+}
+body.info #nav ul.submenu li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+body.info #nav ul.submenu li a {
+	display: block;
+	line-height: 22px;
+	padding: 0 5px;
+	text-decoration: none;
+	border-bottom: 1px solid #665;
+	color: #0000EE;
+}
+body.info #nav ul.submenu li:hover {
+	background-color: #f0f0f0;
+}
+body.info #content {
+	margin: 80px 6px 6px 262px;
+	padding:5px 20px;
+	border-color: #8c8c8c;
+	border-style: solid;
+	border-width: 0 1px;
+}
+body.info #content code, body.info em {
+	background-color: #f0f0f0;
+	color: #000;
+	padding: 0 4px;
+}
+body.info #content dt {
+	font-weight: bold;
+}
+body.info #content dd {
+	margin: 4px 0 4px 30px;
+}
+body.info #content ul.links {
+	padding: 3px 0 0 30px;
+}
+body.info #content ul.nodots {
+	padding: 0 0 0 20px;
+	list-style-type: none;
+}
+body.info #content ul.nodots li {
+	font-weight: bold;
+	margin-top: 10px;
+}
+body.info #content ul.links li {
+	font-weight: normal;
+	margin-top: 5px;
+}
+body.info #content ul.links li a, body.info #content ol.intructions li a {
+	color: #0000EE;
+	text-decoration: none;
+}
+body.info #content ul.links li a:hover, body.info #content ol.intructions li a:hover {
+	text-decoration: underline;
+}
+body.info #content ol.intructions li {
+	padding: 3px 0 3px;
+}
+body.info #content img.illustration {
+	border: 1px solid #8c8c8c;
+}
+body.info #content img.right {
+	float: right;
+	margin: 0 0 0.5em 1em;
+}
+body.info #content img.left {
+	float: left;
+	margin: 0 1em 0.5em 0;
+}
+body.info #content img.logo {
+	border-width: 0;
+}
+body.info #content p.important {
+	color: #f00;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+body.info div.felhasznalas li.felhasznalas a,
+body.info div.rolunk li.rolunk a,
+body.info div.terkepek li.terkepek a,
+body.info div.terkep li.terkep a,
+body.info div.gpsbekuldes li.gpsbekuldes a,
+body.info div.szerkesztes li.szerkesztes a,
+body.info div.letoltesek li.letoltesek a {
+	background-color: #555;
+	color: #fff !important;
+}
+
+/* Facebook, meetup, mailing list badges */
+a.fblink, a.meetup, a.maillist, a.youtube {
+	padding-left: 20px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+a.fblink {
+	background-image: url("/kepek/fb-icon16.png");
+}
+a.meetup {
+	background-image: url("/kepek/meetup-icon2.png");
+}
+a.maillist {
+	background-image: url("/kepek/email-icon.png");
+}
+a.youtube {
+	background-image: url("/kepek/youtube-icon.png");
+	padding-left: 30px;
+}
+
+/* TODO remove: overpass.js used this for highlighting a tool, but that code no longer works */
+.highlight {
+	background-color: yellow;
+	color: black;
+}
+
+/* Only on about page */
+body.about #meetblock {
+	display: inline-block;
+}
+body.about div.meetus {
+	width: 50%;
+	margin: 3px 0;
+	float: left;
+	text-align: center;
+}
+body.about div.meetus:last-child { /* When using uneven badges */
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+	clear: left;
+}
+body.about div.meetus > span {
+	border-width: 1px 10px;
+	border-color: #ccc;
+	border-style: solid;
+	background-color: #f3f3f3;
+	padding: 5px;
+	margin: 5px;
+	display: block;
+}
+
+/* Only on citylist page */
+body.citylist table.citylist td {
+	vertical-align: top;
+}
+body.citylist table.citylist.rewrite td {
+	font-size: 80%;
+	font-family: monospace;
+}
+
+/* On mobile or small screen */
+@media all and (max-width: 699px) {
+	body.info #menu,
+	body.info #search-box,
+	body.info #nav,
+	body.info #content {
+		position: static;
+		display: block;
+		clear: both;
+		float: none;
+		height: auto;
+		width: auto;
+		margin: 2px;
+		padding: 0;
+	}
+}

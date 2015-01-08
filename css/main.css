@@ -1,0 +1,312 @@
+/* Use border-box box model, more information: http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html {
+	font-size: 16px;
+}
+/* Logo and branding */
+#logo {
+	position: absolute;
+	top: 17px;
+	left: 17px;
+	width: 221px;
+	height: 63px;
+	font-family: Arial;
+}
+#logo a {
+	text-decoration: none;
+}
+#logo img {
+	float: left;
+	width: 52px;
+	height: 51px;
+	margin-right: 10px;
+}
+#logo h1.brand {
+	margin: 0;
+	font-size: 130%;
+	color: #577449;
+}
+#logo:hover h1.brand {
+	text-shadow: 0px 0px #909090;
+}
+#logo h2.slogan {
+	margin: 4px 0 0;
+	font-size: 90%;
+	color: black;
+}
+
+/* Top menu */
+#menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 25px;
+	font-family: Arial;
+}
+#menu li.name1 a {
+	color: #577449;
+	font-size: 100%;
+}
+#menu .name1 {
+	display: none;
+}
+#menu ul {
+	text-align: center; 
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+}
+#menu ul li {
+	display: inline; 
+	margin: 0;
+	list-style-type: none; 
+	text-align: center;
+	position: relative;
+	font-size: 14px;
+}
+#menu ul li:before {
+	content: "|";
+	color: #ddd;
+}
+#menu ul li:first-child:before {
+	content: "";
+}
+#menu li a {
+	line-height: 25px;
+	padding: 3px 6px;
+	text-align: center;  
+	text-decoration: none;
+	color: blue;
+}
+#menu li a:hover {
+	text-decoration: underline;
+	background-color: #f0f0f0;
+}
+
+/* Social buttons */
+#social {
+	position: absolute;
+	top: 40px;
+	right: 0;
+	width: 120px;
+}
+
+/* Search box */
+#search-box {
+	position: absolute;
+	top: 23px;
+	left: 264px;
+	z-index: 100;
+	padding: 6px;
+	border-radius: 4px;
+	border: 1px solid #aaa;
+	background: #cccccc url("/kepek/search-box-bg-75-1x100.png") 50% 50% repeat-x;
+	font-family: Arial;
+}
+#search-box .twitter-typeahead {
+	vertical-align: top;
+}
+#search-box input.typeahead {
+	width: 260px;
+	padding: 6px 0 5px 6px;
+	margin: 0;
+	font-size: 95%;
+	height: 30px;
+	border: 1px solid #aaa;
+}
+#search-box input.searching {
+	background-image: url("/kepek/ajax-loader.gif");
+	background-repeat: no-repeat;
+	background-position: 98% 50%;
+}
+#search-box input.tt-hint {
+	border-width: 1px;
+}
+#search-box .tt-dropdown-menu {
+    width: 266px;
+    padding: 2px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+#search-box .tt-dropdown-menu .tt-suggestion {
+    padding: 2px 8px;
+    font-size: 15px;
+    line-height: 24px;
+}
+#search-box .tt-suggestion.tt-cursor {
+    color: #fff;
+    background-color: #0097cf;
+}
+#search-box .tt-suggestion p {
+    margin: 0;
+}
+#search-box .select2-container {
+	margin: 0 4px;
+	width: 180px;
+	vertical-align: top;
+}
+#search-box a.select2-choice {
+	padding: 2px 0 0px 6px;
+	border-radius: 1px;
+	height: 30px;
+}
+#search-box a.select2-choice span.select2-chosen {
+	font-size: 95%;
+}
+#search-box button {
+	font-size: 95%;
+	cursor: pointer;
+	vertical-align: top;
+	margin: 0;
+	padding: 2px;
+	width: 70px;
+	height: 30px;
+}
+
+/* Select2 results */
+ul.select2-results {
+	min-height: 200px;
+	max-height: 300px;
+	overflow-y: auto;
+}
+ul.select2-results li {
+	font-size: 14px;
+	font-family: Arial;
+}
+
+/* Header separator line at top: 80px */
+#separator {
+	position: absolute;
+	top: 79px;
+	width: 100%;
+	height: 1px;
+	background-color: #8c8c8c;
+}
+
+/* Override panels */
+.panel {
+	top: 80px;
+}
+
+/* Search result popup */
+.search-result-info {
+	min-width: 200px;
+}
+.search-result-info h1.title {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+.search-result-info p.address {
+	font-size: 14px;
+	margin-bottom: 30px;
+}
+.search-result-info .more {
+	text-align: center;
+}
+.search-result-info .more button {
+	margin-top: 12px;
+}
+.search-result-info .more p.info {
+	margin-top: 18px;
+	color: blue;
+}
+
+/* Override map css */
+#map-container {
+	top: 80px;
+	left: 263px;
+}
+
+/* reportError Control */
+.leaflet-control-reportError, .leaflet-control-reportError a {
+	width: 140px !important;
+}
+.leaflet-control-reportError span.icon {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url("/kepek/feedback_icon.png");
+	vertical-align: top;
+}
+.leaflet-control-reportError span.text {
+	margin-left: 6px;
+	color: #0000EE;
+}
+
+/* Popup for a marker present in the url */
+.popup-loaded-marker {
+	margin: 10px 10px 20px 10px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+/* Map layout on mobile or small screen */
+@media all and (max-width: 699px) {
+	.panel, #menu li.mobile-hidden, #social, #logo, #separator, .toggler {
+		display: none;
+	}
+	#map-container {
+		top: 58px;
+		left: 0;
+	}
+	#menu .name1 {
+		display: inline;
+	}
+	#menu {
+		width: 100%;
+		text-align: center;
+	}
+	#search-box {
+		top: 25px;
+		left: 0;
+		width: 100%;
+		padding: 2px;
+	}
+	#search-box .twitter-typeahead {
+		width: 50%;
+	}
+	#search-box input.typeahead {
+		width: 100%;
+		font-size: 85%;
+		padding: 4px 0 4px 4px;
+	}
+	#search-box .select2-container {
+		width: 34%;
+		font-size: 90%;
+		vertical-align: top;
+		margin: 0;
+	}
+	#search-box a.select2-choice {
+		margin: 0px;
+	}
+	#search-box button {
+		width: 16%;
+		font-size: 80%;
+		vertical-align: top;
+	}
+	ul.select2-results li {
+		font-size: 75%;
+	}
+	ul.select2-results li .object {
+		margin-left: 5px;
+	}
+	#search-box .tt-dropdown-menu .tt-suggestion {
+		padding: 1px 8px;
+		font-size: 85%;
+		line-height: 22px;
+	}
+	.leaflet-control-minZoomIdenticator {
+		font-size: 100%;
+		max-width: 60%;
+		top: -134px;
+	}
+	.popup-marker {
+		font-size: 80%;
+	}
+}

@@ -1,0 +1,13 @@
+su -
+su - postgres
+cd ~lion/install/osm2pgsql
+psql
+drop database gis
+createdb -E UTF8 -O lion gis
+psql -f /usr/share/postgresql/contrib/postgis-1.5/postgis.sql -d gis
+psql -d gis -c "ALTER TABLE geometry_columns OWNER TO lion; ALTER TABLE spatial_ref_sys OWNER TO lion;"
+psql -d gis -f ./900913.sql
+psql gis lion
+\d
+osm2pgsql --slim -d gis -C 2048 ../osm/hungary.osm
+

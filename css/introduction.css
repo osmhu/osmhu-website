@@ -1,0 +1,81 @@
+/* Introduction */
+#introduction {
+	font-family: Helvetica, sans-serif;
+	z-index: 25;
+	background: white;
+}
+#introduction .description {
+	padding: 10px 9px 0 10px;
+}
+#introduction .description a {
+	color: black;
+}
+#introduction .description p {
+	text-align: justify;
+}
+#introduction .tryit, #introduction .wheelmap {
+	border-bottom: 1px solid #aaa;
+	padding-bottom: 15px;
+}
+#introduction .tryit p {
+	text-align: center;
+}
+#introduction .tryit a#orgEditLink {
+	display: block;
+	border-radius: 2px;
+	padding: 8px 16px;
+	background: #44AA55;
+	border: 1px solid gray;
+	width: 180px;
+	text-decoration: none;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+}
+#introduction .wheelmap {
+	text-align: center;
+	font-family: sans-serif;
+}
+#introduction .facebook {
+	display: block;
+	margin-top: 25px;
+	text-align: center;
+	z-index: 1;
+}
+#introduction .facebook p {
+	text-align: center;
+}
+#introduction .facebook .fbbutton {
+	display: block;
+	margin: 12px auto;
+	text-align: center;
+	padding: 8px 16px;
+	width: 180px;
+	background-color: #3B5998;
+	font-family: Helvetica, sans-serif;
+}
+#introduction .facebook .fbbutton a {
+	text-decoration: none;
+	color: white;
+}
+
+/* Introduction toggler */
+#introduction-toggler {
+	display: block;
+	position: absolute;
+	bottom: 30%;
+	width: 30px;
+	height: 50px;
+	margin-left: -4px;
+	border-radius: 4px;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	background: white;
+	padding-left: 10px;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	z-index: 22;
+	left: 259px;
+	cursor: pointer;
+}

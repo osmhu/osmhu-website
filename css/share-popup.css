@@ -1,0 +1,35 @@
+/* Marker Control */
+.leaflet-control-marker a {
+	background-image: url('/kepek/share-icon.png');
+	padding: 0px;
+}
+
+/* Share popup */
+.popup-share {
+	text-align: center;
+}
+.popup-share h1 {
+	font-size: 150%;
+	text-align: left;
+}
+.popup-share p {
+	font-size: 100%;
+}
+.popup-share textarea {
+	width: 100%;
+	padding: 5px;
+}
+.popup-share input.share-url {
+	width: 200px;
+	margin-left: 5px;
+	padding: 1px 3px;
+	border: 1px solid #AAA;
+	font-size: 75%;
+}
+.popup-share button {
+	cursor: pointer;
+}
+.popup-share .help {
+	text-align: center;
+	font-size: 90%;
+}

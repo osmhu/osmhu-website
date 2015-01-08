@@ -1,0 +1,21 @@
+"POI részletek" oldalt készíteni.
+
+"Hol vagyok" ikont. Levlistán volt talán a szükséges kód. Egy pötty az
+ikonja.
+
+Mobil nézetben van egy kis jobbra-balra scrollbar, Opera. Chrome-ban,
+IE-ben meg fel-le.
+
+
+Rasher website-ján a JOSM link (meg a többi is) csak zoom 10 felett működött. Lehet, hogy az kéne.
+
+
+pgsql
+betölteni:
+	public_transport=*
+	is_in=*
+
+Name= indexelése:
+	_polygon: 8000 db
+	_point: 27000 db
+	_line: 72000 db

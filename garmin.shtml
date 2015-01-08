@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<title>OpenStreetMap letöltése Garmin GPS-re</title>
+
+	<!--#include virtual="includes/head_scripts.html" -->
+</head>
+<body class="info">
+	<!--#include virtual="includes/header.html" -->
+
+	<div id="nav" class="letoltesek">
+		<!--#include virtual="includes/submenu.html" -->
+	</div>
+
+	<div id="content">
+		<h1>Az OpenStreetMap használata Garmin GPS-en</h1>
+	
+		<h2>Letöltés</h2>
+
+		<p>Frissebb változatok beszerzéséhez lásd: <a href="/letoltesek">Letöltések</a></p>
+
+		<p><strong>Elavult!</strong> Magyarország térképe, Garmin GPS-eken közvetlenül telepíthető és használható formátumban: 
+		<a href="letoltes/OSM%20map.exe">OSM map.exe</a> (legutóbbi frissítés: 2012.09.05.)</p>
+
+		<h2>Saját változat készítése</h2>
+
+		<p><a href="http://wiki.openstreetmap.org/wiki/HU:OSM_Map_On_Garmin">OpenStreetMap átkonvertálása és letöltése Garmin GPS-re</a>
+
+		<p><img src="/kepek/garmin-logo.png" alt="Garmin logo"></p>
+	</div>
+</body>
+</html>

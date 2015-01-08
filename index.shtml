@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<title>OpenStreetMap - A szabad világtérkép</title>
+	<meta name="description" content="Szabadon letölthető és felhasználható, közösségi szerkesztésű térkép Magyarországról és az egész világról.">
+
+	<!-- Leaflet stylesheet -->
+	<link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css?rev=325">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/node_modules/font-awesome/css/font-awesome.min.css?rev=325">
+	<!-- Leaflet.Locate stylesheet -->
+	<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css?rev=325">
+	<!--[if lt IE 9]>
+	  <link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.ie.min.css?rev=325">
+	<![endif]-->
+	<!-- Select2 stylesheet -->
+	<link rel="stylesheet" href="/node_modules/select2/select2.css?rev=325">
+	<!-- Map stylesheet -->
+	<link rel="stylesheet" href="/css/map.css?rev=320">
+	<!-- Share popup stylesheet -->
+	<link rel="stylesheet" href="/css/share-popup.css?rev=319">
+	<!-- Poi popup stylesheet -->
+	<link rel="stylesheet" href="/css/poi-popup.css?rev=319">
+	<!-- Introduction stylesheet -->
+	<link rel="stylesheet" href="/css/introduction.css?rev=320">
+	<!-- Search results stylesheet -->
+	<link rel="stylesheet" href="/css/search-results.css?rev=320">
+	<!--#include virtual="includes/head_scripts.html" -->
+</head>
+<body>
+	<!--#include virtual="includes/header.html" -->
+
+	<div id="search-box">
+		<form id="search">
+			<input class="typeahead" type="text" id="text-search" placeholder="Város, utca vagy keresőszó" tabindex="1"><input type="hidden" id="poi-search" data-placeholder="Helyek" tabindex="2"><button type="submit" tabindex="3">Keresés</button>
+		</form>
+	</div>
+
+	<div id="map-container">
+		<noscript>
+			<p>A weboldal használatához JavaScript szükséges.</p>
+			<p><a href="http://www.enable-javascript.com/hu/" target="_blank">Itt találhat segítséget, hogy hogyan engedélyezheti a JavaScriptet böngészőjében.</a></p>
+		</noscript>
+		<div id="map"></div>
+	</div>
+
+	<div id="search-results" class="panel">
+		<a class="close">×</a>
+		<p>Keresés eredménye</p>
+		<div class="results-container">
+			<div class="no-results">
+				<p>Nincsenek találatok.</p>
+				<p>Ellenőrizd a keresőszót!</p>
+			</div>
+			<div class="results">
+			</div>
+		</div>
+	</div>
+
+	<div id="introduction" class="panel">
+		<div class="description">
+			<p>Az <strong>OpenStreetMap</strong> egy világtérkép, amelyet hozzád hasonló emberek készítenek és szabad licenc alatt elérhető.</p>
+			<p>Ha hibát találsz vagy hiányzik egy fontos hely, <strong>Te is hozzáadhatod</strong> a szerkesztőprogrammal a hiányzó utcákat, boltokat, iskolákat, éttermeket és egyéb tereptárgyakat.</p>
+		</div>
+		<div class="tryit">
+			<p><strong>Próbáld ki, és szerkessz valamit!</strong></p>
+			<p><a id="orgEditLink" href="http://openstreetmap.org/edit">Terület szerkesztése</a></p>
+		</div>
+		<div class="wheelmap">
+			<p><strong>A hónap projektje</strong></p>
+			<p>Akadálymentes térkép</p>
+			<a href="http://akadalymentesterkep.hu/#wheelmap" target="_blank"><img src="/kepek/wheelmap.png" alt="wheelmap.org logó"></a>
+		</div>
+		<div class="facebook">
+			<p><strong>Facebook oldalunk:</strong></p>
+			<div class="fbbutton"><a class="fblink" href="http://www.facebook.com/OpenStreetMap.hu" title="OpenStreetMap.hu a Facebookon" target="_blank">OpenStreetMap.hu</a></div>
+			<div class="fbbutton"><a class="fblink" href="https://www.facebook.com/groups/osm.hu" title="Szerkesztői csoport a Facebookon" target="_blank">Szerkesztői csoport</a></div>
+		</div>
+	</div>
+
+	<!-- Introduction toggler icon -->
+	<div id="introduction-toggler"><p class="toggler"></p></div>
+
+	<!-- Load osmhu bundle -->
+	<script src="/build/bundle.js?rev=325"></script>
+</body>
+</html>

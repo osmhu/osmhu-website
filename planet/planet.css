@@ -1,0 +1,159 @@
+/* http://colorschemedesigner.com/#2G21TbWuLw0w0 */
+body {
+	border-right: 1px solid black;
+	margin-right: 200px;
+
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+h1 {
+	margin-top: 0px;
+	padding-top: 20px;
+
+	font-family: "Bitstream Vera Sans", sans-serif;
+	font-weight: normal;
+	letter-spacing: -2px;
+	text-align: right;
+
+	color: grey;
+}
+
+h2 {
+	font-family: "Bitstream Vera Sans", sans-serif;
+	font-weight: normal;
+	color: #942F43;
+
+	margin-left: -20px;
+}
+div.daygroup > h2 {
+	float: left;
+}
+
+h3 {
+	float: right;
+	font-size: 100%;
+	font-style: italic;
+	font-weight: normal;
+}
+
+h4 {
+	clear: both;
+	font-family: "Bitstream Vera Sans", sans-serif;
+	font-weight: bold;
+
+	background-color: #F2C0CA;
+	color: #000;
+	border: 1px solid #777;
+	box-shadow: 3px 3px 8px #999;
+	margin: 0 5px 10px 0;
+
+	padding: 4px;
+}
+
+h4 a, h4 a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+img.face {
+	float: right;
+	margin-top: -3em;
+}
+
+.entry {
+	margin-bottom: 2em;
+	margin-left: 2em;
+}
+
+.entry .date {
+	font-family: "Bitstream Vera Sans", sans-serif;
+	color: grey;
+}
+
+.entry .date a {
+}
+.entry img {
+	max-width: 100%;
+}
+
+.sidebar {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 200px;
+
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-right: 0px;
+
+	padding-top: 20px;
+	padding-left: 0px;
+
+	font-family: "Bitstream Vera Sans", sans-serif;
+	font-size: 85%;
+}
+
+.sidebar h2 {
+	border-top: 1px solid grey;
+	font-size: 110%;
+	font-weight: bold;
+	color: black;
+
+	padding-left: 5px;
+	padding-top: 10px;
+	margin-left: 0px;
+}
+
+.sidebar ul {
+	padding-left: 1em;
+	margin-left: 0px;
+
+	list-style-type: none;
+}
+
+.sidebar ul li:hover {
+	color: grey;
+}
+
+.sidebar ul li a {
+        text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+        text-decoration: underline;
+}
+
+.sidebar ul li a img {
+        border: 0;
+}
+
+.sidebar p {
+	margin-top: 10px;
+
+	padding-left: 5px;
+}
+.sidebar a.name1 {
+	color: #577449;
+	font-size: 100%;
+	font-weight: bold;
+}
+.sidebar .message {
+    cursor: help;
+    border-bottom: 1px dashed red;
+}
+
+.sidebar a.message:hover {
+    cursor: help;
+	background-color: #ff0000;
+	color: #ffffff !important;
+	text-decoration: none !important;
+}
+
+a, a:hover {
+	color: #4A8A2B;
+	text-decoration: underline !important;
+}
+a:visited {
+	color: #819F73;
+}

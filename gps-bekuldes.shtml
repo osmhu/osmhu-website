@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<title>GPS nyomvonal rögzítése és feltöltése az OpenStreetMapre</title>
+	<meta name="description" content="GPS nyomvonalak rögzítésével segítheted az OpenStreetMap térkép pontosítását, kiegészítését.">
+
+	<!--#include virtual="includes/head_scripts.html" -->
+</head>
+<body class="info">
+	<!--#include virtual="includes/header.html" -->
+
+	<div id="nav" class="gpsbekuldes">
+		<!--#include virtual="includes/submenu.html" -->
+	</div>
+
+	<div id="content">
+		<h1>GPS nyomvonal rögzítése és beküldése</h1>
+
+		<img class="right illustration" src="/kepek/gps-potlatch2.jpg" title="Az OpenStretMap.org weblap Szerkesztés -&gt; Potlatch2 menüjében könnyen megnézhető, hogy vannak-e felöltve GPS adatok (ciánkék vonal)" alt="GPS nyomvonal a potlatch2 szerkesztőben">
+
+		<p>Ha nem szeretnél elmélyedni az OpenStreetMap 
+		szerkesztés rejtelmeiben, GPS nyomvonalaiddal 
+		akkor is segítheted a térkép elkészítését, pontosítását.</p>
+
+		<p>Kiránduláson, túrázáskor vagy bármilyen érdekes helyre utazva, 
+		ha van nálad GPS vagy a telefonoddal tudod rögzíteni a 
+		nyomvonalat,
+		különösebb erőfeszítés nélkül segítheted az OSM fejlődését, a nyomvonalak beküldésével.</p>
+
+		<p><strong>Köszönjük, hogy hozzájárulsz a GPS nyomvonalaiddal az OSM fejlesztéséhez!</strong></p>
+		<p>Olyan nyomvonalak is hasznosak, amik már felrajzolt utakon futnak,
+		mert több GPS-ből pontosabb térkép rajzolható! De a forgalmasabb főutakon
+		már most is ötvennél több nyomvonal is található, oda felesleges újabbakat feltölteni.</p>
+
+		Ha már tudod, hogy kell rögzíteni és GPX formátumba menteni, ugorj a <a href="#feltoltes">feltöltéshez</a>.
+
+		<hr style="clear: both;">
+		<h2>GPS nyomvonal rögzítése</h2>
+
+		<p><strong>FONTOS</strong>: Bizonyosodj meg róla, hogy a GPS egységeden a '<strong>Úthoz illesztés (Snap to road)'</strong> vagy '<strong>Úthoz láncolás (Lock on road)'</strong> opció <strong>KI</strong> van kapcsolva, különben a GPS egységbe betöltött térkép közvetlen másolatát fogod rögzíteni, ami a szerzői jogvédelem megsértése.
+		</p>
+
+		<img class="right illustration" src="/kepek/gps-track.gif" alt="GPS nyomvonal">
+		<ul>
+			<li>Kapcsold ki a GPS-ben az úthoz illesztést</li>
+			<li> Állítsd a GPS pontok tárolási sebességét a legnagyobbra (pl. 1 másodperc)</li>
+			<li> Ha tudja a készülék, állítsd a mentést GPX formátumra, így később nem kell konvertálnod</li>
+			<li> A GPS bekapcsolása után mozogj néhány percet, amíg pontossá válik a pozíciód</li>
+			<li> Indítsd el a GPS nyomvonal felvételét</li>
+			<li> Vedd fel az útvonalat, autóval, biciklivel, gyalog, vonattal, hajóval vagy bármivel</li>
+			<li> Nagyobb területeket körbejárva fogsz tudni ábrázolni</li>
+		</ul>
+
+		<p>Ha <strong>Androidos</strong> telefonod van OsmAnd GPS trackek rögzítésére is alkalmas: 
+		Nyomd meg a kis műhold ikont a bal felső sarokban az iránytű mellett, 
+		ezen belül pedig az <em>Alvó mód bekapcsolása</em> (nagyon fontos, hogy a képernyő kikapcsolásakor is rögzítsen) 
+		majd pedig a <em>GPX nyonyomvonal mentése</em> gombokat. 
+		De rözítéshez sokkal egyszerűbb programokat is használhatsz, próbáld ki az <strong>OSM Tracker</strong> nevűt.</p>
+
+		<h2 style="clear: both;">GPX formátumra konvertálás, szükségtelen részek levágása</h2>
+
+		<p>Az OpenStreetMapnek GPX formátumra van szüksége. Ha a készüléked
+		ilyet nem tud menteni, akkor konvertálni kell. 
+		Ehhez próbáld ki a <a href="http://activityworkshop.net/software/gpsprune/download.html">GpsPrune</a> nevű programot. Ezzel a nyomvonal elejét vagy végét is könnyen eltávolíthatod, ha olyan pozíciókba vezet, amelyet nem szeretnél
+		megosztani vagy levághatod a haszontalannak tűnő részeket.</p>
+
+		<h3>GpsPrune</h3>
+		<img class="right illustration" src="/kepek/gps-track-edit.png" title="GPS track szerkesztése a GpsPrune-ban" alt="GpsPrune képernyőkép szerkesztés közben">
+
+		<ol>
+			<li>A <em>Fájl -&gt; Fájl megnyitás</em> menüben nyisd meg a nyomvonalat</li>
+			<li>Kapcsold be a <em>Nézet -&gt; Térkép megjelenítése</em>-t</li>
+			<li>Kattints az első pontra amit el szeretnél dobni, majd: <em>Tartomány -&gt; Tartomány kezdetének beállítása</em></li>
+			<li>Hasonlóan végezd a <em>Tartomány végének beállítása</em>-t is</li>
+			<li><em>Tartomány -&gt; Tartomány törlése</em></li>
+			<li>A nyomvonalat érdemes <strong>egyszerűsíteni</strong>:
+				<ul>
+					<li><em>Nyomvonal -&gt; Nyomvonal tömörítése</em></li>
+					<li>Itt a Dougles-Peucker algoritmussal szép eredmény érhető el</li>
+					<li>A felesleges pontok eltávolításához még a <em>Nyomvonal -&gt; Jelölt pontok törlése</em> menüt is ki kell választani</li>
+				</ul>
+				</li>
+			<li><em>Fájl -&gt; Exportálás GPX-be</em></li>
+		</ol>
+
+		<hr>
+
+		<h2 id="feltoltes" style="clear: both;">Feltöltés</h2>
+		<p>A GPS nyomvonalaid beküldéséhez regisztrálni kell a 
+		<a href="http://www.openstreetmap.org/user/new">OpenStreetMap.org</a> oldalon, 
+		hogy személyesen
+		járulhass hozzá az adatok adott licenc alatti felhasználáshoz.</p>
+		<ol><li>Jelentkezz be az <a class="external text" href="http://www.openstreetmap.org">OSM főoldalán</a>
+		</li><li>Kattints a <em>Nyomvonalak</em>-ra jobb oldali menüben.
+		</li><li>Kattints a <em>Nyomvonal feltöltésé</em>-re.</li>
+		<li>Válaszd ki a GPX fájlt, amit fel szeretnél tölteni.
+		</li><li>Nevezd el a fájlt (például: Budapest, Margit sziget gyalogutak)
+		</li><li>Adj neki címkéket, amik a megtalálásához használhatók, például "Budapest, Városliget" (vesszővel elválasztva)
+		</li><li>Az adatok nyilvánosságára vonatkozóan több opció közül választhatsz, az "Azonosítható" tartja meg a legtöbb adatot, így ez a javasolt beállítás, de ezzel mind a koordináta mind az idő a nevedhez köthető.
+		</li><li>Kattints az "Feltöltés"-re.
+		</li></ol>
+
+		<p>A feltöltött nyomvonalakból nem lesz automatikusan út.
+		A kacskaringós GPS vonal felett utat rajzolhatnak azok, akiknek a
+		<a href="/szerkesztes">szerkesztéshez</a> is van kedve. 
+		A nyomvonal mentén további érdekes adatok, látnivalók, piknikez&#337; helyek,
+		út típusa, turistajelzések és még sokminden rögzíthet&#337;, amit mind
+		fel lehet rajzolni az OSM-re. Lásd a Kezd&#337;k kézikönyvét lentebb.</p>
+
+		<p>Ha elakadtál valahol, lépj <a href="http://wiki.openstreetmap.org/w/index.php?title=WikiProject_Hungary/Kapcsolat">kapcsolatba a közösséggel</a>.</p>
+
+		<hr>
+		<p>A fentebbi szöveg részben a <a href="http://wiki.openstreetmap.org/wiki/Hu:Beginners_Guide_1.1.1">Kezdők kézikönyvéből</a>
+		származik, CC-BY-SA licenc alatt, így ugyanazon alatt tovább terjeszthető. 
+		Ugyanott további információkat is találhatsz.</p>
+
+		<!--#include virtual="includes/cc0.html" -->
+	</div>
+</body>
+</html>

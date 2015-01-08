@@ -1,0 +1,78 @@
+/* Popup on POI click */
+a.leaflet-popup-close-button {
+	font-size: 26px !important;
+	padding: 6px !important;
+	margin-top: 2px;
+	width: 28px !important;
+}
+.popup-content {
+	padding-bottom: 10px;
+}
+.popup-content h1.title {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+.popup-content .wheelchair {
+	float: right;
+	margin-right: 6px;
+}
+.popup-content p {
+	font-size: 14px;
+	margin: 10px 0 !important;
+}
+.popup-content p.type {
+	font-size: 10px;
+	margin-bottom: 15px;
+}
+.popup-content p.addr {
+	margin-bottom: 0;
+}
+.popup-content .details p {
+	font-size: 13px;
+}
+.popup-content .opening_hours p {
+	font-size: 13px;
+}
+.popup-content .opening_hours table {
+	margin: 0 auto;
+}
+.popup-content .opening_hours table tr.today {
+	font-weight: bold;
+}
+.popup-content .opening_hours table td.day {
+	padding-right: 10px;
+}
+.popup-content .options {
+	text-align: center;
+	margin-top: 25px;
+}
+.popup-content .options button {
+	font-size: 12px;
+	margin: 0 2px;
+}
+.popup-content .share {
+	display: none;
+	margin-top: 12px;
+}
+.popup-content .share p {
+	font-size: 100%;
+	margin: 6px auto 0 !important;
+}
+.popup-content .share input.share-url {
+	width: 100%;
+	margin-left: 5px;
+	padding: 2px 3px;
+	border: 1px solid #AAA;
+	font-size: 75%;
+}
+.popup-content .share button#popup-poi-copy {
+	font-size: 100%;
+}
+.popup-content .options #permalink-container {
+	display: none;
+	margin-top: 5px;
+}
+.popup-content .options #permalink-container #permalink {
+	font-size: 11px;
+	width: 100%;
+}

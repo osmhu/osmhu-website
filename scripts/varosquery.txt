@@ -1,0 +1,18 @@
+// admin_level-ek számlálása:
+select admin_level,count(*) from planet_osm_polygon WHERE boundary = 'administrative' group by admin_level
+
+// Place pontok (NEM KELL)
+SELECT osm_id,name,place FROM planet_osm_point WHERE place in ('city','town','village')
+
+// Kerületek
+select osm_id,name from planet_osm_polygon WHERE boundary = 'administrative' AND admin_level='9'
+
+// Városok falvak kivéve BP
+select osm_id,name from planet_osm_polygon WHERE boundary = 'administrative' AND admin_level='8' AND name != 'Budapest'
+
+// Rövid nevű utak!!
+SELECT name,highway,osm_id FROM planet_osm_line WHERE highway != '' AND Length(name) < 3
+
+// Utcák 1 adott városban (DISTINCT!)
+select name,highway,osm_id from planet_osm_line where highway != '' and name != '' and 
+st_within(way, (select way from planet_osm_polygon where boundary='administrative' and name='Pécs'))
