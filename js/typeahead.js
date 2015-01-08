@@ -26,7 +26,7 @@ var typeahead = module.exports = $('#search-box input.typeahead').typeahead(null
 	}
 }).on('typeahead:selected', function (event, selected) {
 	if (selected.name.indexOf(',') === -1) {
-		$(this).val(selected.name + ', ');
+		$(this).val(selected.name + ' ');
 		search.focusCity(selected.name);
 	} else {
 		search.focusStreet(selected.id);
