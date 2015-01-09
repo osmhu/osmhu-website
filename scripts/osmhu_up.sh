@@ -2,7 +2,7 @@
 cd ~/w/osmhu
 
 # Fully synced dirs to upload
-for i in config css includes js kepek query vendor
+for i in build config css includes kepek node_modules query vendor
 do 
 	rsync --progress -v -r -t --exclude '.svn' "$i" c64:w/osmhu/
 done
