@@ -193,6 +193,11 @@ popup.niceAddress = function (tags) {
 	if (street && housenumber) {
 		address+= ' ' + housenumber;
 	}
+	var lastCharacterIsNumber = /\d$/;
+	// If the last character of the housenumber is a number, add a dot
+	if (lastCharacterIsNumber.test(housenumber)) {
+		address+= '.';
+	}
 	return address;
 };
 

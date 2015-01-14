@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
+<!--#include virtual="includes/top.html" -->
 	<title>OpenStreetMap térképek felhasználása</title>
 	<meta name="description" content="OpenStreetMap alapú szolgáltatások listája, útvonaltervezők, turistatérképek, GPS navigációs rendszerek stb.">
 

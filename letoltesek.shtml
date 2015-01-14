@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
+<!--#include virtual="includes/top.html" -->
 	<title>OpenStreetMap térképek letöltése</title>
 	<meta name="description" content="Magyarország térkép és más országok letöltése (Android, Apple stb) vagy az OpenStreetMap szerkesztőprogram letöltése.">
 

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
+<!--#include virtual="includes/top.html" -->
 	<title>OpenStreetMap - A szabad világtérkép</title>
 	<meta name="description" content="Szabadon letölthető és felhasználható, közösségi szerkesztésű térkép Magyarországról és az egész világról.">
 

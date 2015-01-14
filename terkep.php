@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
+<?php include 'includes/top.html' ?>
 	<title>Magyarországi városok és falvak térképe</title>
 
 	<?php include 'includes/head_scripts.html' ?>

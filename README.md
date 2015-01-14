@@ -11,7 +11,10 @@ Az SVN-hez sok grafikus szerkesztő van, én a `kdesvn` nevű verziókezelőt ha
 ```
 sudo apt-get install subversion kdesvn -y
 ```
-Ha nem akarsz grafikus szerkesztőt használni, akkor elég a subversion csomag.
+Ha nem akarsz grafikus szerkesztőt használni, akkor elég a subversion csomag:
+```
+sudo apt-get install subversion -y
+```
 #### A fájlok letöltése
 ```
 cd ~/wwwroot/osmhu
@@ -31,47 +34,32 @@ A kód néhány helyen használja ezt a címet, így ne változtasd meg, ha ninc
 ### Nginx webszerver
 TODO: erről csinálni egy leírást, jelenleg nagyon kaotikus
 ### MySQL
-A MySQL szervert nem telepítettem fel a saját gépemre, hanem fejlesztés közben külön futtatom Docker segítségével. (Csak 64 bites rendszeren működik)  
-Ezt az egész részt lehet másképp csinálni, a lényeg, hogy a `3306` porton fusson egy MySQL szerver.
-#### Docker telepítés
+A keresőben az automatikus kiegészítés a MySQL szerverről kapott adatokat használ, így szükséges a MySQL telepítése:
 ```
-curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+sudo apt-get install mysql-server mysql-client -y
 ```
-[Forrás](https://docs.docker.com/installation/ubuntulinux/#docker-maintained-package-installation)  
-(Ha nem bízol a fenti parancsban, itt leírják a külön parancsokat egyesével)
-
-Ellenőrizd, hogy települt-e:  
+Állítsd be az adminisztrátor jelszót, ez lehet erős vagy gyenge jelszó, attól függően, hogy a géped mennyire szeretnéd biztonságban tudni. Ezt a jelszót fejlesztés közben nem fogod használni, de azért ne veszítsd el. A parancs:
 ```
-docker --version
+sudo mysqladmin -u root password 'jelszavam'
 ```
-#### Fig telepítés
-http://www.fig.sh/install.html  
-A hosszú parancsot kell kimásolni ezt után:
+Állítsd be, hogy be lehessen lépni a MySQL szerverre osmhu felhasználónévvel:
 ```
-Next, install Fig:
-curl ...
+mysql -u root -p
 ```
-Ellenőrizd, hogy települt-e:
+Írd be az adminisztrátor jelszót, pl `jelszavam`.  
+Ha sikerült csatlakozni, várni fogja a parancsot.  
+Létrehozzuk az `osm_hu` adatbázist és megadjuk az `osmhu` felhasználó jelszavát:
 ```
-fig --version
+CREATE DATABASE osm_hu;
+GRANT ALL ON osm_hu.* TO osmhu@localhost IDENTIFIED BY 'Eidoh5zo';
 ```
-#### MySQL szerver futtatása
-```
-cd ~/wwwroot/osmhu/development/mysql
-fig up
-```
-Ez elindítja a MySQL szervert, ha már nem kell kiléphetsz belőle (Ctrl + C)
 #### Importálni a meglevő adatokat
-Először telepítsd a MySQL kliens parancsokat:
-```
-sudo apt-get install mysql-client -y
-```
-Importáld az adatbázist a `./development/mysql/export.sql` fájlból:
+Az adatbázist a `./development/mysql/export.sql` fájlból importálhatod:
 ```
 cd ~/wwwroot/osmhu/development/mysql
-mysql -h 127.0.0.1 -u osmhu -p osm_hu < export.sql
+mysql -u osmhu -p osm_hu < export.sql
 ```
-Jelszó:
+Írd be az osmhu felhasználó jelszavát: (ezt néhány sorral fentebb adtuk meg az GRANT parancsban)
 ```
 Eidoh5zo
 ```
@@ -88,17 +76,18 @@ cd ~/wwwroot/osmhu
 npm i
 ```
 ### Javascript csomag készítése
-Hogy működjön a `build` és a `watch` parancs telepíteni kell a `browserify`-t.
-#### Browserify telepítése:
+Hogy működjön a `build` és a `watch` parancs telepíteni kell a `browserify`-t és a `watchify`-t.
+#### Browserify és watchify telepítése:
 ```
-sudo npm install browserify -g
+sudo npm install browserify watchify -g
 ```
 #### Fejlesztés közben:
 ```
 cd ~/wwwroot/osmhu
 npm run watch
 ```
-Eredmény: létrejön a `build/bundle.js`, figyeli a `js/` mappát és minden változás esetén újragenerálja a létrehozott fájlt.
+Eredmény: létrejön a `build/bundle.js`, figyeli a `js/` mappát és minden változás esetén újragenerálja a létrehozott fájlt.  
+Feljesztés közben általában folyamatosan futtatom, Ctrl + C -vel lehet kilépni belőle, ha abbahagytad a JavaScript kód módosítását.
 #### Production fájl létrehozása:
 ```
 cd ~/wwwroot/osmhu

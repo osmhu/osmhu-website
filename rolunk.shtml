@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
+<!--#include virtual="includes/top.html" -->
 	<title>Mi az OpenStreetMap?</title>
 	<meta name="description" content="Az OpenStreetMap egy közösségi szerkesztésű, szabadon letölthető és felhasználható térkép Magyarországról és az egész világról.">
 

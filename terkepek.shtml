@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
+<!--#include virtual="includes/top.html" -->
 	<title>OpenStreetMap.hu térkép rétegek</title>
 
 	<!--#include virtual="includes/head_scripts.html" -->

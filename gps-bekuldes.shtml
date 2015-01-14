@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
+<!--#include virtual="includes/top.html" -->
 	<title>GPS nyomvonal rögzítése és feltöltése az OpenStreetMapre</title>
 	<meta name="description" content="GPS nyomvonalak rögzítésével segítheted az OpenStreetMap térkép pontosítását, kiegészítését.">
 
