@@ -11,9 +11,16 @@
 	background: white;
 }
 #search-results p {
-	font-size: 18px;
+	font-size: 15px;
 	text-align: left;
 	margin: 10px 0 10px 10px;
+}
+#search-results p.title {
+	font-size: 20px;
+	text-align: left;
+	margin: 10px 0 10px 10px;
+	color: #0066FF;
+	font-weight: bold;
 }
 #search-results a.close {
 	font-size: 19px;

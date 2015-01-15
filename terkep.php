@@ -18,7 +18,9 @@
 	</script>
 </head>
 <body class="info citylist">
+	<div id="header">
 	<?php include 'includes/header.html' ?>
+	</div>
 
 	<div id="nav" class="terkep">
 		<?php include 'includes/submenu.html' ?>

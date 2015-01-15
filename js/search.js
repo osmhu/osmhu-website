@@ -171,10 +171,6 @@ search.street = function (city, term, cb) {
 		city: city,
 		term: term
 	}, function (results) {
-		if (results.length === 1) {
-			search.focusStreet(results[0].id);
-		}
-
 		var streetObjects = [];
 		$.each(results, function (i, result) {
 			streetObjects.push({

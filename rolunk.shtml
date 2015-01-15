@@ -5,7 +5,9 @@
 	<!--#include virtual="includes/head_scripts.html" -->
 </head>
 <body class="info about">
+	<div id="header">
 	<!--#include virtual="includes/header.html" -->
+	</div>
 
 	<div id="nav" class="rolunk">
 		<!--#include virtual="includes/submenu.html" -->

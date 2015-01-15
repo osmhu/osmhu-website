@@ -38,7 +38,7 @@ body.info #nav ul.submenu li:hover {
 	background-color: #f0f0f0;
 }
 body.info #content {
-	margin: 80px 6px 6px 262px;
+	margin: 0 6px 6px 262px;
 	padding:5px 20px;
 	border-color: #8c8c8c;
 	border-style: solid;

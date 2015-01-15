@@ -23,15 +23,32 @@
 	<link rel="stylesheet" href="/css/introduction.css?rev=320">
 	<!-- Search results stylesheet -->
 	<link rel="stylesheet" href="/css/search-results.css?rev=320">
+	<!-- Direction results stylesheet -->
+	<link rel="stylesheet" href="/css/direction-results.css?rev=320">
 	<!--#include virtual="includes/head_scripts.html" -->
 </head>
 <body>
+	<div id="header">
 	<!--#include virtual="includes/header.html" -->
 
-	<div id="search-box">
-		<form id="search">
-			<input class="typeahead" type="text" id="text-search" placeholder="Város, utca vagy keresőszó" tabindex="1"><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div><input type="hidden" id="poi-search" data-placeholder="Helyek" tabindex="2">
-		</form>
+		<div id="search-box">
+			<div id="mode-selector">
+				<div id="search-mode" class="active">
+					<a href="#"><i class="fa fa-search"></i> Keresés</a>
+				</div><div id="directions-mode">
+					<a href="#"><i class="fa fa-car"></i> Útvonalterv</a>
+				</div>
+			</div>
+			<form id="search">
+				<input class="typeahead" type="text" id="text-search" placeholder="Város, utca vagy keresőszó" tabindex="1"><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
+			</form>
+			<form id="directions">
+				<input class="typeahead" type="text" id="directions-start-search" placeholder="Indulás helye" tabindex="1"><input class="typeahead" type="text" id="directions-end-search" placeholder="Érkezés helye" tabindex="1"><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
+			</form>
+			<div class="poi-search">
+				<input type="hidden" id="poi-search" data-placeholder="Helyek" tabindex="2">
+			</div>
+		</div>
 	</div>
 
 	<div id="map-container">
@@ -44,11 +61,24 @@
 
 	<div id="search-results" class="panel">
 		<a class="close">×</a>
-		<p>Keresés eredménye</p>
+		<p class="title">Keresés eredménye</p>
 		<div class="results-container">
 			<div class="no-results">
 				<p>Nincsenek találatok.</p>
 				<p>Ellenőrizd a keresőszót!</p>
+			</div>
+			<div class="results">
+			</div>
+		</div>
+	</div>
+
+	<div id="direction-results" class="panel">
+		<a class="close">×</a>
+		<p class="title">Útvonaltervezés</p>
+		<div class="results-container">
+			<div class="no-results">
+				<p>Nem találtunk útvonalat.</p>
+				<p>Ellenőrizd a kiindulási és a célpontot!</p>
 			</div>
 			<div class="results">
 			</div>

@@ -3,6 +3,7 @@ var queryString = require('query-string');
 var params = queryString.parse(location.search);
 
 var search = require('./search');
+var directions = require('./directions');
 var url = require('./url');
 var marker = require('./marker');
 var introduction = require('./introduction');
@@ -87,6 +88,8 @@ $('form#search').on('submit', function (event) {
 		resultRenderer: search.resultRenderer
 	});
 });
+
+directions.initializeModes();
 
 select2.initialize();
 

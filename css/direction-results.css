@@ -1,0 +1,84 @@
+/* Direction results panel */
+#direction-results {
+	display: none;
+	position: absolute;
+	top: 80px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	padding: 0;
+	z-index: 30;
+	background: white;
+}
+#direction-results p {
+	font-size: 15px;
+	text-align: left;
+	margin: 10px 0 10px 10px;
+}
+#direction-results p.title {
+	font-size: 20px;
+	text-align: left;
+	margin: 10px 0 10px 10px;
+	color: #0066FF;
+	font-weight: bold;
+}
+#direction-results a.close {
+	font-size: 19px;
+	float: right;
+	margin: 10px;
+	cursor: pointer;
+}
+#direction-results .results-container {
+	position: absolute;
+	top: 44px;
+	left: 0;
+	bottom: 10px;
+	right: 0;
+	margin: 0 10px 0 15px;
+	overflow: auto;
+}
+#direction-results .no-results {
+	display: none;
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border: 1px solid #faebcc;
+	border-radius: 2px;
+	margin-bottom: 15px;
+	margin-right: 5px;
+}
+#direction-results .no-results p {
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 3px 6px;
+}
+#direction-results .results p.total-time span.time, #direction-results .results p.total-length span.length {
+	color: #64991e;
+	font-weight: bold;
+}
+#direction-results .results table {
+	margin: 15px 0 30px;
+}
+#direction-results .results table td {
+	padding: 8px 0;
+	border-top: 1px solid #aaa;
+	font-size: 13px;
+	cursor: default;
+}
+#direction-results .results table td.narrative {
+	padding-left: 10px;
+}
+#direction-results .results table td.distance {
+	text-align: right;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#direction-results .results p.copyright {
+	text-align: center;
+	font-size: 13px;
+}
+@media all and (max-width: 699px) {
+	#direction-results {
+		top: 50px;
+	}
+}

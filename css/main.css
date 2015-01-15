@@ -6,6 +6,13 @@
 html {
 	font-size: 16px;
 }
+#header {
+	display: block;
+	background: #eeeeee;
+	height: 80px;
+	border-bottom: 1px solid #8c8c8c;
+	margin-bottom: 1px;
+}
 /* Logo and branding */
 #logo {
 	position: absolute;
@@ -97,14 +104,33 @@ html {
 /* Search box */
 #search-box {
 	position: absolute;
-	top: 23px;
+	top: 20px;
 	left: 264px;
 	z-index: 100;
-	padding: 6px;
-	border-radius: 3px;
-	border: 1px solid #aaa;
-	background: #cccccc url("/kepek/search-box-bg-75-1x100.png") 50% 50% repeat-x;
 	font-family: Arial;
+}
+
+#search-box #search-mode, #search-box #directions-mode {
+	display: inline-block;
+}
+#search-box #mode-selector .active a {
+	border: 1px solid #ccc;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	font-weight: bold;
+	border-bottom: 0 none;
+}
+#search-box #search-mode a, #search-box #directions-mode a {
+	padding: 4px 12px;
+	font-size: 13px;
+	text-decoration: none;
+	color: #0066FF;
+}
+#search-box form {
+	display: inline-block;
+}
+#search-box #directions {
+	display: none;
 }
 #search-box .twitter-typeahead {
 	vertical-align: top;
@@ -169,7 +195,21 @@ html {
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
 }
 
+#search-box #directions input.typeahead {
+	width: 210px;
+}
+#search-box input#directions-start-search {
+	border-radius: 3px;
+}
+#search-box .twitter-typeahead:nth-child(2) {
+	margin-left: 2px;
+}
+
 /* Select2 */
+#search-box .poi-search {
+	display: inline-block;
+	vertical-align: top;
+}
 #search-box .select2-container {
 	margin: 0 0 0 4px;
 	width: 180px;
@@ -193,15 +233,6 @@ ul.select2-results {
 ul.select2-results li {
 	font-size: 14px;
 	font-family: Arial;
-}
-
-/* Header separator line at top: 80px */
-#separator {
-	position: absolute;
-	top: 79px;
-	width: 100%;
-	height: 1px;
-	background-color: #8c8c8c;
 }
 
 /* Override panels */
