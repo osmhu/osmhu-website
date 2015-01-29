@@ -79,6 +79,9 @@
 }
 @media all and (max-width: 699px) {
 	#direction-results {
-		top: 50px;
+		top: 68px;
+	}
+	body.directions-active #direction-results {
+		top: 93px;
 	}
 }

@@ -101,8 +101,8 @@ html {
 	width: 120px;
 }
 
-/* Search box */
-#search-box {
+/* Search area */
+#search-area {
 	position: absolute;
 	top: 20px;
 	left: 264px;
@@ -110,32 +110,35 @@ html {
 	font-family: Arial;
 }
 
-#search-box #search-mode, #search-box #directions-mode {
+#search-area #search-mode, #search-area #directions-mode {
 	display: inline-block;
 }
-#search-box #mode-selector .active a {
+#search-area #mode-selector .active a {
 	border: 1px solid #ccc;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 	font-weight: bold;
 	border-bottom: 0 none;
 }
-#search-box #search-mode a, #search-box #directions-mode a {
+#search-area #search-mode a, #search-area #directions-mode a {
 	padding: 4px 12px;
 	font-size: 13px;
 	text-decoration: none;
 	color: #0066FF;
 }
-#search-box form {
+#search-area #modes {
 	display: inline-block;
 }
-#search-box #directions {
+#search-area #directions {
 	display: none;
 }
-#search-box .twitter-typeahead {
+#search-area #directions .fields {
+	display: inline-block;
+}
+#search-area .twitter-typeahead {
 	vertical-align: top;
 }
-#search-box input.typeahead {
+#search-area input.typeahead {
 	width: 260px;
 	padding: 6px 0 5px 6px;
 	margin: 0;
@@ -144,15 +147,15 @@ html {
 	border: 1px solid #aaa;
 	border-radius: 3px 0 0 3px;
 }
-#search-box input.searching {
+#search-area input.searching {
 	background-image: url("/kepek/ajax-loader.gif");
 	background-repeat: no-repeat;
 	background-position: 98% 50%;
 }
-#search-box input.tt-hint {
+#search-area input.tt-hint {
 	border-width: 1px;
 }
-#search-box .tt-dropdown-menu {
+#search-area .tt-dropdown-menu {
     width: 266px;
     padding: 2px 0;
     background-color: #fff;
@@ -161,24 +164,24 @@ html {
     border-radius: 3px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
-#search-box .tt-dropdown-menu .tt-suggestion {
+#search-area .tt-dropdown-menu .tt-suggestion {
     padding: 2px 8px;
     font-size: 15px;
     line-height: 24px;
 }
-#search-box .tt-suggestion.tt-cursor {
+#search-area .tt-suggestion.tt-cursor {
     color: #fff;
     background-color: #0097cf;
 }
-#search-box .tt-suggestion p {
+#search-area .tt-suggestion p {
     margin: 0;
 }
-#search-box .search-button {
-	display: inline;
+#search-area .search-button {
+	display: inline-block;
 	margin: 0;
 	vertical-align: top;
 }
-#search-box .search-button button {
+#search-area .search-button button {
 	position: relative;
 	font-size: 95%;
 	cursor: pointer;
@@ -195,32 +198,32 @@ html {
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
 }
 
-#search-box #directions input.typeahead {
+#search-area #directions input.typeahead {
 	width: 210px;
 }
-#search-box input#directions-start-search {
+#search-area input#directions-start-search {
 	border-radius: 3px;
 }
-#search-box .twitter-typeahead:nth-child(2) {
+#search-area .twitter-typeahead:nth-child(2) {
 	margin-left: 2px;
 }
 
 /* Select2 */
-#search-box .poi-search {
+#search-area .poi-search {
 	display: inline-block;
 	vertical-align: top;
 }
-#search-box .select2-container {
+#search-area .select2-container {
 	margin: 0 0 0 4px;
 	width: 180px;
 	vertical-align: top;
 }
-#search-box a.select2-choice {
+#search-area a.select2-choice {
 	padding: 3px 0 0px 9px;
 	height: 32px;
 	border-radius: 3px;
 }
-#search-box a.select2-choice span.select2-chosen {
+#search-area a.select2-choice span.select2-chosen {
 	font-size: 95%;
 }
 
@@ -292,14 +295,33 @@ ul.select2-results li {
 	font-size: 18px;
 }
 
+/* Header layout on smaller screens */
+@media all and (max-width: 999px) {
+	#logo .brand, #logo .slogan {
+		display: none;
+	}
+	#search-area {
+		left: 90px;
+	}
+}
+
 /* Map layout on mobile or small screen */
 @media all and (max-width: 699px) {
 	.panel, #menu li.mobile-hidden, #social, #logo, #separator, .toggler {
 		display: none;
 	}
+	#header {
+		height: 70px;
+	}
+	body.directions-active #header {
+		height: 94px;
+	}
 	#map-container {
-		top: 50px;
+		top: 69px;
 		left: 0;
+	}
+	body.directions-active #map-container {
+		top: 93px;
 	}
 	#menu .name1 {
 		display: inline;
@@ -308,55 +330,72 @@ ul.select2-results li {
 		width: 100%;
 		text-align: center;
 	}
-	#search-box {
+	#search-area {
 		top: 24px;
 		left: 0;
 		padding: 0;
 		border: 0 none;
 		width: 100%;
 	}
-	#search-box #search {
+	#search-area #search-options {
 		display: table;
 		border-collapse: collapse;
 		width: 100%;
 	}
-	#search-box .twitter-typeahead {
-		display: table-cell !important;
-		height: 25px;
+	#search-area #modes {
+		display: table-cell;
 	}
-	#search-box input.typeahead {
+	#search-area #search form {
+		display: table;
+		width: 100%;
+	}
+	#search-area input.typeahead {
+		display: table-cell;
 		font-size: 85%;
 		padding: 4px 0 4px 4px;
 		width: 100%;
 		height: 25px;
 	}
-	#search-box .search-button {
+	#search-area .search-button {
 		display: table-cell;
-		width: 32px;
+		width: 31px;
 	}
-	#search-box .search-button button {
+	#search-area .search-button button {
 		width: 31px;
 		height: 25px;
 		font-size: 80%;
 		vertical-align: top;
 		padding: 0;
 	}
-	#search-box .select2-container {
+	#search-area #directions .fields {
+		display: table-cell;
+	}
+	#search-area #directions .fields .typeahead {
+		width: 100%;
+	}
+	#search-area #directions .search-button button {
+		height: 50px;
+	}
+	#search-area .poi-search {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	#search-area .select2-container {
 		width: 100%;
 		height: 25px;
 		font-size: 90%;
 		vertical-align: top;
 		margin: 0;
 	}
-	#search-box a.select2-choice {
+	#search-area a.select2-choice {
 		margin: 0px;
 		height: 25px;
 		padding: 1px 0 0 9px;
 	}
-	#search-box span.select2-chosen {
+	#search-area span.select2-chosen {
 		line-height: 21px;
 	}
-	#search-box a.select2-choice abbr {
+	#search-area a.select2-choice abbr {
 		top: 7px;
 	}
 	ul.select2-results li {
@@ -365,7 +404,7 @@ ul.select2-results li {
 	ul.select2-results li .object {
 		margin-left: 5px;
 	}
-	#search-box .tt-dropdown-menu .tt-suggestion {
+	#search-area .tt-dropdown-menu .tt-suggestion {
 		padding: 1px 8px;
 		font-size: 85%;
 		line-height: 22px;

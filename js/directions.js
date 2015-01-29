@@ -25,55 +25,81 @@ directions.convertToMapQuestFormat = function (string) {
 	return allOtherParts + parts[0] + ', Hungary';
 }
 
+var startField = $('#directions #directions-start-search');
+var endField = $('#directions #directions-end-search');
+var typeInput = $('#directions #directions-type');
+var avoidTollRoadsInput = $('#directions #directions-avoid-toll-roads');
+
 directions.initializeModes = function () {
 	directions.loadJs();
 
-	$('#search-box #mode-selector #search-mode a').click(function (event) {
+	$('#search-area #mode-selector #search-mode a').click(function (event) {
 		event.preventDefault();
-		$('#search-box #mode-selector #search-mode').addClass('active');
-		$('#search-box #mode-selector #directions-mode').removeClass('active');
-		$('form#search').css('display', 'inline-block');
-		$('form#directions').hide();
-		$('#search-box input#text-search').focus();
+		$('#search-area #mode-selector #search-mode').addClass('active');
+		$('#search-area #mode-selector #directions-mode').removeClass('active');
+		$('#search').show();
+		$('#directions').hide();
+		$('body').removeClass('directions-active');
+		$('#search-area input#text-search').focus();
 	});
 
-	$('#search-box #mode-selector #directions-mode a').click(function (event) {
+	$('#search-area #mode-selector #directions-mode a').click(function (event) {
 		event.preventDefault();
-		$('#search-box #mode-selector #directions-mode').addClass('active');
-		$('#search-box #mode-selector #search-mode').removeClass('active');
-		$('form#directions').css('display', 'inline-block');
-		$('form#search').hide();
-		$('#search-box input#directions-start-search').focus();
-	});
-
-	$('#search-box form#directions').on('submit', function (event) {
-		event.preventDefault();
-		var start = $('#search-box form#directions #directions-start-search').val();
-		var end = $('#search-box form#directions #directions-end-search').val();
-
-		if (start.length < 3) {
-			$('#search-box form#directions #directions-start-search').css('border-color', 'red');
-		} else {
-			$('#search-box form#directions #directions-start-search').css('border-color', '#aaa');
-		}
-
-		if (end.length < 3) {
-			$('#search-box form#directions #directions-end-search').css('border-color', 'red');
-		} else {
-			$('#search-box form#directions #directions-end-search').css('border-color', '#aaa');
-		}
-
-		if (start.length >= 3 && end.length >= 3) {
-			start = directions.convertToMapQuestFormat(start);
-			end = directions.convertToMapQuestFormat(end);
-			directions.route(start, end);
-		}
+		$('#search-area #mode-selector #directions-mode').addClass('active');
+		$('#search-area #mode-selector #search-mode').removeClass('active');
+		$('#directions').show();
+		$('#search').hide();
+		$('body').addClass('directions-active');
+		startField.focus();
 	});
 };
 
+$('#directions form').on('submit', function (event) {
+	event.preventDefault();
+
+	var start = startField.val();
+	var end = endField.val();
+
+	if (start.length < 3) {
+		startField.css('border-color', 'red');
+	} else {
+		startField.css('border-color', '#aaa');
+	}
+
+	if (end.length < 3) {
+		endField.css('border-color', 'red');
+	} else {
+		endField.css('border-color', '#aaa');
+	}
+
+	if (start.length >= 3 && end.length >= 3) {
+		var routeStart = directions.convertToMapQuestFormat(start);
+		var routeEnd = directions.convertToMapQuestFormat(end);
+		var type = typeInput.val();
+		var avoidTollRoads = avoidTollRoadsInput.val() === 'on';
+
+		directions.route(routeStart, routeEnd, type, avoidTollRoads);
+
+		endField.addClass('searching');
+	}
+});
+
+$('#direction-results-avoid-toll-roads').on('change', function (event) {
+	var checked = $('#direction-results-avoid-toll-roads').prop('checked');
+	var newValue = checked ? 'on' : '';
+	avoidTollRoadsInput.val(newValue);
+	$('#directions form').submit();
+});
+
+$('#direction-results-choose-type').on('change', function (event) {
+	var newType = $('#direction-results-choose-type').val();
+	typeInput.val(newType);
+	$('#directions form').submit();
+});
+
 var activeRoutingLayer;
 
-directions.route = function (start, end) {
+directions.route = function (start, end, type, avoidTollRoads) {
 	if (activeRoutingLayer) {
 		map.removeLayer(activeRoutingLayer);
 	}
@@ -85,6 +111,8 @@ directions.route = function (start, end) {
 	.on('error', function (error) {
 		directions.error();
 	});
+	
+	var avoids = avoidTollRoads ? ['toll road'] : [];
 
 	dir.route({
 		locations: [
@@ -92,8 +120,10 @@ directions.route = function (start, end) {
 			end
 		],
 		options: {
-			locale: 'hu_HU',
-			unit:   'k'
+			locale:    'hu_HU',
+			unit:      'k',
+			routeType: type,
+			avoids:    avoids
 		}
 	});
 
@@ -151,6 +181,7 @@ directions.process = function (directions, info) {
 		directionResults.find('.no-results').hide();
 		directionResults.find('.results').show();
 		directionResults.show();
+		endField.removeClass('searching');
 		$(window).trigger('search-results-show');
 	}
 };
@@ -159,6 +190,7 @@ directions.error = function () {
 	directionResults.find('.no-results').show();
 	directionResults.find('.results').hide();
 	directionResults.show();
+	endField.removeClass('searching');
 	$(window).trigger('search-results-show');
 };
 

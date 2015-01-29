@@ -67,6 +67,9 @@
 
 @media all and (max-width: 699px) {
 	#search-results {
-		top: 50px;
+		top: 68px;
+	}
+	body.directions-active #search-results {
+		top: 93px;
 	}
 }

@@ -71,7 +71,7 @@ if (params.type && params.id) {
 // Update Org urls on page load
 url.updateOrgUrls();
 
-$('form#search').on('submit', function (event) {
+$('#search form').on('submit', function (event) {
 	event.preventDefault();
 
 	var selectedPoiGroup  = $('#poi-search').select2('val');

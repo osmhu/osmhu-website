@@ -175,7 +175,7 @@ body.citylist table.citylist.rewrite td {
 /* On mobile or small screen */
 @media all and (max-width: 699px) {
 	body.info #menu,
-	body.info #search-box,
+	body.info #search-area,
 	body.info #nav,
 	body.info #content {
 		position: static;
