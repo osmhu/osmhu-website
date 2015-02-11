@@ -5,8 +5,8 @@ var directions = module.exports = {};
 var apikey = 'Fmjtd%7Cluu829ur25%2C82%3Do5-9w1gqr';
 
 directions.loadJs = function () {
-	var mapJs = 'http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=' + apikey;
-	var routingJs = 'http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=' + apikey;
+	var mapJs = 'http://open.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=' + apikey;
+	var routingJs = 'http://open.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=' + apikey;
 	
 	$.getScript(mapJs, function () {
 		$.getScript(routingJs);
