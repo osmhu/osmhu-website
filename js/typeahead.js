@@ -4,7 +4,7 @@ require('typeahead.js');
 
 var search = require('./search');
 
-var typeahead = module.exports = $('#search-box input.typeahead').typeahead(null, {
+var typeahead = module.exports = $('#search-area input.typeahead').typeahead(null, {
 	name:       'cities',
 	displayKey: 'name',
 	source: function (query, cb) {
