@@ -48,10 +48,10 @@
 }
 #introduction .facebook .button {
 	width: 180px;
+	margin: 12px auto;
 }
 #introduction .fbstyle {
 	display: block;
-	margin: 12px auto;
 	text-align: center;
 	padding: 8px 16px;
 	background-color: #3B5998;

@@ -3,14 +3,14 @@ var promotion = module.exports = {};
 // Since in javascript months start with 0, so 2015.09.26 09:00 becomes 2015.8.26 09:00
 var end_date = new Date(2015,8,26,9,0,1);
 
-var template = '<p><strong>Akadálymentes térképezés</strong></p>';
-template+= '<div style="float: left; padding: 0 4px 0 8px"><a href="https://www.facebook.com/events/139192116425139/" target="_blank"><img src="/kepek/map-159714_640.png" alt="Akadálymentes térképezés logója"></a></div>';
+var template = '<p style="margin: 12px 0"><strong>Akadálymentes térképezés</strong></p>';
+template+= '<div style="float: left; padding: 0 0 0 10px"><a href="https://www.facebook.com/events/139192116425139/" target="_blank"><img src="/kepek/map-159714_640.png" alt="Akadálymentes térképezés logója"></a></div>';
 template+= '<div style="float: left"><span><strong>Győr</strong>, szeptember 26.</span>';
-template+= '<p><span class="remaining-days">0</span> nap ';
+template+= '<p style="margin: 8px 0"><span class="remaining-days">0</span> nap ';
 template+= '<span class="remaining-hours">00</span>:';
 template+= '<span class="remaining-minutes">00</span>:';
 template+= '<span class="remaining-seconds">00</span> múlva</p>';
-template+= '<p><div class="fbstyle"><a class="fblink" href="https://www.facebook.com/events/139192116425139/" target="_blank">Esemény oldal</a></div></p></div><div style="clear: both"></div>';
+template+= '<div class="fbstyle"><a class="fblink" href="https://www.facebook.com/events/139192116425139/" target="_blank">Esemény oldal</a></div></div><div style="clear: both"></div>';
 
 promotion.calculateDiff = function () {
 	now = new Date();
