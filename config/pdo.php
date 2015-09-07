@@ -12,5 +12,11 @@ try {
 	$db = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $options);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	die('MySQL connect error: ' . $e->getMessage());
+	$devEnv = 'development' === getenv('APPLICATION_ENV');
+
+	if ($devEnv) {
+		die('MySQL kapcsolódási hiba: ' . $e->getMessage());
+	} else {
+		die('Nem sikerült elérni az adatbázist!');
+	}
 }

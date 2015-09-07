@@ -135,8 +135,9 @@ html {
 #search-area #directions .fields {
 	display: inline-block;
 }
-#search-area .twitter-typeahead {
+#search-area #search .twitter-typeahead {
 	vertical-align: top;
+	display: inline !important;
 }
 #search-area input.typeahead {
 	width: 260px;
@@ -369,6 +370,10 @@ ul.select2-results li {
 	}
 	#search-area #directions .fields {
 		display: table-cell;
+		width: 100%;
+	}
+	#search-area #directions .fields .twitter-typeahead {
+		width: 100%;
 	}
 	#search-area #directions .fields .typeahead {
 		width: 100%;
@@ -376,9 +381,14 @@ ul.select2-results li {
 	#search-area #directions .search-button button {
 		height: 50px;
 	}
+	#search-area .twitter-typeahead:nth-child(2) {
+		margin-left: 0;
+	}
 	#search-area .poi-search {
 		display: table-cell;
 		vertical-align: middle;
+		padding-left: 3px;
+		min-width: 140px;
 	}
 	#search-area .select2-container {
 		width: 100%;
@@ -416,5 +426,11 @@ ul.select2-results li {
 	}
 	.popup-marker {
 		font-size: 80%;
+	}
+}
+@media all and (max-width: 349px) {
+	#search-area .poi-search {
+		padding-left: 0;
+		min-width: 0;
 	}
 }

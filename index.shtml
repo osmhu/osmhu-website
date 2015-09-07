@@ -51,8 +51,6 @@
 							<div class="fields">
 								<input class="typeahead" type="text" id="directions-start-search" placeholder="Indulás helye" tabindex="1"><input class="typeahead" type="text" id="directions-end-search" placeholder="Érkezés helye" tabindex="1">
 							</div><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
-							<input type="hidden" id="directions-type" name="type" value="fastest">
-							<input type="hidden" id="directions-avoid-toll-roads" name="avoid-toll-roads" value="">
 						</form>
 					</div>
 				</div>

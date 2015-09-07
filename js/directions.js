@@ -23,12 +23,13 @@ directions.convertToMapQuestFormat = function (string) {
 	}
 
 	return allOtherParts + parts[0] + ', Hungary';
-}
+};
 
 var startField = $('#directions #directions-start-search');
 var endField = $('#directions #directions-end-search');
-var typeInput = $('#directions #directions-type');
-var avoidTollRoadsInput = $('#directions #directions-avoid-toll-roads');
+
+var activeTransportType = 'fastest';
+var avoidTollRoads = false;
 
 directions.initializeModes = function () {
 	directions.loadJs();
@@ -75,10 +76,8 @@ $('#directions form').on('submit', function (event) {
 	if (start.length >= 3 && end.length >= 3) {
 		var routeStart = directions.convertToMapQuestFormat(start);
 		var routeEnd = directions.convertToMapQuestFormat(end);
-		var type = typeInput.val();
-		var avoidTollRoads = avoidTollRoadsInput.val() === 'on';
 
-		directions.route(routeStart, routeEnd, type, avoidTollRoads);
+		directions.route(routeStart, routeEnd);
 
 		endField.addClass('searching');
 	}
@@ -86,20 +85,19 @@ $('#directions form').on('submit', function (event) {
 
 $('#direction-results-avoid-toll-roads').on('change', function (event) {
 	var checked = $('#direction-results-avoid-toll-roads').prop('checked');
-	var newValue = checked ? 'on' : '';
-	avoidTollRoadsInput.val(newValue);
-	$('#directions form').submit();
+	avoidTollRoads = checked;
+	$('#directions form').trigger('submit');
 });
 
 $('#direction-results-choose-type').on('change', function (event) {
 	var newType = $('#direction-results-choose-type').val();
-	typeInput.val(newType);
-	$('#directions form').submit();
+	activeTransportType = newType;
+	$('#directions form').trigger('submit');
 });
 
 var activeRoutingLayer;
 
-directions.route = function (start, end, type, avoidTollRoads) {
+directions.route = function (start, end) {
 	if (activeRoutingLayer) {
 		map.removeLayer(activeRoutingLayer);
 	}
@@ -122,7 +120,7 @@ directions.route = function (start, end, type, avoidTollRoads) {
 		options: {
 			locale:    'hu_HU',
 			unit:      'k',
-			routeType: type,
+			routeType: activeTransportType,
 			avoids:    avoids
 		}
 	});
@@ -163,8 +161,8 @@ directions.process = function (directions, info) {
 						html+= '<td class="narrative">' + maneuver.narrative + '</td>';
 					}
 					if (maneuver.distance) {
-						var distance = Math.round(parseFloat(maneuver.distance) * 10) / 10;
-						html+= '<td class="distance">' + distance + '&nbsp;km</td>';
+						var maneuverDistance = Math.round(parseFloat(maneuver.distance) * 10) / 10;
+						html+= '<td class="distance">' + maneuverDistance + '&nbsp;km</td>';
 					} else {
 						html+= '<td></td>';
 					}
