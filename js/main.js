@@ -10,6 +10,7 @@ var introduction = require('./introduction');
 var overpass = require('./overpass');
 var typeahead = require('./typeahead');
 var select2 = require('./select2');
+var promotion = require('./promotion');
 
 params.zoom = params.zoom || params.mzoom; // Backwards compatibility with old mzoom url's
 

@@ -20,7 +20,7 @@
 	<!-- Poi popup stylesheet -->
 	<link rel="stylesheet" href="/css/poi-popup.css?rev=319">
 	<!-- Introduction stylesheet -->
-	<link rel="stylesheet" href="/css/introduction.css?rev=320">
+	<link rel="stylesheet" href="/css/introduction.css?rev=340">
 	<!-- Search results stylesheet -->
 	<link rel="stylesheet" href="/css/search-results.css?rev=320">
 	<!-- Direction results stylesheet -->
@@ -118,15 +118,15 @@
 			<p><strong>Próbáld ki, és szerkessz valamit!</strong></p>
 			<p><a id="orgEditLink" href="http://openstreetmap.org/edit">Terület szerkesztése</a></p>
 		</div>
-		<div class="wheelmap">
+		<div class="project">
 			<p><strong>A hónap projektje</strong></p>
 			<p>Akadálymentes térkép</p>
 			<a href="http://akadalymentesterkep.hu/#wheelmap" target="_blank"><img src="/kepek/wheelmap.png" alt="wheelmap.org logó"></a>
 		</div>
 		<div class="facebook">
 			<p><strong>Facebook oldalunk:</strong></p>
-			<div class="fbbutton"><a class="fblink" href="http://www.facebook.com/OpenStreetMap.hu" title="OpenStreetMap.hu a Facebookon" target="_blank">OpenStreetMap.hu</a></div>
-			<div class="fbbutton"><a class="fblink" href="https://www.facebook.com/groups/osm.hu" title="Szerkesztői csoport a Facebookon" target="_blank">Szerkesztői csoport</a></div>
+			<div class="button fbstyle"><a class="fblink" href="https://www.facebook.com/OpenStreetMap.hu" title="OpenStreetMap.hu a Facebookon" target="_blank">OpenStreetMap.hu</a></div>
+			<div class="button fbstyle"><a class="fblink" href="https://www.facebook.com/groups/osm.hu" title="Szerkesztői csoport a Facebookon" target="_blank">Szerkesztői csoport</a></div>
 		</div>
 	</div>
 

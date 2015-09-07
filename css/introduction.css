@@ -13,7 +13,7 @@
 #introduction .description p {
 	text-align: justify;
 }
-#introduction .tryit, #introduction .wheelmap {
+#introduction .tryit, #introduction .project {
 	border-bottom: 1px solid #aaa;
 	padding-bottom: 15px;
 }
@@ -33,7 +33,7 @@
 	font-weight: bold;
 	color: white;
 }
-#introduction .wheelmap {
+#introduction .project {
 	text-align: center;
 	font-family: sans-serif;
 }
@@ -46,16 +46,18 @@
 #introduction .facebook p {
 	text-align: center;
 }
-#introduction .facebook .fbbutton {
+#introduction .facebook .button {
+	width: 180px;
+}
+#introduction .fbstyle {
 	display: block;
 	margin: 12px auto;
 	text-align: center;
 	padding: 8px 16px;
-	width: 180px;
 	background-color: #3B5998;
 	font-family: Helvetica, sans-serif;
 }
-#introduction .facebook .fbbutton a {
+#introduction .fbstyle a {
 	text-decoration: none;
 	color: white;
 }
