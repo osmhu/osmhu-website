@@ -56,20 +56,17 @@
 
 		<p><a href="/szerkesztes">A szerkesztés bemutatása</a></p>
 
-		<h2>Mire jó ez, ott a Google Maps, Turistautak.hu meg a többiek?</h2>
+		<h2>Mire jó ez, ott a Google Maps, Bing meg a többiek?</h2>
 
 		<p>A legtöbb ilyen térkép <strong>nagyon korlátozott felhasználást enged meg</strong>.
 		Tömören például a <a href="http://www.google.com/intl/hu_hu/help/terms_maps.html">Google felhasználási feltételeiből</a> megtudhatjuk, hogy külön erre vonatkozó szerződés hiányában
 		<em>tilos mindennemű másolás, lefordítás, módosítás, származtatott munka készítése, terjesztés,
-			publikálás, eladás, bérbe adás, visszafejtés stb.</em> vagy például a 
-		<a href="http://turistautak.hu/documents.php?id=jogi">turistautak.hu jogi tudnivalóiból</a> 
-		megtudhatjuk, hogy <em>A feltöltött anyagok a Magyar Geocaching Közhasznú Egyesület tulajdonába kerülnek és tilos mindennemű másolás (leszámítva a saját felhasználásra való letöltést), terjesztés stb. csak jogi következményekkel (vagy persze külön szerződéssel)...</em>.</p>
-
-		<p>Az ilyenekre feltöltő szerkesztők tehát egy-egy nekik kedves cég "zsebébe tömködik" a 
+			publikálás, eladás, bérbe adás, visszafejtés stb.</em>
+		Az ilyenekre feltöltő szerkesztők tehát egy-egy nekik kedves cég "zsebébe tömködik" a 
 		térképadatokat.</p>
 
 		<p>Ezzel a megközelítéssel szöges ellentétben áll az OpenStreetMap licencelése.
-		Az adatok nem csak hogy megtekinthetőek az interneten, de <strong>bármikor szabadon másolhatóak, bármilyen (üzleti és magán) célra felhasználhatóak, tetszőleges származtatott munka készíthető belőlük</strong> (mindössze meg kell jelölni a forrást).
+		Az adatok nem csak hogy megtekinthetőek az interneten, de <strong>bármikor szabadon másolhatóak, bármilyen (üzleti és magán) célra felhasználhatóak, származtatott munka készíthető belőlük</strong> (meg kell jelölni a forrást).
 		Mindenkinek csak a kreativitásán vagy az épp üzleti lehetőségein múlik, hogy mit hoz ki az OSM térképadataiból. Emellett a szerkesztés is teljesen szabadon zajlik, bárki feltöltheti amit fontosnak tart és erre mások azonnal reagálhatnak pontosításokkal.</p>
 		<!--#include virtual="includes/cc0.html" -->
 	</div>
