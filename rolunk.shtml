@@ -25,9 +25,9 @@
 		<p>Az OpenStreetMap hasonlóan készül mint a Wikipédia: bárki szerkesztheti, kiegészítheti a saját tudásával, felrajzolhatja a környékét, vagy frissítheti az általa fontosnak ítélt részeket.</p>
 
 		<div id="meetblock">
-			<div class="meetus"><span><a class="fblink" href="https://www.facebook.com/groups/164314157038254/">Facebook Csoport</a> (csevegés)</span></div>
+			<div class="meetus"><span><a class="fbpage" href="https://www.facebook.com/groups/164314157038254/">Facebook Csoport</a> (csevegés)</span></div>
 			<div class="meetus"><span><a class="meetup" href="http://www.meetup.com/OpenStreetMap-OSGeo-Hungary/">Meetup csoport</a> (találkozók, előadások)</span></div>
-			<div class="meetus"><span><a class="fblink" href="http://www.facebook.com/OpenStreetMap.hu">Facebook Oldalunk</a> (híreink)</span></div>
+			<div class="meetus"><span><a class="fbpage" href="http://www.facebook.com/OpenStreetMap.hu">Facebook Oldalunk</a> (híreink)</span></div>
 			<div class="meetus"><span><a class="youtube" href="http://www.youtube.com/user/OpenStreetMapHungary">YouTube csatorna</a> (előadások, oktatás)</span></div>
 			<div class="meetus"><span><a class="maillist" href="http://groups.google.hu/group/openstreetmap-hungary/">Levelezési lista</a> (tanácsok, beszélgetés)</span></div>
 		</div>

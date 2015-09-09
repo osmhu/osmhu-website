@@ -112,12 +112,12 @@ body.info div.letoltesek li.letoltesek a {
 }
 
 /* Facebook, meetup, mailing list badges */
-a.fblink, a.meetup, a.maillist, a.youtube {
+a.fbpage, a.meetup, a.maillist, a.youtube {
 	padding-left: 20px;
 	background-repeat: no-repeat;
 	background-position: left center;
 }
-a.fblink {
+a.fbpage {
 	background-image: url("/kepek/fb-icon16.png");
 }
 a.meetup {
