@@ -2,6 +2,7 @@
 	<title>Magyarországi városok és falvak térképe</title>
 
 	<?php include 'includes/head_scripts.html' ?>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="/testing/old/overpass.js?rev=249"></script>
 	<script>
 	function changeTool(ddl) {
@@ -51,7 +52,7 @@ $hutrans = array(
 	"Ó" => "o", "Ö" => "o", "Ő" => "o",
 	"Ú" => "u", "Ü" => "u", "Ű" => "u"
 	);
-$tools = array('keepright', 'tags', 'bingcompare', 'rewrite');
+$tools = array('keepright', 'bingcompare', 'rewrite');
 
 // Read Query String parameters
 $page = "";
@@ -90,6 +91,12 @@ echo("<h1>Magyarországi városok és falvak térképe</h1>\n");
 //echo("<form action=\"$formaction\" method=\"post\">");
 showPageLetters($letters, $pagenames, $page, $tool);
 showTools($tool);
+
+if ($tool == 'keepright') {
+	echo '<p>A KeepRight használatához engedélyezd a felugró ablakokat, majd kattints a hivatkozásokra.</p>';
+} else if ($tool == 'bingcompare') {
+	echo '<p>A Bing összehasonlító nézet használatához engedélyezd a felugró ablakokat, majd kattints a hivatkozásokra.</p>';
+}
 
 // Show city list
 if($page) {
@@ -185,7 +192,6 @@ function showTools($tool) {
 Segédeszköz: <select onchange="changeTool(this);">
 	<option value="">-</option>
 	<option value="keepright" <?php sel($tool == "keepright") ?>>KeepRight</option>
-	<option value="tags" <?php sel($tool == "tags") ?>>Kulcsszavak</option>
 	<option value="bingcompare" <?php sel($tool == "bingcompare") ?>>Bing műhold</option>
 	<option value="rewrite" <?php sel($tool == "rewrite") ?>>Rewrite szabály</option>
 </select>

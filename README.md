@@ -33,6 +33,13 @@ Hozzáadom a legtetejéhez:
 A kód néhány helyen használja ezt a címet, így ne változtasd meg, ha nincs rá különösebb okod.
 ### Nginx webszerver
 TODO: erről csinálni egy leírást, jelenleg nagyon kaotikus
+### MDB2
+A terkep.php fájl (és bármely fájl ami a lib.php -t használja) futtatásához szükséges az MDB2 telepítése.
+Ezt a PEAR adatbázisból lehet megtenni a következő paranccsal:
+```
+sudo apt-get install php-pear
+sudo pear install MDB2 MDB2#mysql
+```
 ### MySQL
 A keresőben az automatikus kiegészítés a MySQL szerverről kapott adatokat használ, így szükséges a MySQL telepítése:
 ```
