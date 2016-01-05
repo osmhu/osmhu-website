@@ -16,7 +16,7 @@
 }
 
 /* minZoomIdenticator Control */
-.leaflet-control-minZoomIdenticator {
+.leaflet-control-minZoomIndicator {
 	display: block;
 	top: -134px;
 	left: 45px;
@@ -28,7 +28,7 @@
 	color: #031634;
 	cursor: default !important;
 }
-.leaflet-control-minZoomIdenticator img {
+.leaflet-control-minZoomIndicator img {
 	width: 20px;
 	height: 20px;
 	vertical-align: middle;

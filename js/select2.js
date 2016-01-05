@@ -3,8 +3,7 @@ var $ = require('jquery');
 window.jQuery = $; // Hack to make select2 work
 require('select2');
 
-require('../vendor/leaflet-layer-overpass/OverPassLayer');
-L.Control.MinZoomIdenticator = require('./controls/minZoomIdenticator');
+require('../vendor/leaflet-layer-overpass/dist/OverPassLayer');
 
 var url = require('./url');
 var search = require('./search');
@@ -67,7 +66,13 @@ select2.poiSearch = function (selected) {
 		// Add Overpass layer
 		overPassLayer = new L.OverPassLayer({
 			minzoom: 14,
+			endpoint: 'http://overpass.osm.rambler.ru/cgi/',
 			query: overpassLayerQuery,
+			minZoomIndicatorOptions: {
+				position: 'topleft',
+				minZoomMessageNoLayer: 'Nincs réteg hozzáadva.',
+				minZoomMessage: '<img src="/kepek/1391811435_Warning.png">A helyek a MINZOOMLEVEL. nagyítási szinttől jelennek meg. (Jelenleg: CURRENTZOOM)'
+			},
 			callback: overpassCallback
 		}).addTo(map);
 	}
@@ -77,6 +82,7 @@ select2.initialize = function () {
 	$('#poi-search').select2({
 		data: convertToSelect2Options(options),
 		minimumResultsForSearch: minimumResultsForSearch,
+		formatNoMatches: 'Nem található egyezés.',
 		allowClear: true,
 		matcher: function(term, text, opt) {
 			return text.toUpperCase().indexOf(term.toUpperCase()) >= 0 ||

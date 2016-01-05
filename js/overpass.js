@@ -4,7 +4,7 @@ var overpass = module.exports = {};
  * Get element details from OverPass by element type and element id
  */
 overpass.getDetailsByTypeAndId = function (type, id) {
-	var query = 'http://overpass-api.de/api/interpreter?data=[out:json];(';
+	var query = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(';
 	switch (type) {
 		case 'node':
 			query+= 'node(' + id + ');';
@@ -51,7 +51,7 @@ overpass.getDetailsByTypeAndId = function (type, id) {
  *
  */
 overpass.generateComplexQuery = function (selectedList) {
-	var query = 'http://overpass-api.de/api/interpreter?data=[out:json][bbox:BBOX];(';
+	var query = '(';
 	$.each(selectedList, function (i, selected) {
 		if (simple[selected]) {
 			query+= simple[selected] + ';';
@@ -67,55 +67,55 @@ overpass.generateComplexQuery = function (selectedList) {
 };
 
 var simple = overpass.simple = {
-	restaurant: 		'node["amenity"="restaurant"]',
-	fast_food: 			'node["amenity"="fast_food"]',
-	cafe: 				'node["amenity"="cafe"]',
-	convenience: 		'node["shop"="convenience"]',
-	supermarket: 		'node["shop"="supermarket"]',
-	bakery: 			'node["shop"="bakery"]',
-	clothes: 			'node["shop"="clothes"]',
-	hairdresser: 		'node["shop"="hairdresser"]',
-	florist: 			'node["shop"="florist"]',
-	confectionery:      'node["shop"="confectionery"]',
-	greengrocer:        'node["shop"="greengrocer"]',
-	bicycle: 			'node["shop"="bicycle"]',
-	atm: 				'(node["amenity"="atm"];node["amenity"="bank"]["atm"="yes"];)',
-	bank: 				'node["amenity"="bank"]',
-	bureau_de_change: 	'node["amenity"="bureau_de_change"]',
-	bar: 				'node["amenity"="bar"]',
-	pub: 				'node["amenity"="pub"]',
-	guest_house: 		'node["tourism"="guest_house"]',
-	hostel: 			'node["tourism"="hostel"]',
-	hotel: 				'node["tourism"="hotel"]',
-	information: 		'node["tourism"="information"]',
-	clinic: 			'node["amenity"="clinic"]',
-	hospital: 			'node["amenity"="hospital"]',
-	dentist: 			'node["amenity"="dentist"]',
-	doctors: 			'node["amenity"="doctors"]',
-	pharmacy: 			'node["amenity"="pharmacy"]',
-	veterinary: 		'node["amenity"="veterinary"]',
-	place_of_worship:   'node["amenity"="place_of_worship"]',
-	cinema: 			'node["amenity"="cinema"]',
-	community_centre: 	'node["amenity"="community_centre"]',
-	library: 			'node["amenity"="library"]',
-	museum: 			'node["tourism"="museum"]',
-	theatre: 			'node["amenity"="theatre"]',
-	park: 				'node["leisure"="park"]',
-	playground: 		'node["leisure"="playground"]',
-	sports_centre:      '(node["leisure"="pitch"];node["leisure"="track"];node["leisure"="sports_centre"];)',
-	fitness_station:    'node["leisure"="fitness_station"]',
-	beach_resort:       'node["leisure"="beach_resort"]',
-	water_park:         'node["leisure"="water_park"]',
-	natural_beach:      'node["natural"="beach"]',
-	swimming_pool: 		'node["amenity"="swimming_pool"]',
-	kindergarten: 		'node["amenity"="kindergarten"]',
-	school: 			'node["amenity"="school"]',
-	university: 		'node["amenity"="university"]',
-	fuel: 				'node["amenity"="fuel"]',
-	parking: 			'node["amenity"="parking"]',
-	drinking_water: 	'node["amenity"="drinking_water"]',
-	toilets: 			'node["amenity"="toilets"]',
-	recycling: 			'node["amenity"="recycling"]'
+	restaurant: 		'node(BBOX)["amenity"="restaurant"]',
+	fast_food: 			'node(BBOX)["amenity"="fast_food"]',
+	cafe: 				'node(BBOX)["amenity"="cafe"]',
+	convenience: 		'node(BBOX)["shop"="convenience"]',
+	supermarket: 		'node(BBOX)["shop"="supermarket"]',
+	bakery: 			'node(BBOX)["shop"="bakery"]',
+	clothes: 			'node(BBOX)["shop"="clothes"]',
+	hairdresser: 		'node(BBOX)["shop"="hairdresser"]',
+	florist: 			'node(BBOX)["shop"="florist"]',
+	confectionery:      'node(BBOX)["shop"="confectionery"]',
+	greengrocer:        'node(BBOX)["shop"="greengrocer"]',
+	bicycle: 			'node(BBOX)["shop"="bicycle"]',
+	atm: 				'(node(BBOX)["amenity"="atm"];node(BBOX)["amenity"="bank"]["atm"="yes"];)',
+	bank: 				'node(BBOX)["amenity"="bank"]',
+	bureau_de_change: 	'node(BBOX)["amenity"="bureau_de_change"]',
+	bar: 				'node(BBOX)["amenity"="bar"]',
+	pub: 				'node(BBOX)["amenity"="pub"]',
+	guest_house: 		'node(BBOX)["tourism"="guest_house"]',
+	hostel: 			'node(BBOX)["tourism"="hostel"]',
+	hotel: 				'node(BBOX)["tourism"="hotel"]',
+	information: 		'node(BBOX)["tourism"="information"]',
+	clinic: 			'node(BBOX)["amenity"="clinic"]',
+	hospital: 			'node(BBOX)["amenity"="hospital"]',
+	dentist: 			'node(BBOX)["amenity"="dentist"]',
+	doctors: 			'node(BBOX)["amenity"="doctors"]',
+	pharmacy: 			'node(BBOX)["amenity"="pharmacy"]',
+	veterinary: 		'node(BBOX)["amenity"="veterinary"]',
+	place_of_worship:   'node(BBOX)["amenity"="place_of_worship"]',
+	cinema: 			'node(BBOX)["amenity"="cinema"]',
+	community_centre: 	'node(BBOX)["amenity"="community_centre"]',
+	library: 			'node(BBOX)["amenity"="library"]',
+	museum: 			'node(BBOX)["tourism"="museum"]',
+	theatre: 			'node(BBOX)["amenity"="theatre"]',
+	park: 				'node(BBOX)["leisure"="park"]',
+	playground: 		'node(BBOX)["leisure"="playground"]',
+	sports_centre:      '(node(BBOX)["leisure"="pitch"];node(BBOX)["leisure"="track"];node(BBOX)["leisure"="sports_centre"];)',
+	fitness_station:    'node(BBOX)["leisure"="fitness_station"]',
+	beach_resort:       'node(BBOX)["leisure"="beach_resort"]',
+	water_park:         'node(BBOX)["leisure"="water_park"]',
+	natural_beach:      'node(BBOX)["natural"="beach"]',
+	swimming_pool: 		'node(BBOX)["amenity"="swimming_pool"]',
+	kindergarten: 		'node(BBOX)["amenity"="kindergarten"]',
+	school: 			'node(BBOX)["amenity"="school"]',
+	university: 		'node(BBOX)["amenity"="university"]',
+	fuel: 				'node(BBOX)["amenity"="fuel"]',
+	parking: 			'node(BBOX)["amenity"="parking"]',
+	drinking_water: 	'node(BBOX)["amenity"="drinking_water"]',
+	toilets: 			'node(BBOX)["amenity"="toilets"]',
+	recycling: 			'node(BBOX)["amenity"="recycling"]'
 };
 
 var combined = overpass.combined = {

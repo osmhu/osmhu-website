@@ -421,7 +421,7 @@ ul.select2-results li {
 		font-size: 85%;
 		line-height: 22px;
 	}
-	.leaflet-control-minZoomIdenticator {
+	.leaflet-control-minZoomIndicator {
 		font-size: 100%;
 		max-width: 60%;
 		top: -134px;
