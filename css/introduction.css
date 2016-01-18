@@ -40,6 +40,29 @@
 	font-family: sans-serif;
 	padding-bottom: 8px;
 }
+#introduction .project .title {
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+#introduction .project .slogan {
+	font-size: 15px;
+}
+#introduction .project p.link a {
+	color: #9a33cc;
+	text-decoration: none;
+}
+#introduction .project p.link img {
+	display: inline-block;
+	width: 24px;
+	vertical-align: middle;
+}
+#introduction .project p.link span {
+	display: inline-block;
+	margin-left: 4px;
+	vertical-align: middle;
+	font-size: 20px;
+	font-weight: bold;
+}
 #introduction .project .countdown {
 	font-size: 13px;
 }
