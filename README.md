@@ -38,7 +38,7 @@ A terkep.php fájl (és bármely fájl ami a lib.php -t használja) futtatásáh
 Ezt a PEAR adatbázisból lehet megtenni a következő paranccsal:
 ```
 sudo apt-get install php-pear
-sudo pear install MDB2 MDB2#mysql
+sudo pear install MDB2 MDB2#mysql MDB2#pgsql
 ```
 ### MySQL
 A keresőben az automatikus kiegészítés a MySQL szerverről kapott adatokat használ, így szükséges a MySQL telepítése:
@@ -101,3 +101,38 @@ cd ~/wwwroot/osmhu
 npm run build
 ```
 Eredmény: létrejön a `build/bundle.js`.
+
+## Adatbázisok
+Az OSM adatokat először le kell tölteni, azt beimportálni egy PostgreSQL adatbázisba, és onnan a `scripts/copydb.php` futtatásával átmásolni a MySQL adatbázisba.
+### Osm adatok letöltése
+Az osm2pgsql `*.osm.pbf` fájlokat tud olvasni.
+Az OSM adatokat le kell tölteni pl innen: http://download.geofabrik.de/europe/hungary.html
+### Szükséges csomagok telepítése
+```
+sudo apt-get install -y postgresql-9.3 postgis postgresql-9.3-postgis-scripts osm2pgsql
+```
+### Osm adatok betöltése a PostgreSQL adatbázisba
+https://github.com/openstreetmap/osm2pgsql#usage
+
+Az `osm2pgsql` futásakor legyen minnél több szabad memória, mert annál gyorsabb, illetve bizonyos memóriamennyiség alatt le sem fut.
+```
+sudo -u postgres -i
+createdb gis
+psql -d gis
+\password postgres
+// Írd be a postgresql felhasználó új jelszavát (enélkül nem érhető el kívülről) (kilépés: \q)
+psql -d gis -c 'CREATE EXTENSION postgis; CREATE EXTENSION hstore;'
+osm2pgsql --create --database gis /home/ubuntu/hungary-latest.osm.pbf
+```
+### PostgreSQL adatbázis adatok átkonvertálása a MySQL adatbázisba
+
+#### Fejlesztéskor
+```
+cd scripts
+APPLICATION_ENV="development" php copydb.php
+```
+#### Szerveren
+```
+cd scripts
+php copydb.php
+```

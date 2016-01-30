@@ -1,0 +1,48 @@
+html, body {
+	margin: 0;
+}
+#embed {
+	width: 100%;
+	height: 100%;
+}
+#overlay-info {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	z-index: 3;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 5px;
+	background: white;
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 2px;
+	font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+#overlay-info p.title {
+	font-size: 16px;
+	color: black;
+	font-weight: bold;
+	margin: 6px 30px 2px 10px;
+}
+#overlay-info p.address {
+	font-style: italic;
+	font-size: 14px;
+	margin: 2px 30px 5px 10px;
+}
+#overlay-info p.title:empty, #overlay-info p.address:empty {
+	display: none;
+}
+#map {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.popup-loaded-marker p.title {
+	font-size: 16px;
+	color: black;
+	font-weight: bold;
+	margin: 6px 30px 6px 10px;
+}
+.popup-loaded-marker p.address {
+	font-style: italic;
+	font-size: 14px;
+	margin: 6px 30px 6px 10px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>OpenStreetMap.hu beágyazás készítése weboldaladhoz (embed)</title>
+
+	<!-- Leaflet stylesheet -->
+	<link rel="stylesheet" href="leaflet/leaflet.css?rev=325">
+	<!-- Bootstrap stylesheet -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css?rev=325">
+	<!-- Map stylesheet -->
+	<link rel="stylesheet" href="css/create.css?rev=345">
+</head>
+<body>
+	<div id="create">
+		<h1>OpenStreetMap.hu beágyazás készítése weboldaladhoz</h1>
+		<form id='create-form'>
+			<div class='form-group'>
+				<label class='step' for='name'>1. Hely neve</label>
+				<div class='help-block'>A hely közismert neve, pl: <span>Cégnév Kft.</span>, <span>Katona József Színház</span>, <span>Rozmaring Étterem</span></div>
+				<input type='text' class='form-control' id='name' placeholder='Hely neve' value='' />
+			</div>
+			<div class='form-group'>
+				<label class='step' for='address'>2. Hely címe</label>
+				<div class='help-block'>A hely postacíme, pl: <span>Budapest, Fő utca 13</span>. A keresési eredmények közül válaszd ki a keresett vagy egy ahhoz közeli helyet.</div>
+				<input type='text' class='form-control' id='address' placeholder='Hely címe' value='' />
+				<div id='search-results'></div>
+			</div>
+			<div class='group'>
+				<label class='step' for='choose-map'>3. Pontosítsd a helyet a térképen a piros jelölő húzásával</label>
+				<div class='map-container'>
+					<div id="overlay-info">
+						<p class='title'></p>
+						<p class='address'></p>
+					</div>
+					<div id='choose-map'></div>
+				</div>
+			</div>
+			<div class='form-group button'>
+				<button id='preview-button' class='btn btn-primary' type='submit'>HTML kód generálása</button>
+			</div>
+		</form>
+		<div class='form-group'>
+			<label class='step' for='html-preview'>4. Beágyazandó HTML kód</label>
+			<textarea id='html-preview' class='form-control'></textarea>
+		</div>
+	</div>
+	
+	<!-- Load js bundle -->
+	<script src="build/create.js?rev=345"></script>
+</body>
+</html>

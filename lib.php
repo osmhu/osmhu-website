@@ -255,7 +255,7 @@ class BoundaryIterator implements Iterator {
 	private function start() {
 		//echo("Start");
 		// Get place boundaries from PostGIS (except Budapest)
-		$this->sth = $this->gis->query("SELECT osm_id,name,ST_X(Transform(ST_Centroid(way), 4326)) as boundlon, ST_Y(ST_Transform(ST_Centroid(way), 4326)) as boundlat FROM planet_osm_polygon WHERE boundary = 'administrative' AND admin_level IN ('8','9') AND name != 'Budapest' ORDER BY name");
+		$this->sth = $this->gis->query("SELECT osm_id,name,ST_X(ST_Transform(ST_Centroid(way), 4326)) as boundlon, ST_Y(ST_Transform(ST_Centroid(way), 4326)) as boundlat FROM planet_osm_polygon WHERE boundary = 'administrative' AND admin_level IN ('8','9') AND name != 'Budapest' ORDER BY name");
 		if (is_a($this->sth, 'MDB2_Error')) { echo "QUERY ERROR:"; die($this->sth->getMessage()); }
 		$this->fetch();
 	}
@@ -306,5 +306,9 @@ class City {
 	public $name;
 	public $lat;
 	public $lon;
+
+	public function __toString() {
+		return $this->name;
+	}
 }
 ?>
