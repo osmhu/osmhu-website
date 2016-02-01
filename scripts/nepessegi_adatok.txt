@@ -1,0 +1,21 @@
+Település lakosság adatok felvitele
+1. letölteni a KSH legfrisebb adatbázisát (http://www.ksh.hu/apps/hntr.main)
+2. törölni az összes munkalapot az elsőn kívül
+	- a libreoffice-ban van egy alig észrevehető kijelölés Ctrl + egérrel ki lehet jelölni többet
+3. törölni az oszlopokat úgy, hogy
+	- A: település megnevezése
+	- B: lakónépesség
+	legyen
+4. törölni a felső címsorokat (3)
+5. törölni a legalsó sort (összesen)
+6. Ctrl + A => Közvetlen formázás törlése
+7. elmenteni .csv fájlba alapbeállításokkal
+8. importálni phpmyadmin-ban
+9. átnevezni a táblát `kshdata` -re
+10. a `kshdata` adatbázis illesztését beállítani a `places` táblával egyezőre
+11. szerkezetnél átnevezni a mezőket
+	- A helyett `name`, illesztés `places` táblával egyező
+		- ALTER TABLE kshdata CHANGE `COL 1` `name` VARCHAR(21)
+	- B helyett `population`
+12. lefuttatni az alábbi SQL parancsot
+UPDATE places,kshdata SET places.population=kshdata.population WHERE places.name=kshdata.name

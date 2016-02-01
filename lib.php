@@ -34,7 +34,7 @@ class StreetsDB
 	 */
 	function set_city_processed($osm_id) {
 		$res = $this->mydb->exec("UPDATE places SET processed=1 WHERE osm_id =".$this->mydb->quote($osm_id, 'integer'));
-		if(is_a($res, 'MDB2_Error')) { echo "MySQL INSERT HIBA:"; die($res->getMessage()); }
+		if(is_a($res, 'MDB2_Error')) { echo "MYSQL INSERT ERROR IN set_city_processed: "; die($res->getMessage()); }
 	}
 
 	/**
@@ -47,19 +47,55 @@ class StreetsDB
 			.$this->mydb->quote($city->lat, "float").","
 			.$this->mydb->quote($city->lon, "float").",2,0)";
 		$res = $this->mydb->exec($sql);
-    	if(is_a($res, 'MDB2_Error')) { echo "MySQL INSERT HIBA:"; die($res->getMessage()); }
+		if(is_a($res, 'MDB2_Error')) {
+			// On unique constraint fail for osm_id or name
+			if ($res->getCode() === -3) {
+				echo $city->name . " has already been inserted. New osm id would have been: " . $city->osm_id . ". Skipping ";
+			} else {
+				echo "MYSQL INSERT ERROR IN create_city(" . $city->osm_id . "," . $city->name . "): "; die($res->getMessage());
+			}
+		}
 	}
 
 	/**
 	 * Updates an existing city and marks it being processed
 	 */
 	function update_city($city) {
-		$res = $this->mydb->exec($sql="UPDATE places SET "
-		."name=".$this->mydb->quote($city->name, "text")
-		.",lat=".$this->mydb->quote($city->lat, "float")
-		.",lon=".$this->mydb->quote($city->lon, "float")
-		.",processed=2 WHERE osm_id=".$this->mydb->quote($city->osm_id, "integer"));
-    	if(is_a($res, 'MDB2_Error')) { echo "MySQL UPDATE HIBA:".$sql; die($res->getMessage()); }
+		$id = $this->mydb->quote($city->osm_id, "integer");
+		$name = $this->mydb->quote($city->name, "text");
+		$lat = $this->mydb->quote($city->lat, "float");
+		$lon = $this->mydb->quote($city->lon, "float");
+
+		$sql = "UPDATE places SET "
+			. "name=" . $name
+			. ",lat=" . $lat
+			. ",lon=" . $lon
+			. ",processed=2"
+			. " WHERE osm_id=" . $id
+			. " AND (name!=" . $name . " OR lat!=" . $lat . " OR lon!=" . $lon . ")"
+		);
+		$res = $this->mydb->exec($sql);
+
+		if(is_a($res, 'MDB2_Error')) {
+			echo "MYSQL UPDATE ERROR IN update_city with sql: " . $sql . ": ";
+			die($res->getMessage());
+		}
+	}
+
+	function change_city_id($oldCity, $newCity) {
+		$oldId = $this->mydb->quote($oldCity->osm_id, "integer");
+		$newId = $this->mydb->quote($newCity->osm_id, "integer");
+		$city = $newCity->name;
+
+		$sql = "UPDATE places SET osm_id=" . $newId . " WHERE osm_id=" . $oldId;
+		$res = $this->mydb->exec($sql);
+
+		if(is_a($res, 'MDB2_Error')) {
+			echo "MYSQL UPDATE ERROR IN change_city_id with sql: " . $sql . ": ";
+			die($res->getMessage());
+		}
+
+		echo $res . " row updated in `places` from " . $oldId . " to " . $newId . "\n";
 	}
 
 
@@ -244,7 +280,11 @@ class BoundaryIterator implements Iterator {
 	private $gis;
 
 	// These are in hungary.osm Geofabrik, but not inside Hungary
-	private $foreign = array(-1676393, -177041, -1676391, -109713, -1676395, -190387, -109544, -109315, -109523, -109111, -109536, 30697601);
+	private $foreign = array(-1676393, -177041, -1676391, -109713, -1676395,
+		-190387, -109544, -109315, -109523, -109111, -109536, 30697601, -2386304,
+		-2384737, -2384684, -2274820, -2274801, -2274781, -2274732, -2273310, -2218893,
+		26037728, 337605191, 337658063, 337658973, 337658185, 337658533, 337658671,
+		337658962, 337659430, 337659585);
 	private $sth;  // Statement handle that loads the records // FIXME: need to close somehow!
 	private $curr; // Current item in recordset
 

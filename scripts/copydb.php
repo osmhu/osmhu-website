@@ -88,12 +88,8 @@ foreach($bounds as $plc) {
 	$c = find_imported_city($newcity->name, $str_cities);
 	if($c) {
 		if($c->osm_id != $newcity->osm_id) {
-			echo("OSM ID changed for ".$newcity->name."! Need to be fixed manually.\n");
-			echo("OSM ID in street db: ".$c->osm_id."\n");
-			echo("OSM ID in 'gis': ".$newcity->osm_id."\n");
-			echo("Try adding the new ID to 'places' table, and update the old 'placestreets.place_id' values to the new, and delete the old 'places' entry.\n");
-			echo("update places set osm_id = ".$newcity->osm_id." where osm_id = ".$c->osm_id.";\n");
-			die();
+			echo "Updating OSM ID for " . $newcity->name . "\n";
+			$strdb->change_city_id($c, $newcity);
 		}
 		// Already imported city, keep and update (by id)
 		$strdb->update_city($newcity);
