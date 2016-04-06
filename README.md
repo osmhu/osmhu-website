@@ -32,7 +32,31 @@ Hozzáadom a legtetejéhez:
 ```
 A kód néhány helyen használja ezt a címet, így ne változtasd meg, ha nincs rá különösebb okod.
 ### Webszerver
-TODO: erről csinálni egy leírást, jelenleg nagyon kaotikus
+A kód az apache2 webszerverrel működik megbízhatóan.
+Telepítése:
+```
+sudo apt-get install apache2 php5 libapache2-mod-php5 php5-mysql php5-pgsql -y
+sudo a2enmod php5 # php fájlok futtatása
+sudo a2enmod include # server side includes
+sudo a2enmod rewrite # rewrite szabályok
+```
+A `development/apache2/osmhu.conf` fájlban át kell szerkeszteni a könyvtárakat a kívánt fejlesztési könyvtárnak megfelelően.
+A `DocumentRoot` és a `Directory` sorra különösen figyelni kell, a többihez nem feltétlenül kell hozzányúlni.
+```
+nano ~/wwwroot/osmhu/development/apache2/osmhu.conf
+```
+Másoljuk az új virtuális hostot az apache2 sites könyvtárába:
+```
+sudo cp /home/feri/wwwroot/osmhu/development/apache2/osmhu.conf /etc/apache2/sites-available/osmhu.conf
+```
+Engedélyezzük az új virtuális hostot:
+```
+sudo a2ensite osmhu
+```
+Indítsuk újra az apache2 szervert, hogy figyelembe vegye az új beállításokat:
+```
+sudo service apache2 restart
+```
 ### MDB2
 A `terkep.php` és a `scripts/copydb.php` (és bármely fájl ami a lib.php -t használja) futtatásához szükséges az MDB2 telepítése.
 Ezt a PEAR adatbázisból lehet megtenni a következő paranccsal:
@@ -141,4 +165,4 @@ cd ~/wwwroot/osmhu/scripts
 APPLICATION_ENV="development" php copydb.php
 ```
 #### Népesség adatok hozzáadása
-Lásd `scripts/nepessegi_adatok.txt`
+Lásd `development/nepessegi_adatok.txt`

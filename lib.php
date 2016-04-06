@@ -72,8 +72,7 @@ class StreetsDB
 			. ",lon=" . $lon
 			. ",processed=2"
 			. " WHERE osm_id=" . $id
-			. " AND (name!=" . $name . " OR lat!=" . $lat . " OR lon!=" . $lon . ")"
-		);
+			. " AND (name!=" . $name . " OR lat!=" . $lat . " OR lon!=" . $lon . ")";
 		$res = $this->mydb->exec($sql);
 
 		if(is_a($res, 'MDB2_Error')) {
