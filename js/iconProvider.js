@@ -1,5 +1,8 @@
 // Guess a matching icon for a given element
 // An element with amenity=restaurant will return `/vendor/mapiconscollection/restaurant.png`
+var $ = require('jquery');
+var isMobile = $(window).width() < 699;
+
 module.exports = function iconProvider (element, options) {
 	options = options || {};
 
@@ -27,7 +30,7 @@ module.exports = function iconProvider (element, options) {
 
 	return {
 		iconUrl: iconUrl,
-		iconSize: [32, 37],
+		iconSize: isMobile ? [38, 44] : [32, 37],
 		iconAnchor: [16, 36]
 	};
 };

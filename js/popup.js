@@ -16,7 +16,7 @@ function osmEditUrl (element) {
 
 function wheelchairLogo (element) {
 	var unknown = false;
-	var link = 'http://wheelmap.org/';
+	var link = 'http://wheelmap.org/hu/';
 	if (element.type === 'node') {
 		link+= 'nodes/' + element.id;
 	} else if (element.type === 'way') {
@@ -77,10 +77,11 @@ popup.generateHtml = function (element, options) {
 	}
 	var website = element.tags.website || element.tags['contact:website'];
 	if (website) {
-		html+= '<p class="website">Weboldal: ';
-		html+= '<a href="' + website + '" target="_blank">';
+		html+= '<p class="website">';
+		html+= '<span style="display: inline-block">Weboldal:&nbsp;</span>';
+		html+= '<span style="display: inline-block; word-break: break-all"><a href="' + website + '" target="_blank">';
 		html+= website;
-		html+= '</a>';
+		html+= '</a></span>';
 		html+= '</p>';
 	}
 	html+= '</div>';
@@ -96,7 +97,9 @@ popup.generateHtml = function (element, options) {
 	}
 	html+= '<div class="options">';
 	if (shareUrl) {
-		html+= '<button onclick="$(this).parent().find(\'.share\').show(); $(this).parent().find(\'.share input.share-url\').select();">Megosztás</button>';
+		html+= '<span class="mobile-hidden">';
+		html+= '<button onclick="$(this).parents().find(\'.share\').show(); $(this).parents().find(\'.share input.share-url\').select();">Megosztás</button>';
+		html+= '</span>';
 	}
 	var browseUrl = osmBrowseUrl(element);
 	html+= '<button onclick="window.open(\'' + browseUrl + '\')">Minden adat</button>';

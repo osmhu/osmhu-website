@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var L = require('leaflet');
 
 var helpers = require('./helpers');
@@ -7,6 +8,8 @@ var overpass = require('./overpass');
 var iconProvider = require('./iconProvider');
 
 var marker = module.exports = {};
+
+var isMobile = $(window).width() < 699;
 
 // Display a marker on page load
 marker.displayOnLoad = function (options) {
@@ -59,7 +62,9 @@ marker.fromPoi = function (options) {
 	});
 
 	customMarker.bindPopup(popupHtml, {
-		offset: L.point(0, -24)
+		offset: L.point(0, -24),
+		autoPanPaddingTopLeft: isMobile ? [44, 5] : [46, 10],
+		autoPanPaddingBottomRight: isMobile ? [54, 5] : [56, 10]
 	});
 
 	// On popup open activate copy button
@@ -74,6 +79,7 @@ marker.fromPoi = function (options) {
 		}
 
 		url.setActivePoi(poi.type, poi.id);
+		$(window).trigger('popup-open');
 		$(window).trigger('updateUrl');
 	});
 

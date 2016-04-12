@@ -7,6 +7,7 @@ var layers = require('./config/layers');
 var overlays = require('./config/overlays');
 var share = require('./share');
 var markerCreator = require('./controls/markerCreator');
+var LoadingIndicator = require('./controls/loadingIndicator');
 
 // Available layers
 var layerControls = {
@@ -43,6 +44,10 @@ module.exports = {
 		markerCreator.initialize({
 			onClick: share.toggle
 		}).addTo(map);
+
+		// Add loadingIndicator to map
+		var loadingIndicator = new LoadingIndicator;
+		loadingIndicator.addTo(map);
 
 		// Add reportError control to map
 		//L.control.reportError().addTo(map);

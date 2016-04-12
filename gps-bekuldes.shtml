@@ -34,7 +34,8 @@
 
 		Ha már tudod, hogy kell rögzíteni és GPX formátumba menteni, ugorj a <a href="#feltoltes">feltöltéshez</a>.
 
-		<hr style="clear: both;">
+		<div class="clearfix"></div>
+		<hr>
 		<h2>GPS nyomvonal rögzítése</h2>
 
 		<p><strong>FONTOS</strong>: Bizonyosodj meg róla, hogy a GPS egységeden a '<strong>Úthoz illesztés (Snap to road)'</strong> vagy '<strong>Úthoz láncolás (Lock on road)'</strong> opció <strong>KI</strong> van kapcsolva, különben a GPS egységbe betöltött térkép közvetlen másolatát fogod rögzíteni, ami a szerzői jogvédelem megsértése.
@@ -57,7 +58,8 @@
 		majd pedig a <em>GPX nyonyomvonal mentése</em> gombokat. 
 		De rözítéshez sokkal egyszerűbb programokat is használhatsz, próbáld ki az <strong>OSM Tracker</strong> nevűt.</p>
 
-		<h2 style="clear: both;">GPX formátumra konvertálás, szükségtelen részek levágása</h2>
+		<div class="clearfix"></div>
+		<h2>GPX formátumra konvertálás, szükségtelen részek levágása</h2>
 
 		<p>Az OpenStreetMapnek GPX formátumra van szüksége. Ha a készüléked
 		ilyet nem tud menteni, akkor konvertálni kell. 
@@ -65,7 +67,7 @@
 		megosztani vagy levághatod a haszontalannak tűnő részeket.</p>
 
 		<h3>GpsPrune</h3>
-		<img class="right illustration" src="/kepek/gps-track-edit.png" title="GPS track szerkesztése a GpsPrune-ban" alt="GpsPrune képernyőkép szerkesztés közben">
+		<img class="right illustration" src="/kepek/gps-track-edit.png" title="GPS track szerkesztése a GpsPrune-ban" alt="Képernyőkép a GpsPrune -ról GPS track szerkesztése közben">
 
 		<ol>
 			<li>A <em>Fájl -&gt; Fájl megnyitás</em> menüben nyisd meg a nyomvonalat</li>
@@ -83,9 +85,10 @@
 			<li><em>Fájl -&gt; Exportálás GPX-be</em></li>
 		</ol>
 
+		<div class="clearfix"></div>
 		<hr>
 
-		<h2 id="feltoltes" style="clear: both;">Feltöltés</h2>
+		<h2 id="feltoltes">Feltöltés</h2>
 		<p>A GPS nyomvonalaid beküldéséhez regisztrálni kell a 
 		<a href="http://www.openstreetmap.org/user/new">OpenStreetMap.org</a> oldalon, 
 		hogy személyesen

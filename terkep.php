@@ -20,20 +20,20 @@
 </head>
 <body class="info citylist">
 	<div id="header">
-	<?php include 'includes/header.html' ?>
+		<?php include 'includes/header.html' ?>
 	</div>
 
 	<div id="nav" class="terkep">
 		<?php include 'includes/submenu.html' ?>
+	</div>
 
-		<h2>Település térkép gyorslinkek</h2>
+	<div id="content">
+		<h1>Település térkép gyorslinkek</h1>
 		<p>A városok, községek és falvak térképeire mutató gyorslinkek másolásával,
 		könnyen olvasható és begépelhető formában küldheted a térképet ismerőseinek.</p>
 		<p>Például: <strong>www.openstreetmap.hu/terkep/godollo</strong> (ékezetekkel is működik)</p>
 		<p>Használd a jobb-gomb, "Link címének másolása" menüpontot a böngészőben.</p>
-	</div>
 
-	<div id="content">
 
 <?php
 include 'lib.php';

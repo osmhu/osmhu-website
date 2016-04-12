@@ -33,5 +33,8 @@ var typeahead = module.exports = $('#search-area input.typeahead').typeahead(nul
 	}
 });
 
-// Focus search field on load
-typeahead.focus();
+// Focus search field in browsers on load
+var isMobile = $(window).width() < 699;
+if (!isMobile) {
+	typeahead.focus();
+}

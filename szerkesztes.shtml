@@ -10,24 +10,25 @@
 
 	<div id="nav" class="szerkesztes">
 		<!--#include virtual="includes/submenu.html" -->
-
-		<h3>Szerkesztőprogramok</h3>
-		<ul>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Hu:JOSM">JOSM</a></li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Potlatch_2">Potlatch2</a></li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Hu:iD">iD</a></li>
-		</ul>
-		<h3>Dokumentáció</h3>
-		<ul>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Beginners%27_guide">Kezdők kézikönyve</a></li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Map_Making_Overview">Térképkészítés</a></li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Map_Features">Térképelemek</a></li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary">Magyarországi térképezés</a></li>
-		</ul>
-		<h3>Egyéb weblapok</h3>
-		<ul>
-			<li><a href="http://www.osmtippek.hu/">osmtippek.hu</a></li>
-		</ul>
+		<div class="submenu-description">
+			<h3>Szerkesztőprogramok</h3>
+			<ul>
+				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:iD">iD (online)</a></li>
+				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:JOSM">JOSM (offline)</a></li>
+				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Potlatch_2">Potlatch2 (régi, online)</a></li>
+			</ul>
+			<h3>Dokumentáció</h3>
+			<ul>
+				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Beginners%27_guide">Kezdők kézikönyve</a></li>
+				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Map_Making_Overview">Térképkészítés</a></li>
+				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Map_Features">Térképelemek</a></li>
+				<li><a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary">Magyarországi térképezés</a></li>
+			</ul>
+			<h3>Egyéb weblapok</h3>
+			<ul>
+				<li><a href="http://www.osmtippek.hu/">osmtippek.hu</a></li>
+			</ul>
+		</div>
 	</div>
 
 	<div id="content">
@@ -64,9 +65,6 @@
 		<p>Ha egy forrásban nem vagy biztos, megkérdezheted a <a href="https://www.facebook.com/groups/osm.hu" target="_blank">facebook csoportban</a> hogy felhasználod-e szerkesztéshez. Gyakorlatilag igen kevés olyan forrás van, amiből jogszerűen rajzolhatunk, legtöbbször a saját kútfőnkből történik.<br>
 		De pont ez teszi érdekessé a feladatot!
 		<p>
-
-		<!-- <p>A JOSM szerkesztőprogram letöltése:</p>
-		<p style="text-align: center"><a href="http://josm.openstreetmap.de/josm-tested.jar"><img src="kepek/josm-gomb.png" alt="JOSM szerkesztő letöltése"></a> -->
 
 		<h2>Segédeszközök</h2>
 

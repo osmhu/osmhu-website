@@ -233,6 +233,7 @@ function getContainer (searchResult) {
 
 var visibleSearchResult;
 
+
 search.details = function (type, id, boundingbox, options) {
 	if (visibleSearchResult) {
 		map.removeLayer(visibleSearchResult);
@@ -244,6 +245,12 @@ search.details = function (type, id, boundingbox, options) {
 		[ boundingbox[1], boundingbox[3] ]
 	]);
 
+	var isMobile = $(window).width() < 699;
+	if (isMobile) {
+		searchResults.hide(200);
+	}
+	$('body').addClass('loading');
+
 	marker.fromTypeAndId(type, id, zoom, {
 		fallback: function () {
 			var fallbackMarker = L.marker([ options.lat, options.lon ]);
@@ -252,9 +259,11 @@ search.details = function (type, id, boundingbox, options) {
 			});
 			fallbackMarker.addTo(map).openPopup();
 			map.setView([ options.lat, options.lon ], zoom, { animate: false });
+			$('body').removeClass('loading');
 		},
 		callback: function (displayedMarker) {
 			visibleSearchResult = displayedMarker;
+			$('body').removeClass('loading');
 		}
 	});
 };

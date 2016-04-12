@@ -101,3 +101,21 @@ if (params.poi) {
 
 // Search results use this global function on click
 window.searchDetails = search.details;
+
+function repositionMap () {
+	var isMobile = $(window).width() < 699;
+	if (isMobile) {
+		$('#map-container').css('top', $('#header').css('height'))
+	}
+}
+
+repositionMap();
+$(window).on('mode-change', repositionMap);
+
+function popupResize () {
+	var width = $(window).width() - 135;
+	$('.leaflet-popup-content').css('max-width', width);
+}
+
+$(window).on('resize', popupResize);
+$(window).on('popup-open', popupResize);

@@ -11,7 +11,6 @@ html {
 	background: #eeeeee;
 	height: 80px;
 	border-bottom: 1px solid #8c8c8c;
-	margin-bottom: 1px;
 }
 /* Logo and branding */
 #logo {
@@ -307,40 +306,52 @@ ul.select2-results li {
 
 /* Map layout on mobile or small screen */
 @media all and (max-width: 699px) {
-	.panel, #menu li.mobile-hidden, #social, #logo, #separator, .toggler {
+	.panel, #menu li.mobile-hidden, .mobile-hidden, #social, #logo, #separator, .toggler {
 		display: none;
 	}
 	#header {
-		height: 70px;
+		height: auto;
+		margin-bottom: 0;
+		border-bottom-color: #ccc;
 	}
-	body.directions-active #header {
-		height: 94px;
-	}
-	#map-container {
-		top: 69px;
-		left: 0;
-	}
-	body.directions-active #map-container {
-		top: 93px;
+	#menu li a {
+		padding: 5px 8px;
+		line-height: 32px;
+		font-size: 15px;
 	}
 	#menu .name1 {
 		display: inline;
 	}
 	#menu {
+		position: initial;
+		height: auto;
 		width: 100%;
 		text-align: center;
 	}
 	#search-area {
-		top: 24px;
-		left: 0;
+		position: initial;
 		padding: 0;
 		border: 0 none;
 		width: 100%;
+	}
+	#search-area #search-options-container {
+		display: block;
+		height: auto;
+		padding: 2px 0;
+		border-top: 1px solid #ccc;
 	}
 	#search-area #search-options {
 		display: table;
 		border-collapse: collapse;
 		width: 100%;
+	}
+	#search-area #mode-selector a {
+		display: block;
+		font-size: 15px;
+		padding: 6px 16px;
+	}
+	#search-area #mode-selector a i {
+		margin-right: 3px;
 	}
 	#search-area #modes {
 		display: table-cell;
@@ -351,10 +362,10 @@ ul.select2-results li {
 	}
 	#search-area input.typeahead {
 		display: table-cell;
-		font-size: 85%;
-		padding: 4px 0 4px 4px;
+		font-size: 15px;
+		padding: 6px 10px 5px;
+		height: 30px;
 		width: 100%;
-		height: 25px;
 	}
 	#search-area .twitter-typeahead {
 		width: 100%;
@@ -365,7 +376,7 @@ ul.select2-results li {
 	}
 	#search-area .search-button button {
 		width: 31px;
-		height: 25px;
+		height: 30px;
 		font-size: 80%;
 		vertical-align: top;
 		padding: 0;
@@ -381,7 +392,7 @@ ul.select2-results li {
 		width: 100%;
 	}
 	#search-area #directions .search-button button {
-		height: 50px;
+		height: 60px;
 	}
 	#search-area .twitter-typeahead:nth-child(2) {
 		margin-left: 0;
@@ -394,24 +405,32 @@ ul.select2-results li {
 	}
 	#search-area .select2-container {
 		width: 100%;
-		height: 25px;
+		height: 30px;
 		font-size: 90%;
 		vertical-align: top;
 		margin: 0;
 	}
 	#search-area a.select2-choice {
 		margin: 0px;
-		height: 25px;
+		height: 30px;
 		padding: 1px 0 0 9px;
 	}
 	#search-area span.select2-chosen {
-		line-height: 21px;
+		line-height: 26px;
 	}
 	#search-area a.select2-choice abbr {
 		top: 7px;
+		width: 16px;
+		height: 16px;
+		background-size: 80px 54px !important;
 	}
-	ul.select2-results li {
-		font-size: 75%;
+	#search-area a.select2-choice abbr:hover {
+		background-position: right -15px;
+	}
+	.select2-drop {
+		border-top: 1px solid #5897fb;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
 	}
 	ul.select2-results li .object {
 		margin-left: 5px;
@@ -421,10 +440,26 @@ ul.select2-results li {
 		font-size: 85%;
 		line-height: 22px;
 	}
+	.leaflet-left {
+		right: 0;
+	}
+	.leaflet-left .leaflet-control {
+		margin-top: 5px;
+		margin-left: 5px;
+	}
+	.leaflet-right .leaflet-control {
+		margin-top: 5px;
+		margin-right: 5px;
+	}
 	.leaflet-control-minZoomIndicator {
+		position: absolute;
 		font-size: 100%;
-		max-width: 60%;
-		top: -134px;
+		max-width: 370px;
+		top: 0;
+		right: 68px;
+	}
+	.leaflet-control-minZoomIndicator img {
+		margin-top: 3px;
 	}
 	.popup-marker {
 		font-size: 80%;

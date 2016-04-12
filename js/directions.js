@@ -42,6 +42,7 @@ directions.initializeModes = function () {
 		$('#directions').hide();
 		$('body').removeClass('directions-active');
 		$('#search-area input#text-search').focus();
+		$(window).trigger('mode-change');
 	});
 
 	$('#search-area #mode-selector #directions-mode a').click(function (event) {
@@ -52,6 +53,7 @@ directions.initializeModes = function () {
 		$('#search').hide();
 		$('body').addClass('directions-active');
 		startField.focus();
+		$(window).trigger('mode-change');
 	});
 };
 

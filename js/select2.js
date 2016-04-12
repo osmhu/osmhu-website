@@ -84,6 +84,14 @@ select2.initialize = function () {
 		minimumResultsForSearch: minimumResultsForSearch,
 		formatNoMatches: 'Nem található egyezés.',
 		allowClear: true,
+		dropdownCss: function () {
+			if (isMobile) {
+				var width = $('.select2-container').width() + 100;
+				return {
+					width: width + 'px'
+				};
+			}
+		},
 		matcher: function(term, text, opt) {
 			return text.toUpperCase().indexOf(term.toUpperCase()) >= 0 ||
 			       (opt.alt && opt.alt.toUpperCase().indexOf(term.toUpperCase()) >= 0);
@@ -129,6 +137,24 @@ function convertToSelect2Options (options) {
 
 	return select2Options;
 }
+
+/**
+ * Fix select2 bug: https://github.com/select2/select2/issues/2061
+ * Do not allow dropdown to be closed for 250ms after opening
+ */
+var lastOpenTime;
+
+$(window).on('select2-open', function (event) {
+	lastOpenTime = new Date().getTime();
+});
+
+$(window).on('select2-close', function (event) {
+	var tempCounter = new Date().getTime();
+
+	if (lastOpenTime > tempCounter - 250) {
+        $(event.target).select2('open');
+    }
+});
 
 /**
  * Own poi search options format to reduce number of lines / complexity

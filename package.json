@@ -4,17 +4,18 @@
   "description": "OpenStreetMap Hungary",
   "main": "js/main.js",
   "dependencies": {
+    "font-awesome": "^4.5.0",
     "history.js": "^1.8.0",
-    "jquery": "^2.1.1",
+    "jquery": "^2.1.4",
     "jquery.cookie": "^1.4.1",
-    "leaflet": "^0.7.3",
-    "leaflet.locatecontrol": "^0.34.0",
-    "opening_hours": "^3.0.0",
-    "query-string": "^1.0.0",
-    "select2": "^3.5.1-browserify-fix",
+    "leaflet": "^0.7.7",
+    "leaflet.locatecontrol": "^0.48.0",
+    "opening_hours": "^3.4.0",
+    "query-string": "^4.1.0",
+    "select2": "^3.5.2-browserify",
     "typeahead.js": "^0.10.5",
-    "uglifyify": "^2.6.0",
-    "zeroclipboard": "^2.1.6"
+    "uglifyify": "^3.0.1",
+    "zeroclipboard": "^2.2.0"
   },
   "devDependencies": {},
   "scripts": {

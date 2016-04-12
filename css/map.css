@@ -36,6 +36,30 @@
 	margin-right: 6px;
 }
 
+/* Leaflet loading indicator */
+.leaflet-control-loading-indicator {
+	display: none;
+	position: absolute;
+	left: 40px;
+	padding: 5px 12px;
+	color: #0066FF;
+	background-color: #fff;
+	font-size: 13px;
+	width: 100px;
+}
+.leaflet-control-loading-indicator img {
+	display: inline-block;
+	vertical-align: middle;
+}
+.leaflet-control-loading-indicator span {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 8px;
+}
+body.loading .leaflet-control-loading-indicator {
+	display: block;
+}
+
 /* Side panel */
 .panel {
 	position: absolute;

@@ -17,11 +17,15 @@
 		<h1>Az OpenStreetMap adatok letöltése</h1>
 	
 		<h2>Felhasználóknak</h2>
-		<div style="margin-left: 2em">
+
+		<div class="section">
+			<h3>OpenStreetMap Android telefonra</h3>
 
 			<img class="right logo" src="/kepek/android.png" alt="android logo">
 
-			<h3>OpenStreetMap Android telefonra</h3>
+			<a href='https://play.google.com/store/apps/details?id=net.osmand'>
+				<img class="play-download-badge" src="/kepek/google-play-badge.png" alt="Letöltés a Google Play-ből">
+			</a>
 
 			<p>Telepítsd az <strong>OsmAnd</strong> nevű programot a <strong>Google Play áruházból</strong>, majd a 
 			<em>Beállítások -&gt; Offline adatok -&gt; Letöltés</em> alatt telepítsd a "Hungary Europe" térképet.</p>
@@ -44,9 +48,9 @@
 			<a href="http://wiki.openstreetmap.org/wiki/HU:OSM_Map_On_Garmin">OpenStreetMap átkonvertálása és letöltése Garmin GPS-re</a>.
 			</p>
 
-			<img src="/kepek/osmand_turareteg_domcsi.png" style="float: right; margin-left: 20px;">
-
 			<h3>Magyarország turistatérkép - rátét réteg</h3>
+			
+			<img src="/kepek/osmand_turareteg_domcsi.png" class="right illustration">
 	
 			<p><!-- img class="right illustration" src="/kepek/turareteg.png" alt="OsmAnd képernyőfotó, turistautakkal és jelzésekkel" title="OpenStreetMapes magyar turista térkép Androidon" / -->
 			A weblapunkon is megnézhető Magyarországi turista réteg letöltése. (CC-BY-SA licenc alatt használható fel.)
@@ -80,34 +84,43 @@
 			<li><a href="http://wiki.openstreetmap.org/wiki/Downloading_data">Adatok letöltéséről</a> - angolul</li>
 			<li><a href="http://wiki.openstreetmap.org/wiki/Osmosis">Osmosis - adatok leválogatása</a> - angolul</li>
 			</ul>
-
 		</div>
 
-		<h2 style="clear: both;">Szerkesztőknek</h2>
+		<h2>Szerkesztőknek</h2>
 
-		<div style="margin-left: 2em">
-		<h3>JOSM szerkesztőprogram</h3>
-		<p><a href="http://josm.openstreetmap.de/josm-tested.jar"><img src="kepek/josm-gomb.png" alt="JOSM szerkesztő letöltése"></a>
+		<div class="section">
+			<h3>JOSM szerkesztőprogram</h3>
 
-		<h3>CLC területhasználati adatok</h3>
-		<p>Az adatokkal erdőket, lakott területeket tudsz berajzolni a környékeden. 
-		<a href="/letoltes/clc/">Corine Land Cover magyarországi adatok</a>.
+			<p><a href="http://josm.openstreetmap.de/josm-tested.jar"><img src="kepek/josm-gomb.png" alt="JOSM szerkesztő letöltése"></a>
 
+			<h3>CLC területhasználati adatok</h3>
+			<p>Az adatokkal erdőket, lakott területeket tudsz berajzolni a környékeden. 
+			<a href="/letoltes/clc/">Corine Land Cover magyarországi adatok</a>.
 		</div>
 
 		<h2>Egyéb letöltések</h2>
-		<div style="margin-left: 2em">
-		<h3>Háttérkép</h3>
-		<p><a href="/letoltes/wallpaper/osm-hungary-wallpaper.png"><img src="/letoltes/wallpaper/osm-hungary-wallpaper-thumb.jpg" style="float:left; margin-right: 10px"></a>
-		Magyar nevek réteg <a href="/letoltes/wallpaper/osm-hungary-wallpaper.png">1920x1200</a> (3MB)</p>
-		<h3 style="clear: both; padding-top: 1em;">OpenStreetMap.hu Névjegy</h3>
-		<p><a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf"><img src="/letoltes/openstreetmap_hu_nevjegy_90x50.jpg" style="float:left; margin-right: 10px"></a>
-		Kapcsolati adatok nélküli névjegy, odaadható az érdeklődöknek terepen, rendezvényeken stb.</p>
-		<p>
-			<a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf">A4 1 névjegy</a> (460 kB)<br>
-			<a href="/letoltes/openstreetmap_hu_nevjegy_90x50_lap.pdf">A4 sok</a> (3.3 MB)
-		</p>
-		<div style="clear:both;"></div>
+
+		<div class="section">
+			<h3>Háttérkép</h3>
+
+			<a href="/letoltes/wallpaper/osm-hungary-wallpaper.png">
+				<img src="/letoltes/wallpaper/osm-hungary-wallpaper-thumb.jpg" class="left illustration">
+				<p>Magyar nevek réteg 1920x1200 (3MB)</p>
+			</a>
+			<div class="clearfix"></div>
+
+			<h3>OpenStreetMap.hu Névjegy</h3>
+
+			<a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf">
+				<img src="/letoltes/openstreetmap_hu_nevjegy_90x50.jpg" class="left illustration">
+				<p>Kapcsolati adatok nélküli névjegy, odaadható az érdeklődöknek terepen, rendezvényeken stb.</p>
+			</a>
+
+			<div class="clearfix"></div>
+			<p>
+				<a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf">A4 1 névjegy</a> (460 kB)<br>
+				<a href="/letoltes/openstreetmap_hu_nevjegy_90x50_lap.pdf">A4 sok</a> (3.3 MB)
+			</p>
 		</div>
 		<!--#include virtual="includes/cc0.html" -->
 	</div>

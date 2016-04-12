@@ -5,7 +5,7 @@
 	<!-- Leaflet stylesheet -->
 	<link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css?rev=325">
 	<!-- Font awesome -->
-	<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/node_modules/font-awesome/css/font-awesome.min.css?rev=325">
+	<link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css?rev=351">
 	<!-- Leaflet.Locate stylesheet -->
 	<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css?rev=325">
 	<!--[if lt IE 9]>
@@ -14,17 +14,17 @@
 	<!-- Select2 stylesheet -->
 	<link rel="stylesheet" href="/node_modules/select2/select2.css?rev=325">
 	<!-- Map stylesheet -->
-	<link rel="stylesheet" href="/css/map.css?rev=345">
+	<link rel="stylesheet" href="/css/map.css?rev=351">
 	<!-- Share popup stylesheet -->
 	<link rel="stylesheet" href="/css/share-popup.css?rev=319">
 	<!-- Poi popup stylesheet -->
-	<link rel="stylesheet" href="/css/poi-popup.css?rev=319">
+	<link rel="stylesheet" href="/css/poi-popup.css?rev=351">
 	<!-- Introduction stylesheet -->
 	<link rel="stylesheet" href="/css/introduction.css?rev=347">
 	<!-- Search results stylesheet -->
-	<link rel="stylesheet" href="/css/search-results.css?rev=320">
+	<link rel="stylesheet" href="/css/search-results.css?rev=351">
 	<!-- Direction results stylesheet -->
-	<link rel="stylesheet" href="/css/direction-results.css?rev=320">
+	<link rel="stylesheet" href="/css/direction-results.css?rev=351">
 	<!--#include virtual="includes/head_scripts.html" -->
 </head>
 <body>
@@ -39,27 +39,31 @@
 					<a href="#"><i class="fa fa-car"></i> Útvonalterv</a>
 				</div>
 			</div>
-			<div id="search-options">
-				<div id="modes">
-					<div id="search">
-						<form>
-							<input class="typeahead" type="text" id="text-search" placeholder="Város, utca vagy keresőszó" tabindex="1"><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
-						</form>
+			<div id="search-options-container">
+				<div id="search-options">
+					<div id="modes">
+						<div id="search">
+							<form>
+								<input class="typeahead" type="text" id="text-search" placeholder="Város, utca vagy keresőszó" tabindex="1"><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
+							</form>
+						</div>
+						<div id="directions">
+							<form>
+								<div class="fields">
+									<input class="typeahead" type="text" id="directions-start-search" placeholder="Indulás helye" tabindex="1"><input class="typeahead" type="text" id="directions-end-search" placeholder="Érkezés helye" tabindex="1">
+								</div><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
+							</form>
+						</div>
 					</div>
-					<div id="directions">
-						<form>
-							<div class="fields">
-								<input class="typeahead" type="text" id="directions-start-search" placeholder="Indulás helye" tabindex="1"><input class="typeahead" type="text" id="directions-end-search" placeholder="Érkezés helye" tabindex="1">
-							</div><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
-						</form>
+					<div class="poi-search">
+						<input type="hidden" id="poi-search" data-placeholder="Helyek" tabindex="2">
 					</div>
-				</div>
-				<div class="poi-search">
-					<input type="hidden" id="poi-search" data-placeholder="Helyek" tabindex="2">
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div id="loading-indicator"></div>
 
 	<div id="map-container">
 		<noscript>
@@ -134,6 +138,6 @@
 	<div id="introduction-toggler"><p class="toggler"></p></div>
 
 	<!-- Load osmhu bundle -->
-	<script src="/build/bundle.js?rev=345"></script>
+	<script src="/build/bundle.js?rev=351"></script>
 </body>
 </html>
