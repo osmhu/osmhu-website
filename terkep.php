@@ -228,6 +228,9 @@ function genregex($name) {
 	$n = str_replace("Ü", "(Ü|U|ü|u)", $n);
 	$n = str_replace("Ű", "(Ű|U|ű|u)", $n);
 
+	// Escape any space character in regex
+	$n = str_replace(" ", "\ ", $n);
+
 	// For non-accented first letters make case-insensitve start
 	if(substr($n, 0, 1) != "(") {
 		$n = "(".substr($name,0,1)."|".strtolower(substr($name, 0, 1)).")".substr($n, 1);

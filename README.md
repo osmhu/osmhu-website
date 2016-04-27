@@ -137,6 +137,10 @@ Eidoh5zo
 ### 2. lehetőség: Osm adatok letöltése
 Az osm2pgsql `*.osm.pbf` fájlokat tud olvasni.
 Az OSM adatokat le kell tölteni pl innen: http://download.geofabrik.de/europe/hungary.html
+A letöltött fájl legyen olvasható mindenki számára:
+```
+chmod +r /home/ubuntu/hungary-latest.osm.pbf
+```
 #### Szükséges csomagok telepítése
 ```
 sudo apt-get install -y postgresql-9.3 postgis postgresql-9.3-postgis-scripts osm2pgsql
@@ -152,6 +156,10 @@ psql -d gis -c "CREATE USER osmhu PASSWORD 'Eidoh5zo';"
 psql -d gis -c "GRANT ALL PRIVILEGES ON DATABASE gis TO osmhu;"
 psql -d gis -c "CREATE EXTENSION postgis; CREATE EXTENSION hstore;"
 osm2pgsql --create --database gis /home/ubuntu/hungary-latest.osm.pbf
+```
+Ha kevés memória miatt hibába ütközöl (pl `terminate called after throwing an instance of 'std::bad_alloc'`), lehetőség van `slim` módban futtatni: (jóval lassabb)
+```
+osm2pgsql -s --create --database gis /home/ubuntu/hungary-latest.osm.pbf
 ```
 #### Üres MySQL adatbázis létrehozása
 Futtasd le az adatbázison a `scripts/db.txt` tartalmát:
