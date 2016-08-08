@@ -11,6 +11,7 @@ var overpass = require('./overpass');
 var marker = require('./marker');
 var helpers = require('./helpers');
 var iconProvider = require('./iconProvider');
+var overpassEndpointChecker = require('./overpassEndpointChecker');
 
 var select2 = module.exports = {};
 
@@ -32,9 +33,10 @@ function overpassCallback (data) {
 	$.each(elements, function (key, element) {
 		var position = helpers.getCenterPosition(element, elements);
 		if (position) {
-			if (element.tags.amenity || element.tags.shop ||
-			    element.tags.leisure || element.tags.tourism ||
-			    element.tags.natural) {
+			if (element.tags &&
+					(element.tags.amenity || element.tags.shop ||
+			    	element.tags.leisure || element.tags.tourism ||
+			    	element.tags.natural) && element.tags.amenity !== 'parking_entrance') {
 				var m = marker.fromPoi({
 					position:     position,
 					poi:          element,
@@ -66,7 +68,7 @@ select2.poiSearch = function (selected) {
 		// Add Overpass layer
 		overPassLayer = new L.OverPassLayer({
 			minzoom: 14,
-			endpoint: 'http://overpass.osm.rambler.ru/cgi/',
+			endpoint: overpassEndpointChecker.getBestendpoint(),
 			query: overpassLayerQuery,
 			minZoomIndicatorOptions: {
 				position: 'topleft',
@@ -244,7 +246,7 @@ var options = {
 			beach_resort:  'Strand',
 			water_park:    'Élményfürdő',
 			natural_beach: 'Vízparti strand',
-			swimming_pool: 'Uszoda'
+			swimming: 'Uszoda'
 		}
 	},
 	education: {

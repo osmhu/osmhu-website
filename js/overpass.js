@@ -56,10 +56,11 @@ overpass.generateComplexQuery = function (selectedList) {
 		if (simple[selected]) {
 			query+= simple[selected] + ';';
 			query+= simple[selected].replace(/node/g, 'way') + ';node(w);';
-			query+= simple[selected].replace(/node/g, 'rel') + ';';
+			query+= simple[selected].replace(/node/g, 'rel') + ';>;';
 		} else {
 			query+= selected + ';';
 			query+= selected.replace(/node/g, 'way') + ';node(w);';
+			query+= selected.replace(/node/g, 'rel') + ';>;';
 		}
 	});
 	query+= ');out qt;';
@@ -107,10 +108,10 @@ var simple = overpass.simple = {
 	beach_resort:       'node(BBOX)["leisure"="beach_resort"]',
 	water_park:         'node(BBOX)["leisure"="water_park"]',
 	natural_beach:      'node(BBOX)["natural"="beach"]',
-	swimming_pool: 		'node(BBOX)["amenity"="swimming_pool"]',
+	swimming: 			'node(BBOX)["leisure"="sports_centre"]["sport"="swimming"]',
 	kindergarten: 		'node(BBOX)["amenity"="kindergarten"]',
 	school: 			'node(BBOX)["amenity"="school"]',
-	university: 		'node(BBOX)["amenity"="university"]',
+	university: 		'(node(BBOX)["amenity"="university"];node(BBOX)["amenity"="college"])',
 	fuel: 				'node(BBOX)["amenity"="fuel"]',
 	parking: 			'node(BBOX)["amenity"="parking"]',
 	drinking_water: 	'node(BBOX)["amenity"="drinking_water"]',
@@ -172,7 +173,7 @@ var combined = overpass.combined = {
 		simple.beach_resort,
 		simple.water_park,
 		simple.natural_beach,
-		simple.swimming_pool
+		simple.swimming
 	],
 	education: [
 		simple.kindergarten,

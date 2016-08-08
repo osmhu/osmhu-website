@@ -15,6 +15,22 @@
 	height: 100%;
 }
 
+/* General error */
+#general-error {
+	display: none;
+	position: absolute;
+	left: 300px;
+	top: 38px;
+	z-index: 200;
+	background-color: #f2dede;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+	border-color: #a94442;
+	color: #a94442;
+	padding: 15px;
+}
+
 /* minZoomIdenticator Control */
 .leaflet-control-minZoomIndicator {
 	display: block;

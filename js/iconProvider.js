@@ -61,6 +61,7 @@ var icons = {
 		kindergarten:     'daycare.png',
 		school:           'school.png',
 		university:       'university.png',
+		college:          'university.png',
 		fuel:             'fillingstation.png',
 		parking:          'parkinggarage.png',
 		drinking_water:   'drinkingwater.png',

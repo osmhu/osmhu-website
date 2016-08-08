@@ -4,12 +4,20 @@ var directions = module.exports = {};
 
 var apikey = 'Fmjtd%7Cluu829ur25%2C82%3Do5-9w1gqr';
 
+var directionsAvailable = true;
+
 directions.loadJs = function () {
 	var mapJs = 'http://open.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=' + apikey;
 	var routingJs = 'http://open.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=' + apikey;
 	
-	$.getScript(mapJs, function () {
+	$.getScript(mapJs)
+	.done(function () {
 		$.getScript(routingJs);
+	})
+	.fail(function () {
+		if (typeof MQ === 'undefined') {
+			directionsAvailable = false;
+		}
 	});
 };
 
@@ -47,13 +55,23 @@ directions.initializeModes = function () {
 
 	$('#search-area #mode-selector #directions-mode a').click(function (event) {
 		event.preventDefault();
-		$('#search-area #mode-selector #directions-mode').addClass('active');
-		$('#search-area #mode-selector #search-mode').removeClass('active');
-		$('#directions').show();
-		$('#search').hide();
-		$('body').addClass('directions-active');
-		startField.focus();
-		$(window).trigger('mode-change');
+		if (!directionsAvailable) {
+			$('#general-error').fadeIn(200);
+			var html = '<strong>Az útvonaltervezés jelenleg nem elérhető!</strong><br />'
+			html+= 'Tipp: használd az <a href="http://www.openstreetmap.org/directions" target="_blank">OpenStreetMap.org útvonaltervezőt!</a>';
+			$('#general-error').html(html);
+			setTimeout(function () {
+				$('#general-error').fadeOut(200);
+			}, 10000);
+		} else {
+			$('#search-area #mode-selector #directions-mode').addClass('active');
+			$('#search-area #mode-selector #search-mode').removeClass('active');
+			$('#directions').show();
+			$('#search').hide();
+			$('body').addClass('directions-active');
+			startField.focus();
+			$(window).trigger('mode-change');
+		}
 	});
 };
 
