@@ -36,7 +36,7 @@
 
 			<h3>OpenStreetMap Apple iPad-re</h3>
 
-			<p>Telepítsd a <strong>MapBox</strong> nevű programot az <strong>iTunesban</strong>, ez alapból az OpenStreetMapet használja.</p>
+			<p>Telepítsd a <strong>MAPS.ME</strong> nevű programot az <strong>iTunesban</strong>, ez alapból az OpenStreetMapet használja. Természetesen más OSM-es programok is elérhetőek.</p>
 
 
 			<img class="right logo" src="/kepek/garmin-logo2.png" alt="garmin logo">
@@ -93,9 +93,6 @@
 
 			<p><a href="http://josm.openstreetmap.de/josm-tested.jar"><img src="kepek/josm-gomb.png" alt="JOSM szerkesztő letöltése"></a>
 
-			<h3>CLC területhasználati adatok</h3>
-			<p>Az adatokkal erdőket, lakott területeket tudsz berajzolni a környékeden. 
-			<a href="/letoltes/clc/">Corine Land Cover magyarországi adatok</a>.
 		</div>
 
 		<h2>Egyéb letöltések</h2>

@@ -72,15 +72,12 @@
 					<a href="http://www.yournavigation.org/">YourNavigation</a>
 					- autós, biciklis, gyalogos tervező
 				</li>
-				<li>
-					<a href="http://otp.flaktack.net/">BKV útvonaltervező teszt</a>
-				</li>
 			</ul></li>
 
 			<li>Összetett alkalmazások
 			<ul class="links nodots">
 				<li>
-					<a href="http://mapq.st/1eKQZCC">MapQuest</a>
+					<a href="https://www.mapquest.com/">MapQuest</a>
 					- Autó, bicikli és gyalogos útvonal tervezés. Éttermek, szállodák keresése az útvonal mentén.
 				</li>
 			</ul></li>
@@ -95,9 +92,6 @@
 				<li>
 					<a href="http://www.pistes-nordiques.org/">Térkép síelőknek</a>
 				</li>-->
-				<li>
-					<a href="http://geschichtskarten.openstreetmap.de/historische_objekte/?zoom=10&lat=47.57769&lon=19.07362&layers=B000TT&detail=3">Történelmi helyek</a>
-				</li>
 				<li>
 					<a href="http://maps.stamen.com/toner/#10/47.7606/20.4156">Toner</a>, 
 					<a href="http://maps.stamen.com/watercolor/#10/47.4996/18.8349">Vízfesték</a>
@@ -139,10 +133,6 @@
 				<li>
 					<a href="http://fieldpapers.org/">Field Papers</a>
 					- szintén helyszíni térképezéshez
-				</li>
-				<li>
-					<a href="http://www.walkingpapers.org/">Walking Papers</a>
-					- alap OSM térképet nyomtat térképezéshez
 				</li>
 			</ul></li>
 		</ul>
