@@ -68,8 +68,8 @@
 		A megjelenítést gyakran <a href="http://wiki.openstreetmap.org/wiki/Overlay_API">rávetítések</a> egészítik ki.
 		A háttérben megjelenik az előre meghatározott alapréteg, amire különböző ikonok, vonalak, kattintható elemek helyezhetőek el. <br />
 		Készíthetőek így
-		<a href="http://osm24.eu/?lang=en_EN">hely keresők</a>,
-		vagy ilyen a <a href="http://wheelmap.org/hu/map">wheelmap.org</a> is, amely a helyek kerekesszékkel való megközelíthetőségét jelzi.
+		hely keresők
+		vagy ilyen például a <a href="http://wheelmap.org/hu/map">wheelmap.org</a> is, amely a helyek kerekesszékkel való megközelíthetőségét jelzi.
 		</p>
 
 		<!--#include virtual="includes/cc0.html" -->

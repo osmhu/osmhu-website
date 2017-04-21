@@ -129,7 +129,7 @@ body.info div.letoltesek li.letoltesek a {
 }
 
 /* Facebook, meetup, mailing list badges */
-a.fbpage, a.meetup, a.maillist, a.youtube {
+a.fbpage, a.meetup, a.maillist, a.youtube, a.wikilink {
 	padding-left: 20px;
 	background-repeat: no-repeat;
 	background-position: left center;
@@ -146,6 +146,9 @@ a.maillist {
 a.youtube {
 	background-image: url("/kepek/youtube-icon.png");
 	padding-left: 30px;
+}
+a.wikilink {
+	background-image: url("/kepek/osm-icon.png");
 }
 
 /* TODO remove: overpass.js used this for highlighting a tool, but that code no longer works */
@@ -170,12 +173,14 @@ body.about div.meetus {
 	float: left;
 	text-align: center;
 }
-body.about div.meetus:last-child { /* When using uneven badges */
+/* When using uneven badges */
+/*
+body.about div.meetus:last-child {
 	margin-left: auto;
 	margin-right: auto;
 	float: none;
 	clear: left;
-}
+}*/
 body.about div.meetus > span {
 	border-width: 1px 10px;
 	border-color: #ccc;
