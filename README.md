@@ -6,7 +6,13 @@ Az én gépemen `~/wwwroot/osmhu/` a projekt mappája, lehet hogy meg kell vált
 ## A kód megszerzése
 ### Hozzáféréshez szükséges felhasználónév és jelszó
 Felhasználónév és jelszó kell az SVN eléréshez. Kérj.
-### SVN verziókezelő
+### A fájlok letöltése
+```
+cd ~/wwwroot/osmhu
+svn co https://bugs.wpsnet.hu/repos/osm/osmhu --username Fodi69
+```
+Beírod a jelszavad és letölt mindent.
+### Verziókezelés
 Az SVN-hez sok grafikus szerkesztő van, én a `kdesvn` nevű verziókezelőt használom. Telepítése:
 ```
 sudo apt-get install subversion kdesvn -y
@@ -15,13 +21,55 @@ Ha nem akarsz grafikus szerkesztőt használni, akkor elég a subversion csomag:
 ```
 sudo apt-get install subversion -y
 ```
-### A fájlok letöltése
+### Fejlesztés Vagrant alapú fejlesztői virtuális gép segítségével (ajánlott)
+A projekt tartalmaz egy Vagrantfile állományt, ezzel egy olyan virtuális gép hozható létre, ami fejlesztéshez használható.
+A Vagrant használata esetén a gazdagépre szükséges a vagrant csomag telepítése:
+https://www.vagrantup.com/downloads.html
+
+A projekt könyvtárából a `vagrant up` parancs kiadásával létrejön és elindul a fejlesztői virtuális gép.
+Ezután a `vagrant ssh` paranccsal vezérelhetjük a gépet ssh kapcsolaton keresztül. A létrejövő gép jelenleg Ubuntu 16.04 operációs rendszert tartalmaz.
 ```
 cd ~/wwwroot/osmhu
-svn co https://bugs.wpsnet.hu/repos/osm/osmhu --username Fodi69
+vagrant up
+vagrant ssh
 ```
-Beírod a jelszavad és letölt mindent.
-### Virtuális host
+#### Vagrant információk
+A vagrant virtuális gépen automatikusan szinkronizálva van a projekt könyvtára a `/var/www` mappába.  
+Így a gazdagépen szerkesztett fájlok azonnal elérhetőek a virtuális gép számára és fordítva.  
+A virtuális gépen található egy webszerver, amit a gazdagépről a http://localhost:8080/ címen érhetünk el.  
+Mivel minden változtatás szinkronizálva van, ezért a gazdagépen való minden szerkesztés azonnal tesztelhető ezen a címen.  
+A vagrant képfájlba automatikusan feltelepítésre kerültek a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
+Ezek a jelszavak a `vagrant.ssh` fájlban és a `Makefile`-ban szerkeszthetőek.
+#### Vagrant - mysql adatbázis feltöltése friss osm adatokkal
+```
+vagrant up
+vagrant ssh
+cd /var/www
+make all
+```
+#### Vagrant - mysql export készítése a `mysqldump` használatával
+```
+vagrant up
+vagrant ssh
+cd /var/www
+make export-mysql
+```
+#### Vagrant - frontend fejlesztése
+```
+vagrant up
+vagrant ssh
+cd /var/www
+npm run watch
+```
+#### Vagrant - Production fájl létrehozása
+```
+vagrant up
+vagrant ssh
+cd /var/www
+npm run build
+```
+### Fejlesztés vagrant nélkül
+#### Virtuális host
 Megnyitottam az `/etc/hosts` fájlt, például így:
 ```
 gksudo gedit /etc/hosts
@@ -31,7 +79,7 @@ Hozzáadom a legtetejéhez:
 127.0.0.1 osmhu.lan
 ```
 A kód néhány helyen használja ezt a címet, így ne változtasd meg, ha nincs rá különösebb okod.
-### Webszerver
+#### Webszerver
 A kód az apache2 webszerverrel működik megbízhatóan.
 Telepítése:
 ```
@@ -57,15 +105,8 @@ Indítsuk újra az apache2 szervert, hogy figyelembe vegye az új beállítások
 ```
 sudo service apache2 restart
 ```
-### MDB2
-A `terkep.php` és a `scripts/copydb.php` (és bármely fájl ami a lib.php -t használja) futtatásához szükséges az MDB2 telepítése.
-Ezt a PEAR adatbázisból lehet megtenni a következő paranccsal:
-```
-sudo apt-get install php-pear
-sudo pear install MDB2 MDB2#mysql MDB2#pgsql
-```
-### Frontend fejlesztése
-#### Node.js telepítése
+#### Frontend fejlesztése
+##### Node.js telepítése
 A javascript csomag elkészítéséhez szükséges.
 ```
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
@@ -73,32 +114,32 @@ sudo apt-get install -y nodejs
 sudo apt-get install -y build-essential
 ```
 [Forrás](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
-#### Felhasznált külső modulok letöltése
+##### Felhasznált külső modulok letöltése
 ```
 cd ~/wwwroot/osmhu
 npm i
 ```
-#### Javascript csomag készítése
+##### Javascript csomag készítése
 Hogy működjön a `build` és a `watch` parancs telepíteni kell a `browserify`-t és a `watchify`-t:
 ```
 sudo npm install browserify watchify -g
 ```
-##### Fejlesztés közben:
+###### Fejlesztés közben:
 ```
 cd ~/wwwroot/osmhu
 npm run watch
 ```
 Eredmény: létrejön a `build/bundle.js` és kilépés helyett figyeli a `js/` mappát és minden változás esetén újragenerálja a létrehozott fájlt.  
 Feljesztés közben általában folyamatosan futtatom, Ctrl + C -vel lehet kilépni belőle, ha abbahagytad a JavaScript kód módosítását.
-##### Production fájl létrehozása:
+###### Production fájl létrehozása:
 ```
 cd ~/wwwroot/osmhu
 npm run build
 ```
 Eredmény: létrejön a `build/bundle.js`.
 
-## Adatbázisok
-### MySQL telepítése
+### Adatbázisok
+#### MySQL telepítése
 Telepítés:
 ```
 sudo apt-get install mysql-server mysql-client -y
@@ -118,13 +159,13 @@ Létrehozzuk az `osm_hu` adatbázist és megadjuk az `osmhu` felhasználó jelsz
 CREATE DATABASE osm_hu CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
 GRANT ALL ON osm_hu.* TO 'osmhu'@'%' IDENTIFIED BY 'Eidoh5zo';
 ```
-### Adatok beszúrása
+#### Adatok beszúrása
 Lehetőségek:
 
 1. Közvetlenül a MySQL adatbázisba importálni egy korábbi mentésből. (gyors)
 2. Az OSM adatokat először le kell tölteni, azt beimportálni egy PostgreSQL adatbázisba, és onnan a `scripts/copydb.php` futtatásával átmásolni a MySQL adatbázisba.
 
-### 1. lehetőség: Importálni egy meglevő mentésből
+#### 1. lehetőség: Importálni egy meglevő mentésből
 Az adatbázist a `development/mysql/export.sql` fájlból importálhatod:
 ```
 cd ~/wwwroot/osmhu/development/mysql
@@ -134,18 +175,18 @@ mysql -u osmhu -p osm_hu < export.sql
 ```
 Eidoh5zo
 ```
-### 2. lehetőség: Osm adatok letöltése
+#### 2. lehetőség: Osm adatok letöltése
 Az osm2pgsql `*.osm.pbf` fájlokat tud olvasni.
 Az OSM adatokat le kell tölteni pl innen: http://download.geofabrik.de/europe/hungary.html
 A letöltött fájl legyen olvasható mindenki számára:
 ```
 chmod +r /home/ubuntu/hungary-latest.osm.pbf
 ```
-#### Szükséges csomagok telepítése
+##### Szükséges csomagok telepítése
 ```
 sudo apt-get install -y postgresql-9.3 postgis postgresql-9.3-postgis-scripts osm2pgsql
 ```
-#### Osm adatok betöltése a PostgreSQL adatbázisba
+##### Osm adatok betöltése a PostgreSQL adatbázisba
 https://github.com/openstreetmap/osm2pgsql#usage
 
 Az `osm2pgsql` futásakor legyen minnél több szabad memória, mert annál gyorsabb, illetve bizonyos memóriamennyiség alatt le sem fut.
@@ -161,16 +202,16 @@ Ha kevés memória miatt hibába ütközöl (pl `terminate called after throwing
 ```
 osm2pgsql -s --create --database gis /home/ubuntu/hungary-latest.osm.pbf
 ```
-#### Üres MySQL adatbázis létrehozása
+##### Üres MySQL adatbázis létrehozása
 Futtasd le az adatbázison a `scripts/db.txt` tartalmát:
 ```
 cd ~/wwwroot/osmhu/scripts
 mysql -u osmhu -p osm_hu < db.txt
 ```
-#### Adatok átkonvertálása PostgreSQL-ből MySQL-be
+##### Adatok átkonvertálása PostgreSQL-ből MySQL-be
 ```
 cd ~/wwwroot/osmhu/scripts
 APPLICATION_ENV="development" php copydb.php
 ```
-#### Népesség adatok hozzáadása
+##### Népesség adatok hozzáadása
 Lásd `development/nepessegi_adatok.txt`

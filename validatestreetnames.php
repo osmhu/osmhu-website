@@ -1,5 +1,5 @@
 <?php
-	require_once 'config/mysql.php';
+	require_once 'config/pdo.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hu" lang="hu" >
@@ -40,18 +40,16 @@ if(array_key_exists("mode", $_GET)
 	$mode = $_GET["mode"];
 }
 
-$db = connect_mysql();
-
 // Process submit
 if(false && array_key_exists("storevalidate", $_POST)) {
 
-	$store_sth = $db->prepare("UPDATE streetnames SET validated = 1 WHERE id=?", array('integer'), MDB2_PREPARE_MANIP);
-	if (is_a($store_sth, 'MDB2_Error')) { echo "STORE ERROR:"; die($sth->getMessage()); }
-
+	$stmt = $db->prepare('UPDATE streetnames SET validated = 1 WHERE id = :id');
 	foreach($_POST as $key => $value) {
 		if(strpos($key, "chk_") === 0) {
 			$id = intval(substr($key, 4));
-			$store_sth->execute($id);
+			$stmt->execute(array(
+				':id' => $id
+			));
 			echo("Saved $id as OK.<br>");
 		}
 	}
@@ -164,11 +162,15 @@ if($mode == "u") {
 
 echo("<!-- $where -->");
 // Count items for pager
-$count_sth = $db->query("SELECT count(*) as count FROM streetnames WHERE validated = 0 $where");
-if (is_a($count_sth, 'MDB2_Error')) { echo "QUERY ERROR:"; die($count_sth->getMessage()); }
-$row = $count_sth->fetchRow(MDB2_FETCHMODE_ASSOC);
-$count = $row["count"];
-$count_sth->free();
+try {
+	$stmt = $db->prepare('SELECT count(*) as count FROM streetnames WHERE validated = 0 $where');
+	$count_sth = $stmt->execute();
+	$row = $stmt->fetch();
+	$count = $row['count'];
+} catch (PDOException $e) {
+	echo 'MySQL COUNT error in validatestreetnames: ' . $e->getMessage();
+	die();
+}
 echo("<p>");
 for($i = 0; $i * 100 < $count; $i += 1) {
 	if($page == $i) {
@@ -179,15 +181,19 @@ for($i = 0; $i * 100 < $count; $i += 1) {
 }
 echo("</p>");
 
-// Load street names 
-$sth = $db->query("SELECT id,name FROM streetnames WHERE validated = 0 $where ORDER BY name LIMIT ".$page."00,100");
-if (is_a($sth, 'MDB2_Error')) { echo "QUERY ERROR:"; die($sth->getMessage()); }
-
+// Load street names
+try {
+	$stmt = $db->prepare("SELECT id,name FROM streetnames WHERE validated = 0 $where ORDER BY name LIMIT ".$page."00,100");
+	$stmt->execute();
+} catch (PDOException $e) {
+	echo 'MySQL SELECT error in validatestreetnames: ' . $e->getMessage();
+	die();
+}
 ?>
 <form action="validatestreetnames.php?mode=<?php echo($mode) ?>&page=<?php echo($page); ?>" method="post">
 <?php
 
-while(($row = $sth->fetchRow(MDB2_FETCHMODE_ASSOC))) {
+while(($row = $stmt->fetch())) {
 	echo("<label><input type=\"checkbox\" name=\"chk_".$row["id"]."\">");
 	if($mode == "spell") {
 		echo("</label><input type=\"text\" spellcheck=\"true\" value=\"".htmlspecialchars($row["name"])."\" style=\"width: 90%\">");
@@ -196,8 +202,6 @@ while(($row = $sth->fetchRow(MDB2_FETCHMODE_ASSOC))) {
 	}
 	echo(" <a href=\"validatestreetfind.php?id=".$row["id"]."\">?</a><br>\n");
 }
-$sth->free();
-$db->free();
 ?>
 <input type="submit" name="storevalidate" value="A megjelölt nevek jók" disabled="disabled">
 </form>

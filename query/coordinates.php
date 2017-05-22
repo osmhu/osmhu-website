@@ -17,7 +17,7 @@
 $result = new stdClass();
 
 if (isset($_GET['name'])) {
-	require_once '../config/pdo.php';
+	require_once '../config/mysql.php';
 
 	try {
 		$stmt = $db->prepare('SELECT lat, lon FROM places WHERE name=? LIMIT 1');

@@ -3,7 +3,7 @@ if(empty($argc)) {
 	echo("nem webes");
 	exit;
 }
-include '../lib.php';
+include dirname(__FILE__) . '/../lib.php';
 /*
 
 FIXME: DELETE command needed for the tables that are not killed!!!
@@ -40,9 +40,9 @@ E.g. if a streetname is not used anylonger, it has to be deleted at the end.
 	streetname_id: refers to stretnames.id
 
 */
-// "$strdb" is the MySQL database - target database
-$strdb = new StreetsDB();
-$strdb->clean_streets();
+// "$mysqldb" is the MySQL database - target database
+$mysqldb = new StreetsDB();
+$mysqldb->clean_streets();
 
 // "$gisdb" is the OSM database loaded with osm2pgsql
 $gisdb = new GisDB();
@@ -50,16 +50,14 @@ $gisdb = new GisDB();
 // Load "place" nodes PostGIS to hashtable (key: city name, value: osm_id)
 $osm_centers = $gisdb->load_cities();
 echo("Loaded ".count($osm_centers)." OSM cities.\n");
-$str_cities = $strdb->load_cities();
+$str_cities = $mysqldb->load_cities();
 echo("Loaded ".count($str_cities)." already imported cities.\n");
-$my_streets = $strdb->load_streetnames();
+$my_streets = $mysqldb->load_streetnames();
 echo("Loaded ".count($my_streets)." already imported streets.\n");
-
 $bounds = $gisdb->get_boundary_iterator();
 
 // Loop admin boundaries (plc is an SQL sth with "name" and "osm_id")
 foreach($bounds as $plc) {
-
 	// Copy either boundary or pre-loaded GIS city data to a new object
 	$newcity = new City();
 	// Budapest distincts are handled separately and renamed
@@ -89,12 +87,12 @@ foreach($bounds as $plc) {
 	if($c) {
 		if($c->osm_id != $newcity->osm_id) {
 			echo "Updating OSM ID for " . $newcity->name . "\n";
-			$strdb->change_city_id($c, $newcity);
+			$mysqldb->change_city_id($c, $newcity);
 		}
 		// Already imported city, keep and update (by id)
-		$strdb->update_city($newcity);
+		$mysqldb->update_city($newcity);
 	} else {
-		$strdb->create_city($newcity);
+		$mysqldb->create_city($newcity);
 	}
 	echo($newcity->name."\n");
 
@@ -103,29 +101,31 @@ foreach($bounds as $plc) {
 	//$sth = $gis->query("select name, osm_id from planet_osm_line where highway != '' and name != '' and ".
 	//	"st_within(way, (select way from planet_osm_polygon where boundary='administrative' and name=".$gis->quote($plc['name'], 'text')." LIMIT 1))",
 	//	array('text'));
-	$sth = $gisdb->gis->query("SELECT ways.name as name,ways.osm_id as osm_id FROM planet_osm_line ways, planet_osm_polygon polys "
-		."WHERE ST_Contains(polys.way, ways.way) "
-		."AND ways.highway != '' AND ways.name != ''"
-		."AND polys.admin_level IN('8','9') "
-		."AND polys.name = ".$gisdb->gis->quote($plc['name'], 'text'));
-
-    if (is_a($sth, 'MDB2_Error')) { echo "STH HIBA:"; die($sth->getMessage()); }
-
-	while (($str = $sth->fetchRow(MDB2_FETCHMODE_ASSOC))) {
-		if(!array_key_exists($str['name'], $my_streets)) {
-			$newid = $strdb->create_streetname($str['name']);
-			$my_streets[$str['name']] = $newid;
-		}
-		$strdb->assign_street_way($str['osm_id'], $newcity->osm_id, $my_streets[$str['name']]);
+	$query = "SELECT ways.name as name,ways.osm_id as osm_id "
+	       . "FROM planet_osm_line ways, planet_osm_polygon polys "
+	       . "WHERE ST_Contains(polys.way, ways.way) "
+	       . "AND ways.highway != '' AND ways.name != ''"
+	       . "AND polys.admin_level IN('8','9') "
+	       . "AND polys.name = :name";
+	try {
+		$stmt = $gisdb->gis->prepare($query);
+		$stmt->execute(array(
+			":name" => $plc['name']
+		));
+	} catch (PDOException $e) {
+		echo 'Postgresql error in city import: ' . $e->getMessage();
+		die();
 	}
-	$sth->free();
+	while ($street = $stmt->fetch()) {
+		if (!array_key_exists($street['name'], $my_streets)) {
+			$newId = $mysqldb->create_streetname($street['name']);
+			$my_streets[$street['name']] = $newId;
+		}
+		$mysqldb->assign_street_way($street['osm_id'], $newcity->osm_id, $my_streets[$street['name']]);
+	}
 }
-$strdb->copy_names_case();
-$strdb->delete_unused_names();
-
-$bounds->free();
-$strdb->free();
-
+$mysqldb->copy_names_case();
+$mysqldb->delete_unused_names();
 
 function find_imported_city($name, $list) {
 	for($i = 0; $i < count($list); $i++) {

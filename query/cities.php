@@ -18,7 +18,7 @@
 $result = new stdClass();
 
 if (isset($_GET['term'])) {
-	require_once '../config/pdo.php';
+	require_once '../config/mysql.php';
 
 	try {
 		$query = 'SELECT name FROM places WHERE name LIKE ? ORDER BY population DESC LIMIT 20';

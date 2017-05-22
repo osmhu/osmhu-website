@@ -1,25 +1,21 @@
 <?php
 
 require_once 'config.php';
-require_once 'MDB2.php';
 
-function connect_mysql() {
-    $dsn = array (
-        'phptype'  => 'mysql',
-        'username' => DB_USERNAME,
-        'password' => DB_PASSWORD,
-        'hostspec' => DB_HOST,
-        'database' => DB_DATABASE
-    );
+$dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_DATABASE;
+$options = array (
+	PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+);
 
-    $mdb2 = MDB2::factory($dsn);
+try {
+	$db = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $options);
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+	$devEnv = 'development' === getenv('APPLICATION_ENV');
 
-    if (is_a($mdb2, 'MDB2_Error')) {
-        die('MySQL connect error: ' . $mdb2->getMessage());
-    }
-
-    $mdb2->loadModule('Extended');
-    $mdb2->exec('SET NAMES UTF8');
-
-    return $mdb2;
+	if ($devEnv) {
+		die('MySQL kapcsolódási hiba: ' . $e->getMessage());
+	} else {
+		die('Nem sikerült elérni az adatbázist!');
+	}
 }

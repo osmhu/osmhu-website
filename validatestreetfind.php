@@ -26,21 +26,24 @@ if($id <= 0) {
 
 require_once 'config/mysql.php';
 
-$db = connect_mysql();
-
-$sth = $db->query("SELECT osm_id FROM placestreets WHERE streetname_id = ".$db->quote($id, 'integer'));
-if (is_a($sth, 'MDB2_Error')) { echo "QUERY ERROR:"; die($sth->getMessage()); }
+try {
+	$stmt = $db->prepare('SELECT osm_id FROM placestreets WHERE streetname_id = :id');
+	$stmt->execute(array(
+		':id' => $id
+	));
+} catch (PDOException $e) {
+	echo 'MySQL SELECT error in validatestreetfind: ' . $e->getMessage();
+	die();
+}
 
 $wayids = "";
 echo("<h2>Böngészés:</h2><p>");
-while(($row = $sth->fetchRow(MDB2_FETCHMODE_ASSOC))) {
+while(($row = $stmt->fetch())) {
 	if($wayids) { $wayids .= ","; }
 	$wayids .= $row["osm_id"];
 	echo("<a href=\"http://www.openstreetmap.org/browse/way/".$row["osm_id"]."\">".$row["osm_id"]."</a><br>\n");
 }
 echo("</p><h2>Way ID list: </h2><p>".$wayids."</p>");
-$sth->free();
-$db->free();
 
 ?>
 

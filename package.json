@@ -4,10 +4,13 @@
   "description": "OpenStreetMap Hungary",
   "main": "js/main.js",
   "dependencies": {
+    "country-language": "^0.1.7",
     "font-awesome": "^4.5.0",
     "history.js": "^1.8.0",
+    "i18next-client": "^1.11.1",
     "jquery": "^2.1.4",
     "jquery.cookie": "^1.4.1",
+    "moment": "^2.10.6",
     "leaflet": "^0.7.7",
     "leaflet.locatecontrol": "^0.48.0",
     "opening_hours": "^3.4.0",

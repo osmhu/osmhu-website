@@ -19,7 +19,7 @@
 $result = new stdClass();
 
 if (isset($_GET['city'])) {
-	require_once '../config/pdo.php';
+	require_once '../config/mysql.php';
 
 	$wholeBudapest = strtolower($_GET['city']) === 'budapest';
 
@@ -58,13 +58,14 @@ if (isset($_GET['city'])) {
 
 	if ($place_in) {
 		try {
-			$query = 'SELECT DISTINCT placestreets.osm_id AS id, streetnames.name AS name '
+			$query = 'SELECT DISTINCT MAX(placestreets.osm_id) AS id, streetnames.name AS name '
 					.'FROM streetnames '
 					.'INNER JOIN placestreets ON streetnames.id=placestreets.streetname_id '
 					.'WHERE placestreets.place_id IN (' . $place_in . ') '
 					.'AND streetnames.name LIKE ? '
 					.'GROUP BY name '
-					.'ORDER BY streetnames.name LIMIT 20';
+					."ORDER BY streetnames.name REGEXP '^[a-z]' DESC, streetnames.name "
+					.'LIMIT 20';
 
 			$stmt = $db->prepare($query);
 			$params = array($_GET['term'] . '%');
