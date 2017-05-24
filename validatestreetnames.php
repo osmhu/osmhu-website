@@ -1,32 +1,31 @@
-<?php
-	require_once 'config/pdo.php';
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hu" lang="hu" >
-
-<head>
-	<title>Utca keresés az adatbázisban</title>
+<?php include 'includes/top.html'; ?>
+	<title>Utca keresés a helyi adatbázisban</title>
 
 	<?php include 'includes/head_scripts.html' ?>
 </head>
 <body class="info">
-<?php include 'includes/header.html' ?>
+	<div id="header">
+		<?php include 'includes/header.html' ?>
+	</div>
 
-<div id="jobbd">
-<div id="jszd">
+	<div id="nav">
+		<ul class="submenu">
+			<li><a href="validatestreetnames.php?mode=u">.u keresés</a></li>
+			<li><a href="validatestreetnames.php?mode=all">ellenőrzendők keresése</a></li>
+			<li><a href="validatestreetnames.php?mode=diktator">diktátor keresés</a></li>
+			<li><a href="validatestreetnames.php?mode=latin1">őű hibák</a></li>
+			<li><a href="validatestreetnames.php?mode=spell">input box spellcheck</a></li>
+			<li><a href="validatestreetnames.php?action=authorize">belépés</a></li>
+		</ul>
+	</div>
 
-<h1>Nevek megjelölése jónak a helyi adatbázisban</h1>
-<p>Figyelem: Amit megjelölsz, azt soha többé nem fogjuk látni ezen a listán! Rosszat ne jelölj meg: javísd az OSM-ben és majd frissítés után eltűnik!</p>
-<p>Figyelem: dologzz egy találomra választott oldalon, hátha más is ugyanazt csinálja.</p>
-
-<p><a href="validatestreetnames.php?mode=u">.u keresés</a> |
-<a href="validatestreetnames.php?mode=all">ellenőrzendők keresése</a> |
-<a href="validatestreetnames.php?mode=diktator">diktátor keresés</a> |
-<a href="validatestreetnames.php?mode=latin1">őű hibák</a> |
-<a href="validatestreetnames.php?mode=spell">input box spellcheck</a> |
-<a href="validatestreetnames.php?action=authorize">belépés</a>
-</p>
+	<div id="content">
+		<h1>Nevek megjelölése jónak a helyi adatbázisban</h1>
+		<p>Figyelem: Amit megjelölsz, azt soha többé nem fogjuk látni ezen a listán!</p>
+		<p>Rosszat ne jelölj meg: javítsd az OSM-ben és majd frissítés után eltűnik!</p>
+		<p>Tipp: dolgozz egy találomra választott oldalon, hátha más is ugyanazt csinálja.</p>
 <?php
+require_once dirname(__FILE__) . '/config/mysql.php';
 
 // Read Query String parameters
 $page = 0;
@@ -163,7 +162,7 @@ if($mode == "u") {
 echo("<!-- $where -->");
 // Count items for pager
 try {
-	$stmt = $db->prepare('SELECT count(*) as count FROM streetnames WHERE validated = 0 $where');
+	$stmt = $db->prepare('SELECT count(*) as count FROM streetnames WHERE validated = 0 ' . $where);
 	$count_sth = $stmt->execute();
 	$row = $stmt->fetch();
 	$count = $row['count'];
@@ -171,6 +170,7 @@ try {
 	echo 'MySQL COUNT error in validatestreetnames: ' . $e->getMessage();
 	die();
 }
+
 echo("<p>");
 for($i = 0; $i * 100 < $count; $i += 1) {
 	if($page == $i) {
@@ -181,37 +181,69 @@ for($i = 0; $i * 100 < $count; $i += 1) {
 }
 echo("</p>");
 
+if ($count == 0) {
+	die("<p><strong>Ebben a nézetben jelenleg nincs hiba!</strong></p>");
+}
+
 // Load street names
 try {
-	$stmt = $db->prepare("SELECT id,name FROM streetnames WHERE validated = 0 $where ORDER BY name LIMIT ".$page."00,100");
-	$stmt->execute();
+	$streetsStmt = $db->prepare('SELECT id,name FROM streetnames WHERE validated = 0 ' . $where . ' ORDER BY name LIMIT '.$page.'00,100');
+	$streetsStmt->execute();
 } catch (PDOException $e) {
 	echo 'MySQL SELECT error in validatestreetnames: ' . $e->getMessage();
 	die();
 }
 ?>
 <form action="validatestreetnames.php?mode=<?php echo($mode) ?>&page=<?php echo($page); ?>" method="post">
-<?php
-
-while(($row = $stmt->fetch())) {
-	echo("<label><input type=\"checkbox\" name=\"chk_".$row["id"]."\">");
-	if($mode == "spell") {
-		echo("</label><input type=\"text\" spellcheck=\"true\" value=\"".htmlspecialchars($row["name"])."\" style=\"width: 90%\">");
-	} else {
-		echo($row["name"]."</label>");
-	}
-	echo(" <a href=\"validatestreetfind.php?id=".$row["id"]."\">?</a><br>\n");
-}
-?>
-<input type="submit" name="storevalidate" value="A megjelölt nevek jók" disabled="disabled">
+	<table border='1'>
+		<thead>
+			<th>Jó</th>
+			<th>Utca neve</th>
+			<th>OSM objektumok</th>
+		</thead>
+		<tbody>			
+			<?php
+			while ($street = $streetsStmt->fetch()) {
+				$inputId = 'chk_' . $street['id'];
+				$streetName = htmlspecialchars($street["name"]);
+				echo '<tr>';
+				echo '<td style="width: 24px; height: 22px; text-align: center">';
+				echo '<input id="' . $inputId . '" type="checkbox" name="' . $inputId . '">';
+				echo '</td><td style="min-width: 200px">';
+				if ($mode == "spell") {
+					echo '<input type="text" spellcheck="true" value="' . $streetName . '">';
+				} else {
+					echo '<label for="chk_' . $street['id'] . '">' . $streetName . '</label>';
+				}
+				echo '</td><td>';
+				$streetPartStmt = $db->prepare('SELECT osm_id FROM placestreets WHERE streetname_id = :id');
+				$streetPartStmt->execute(array(
+					':id' => $street['id']
+				));
+				$i = 0;
+				while ($streetPart = $streetPartStmt->fetch()) {
+					if ($i > 0) {
+						echo ', ';
+					} else {
+						$i++;
+					}
+					echo '<a href="http://www.openstreetmap.org/browse/way/' . $streetPart['osm_id'].'" target="_blank">';
+					echo $streetPart['osm_id'] . '</a>';
+				}
+				echo '</tr>';
+			}
+			?>
+		</tbody>
+	</table>
+	<br />
+	<input type="submit" name="storevalidate" value="A megjelölt nevek jók">
 </form>
+<br />
 <?php
-if($page < $count) {
-	echo("<a href=\"validatestreetnames.php?mode=$mode&page=".($page+1)."\">Következő</a> ");
+if (($page + 1) * 100 < $count) {
+	echo("<a href=\"validatestreetnames.php?mode=$mode&page=" . ($page + 1) . "\">Következő</a> ");
 }
 ?>
-</div>
-</div>
 </div>
 </body>
 </html>

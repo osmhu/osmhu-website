@@ -1,6 +1,6 @@
-# OpenStreetMap.hu weboldal
---------------------------
-## Fejlesztése
+OpenStreetMap.hu weboldal
+===
+# Fejlesztése
 A leírás azt feltételezi, hogy Ubuntu Linux -ot használsz.  
 Az én gépemen `~/wwwroot/osmhu/` a projekt mappája, lehet hogy meg kell változtatnod, ahol használják a parancsok.
 ## A kód megszerzése
@@ -12,7 +12,7 @@ cd ~/wwwroot/osmhu
 svn co https://bugs.wpsnet.hu/repos/osm/osmhu --username Fodi69
 ```
 Beírod a jelszavad és letölt mindent.
-### Verziókezelés
+## Verziókezelés
 Az SVN-hez sok grafikus szerkesztő van, én a `kdesvn` nevű verziókezelőt használom. Telepítése:
 ```
 sudo apt-get install subversion kdesvn -y
@@ -21,7 +21,8 @@ Ha nem akarsz grafikus szerkesztőt használni, akkor elég a subversion csomag:
 ```
 sudo apt-get install subversion -y
 ```
-### Fejlesztés Vagrant alapú fejlesztői virtuális gép segítségével (ajánlott)
+## Fejlesztés
+### Vagrant alapú fejlesztői virtuális gép segítségével (ajánlott)
 A projekt tartalmaz egy Vagrantfile állományt, ezzel egy olyan virtuális gép hozható létre, ami fejlesztéshez használható.
 A Vagrant használata esetén a gazdagépre szükséges a vagrant csomag telepítése:
 https://www.vagrantup.com/downloads.html

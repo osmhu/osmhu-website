@@ -9,6 +9,7 @@ clean-postgres-db:
 
 .PHONY: clean-mysql-db
 clean-mysql-db:
+	mysql -u root -p$(mysql-root-password) -e "DROP USER IF EXISTS osmhu;"
 	mysql -u root -p$(mysql-root-password) -e "DROP DATABASE IF EXISTS osm_hu;"
 
 .PHONY: create-postgres-db
