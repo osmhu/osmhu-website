@@ -22,9 +22,9 @@ overlays.akt = L.geoJson(null, {
 	layerId: 'akt'
 });
 
-var oktUrl = 'http://data2.openstreetmap.hu/turistautak/psgeojson.php?turut=3020505';
-var ddkUrl = 'http://data2.openstreetmap.hu/turistautak/psgeojson.php?turut=289362';
-var aktUrl = 'http://data2.openstreetmap.hu/turistautak/psgeojson.php?turut=2164968';
+var oktUrl = 'https://data2.openstreetmap.hu/turistautak/psgeojson.php?turut=3020505';
+var ddkUrl = 'https://data2.openstreetmap.hu/turistautak/psgeojson.php?turut=289362';
+var aktUrl = 'https://data2.openstreetmap.hu/turistautak/psgeojson.php?turut=2164968';
 
 var oktLoaded = false;
 var ddkLoaded = false;
