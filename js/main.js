@@ -94,6 +94,8 @@ directions.initializeModes();
 
 select2.initialize();
 
+overpass.measureEndpointLoadTimes();
+
 if (params.poi) {
 	select2.poiSearch(params.poi);
 	select2.set(params.poi);

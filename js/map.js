@@ -13,7 +13,7 @@ var LoadingIndicator = require('./controls/loadingIndicator');
 var layerControls = {
 	'Mapnik (Alapértelmezett)': layers.mapnik,
 	'Kerékpáros térkép':        layers.cycleMap,
-	'Mapquest térkép':          layers.mapquest,
+	'OSM France stílus':        layers.osmfr,
 	'Tömegközlekedés':          layers.transport,
 	'Humanitárius':             layers.humanitarian
 };

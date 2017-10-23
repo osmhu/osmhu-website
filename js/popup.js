@@ -77,10 +77,48 @@ popup.generateHtml = function (element, options) {
 	}
 	var website = element.tags.website || element.tags['contact:website'];
 	if (website) {
+		var niceUrl = website;
+		// Decode URI
+		niceUrl = decodeURI(niceUrl);
+		// Remove url beginnings
+		var hiddenUrlBegin = '';
+		var hiddenUrlEnd = '';
+
+		var beginningsToRemove = [
+			'http://www.',
+			'https://www.',
+			'http://',
+			'https://'
+		];
+		for (var i = 0; i < beginningsToRemove.length; i++) {
+			var beginningToRemove = beginningsToRemove[i];
+			if (niceUrl.substring(0, beginningToRemove.length) === beginningToRemove) {
+				niceUrl = niceUrl.substring(beginningToRemove.length);
+				hiddenUrlBegin = beginningToRemove;
+				break;
+			}
+		}
+		// Remove trailing slash
+		if (niceUrl.substring(niceUrl.length - 1) === '/') {
+			niceUrl = niceUrl.substring(0, niceUrl.length - 1);
+		}
+		var visibleUrl = niceUrl;
+		// Shrink if too long
+		if (visibleUrl.length > 34) {
+			visibleUrl = niceUrl.substring(0, 32);
+			hiddenUrlEnd = niceUrl.substring(32);
+		}
 		html+= '<p class="website">';
-		html+= '<span style="display: inline-block">Weboldal:&nbsp;</span>';
-		html+= '<span style="display: inline-block; word-break: break-all"><a href="' + website + '" target="_blank">';
-		html+= website;
+		html+= '<span class="website-label">Weboldal:&nbsp;</span>';
+		html+= '<span class="website-url"><a href="' + website + '" target="_blank" title="' + (visibleUrl !== niceUrl ? niceUrl : '') + '">';
+		if (hiddenUrlBegin.length > 0) {
+			html+= '<span class="hidden-part">' + hiddenUrlBegin + '</span>';
+		}
+		html+= visibleUrl;
+		if (hiddenUrlEnd.length > 0) {
+			html+= '<span class="hidden-part">' + hiddenUrlEnd + '</span>';
+			html+= '<span class="hidden-indicator"></span>';
+		}
 		html+= '</a></span>';
 		html+= '</p>';
 	}

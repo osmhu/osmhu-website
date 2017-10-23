@@ -46,17 +46,15 @@ function openPopup () {
 	marker.on('dragend', function () {
 		var markerPosition = marker.getLatLng();
 		map.setView([ markerPosition.lat, markerPosition.lng ]);
-		marker.openPopup();
+		marker.bindPopup(popupContent(), {
+			closeButton: false,
+			closeOnClick: false
+		}).openPopup();
 
 		$('#popup-share-text').val(share.getText());
 		$(window).trigger('updateUrl');
 
-		helpers.copyButton({
-			button: $('#popup-share-copy'),
-			onCopy: function () {
-				$('#popup-share-url').select();
-			}
-		});
+		bindPopupActions();
 	});
 
 	marker.on('popupopen', function () {
@@ -68,12 +66,7 @@ function openPopup () {
 			$(window).trigger('updateUrl');
 		}
 
-		helpers.copyButton({
-			button: $('#popup-share-copy'),
-			onCopy: function () {
-				$('#popup-share-url').select();
-			}
-		});
+		bindPopupActions();
 	});
 
 	marker.addTo(map);
@@ -83,6 +76,10 @@ function openPopup () {
 		closeOnClick: false
 	}).openPopup();
 
+	bindPopupActions();
+}
+
+function bindPopupActions () {
 	$('#popup-share-close').on('click', function () {
 		closePopup();
 		return false;
@@ -106,8 +103,11 @@ function openPopup () {
 }
 
 function closePopup () {
-	map.removeLayer(marker);
+	if (map.hasLayer(marker)) {
+		map.removeLayer(marker);
+	}
 	marker = null;
+	$(window).trigger('updateUrl');
 }
 
 function popupContent () {

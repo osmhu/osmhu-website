@@ -1,5 +1,44 @@
 var overpass = module.exports = {};
 
+var $ = require('jquery');
+
+var availableEndpoints = [
+	'https://overpass.kumi.systems/api/',
+	'http://overpass-api.de/api/',
+	'http://overpass.osm.rambler.ru/cgi/'
+];
+
+var fastestEndpoint = availableEndpoints[0];
+
+var endPointLoadTimes = {};
+
+overpass.measureEndpointLoadTimes = function () {
+	var testQuery = 'interpreter?data=[out:json];node(47.48,19.02,47.5,19.05)["amenity"="cafe"];out;';
+
+	// Async comparison of available endpoints
+	availableEndpoints.forEach(function (measuredEndpoint) {
+		var start = performance.now();
+
+		$.getJSON(measuredEndpoint + testQuery)
+		.then(function (result) {
+			var end = performance.now();
+			var time = end - start;
+
+			//console.log('Measured endpoint', measuredEndpoint, 'took', time, 'ms');
+			endPointLoadTimes[measuredEndpoint] = time;
+
+			if (!endPointLoadTimes.hasOwnProperty(fastestEndpoint) || endPointLoadTimes[fastestEndpoint] > time) {
+				fastestEndpoint = measuredEndpoint;
+			}
+		});
+	});
+};
+
+overpass.fastestEndpoint = function () {
+	//console.log('Fastest endpoint is', fastestEndpoint, ' (', endPointLoadTimes[fastestEndpoint], 'ms)');
+	return fastestEndpoint;
+};
+
 /**
  * Get element details from OverPass by element type and element id
  */

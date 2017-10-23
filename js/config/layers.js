@@ -14,8 +14,9 @@ layers.mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 
 /**
  * OpenCycleMap tiles from http://www.opencyclemap.org/
+ * Needs registered API key from https://manage.thunderforest.com (currently supports 150,000 tile loads / month)
  */
-layers.cycleMap = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+layers.cycleMap = L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b91d55049c50482da2771ab941a3aeb4', {
 	layerId:      'C',
 	maxZoom:      18,
 	subdomains:   'abc',
@@ -24,20 +25,21 @@ layers.cycleMap = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y
 });
 
 /**
- * MapQuest tiles from http://open.mapquest.com/
+ * OpenStreetMap France from http://tile.openstreetmap.fr/
  */
-layers.mapquest = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
-	layerId:      'Q',
-	maxZoom:      18,
-	subdomains:   '1234',
+layers.osmfr = L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+	layerId:      'F',
+	maxZoom:      20,
+	subdomains:   'abc',
 	attribution:  attribution,
 	detectRetina: true
 });
 
 /**
- * Transport tiles from http://www.thunderforest.com/transport/ (url from Opencyclemap)
+ * Transport tiles from http://www.thunderforest.com/transport/
+ * Needs registered API key from https://manage.thunderforest.com (currently supports 150,000 tile loads / month)
  */
-layers.transport = L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
+layers.transport = L.tileLayer('http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=b91d55049c50482da2771ab941a3aeb4', {
 	layerId:      'T',
 	maxZoom:      18,
 	subdomains:   'abc',
@@ -60,8 +62,8 @@ layers.getById = function (layerId) {
 	switch (layerId) {
 		case 'C':
 			return layers.cycleMap;
-		case 'Q':
-			return layers.mapquest;
+		case 'F':
+			return layers.osmfr;
 		case 'T':
 			return layers.transport;
 		case 'H':

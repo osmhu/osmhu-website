@@ -11,7 +11,6 @@ var overpass = require('./overpass');
 var marker = require('./marker');
 var helpers = require('./helpers');
 var iconProvider = require('./iconProvider');
-var overpassEndpointChecker = require('./overpassEndpointChecker');
 
 var select2 = module.exports = {};
 
@@ -68,7 +67,7 @@ select2.poiSearch = function (selected) {
 		// Add Overpass layer
 		overPassLayer = new L.OverPassLayer({
 			minzoom: 14,
-			endpoint: overpassEndpointChecker.getBestendpoint(),
+			endpoint: overpass.fastestEndpoint(),
 			query: overpassLayerQuery,
 			minZoomIndicatorOptions: {
 				position: 'topleft',

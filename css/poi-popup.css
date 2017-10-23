@@ -30,6 +30,22 @@ a.leaflet-popup-close-button {
 .popup-content .details p {
 	font-size: 13px;
 }
+.popup-content .website .website-label {
+	display: inline-block;
+}
+.popup-content .website .website-url {
+	display: inline-block;
+	word-break: break-all;
+	font-size: 12px;
+}
+.popup-content .website .website-url .hidden-part {
+  /* Transparent text, should work on any background colour */
+  color: rgba(0,0,0,0);
+  font-size: 0;
+}
+.popup-content .website .website-url .hidden-indicator:before {
+	content: '\2026';
+}
 .popup-content .opening_hours p {
 	font-size: 13px;
 }

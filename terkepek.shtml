@@ -26,8 +26,8 @@
 			<dd>Alap OpenStreetMap.org megjelenítés, általános elemekkel, utak, bizonyos boltok, épületek stb.</dd>
 			<dt>Kerékpáros térkép<dt>
 			<dd>Az <a href="http://www.opencyclemap.org/">OpenCycleMap</a> megjelenítése, amely a kerékpársávokat és kerékárutakat is mindig megjeleníti.</dd>
-			<dt>MapQuest térkép</dt>
-			<dd>Az AOL térképes cégrészlegének OSM térképe (<a href="http://www.mapquest.co.uk/">MapQuest</a>), ez is az általános térképi elemeket tartalmazza.</dd>
+			<dt>OSM France stílus</dt>
+			<dd>A <a href="http://tile.openstreetmap.fr/">Franciaországi OpenStreetMap közösség weboldalán</a> használt megjelenítési stílus, mely az általános térképi elemeket tartalmazza.</dd>
 			<dt>Tömegközlekedés</dt>
 			<dd>Tömegközlekedési útvonalak és megállók statikus térképe.</dd>
 			<dt>Humanitárius</dt>
