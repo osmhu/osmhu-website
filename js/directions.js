@@ -12,7 +12,10 @@ directions.loadJs = function () {
 	
 	$.getScript(mapJs)
 	.done(function () {
-		$.getScript(routingJs);
+		return $.getScript(routingJs)
+		.done(function () {
+			initDirectionProvider();
+		});
 	})
 	.fail(function () {
 		if (typeof MQ === 'undefined') {
@@ -21,17 +24,22 @@ directions.loadJs = function () {
 	});
 };
 
-directions.convertToMapQuestFormat = function (string) {
-	var parts = string.split(',');
-	var city = parts[0];
+var directionProvider;
 
-	var allOtherParts = '';
-	for (var i = 1; i < parts.length; i++) {
-		allOtherParts+= parts[i] + ', ';
-	}
+var initDirectionProvider = function () {
+	if (!directionsAvailable) return;
 
-	return allOtherParts + parts[0] + ', Hungary';
-};
+	directionProvider = MQ.routing.directions()
+	.on('success', function (data) {
+		directions.process(data.route);
+		if (data.route.locations) {
+			activeViaLocations = data.route.locations;
+		}
+	})
+	.on('error', function (error) {
+		directions.error();
+	});
+}
 
 var startField = $('#directions #directions-start-search');
 var endField = $('#directions #directions-end-search');
@@ -75,6 +83,9 @@ directions.initializeModes = function () {
 	});
 };
 
+var previousRouteStart = '';
+var previousRouteEnd = '';
+
 $('#directions form').on('submit', function (event) {
 	event.preventDefault();
 
@@ -97,6 +108,11 @@ $('#directions form').on('submit', function (event) {
 		var routeStart = directions.convertToMapQuestFormat(start);
 		var routeEnd = directions.convertToMapQuestFormat(end);
 
+		if (routeStart != previousRouteStart || routeEnd != previousRouteEnd) {
+			previousRouteStart = routeStart;
+			previousRouteEnd = routeEnd;
+			resetRoute(routeStart, routeEnd);
+		}
 		directions.route(routeStart, routeEnd);
 
 		endField.addClass('searching');
@@ -115,93 +131,105 @@ $('#direction-results-choose-type').on('change', function (event) {
 	$('#directions form').trigger('submit');
 });
 
+var activeViaLocations;
+
+// Clears previously stored via points added by dragging the route
+var resetRoute = function (newRouteStart, newRouteEnd) {
+	activeViaLocations = [
+		newRouteStart,
+		newRouteEnd
+	];
+};
+
 var activeRoutingLayer;
 
 directions.route = function (start, end) {
+	if (!directionProvider) return;
+
 	if (activeRoutingLayer) {
 		map.removeLayer(activeRoutingLayer);
 	}
 
-	var dir = MQ.routing.directions()
-	.on('success', function (data) {
-		directions.process(data.route, data.info);
-	})
-	.on('error', function (error) {
-		directions.error();
-	});
-	
-	var avoids = avoidTollRoads ? ['toll road'] : [];
-
-	dir.route({
-		locations: [
-			start,
-			end
-		],
+	directionProvider.route({
+		locations: activeViaLocations,
 		options: {
 			locale:    'hu_HU',
 			unit:      'k',
 			routeType: activeTransportType,
-			avoids:    avoids
+			avoids:    avoidTollRoads ? ['toll road'] : []
 		}
 	});
 
 	activeRoutingLayer = MQ.routing.routeLayer({
-		directions: dir,
+		directions: directionProvider,
 		fitBounds: true
 	});
 
 	map.addLayer(activeRoutingLayer);
 };
 
+directions.convertToMapQuestFormat = function (string) {
+	var parts = string.split(',');
+	var city = parts[0];
+
+	var allOtherParts = '';
+	for (var i = 1; i < parts.length; i++) {
+		allOtherParts+= parts[i] + ', ';
+	}
+
+	return allOtherParts + parts[0] + ', Hungary';
+};
+
 var directionResults = $('#direction-results');
 
-directions.process = function (directions, info) {
+directions.process = function (routeInfo) {
+	if (!routeInfo.legs) return;
+
 	var html = '<p class="total-time">Útidő: <span class="time">';
-	html+= directions.formattedTime;
+	html+= routeInfo.formattedTime;
 	html+= '</span></p>';
 	html+= '<p class="total-length">Útvonal: <span class="length">';
-	var distance = Math.round(parseFloat(directions.distance) * 10) / 10;
+	var distance = Math.round(parseFloat(routeInfo.distance) * 10) / 10;
 	html+= distance;
 	html+= '</span> km</p>';
-	if (directions.legs) {
-		var legs = directions.legs;
 
-		var i = 0;
-		var j = 0;
-		html+= '<table>';
-		for (; i < legs.length; i++) {
-			for (j = 0; j < legs[i].maneuvers.length; j++) {
-				maneuver = legs[i].maneuvers[j];
-				html+= '<tr onclick="map.setView([' + maneuver.startPoint.lat + ',' + maneuver.startPoint.lng + '],14);">';
-				if (maneuver) {
-					if (maneuver.iconUrl) {
-						html+= '<td><img src="' + maneuver.iconUrl + '"></td>';
-					}
-					if (maneuver.narrative) {
-						html+= '<td class="narrative">' + maneuver.narrative + '</td>';
-					}
-					if (maneuver.distance) {
-						var maneuverDistance = Math.round(parseFloat(maneuver.distance) * 10) / 10;
-						html+= '<td class="distance">' + maneuverDistance + '&nbsp;km</td>';
-					} else {
-						html+= '<td></td>';
-					}
+	var legs = routeInfo.legs;
+
+	var i = 0;
+	var j = 0;
+	html+= '<table>';
+	for (; i < legs.length; i++) {
+		for (j = 0; j < legs[i].maneuvers.length; j++) {
+			maneuver = legs[i].maneuvers[j];
+			html+= '<tr onclick="map.setView([' + maneuver.startPoint.lat + ',' + maneuver.startPoint.lng + '],14);">';
+			if (maneuver) {
+				if (maneuver.iconUrl) {
+					html+= '<td><img src="' + maneuver.iconUrl + '"></td>';
 				}
-				html+= '</tr>';
+				if (maneuver.narrative) {
+					html+= '<td class="narrative">' + maneuver.narrative + '</td>';
+				}
+				if (maneuver.distance) {
+					var maneuverDistance = Math.round(parseFloat(maneuver.distance) * 10) / 10;
+					html+= '<td class="distance">' + maneuverDistance + '&nbsp;km</td>';
+				} else {
+					html+= '<td></td>';
+				}
 			}
+			html+= '</tr>';
 		}
-		html+= '</table>';
-
-		html+= '<p class="copyright">Az útvonaltervezés a <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> használatával történt. Köszönjük!</p>';
-
-		directionResults.find('.results').html(html);
-
-		directionResults.find('.no-results').hide();
-		directionResults.find('.results').show();
-		directionResults.show();
-		endField.removeClass('searching');
-		$(window).trigger('search-results-show');
 	}
+	html+= '</table>';
+
+	html+= '<p class="copyright">Az útvonaltervezés a <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> használatával történt. Köszönjük!</p>';
+
+	directionResults.find('.results').html(html);
+
+	directionResults.find('.no-results').hide();
+	directionResults.find('.results').show();
+	directionResults.show();
+	endField.removeClass('searching');
+	$(window).trigger('search-results-show');
 };
 
 directions.error = function () {
