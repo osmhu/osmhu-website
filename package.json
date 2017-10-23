@@ -24,7 +24,7 @@
   "scripts": {
     "plato": "plato -r -d report js",
     "build": "browserify js/main.js -g uglifyify -o build/bundle.js --full-path=false",
-    "watch": "watchify --debug js/main.js -o build/bundle.js -v"
+    "watch": "watchify --poll --debug js/main.js -o build/bundle.js -v"
   },
   "author": "Fodor Ferenc",
   "license": "MIT"

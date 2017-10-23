@@ -18,7 +18,7 @@
 	<!-- Share popup stylesheet -->
 	<link rel="stylesheet" href="/css/share-popup.css?rev=319">
 	<!-- Poi popup stylesheet -->
-	<link rel="stylesheet" href="/css/poi-popup.css?rev=351">
+	<link rel="stylesheet" href="/css/poi-popup.css?rev=364">
 	<!-- Introduction stylesheet -->
 	<link rel="stylesheet" href="/css/introduction.css?rev=347">
 	<!-- Search results stylesheet -->
@@ -140,6 +140,6 @@
 	<div id="introduction-toggler"><p class="toggler"></p></div>
 
 	<!-- Load osmhu bundle -->
-	<script src="/build/bundle.js?rev=351"></script>
+	<script src="/build/bundle.js?rev=364"></script>
 </body>
 </html>
