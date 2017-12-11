@@ -69,44 +69,46 @@ searchResults.find('a.close').on('click', function () {
  */
 search.resultRenderer = function (result) {
 	var display = [];
-	$.each(result.address, function (id, addressPart) {
+	$.each(result.address, function (key, value) {
 		// Show if the result has the type of this address part
-		var exactMatch = (id === result.type) || (id === 'city_district' && result.type === 'district');
+		var exactMatch = (key === result.type) || (key === 'city_district' && result.type === 'district');
 
 		// Don't show any of these address parts
 		var dontShow = ['country_code', 'country', 'state', 'region','county',
-						'pedestrian', 'city_district', 'suburb', 'city', 'town',
-						'road', 'neighbourhood', 'postcode', 'house_number'];
-		var showCurrent = (dontShow.indexOf(id) === -1 || exactMatch);
+						'pedestrian', 'city_district', 'suburb', 'city', 'town', 'village',
+						'road', 'neighbourhood', 'postcode', 'house_number', 'footway'];
+		var showCurrent = (dontShow.indexOf(key) === -1 || exactMatch);
 		if (showCurrent) {
-			display.push(addressPart);
+			display.push(value);
 		}
 	});
+
+ 	// For street addresses, need to display both road name and house number
+	if (result.class === 'building') {
+		if (result.address.road && result.address.house_number) {
+			var streetAddress = result.address.road + ' ' + result.address.house_number;
+			display.unshift(streetAddress);
+		}
+	}
+
 	var name = display.join(', ');
 	var container = getContainer(result);
 
-	// Special display rule for places
-	if (result.class === 'place') {
-		if (result.type === 'district') {
-			name = result.address.city_district;
-		} else {
-			name = result.address[result.type];
+	var displayNameIndex = 0;
+	while (!name || name === container) {
+		name = result.display_name.split(', ')[displayNameIndex];
+		displayNameIndex++;
+	}
+
+	if (result.address.hasOwnProperty(result.type)) {
+		// If address info contains same key as result type, than it is the most important information
+		name = result.address[result.type];
+	} else {
+		// Special corner cases
+		if (result.class === 'boundary') { // Special display rule for boundaries
+			name = result.display_name.split(', ')[0];
+			container = result.display_name.split(', ')[1];
 		}
-		if (result.type === 'city') {
-			// If not Hungary, show country as container
-			container = (result.address.country !== 'Magyarország') ? result.address.country : '';
-		}
-	// Special display rules for highways
-	} else if (result.class === 'highway') {
-		// If road, display road as name
-		if (result.address.road) {
-			name = result.address.road;
-		}
-	// Special display rules for boundaries
-	} else if (result.class === 'boundary') {
-		// Display full nominatim string on boundaries
-		name = result.display_name;
-		container = '';
 	}
 
 	var row = '';
@@ -126,7 +128,7 @@ search.resultRenderer = function (result) {
 		row+= '</span>';
 	}
 	row+= name;
-	if (container) {
+	if (container && container !== name) {
 		row+= ' - ' + container;
 	}
 	row+= '</a>';
@@ -217,16 +219,30 @@ search.focusIfCoordinates = function (string) {
 // Get container of a nominatim search result
 function getContainer (searchResult) {
 	var container = '';
-	if (searchResult.address.city) {
-		container+= searchResult.address.city;
+	if (searchResult.type === 'district') {
+		container = searchResult.display_name.split(', ')[1];
+	} else if (searchResult.address.city) {
+		container = searchResult.address.city;
 	} else if (searchResult.address.town) {
-		container+= searchResult.address.town;
+		container = searchResult.address.town;
 	} else if (searchResult.address.village) {
-		container+= searchResult.address.village;
+		container = searchResult.address.village;
+	} else if (searchResult.address.hamlet) {
+		container = searchResult.address.hamlet;
+	} else if (searchResult.address.isolated_dwelling) {
+		container = searchResult.address.isolated_dwelling;
 	}
 
-	if (searchResult.address.country !== 'Magyarország') {
-		container+= ' - ' + searchResult.address.country;
+	if (searchResult.address.city === 'Budapest' && searchResult.address.hasOwnProperty('city_district')) {
+		container = searchResult.address.city_district + ' - ' + container;
+	}
+
+	var foreign = searchResult.address.country !== 'Magyarország' && searchResult.address.hasOwnProperty('country');
+	if (container.length > 0 && foreign) {
+		container+= ' - ';
+	}
+	if (foreign) {
+		container+= searchResult.address.country;
 	}
 	return container;
 }

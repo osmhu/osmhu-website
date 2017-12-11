@@ -57,9 +57,12 @@ popup.generateHtml = function (element, options) {
 
 	var title = popup.niceTitle(element.tags);
 	var type = popup.niceType(element.tags);
-	if (!title) {
+	if (!title && type) {
 		title = type;
 		type  = null;
+	}
+	if (!title && !type) {
+		title = 'Hely';
 	}
 
 	html+= '<h1 class="title">' + helpers.ucFirst(title) + '</h1>';
@@ -168,6 +171,7 @@ popup.niceType = function (tags) {
 	if (tags.shop === 'confectionery') return 'Cukrászda';
 	if (tags.shop === 'greengrocer') return 'Zöldség-gyümölcs kereskedés';
 	if (tags.shop === 'bicycle') return 'Kerékpárbolt';
+	if (tags.amenity === 'bicycle_rental') return 'Bicikli kölcsönző';
 	if (tags.amenity === 'atm') return 'Bankautomata';
 	if (tags.amenity === 'bank' && tags.atm === 'yes') return 'Bank + Bankautomata';
 	if (tags.amenity === 'bank') return 'Bank';
@@ -208,10 +212,60 @@ popup.niceType = function (tags) {
 	if (tags.amenity === 'drinking_water') return 'Ivóvíz';
 	if (tags.amenity === 'toilets') return 'Nyilvános WC';
 	if (tags.amenity === 'recycling') return 'Szelektív hulladékgyűjtő';
+
+	// Train, subway, bus stations
+	if (tags.railway === 'station' && tags.subway === 'yes') return 'Metrómegálló';
+	if (tags.building === 'train_station' && tags.public_transport === 'station') return 'Vasútállomás';
+	if (tags.railway === 'station') return 'Vasútállomás';
+	if (tags.amenity === 'bus_station') return 'Buszpályaudvar';
+	if (tags.highway === 'bus_stop' || tags.public_transport === 'stop_position') return 'Buszmegálló';
+
+	// Building types
+	// Source: http://wiki.openstreetmap.org/wiki/Hu:Key:building?uselang=hu
+	// Ordered by frequency: http://taginfo.openstreetmap.hu/keys/building
+	if (tags.building === 'apartments') return 'Társasház';
+	if (tags.building === 'farm') return 'Farm';
+	if (tags.building === 'house') return 'Családi ház';
+	if (tags.building === 'industrial') return 'Ipari épület';
+	if (tags.building === 'church') return 'Templom';
+	if (tags.building === 'chapel') return 'Kápolna';
+	if (tags.building === 'residential') return 'Lakóház';
+	if (tags.building === 'garages') return 'Gárázsok';
+	if (tags.building === 'school') return 'Iskolépület';
+	if (tags.building === 'commercial') return 'Irodaház';
+	if (tags.building === 'retail') return 'Áruház';
+	if (tags.building === 'greenhouse') return 'Üvegház';
+	if (tags.building === 'yes') return 'Épület';
+	// Budapest
+	if (tags.name === 'Budapest' && tags.boundary === 'administrative' && tags.admin_level === '8') return 'Főváros';
+	// Places
+	// Ordered by frequency: http://taginfo.openstreetmap.hu/keys/place#values
+	if (tags.place === 'locality') return 'Hely';
+	if (tags.place === 'village') return 'Falu';
+	if (tags.place === 'suburb') return 'Városrész';
+	if (tags.place === 'farm') return 'Farm';
+	if (tags.place === 'hamlet') return 'Falu';
+	if (tags.place === 'neighbourhood') return 'Szomszédság';
+	if (tags.place === 'town') return 'Város';
+	if (tags.place === 'islet') return 'Sziget';
+	if (tags.place === 'island') return 'Sziget';
+	if (tags.place === 'county') return 'Megye';
+	if (tags.place === 'city') return 'Város';
+	if (tags.place === 'district') return 'Kerület';
+	// Hungarian administrative rules
+	// Source: http://wiki.openstreetmap.org/wiki/Hu:Tag:boundary=administrative?uselang=hu
+	if (tags.boundary === 'administrative' && tags.admin_level === '6') return 'Megye';
+	if (tags.boundary === 'administrative' && tags.admin_level === '7') return 'Járás';
+	if (tags.boundary === 'administrative' && tags.admin_level === '8') return 'Város';
+	if (tags.boundary === 'administrative' && tags.admin_level === '9') return 'Kerület';
+
+	// Highways
+	if (tags.highway === 'residential') return 'Út';
+	if (tags.highway === 'pedestrian') return 'Gyalogos útvonal';
 };
 
 popup.niceTitle = function (tags) {
-	return tags.name || tags.operator;
+	return tags.name || tags.ref || tags.operator;
 };
 
 popup.niceAddress = function (tags) {

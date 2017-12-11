@@ -54,3 +54,8 @@ npm install browserify watchify -g
 # install npm packages needed by frontend
 cd /var/www
 npm i
+
+# default directory when connection from ssh
+if ! [ -e /home/vagrant/.bash_profile ]; then
+  echo "cd /var/www" >> /home/vagrant/.bash_profile
+fi
