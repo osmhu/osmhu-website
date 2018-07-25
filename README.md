@@ -40,7 +40,7 @@ A vagrant virtuális gépen automatikusan szinkronizálva van a projekt könyvt�
 A virtuális gépen található egy webszerver, amit a gazdagépről a http://localhost:8080/ címen érhetünk el.  
 Mivel minden változtatás szinkronizálva van, ezért a gazdagépen való minden szerkesztés azonnal tesztelhető ezen a címen.  
 A vagrant képfájlba automatikusan feltelepítésre kerültek a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
-Ezek a jelszavak a `vagrant.ssh` fájlban és a `Makefile`-ban szerkeszthetőek.
+Ezek a jelszavak a `vagrant.sh` fájlban és a `Makefile`-ban szerkeszthetőek.
 #### Vagrant - mysql adatbázis feltöltése friss osm adatokkal
 ```
 vagrant up

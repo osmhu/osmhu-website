@@ -4,6 +4,8 @@ var helpers = require('./helpers');
 var overpass = require('./overpass');
 var marker = require('./marker');
 
+var nominatimUrl = require('./config/serviceUrls').nominatimUrl;
+
 var search = module.exports = {};
 
 var searchResults = $('#search-results');
@@ -26,7 +28,6 @@ search.nominatim = function (options) {
 				  bounds.getEast() + ',' +
 				  bounds.getSouth();
 
-	var nominatimUrl = 'http://nominatim.openstreetmap.org/search';
 	var query = {
 		q:       text,
 		format:  'json',
@@ -157,7 +158,8 @@ search.focusCity = function (city) {
 	$.getJSON('/query/coordinates.php', {
 		name: city
 	}, function (coordinates) {
-		if (coordinates.hasOwnProperty('lat')) {
+		if (coordinates.hasOwnProperty('lat') && coordinates.lat !== null &&
+			coordinates.hasOwnProperty('lon') && coordinates.lon !== null) {
 			map.setView([coordinates.lat, coordinates.lon], 14);
 		}
 	});

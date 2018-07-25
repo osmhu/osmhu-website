@@ -2,13 +2,16 @@ var overpass = module.exports = {};
 
 var $ = require('jquery');
 
-var availableEndpoints = [
-	'https://overpass.kumi.systems/api/',
-	'http://overpass-api.de/api/',
-	'http://overpass.osm.rambler.ru/cgi/'
-];
+var overpassEndpoints = require('./config/serviceUrls').overpassEndpoints;
 
-var fastestEndpoint = availableEndpoints[0];
+// Ensure endpoint urls ends with /
+for (var i in overpassEndpoints) {
+	if (overpassEndpoints[i].substring(overpassEndpoints[i].length - 1) !== "/") {
+		overpassEndpoints[i]+='/';
+	}
+}
+
+var fastestEndpoint = overpassEndpoints[0];
 
 var endPointLoadTimes = {};
 
@@ -16,7 +19,7 @@ overpass.measureEndpointLoadTimes = function () {
 	var testQuery = 'interpreter?data=[out:json];node(47.48,19.02,47.5,19.05)["amenity"="cafe"];out;';
 
 	// Async comparison of available endpoints
-	availableEndpoints.forEach(function (measuredEndpoint) {
+	overpassEndpoints.forEach(function (measuredEndpoint) {
 		var start = performance.now();
 
 		$.getJSON(measuredEndpoint + testQuery)
@@ -43,7 +46,8 @@ overpass.fastestEndpoint = function () {
  * Get element details from OverPass by element type and element id
  */
 overpass.getDetailsByTypeAndId = function (type, id) {
-	var query = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(';
+	var query = overpass.fastestEndpoint();
+	query+= 'interpreter?data=[out:json];(';
 	switch (type) {
 		case 'node':
 			query+= 'node(' + id + ');';

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Script to initialize empty Ubuntu Xenial virtual machine for development
+# Script to initialize virtual machine for development
 
 # update package repository
 apt-get update

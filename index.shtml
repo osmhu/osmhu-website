@@ -70,7 +70,7 @@
 	<div id="map-container">
 		<noscript>
 			<p>A weboldal használatához JavaScript szükséges.</p>
-			<p><a href="http://www.enable-javascript.com/hu/" target="_blank">Itt találhat segítséget, hogy hogyan engedélyezheti a JavaScriptet böngészőjében.</a></p>
+			<p><a href="https://www.enable-javascript.com/hu/" target="_blank">Itt találhat segítséget, hogy hogyan engedélyezheti a JavaScriptet böngészőjében.</a></p>
 		</noscript>
 		<div id="map"></div>
 	</div>
@@ -122,12 +122,12 @@
 		</div>
 		<div class="tryit">
 			<p><strong>Próbáld ki, és szerkessz valamit!</strong></p>
-			<div class="button"><a id="orgEditLink" href="http://openstreetmap.org/edit">Terület szerkesztése</a></div>
+			<div class="button"><a id="orgEditLink" href="https://openstreetmap.org/edit">Terület szerkesztése</a></div>
 		</div>
 		<!-- div class="project">
 			<p class="title"><strong>Kiemelt projekt</strong></p>
 			<p class="slogan">Kerekesszékes térkép</p>
-			<p class="link"><a href="http://route4u.org/" target="_blank"><img src="/kepek/route4u.jpg" alt="Route4U logó"><span>ROUTE4U</span></a></p>
+			<p class="link"><a href="https://route4u.org/" target="_blank"><img src="/kepek/route4u.jpg" alt="Route4U logó"><span>ROUTE4U</span></a></p>
 		</div -->
 		<div class="facebook">
 			<p><strong>Facebook oldalunk:</strong></p>
