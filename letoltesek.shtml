@@ -29,23 +29,22 @@
 
 			<p>Telepítsd az <strong>OsmAnd</strong> nevű programot a <strong>Google Play áruházból</strong>, majd a 
 			<em>Beállítások -&gt; Offline adatok -&gt; Letöltés</em> alatt telepítsd a "Hungary Europe" térképet.</p>
-			<p>További ötleteket a <a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary/Android">wiki Android oldalán</a> találsz.</p> 
+			<p>Javasolt Android alkalmazások még: MAPS.ME, Mapy.cz, Locus.
+			További ötleteket a <a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary/Android">wiki Android oldalán</a> találsz.</p> 
 
 
 			<img class="right logo" src="/kepek/apple.png" alt="apple logo">
 
-			<h3>OpenStreetMap Apple iPad-re</h3>
+			<h3>OpenStreetMap Apple iPadre, iPhone-ra</h3>
 
-			<p>Telepítsd a <strong>MAPS.ME</strong> nevű programot az <strong>iTunesban</strong>, ez alapból az OpenStreetMapet használja. Természetesen más OSM-es programok is elérhetőek.</p>
+			<p>Telepítsd a <strong>MAPS.ME</strong> nevű programot. Természetesen más OpenStreetMapes programok is elérhetőek.</p>
 
 
 			<img class="right logo" src="/kepek/garmin-logo2.png" alt="garmin logo">
 
 			<h3>Garmin GPS</h3>
 
-			<p>Lásd: <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a> és 
-			<a href="http://raumbezug.eu/ag/internet/osmGarmin.htm">Raumbezug.eu</a> vagy saját változat készítéséhez: 
-			<a href="http://wiki.openstreetmap.org/wiki/HU:OSM_Map_On_Garmin">OpenStreetMap átkonvertálása és letöltése Garmin GPS-re</a>.
+			<p>Magyarország térkép letöltése: <a href="http://openmaps.eu/">OpenMaps.eu</a> vagy <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a>.
 			</p>
 
 			<h3>Magyarország turistatérkép - rátét réteg</h3>
@@ -59,14 +58,6 @@
 			<a href="http://data2.openstreetmap.hu/TuraReteg.sqlitedb">TuraReteg.sqlitedb</a><br>
 			Telepítése: másold be a fájlt a telefonra a <code>osmand/tiles</code> könyvtrába, majd aktiváld a <em>Rétegek -&gt; Rátét térkép</em> menüben.
 			Ha ez a menü nem látható, kapcsold be az <em>Bővítmények -&gt; Online térkép</em> elemet.</p>
-			<p><strong>iPad (MapBox):</strong><br>
-
-			URL: <a href="http://data2.openstreetmap.hu/tt.mbtiles"><code>http://data2.openstreetmap.hu/tt.mbtiles</code></a> vagy:
-			<a href="mbhttp://data2.openstreetmap.hu/tt.mbtiles">iPad böngészőben kattints ide</a><br>
-			
-			Telepítése a MapBox nevű programba: a letöltés ikonnál a "+" jelre kattintás után gépeld be 
-			PONTOSAN az URL-t, http://-tal együtt, majd a rétegek ikonra kattinva aktiváld 
-			és húzd fel az OpenStreetMap réteg fölé, amit szintén aktiválj.</p>
 			<p><strong>OpenStreetMap csempék:</strong><br>
 			<a href="http://data2.openstreetmap.hu/tt.zip">tt.zip</a>: Ezek a csempe (tile) fájlok használhatók ha saját formátumokra szeretnéd konvertálni.</p>
 
