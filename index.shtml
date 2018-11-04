@@ -124,11 +124,13 @@
 			<p><strong>Próbáld ki, és szerkessz valamit!</strong></p>
 			<div class="button"><a id="orgEditLink" href="https://openstreetmap.org/edit">Terület szerkesztése</a></div>
 		</div>
-		<!-- div class="project">
+		<div class="project" style="display: none;">
+			<!--
 			<p class="title"><strong>Kiemelt projekt</strong></p>
 			<p class="slogan">Kerekesszékes térkép</p>
 			<p class="link"><a href="https://route4u.org/" target="_blank"><img src="/kepek/route4u.jpg" alt="Route4U logó"><span>ROUTE4U</span></a></p>
-		</div -->
+			-->
+		</div>
 		<div class="facebook">
 			<p><strong>Facebook oldalunk:</strong></p>
 			<div class="button fbstyle"><a class="fbpage" href="https://www.facebook.com/OpenStreetMap.hu" title="OpenStreetMap.hu a Facebookon" target="_blank">OpenStreetMap.hu</a></div>
