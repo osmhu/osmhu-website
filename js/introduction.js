@@ -1,5 +1,7 @@
+/* globals map */
+
 var $ = require('jquery');
-require('jquery.cookie');
+const Cookies = require('js-cookie');
 
 var introduction = module.exports = {};
 
@@ -12,11 +14,11 @@ var searchResults = $('#search-results');
 var cookieName = 'introduction-hidden';
 var animationOptions = {
 	duration: 200,
-	queue:    false
+	queue: false
 };
 
 // On load hide introduction if cookie is set
-var hideOnLoad = $.cookie(cookieName);
+var hideOnLoad = Cookies.get(cookieName);
 if (hideOnLoad) {
 	panel.hide();
 	panel.css('left', '-' + width);
@@ -45,13 +47,13 @@ introduction.toggle = function () {
 };
 
 function hide () {
-	$.cookie(cookieName, 'true');
+	Cookies.set(cookieName, 'true');
 
 	panel.animate({
 		left: '-' + width
 	}, {
 		duration: 200,
-		queue:    false,
+		queue: false,
 		complete: function () {
 			panel.hide();
 		}
@@ -78,7 +80,7 @@ function hide () {
 }
 
 function show () {
-	$.removeCookie(cookieName);
+	Cookies.remove(cookieName);
 
 	panel.show();
 
@@ -86,7 +88,7 @@ function show () {
 		left: 0
 	}, {
 		duration: 200,
-		queue:    false,
+		queue: false,
 		complete: function () {
 			toggler.css('left', width);
 		}

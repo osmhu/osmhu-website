@@ -5,38 +5,38 @@
 class DuplicateCityException extends Exception
 {
 	private $cityName;
-	private $cityId1;
-	private $cityId2;
+	private $alreadyLoadedNodeId;
+	private $newNodeId;
 
-    public function __construct($cityName, $cityId1, $cityId2) {
-    	$this->cityName = $cityName;
-    	$this->cityId1 = $cityId1;
-    	$this->cityId2 = $cityId2;
-        parent::__construct($message, 0, $previous);
-    }
+	public function __construct($cityName, $alreadyLoadedNodeId, $newNodeId) {
+		$this->cityName = $cityName;
+		$this->alreadyLoadedNodeId = $alreadyLoadedNodeId;
+		$this->newNodeId = $newNodeId;
+		parent::__construct($message, 0, $previous);
+	}
 
-    public function __toString() {
-    	$message = "#############################################\n";
-		$message.= "# ERROR! Duplicated city place: " . $cityName . "\n";
+	public function __toString() {
+		$message = "#############################################\n";
+		$message.= "# ERROR! Duplicated city place: " . $this->cityName . "\n";
 		$message.= "#############################################\n";
-		$message.= "Already loaded node id: " . $cityId1 ." ";
-		$message.= "[ https://www.openstreetmap.org/node/" . $cityId1 . " ]\n";
-		$message.= "Node ID: " . $cityId2 . " ";
-		$message.= "[ https://www.openstreetmap.org/node/" . $cityId2 . " ]\n";
+		$message.= "Already loaded node id: " . $this->alreadyLoadedNodeId ." ";
+		$message.= "[ https://www.openstreetmap.org/node/" . $this->alreadyLoadedNodeId . " ]\n";
+		$message.= "Node ID: " . $this->newNodeId . " ";
+		$message.= "[ https://www.openstreetmap.org/node/" . $this->newNodeId . " ]\n";
 		$message.= "Recommended steps to fix the problem:\n";
 		$message.= "1. Resolve the conflict in the global osm database\n";
 		$message.= "2. Delete your local copy of the city you deleted in the global osm db:\n";
 		$message.= "with ONE of the following commands:\n";
-		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $cityId1 . ";\n";
-		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $cityId2 . ";\n";
-        return $message;
-    }
+		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->alreadyLoadedNodeId . ";\n";
+		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->newNodeId . ";\n";
+		return $message;
+	}
 }
 
 /**
  * Maintains the MySQL database that contains street name index for autocomplete
  */
-class StreetsDB 
+class StreetsDB
 {
 	public $mydb; // Connection to MySQL autocomplete database
 
@@ -58,7 +58,7 @@ class StreetsDB
 	}
 
 	/**
-	 * Sets a city as being processed, while importing 
+	 * Sets a city as being processed, while importing
 	 * Can be used to manually identify non-processed, so deleted cities
 	 */
 	function set_city_processed($osm_id) {
@@ -93,7 +93,7 @@ class StreetsDB
 			if ($e->getCode() == 23000 && $dbErrorCode == 1062) {
 				echo $city->name . ' has already been inserted. New osm id would have been: ' . $city->osm_id . ". Skipping \n";
 			} else {
-				printf('MYSQL INSERT error in create_city(%d, %s): ', $city->osm_id, $city->name); 
+				printf('MYSQL INSERT error in create_city(%d, %s): ', $city->osm_id, $city->name);
 				die($e->getMessage());
 			}
 		}
@@ -126,9 +126,9 @@ class StreetsDB
 				':oldId' => $oldCity->osm_id,
 				':newId' => $newCity->osm_id,
 			));
-			printf(":d row updated in `places` from %d to $d" . endl, $res, $oldCity->osm_id, $newCity->osm_id);
+			printf(":d row updated in `places` from %d to %d" . endl, $res, $oldCity->osm_id, $newCity->osm_id);
 		} catch (PDOException $e) {
-			echo "MySQL UPDATE error in change_city_id with sql: " . $query . ": ";
+			printf('MySQL UPDATE error in change_city_id(%d, %d): ', $oldCity->osm_id, $newCity->osm_id);
 			die($e->getMessage());
 		}
 	}
@@ -137,7 +137,7 @@ class StreetsDB
 	 * Load cities already imported into our database
 	 *
 	 * @param $letter string Starting letter of cities to load, when paging. Loads all if empty.
-	 * @param $loadtags bool Whether to load tags of the cities 
+	 * @param $loadtags bool Whether to load tags of the cities
 	 * @returns Array of City objects extended with "tags" array.
 	 */
 	function load_cities($letter = "", $loadtags = false) {
@@ -168,14 +168,14 @@ class StreetsDB
 
 			$lastid = 0;
 			$city = null;
-			while(($row = $stmt->fetch())) {
+			while($row = $stmt->fetch()) {
 				if($lastid != $row["osm_id"]) {
-					if($city) { 
+					if($city) {
 						array_push($ret, $city);
 					}
 					// New city, not key only
 					$city = new City();
-					$city->name = $row["name"]; 
+					$city->name = $row["name"];
 					$city->osm_id = $row["osm_id"];
 					$city->lat = $row["lat"];
 					$city->lon = $row["lon"];
@@ -187,9 +187,9 @@ class StreetsDB
 						$city->tags = array();
 					}
 					$tag = array(
-						'id' => $row["keyid"], 
-						'name' => $row["keyname"], 
-						'value' => $row["keyvalue"], 
+						'id' => $row["keyid"],
+						'name' => $row["keyname"],
+						'value' => $row["keyvalue"],
 						'date' => $row["keydate"]);
 					array_push($city->tags, $tag);
 				}
@@ -256,8 +256,8 @@ class StreetsDB
 				':streetNameId' => $streetname_id,
 			));
 		} catch (PDOException $e) {
-			echo 'MySQL INSERT error in assign_street_way(' . $name . '): ' . $e->getMessage();
-			die();
+			printf('MySQL INSERT error in assign_street_way(%d, %d, %d): ', $osm_id, $place_id, $streetname_id);
+			die($e->getMessage());
 		}
 	}
 
@@ -405,7 +405,6 @@ class BoundaryIterator implements Iterator {
 	}
 
 	function rewind() {
-		//echo("rewind");
 		if(!$this->curr) {
 			$this->start();
 		}
@@ -425,13 +424,12 @@ class BoundaryIterator implements Iterator {
 	}
 
 	function valid() {
-		//echo $this->curr != null ? "valid:" : "invalid";
 		return ($this->curr != null);
 	}
 }
 
 /**
- * Represents basic city data 
+ * Represents basic city data
  */
 class City {
 	public $osm_id;

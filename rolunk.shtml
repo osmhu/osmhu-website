@@ -16,7 +16,7 @@
 
 	<div id="content">
 		<h1>Mi az OpenStreetMap?</h1>
-	
+
 		<p>Az OpenStreetMap célja, szabadon elérhető és felhasználható térképi adatok összegyűjtése és szolgáltatása.
 		A projekt azért indult, mert a legtöbb olyan térkép, amelyet ingyenesen felhasználhatónak gondolnánk
 		valójában igen komoly jogi és technikai korlátokat állít a felhasználó elé. Ezzel megakadályozva
@@ -63,7 +63,7 @@
 		Tömören például a <a href="http://www.google.com/intl/hu_hu/help/terms_maps.html">Google felhasználási feltételeiből</a> megtudhatjuk, hogy külön erre vonatkozó szerződés hiányában
 		<em>tilos mindennemű másolás, lefordítás, módosítás, származtatott munka készítése, terjesztés,
 			publikálás, eladás, bérbe adás, visszafejtés stb.</em>
-		Az ilyenekre feltöltő szerkesztők tehát egy-egy nekik kedves cég "zsebébe tömködik" a 
+		Az ilyenekre feltöltő szerkesztők tehát egy-egy nekik kedves cég "zsebébe tömködik" a
 		térképadatokat.</p>
 
 		<p>Ezzel a megközelítéssel szöges ellentétben áll az OpenStreetMap licencelése.

@@ -46,18 +46,18 @@
 		<a href="http://maps.stamen.com/toner/#16/47.4459/19.0298"><img class="right illustration" src="/kepek/stamen.png" alt="Térkép minta" title="Egy tetszetős megjelenésű fekete-fehér térkép"></a>
 
 		<p>
-		Az OpenStreetMap adatokból több ú.n. 
+		Az OpenStreetMap adatokból több ú.n.
 		<a href="http://wiki.openstreetmap.org/wiki/Rendering">renderelő</a>
 		(vagy raszterizáló)
-		programmal készíthető weben is megjeleníthető térkép, ez az alapréteg. 
-		Ez sebesség és egyszerűség miatt ideális megoldás. Hátránya, 
+		programmal készíthető weben is megjeleníthető térkép, ez az alapréteg.
+		Ez sebesség és egyszerűség miatt ideális megoldás. Hátránya,
 		hogy a megjelenítésre kerülő térképi elemek és azok stílusa utólag
 		nem kapcsolgatható (ellenben egy vektoros térképpel).
 		Ezért ha valamilyen speciális információra van szükség, akkor annak megfelelő
 		megjelenítést kell elkészíteni.</p>
 
 		<p>
-		Elegendő kitartással és szakértelemmel bárki készíthet egyedi megjelenésű 
+		Elegendő kitartással és szakértelemmel bárki készíthet egyedi megjelenésű
 		térképet az OpenStreetMap adatokra alapozva.
 		Az adatbázis kívánt adatait saját szerverünkre kell másolni, majd onnan
 		<a href="http://switch2osm.org/serving-tiles/">megjeleníthető képekké alakítani</a>.</p>

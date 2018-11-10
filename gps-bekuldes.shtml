@@ -18,12 +18,12 @@
 
 		<img class="right illustration" src="/kepek/gps-potlatch2.jpg" title="Az OpenStretMap.org weblap Szerkesztés -&gt; Potlatch2 menüjében könnyen megnézhető, hogy vannak-e felöltve GPS adatok (ciánkék vonal)" alt="GPS nyomvonal a potlatch2 szerkesztőben">
 
-		<p>Ha nem szeretnél elmélyedni az OpenStreetMap 
-		szerkesztés rejtelmeiben, GPS nyomvonalaiddal 
+		<p>Ha nem szeretnél elmélyedni az OpenStreetMap
+		szerkesztés rejtelmeiben, GPS nyomvonalaiddal
 		akkor is segítheted a térkép elkészítését, pontosítását.</p>
 
-		<p>Kiránduláson, túrázáskor vagy bármilyen érdekes helyre utazva, 
-		ha van nálad GPS vagy a telefonoddal tudod rögzíteni a 
+		<p>Kiránduláson, túrázáskor vagy bármilyen érdekes helyre utazva,
+		ha van nálad GPS vagy a telefonoddal tudod rögzíteni a
 		nyomvonalat,
 		különösebb erőfeszítés nélkül segítheted az OSM fejlődését, a nyomvonalak beküldésével.</p>
 
@@ -52,17 +52,17 @@
 			<li> Nagyobb területeket körbejárva fogsz tudni ábrázolni</li>
 		</ul>
 
-		<p>Ha <strong>Androidos</strong> telefonod van OsmAnd GPS trackek rögzítésére is alkalmas: 
-		Nyomd meg a kis műhold ikont a bal felső sarokban az iránytű mellett, 
-		ezen belül pedig az <em>Alvó mód bekapcsolása</em> (nagyon fontos, hogy a képernyő kikapcsolásakor is rögzítsen) 
-		majd pedig a <em>GPX nyonyomvonal mentése</em> gombokat. 
+		<p>Ha <strong>Androidos</strong> telefonod van OsmAnd GPS trackek rögzítésére is alkalmas:
+		Nyomd meg a kis műhold ikont a bal felső sarokban az iránytű mellett,
+		ezen belül pedig az <em>Alvó mód bekapcsolása</em> (nagyon fontos, hogy a képernyő kikapcsolásakor is rögzítsen)
+		majd pedig a <em>GPX nyonyomvonal mentése</em> gombokat.
 		De rözítéshez sokkal egyszerűbb programokat is használhatsz, próbáld ki az <strong>OSM Tracker</strong> nevűt.</p>
 
 		<div class="clearfix"></div>
 		<h2>GPX formátumra konvertálás, szükségtelen részek levágása</h2>
 
 		<p>Az OpenStreetMapnek GPX formátumra van szüksége. Ha a készüléked
-		ilyet nem tud menteni, akkor konvertálni kell. 
+		ilyet nem tud menteni, akkor konvertálni kell.
 		Ehhez próbáld ki a <a href="http://activityworkshop.net/software/gpsprune/download.html">GpsPrune</a> nevű programot. Ezzel a nyomvonal elejét vagy végét is könnyen eltávolíthatod, ha olyan pozíciókba vezet, amelyet nem szeretnél
 		megosztani vagy levághatod a haszontalannak tűnő részeket.</p>
 
@@ -89,8 +89,8 @@
 		<hr>
 
 		<h2 id="feltoltes">Feltöltés</h2>
-		<p>A GPS nyomvonalaid beküldéséhez regisztrálni kell a 
-		<a href="http://www.openstreetmap.org/user/new">OpenStreetMap.org</a> oldalon, 
+		<p>A GPS nyomvonalaid beküldéséhez regisztrálni kell a
+		<a href="http://www.openstreetmap.org/user/new">OpenStreetMap.org</a> oldalon,
 		hogy személyesen
 		járulhass hozzá az adatok adott licenc alatti felhasználáshoz.</p>
 		<ol><li>Jelentkezz be az <a class="external text" href="http://www.openstreetmap.org">OSM főoldalán</a>
@@ -105,7 +105,7 @@
 
 		<p>A feltöltött nyomvonalakból nem lesz automatikusan út.
 		A kacskaringós GPS vonal felett utat rajzolhatnak azok, akiknek a
-		<a href="/szerkesztes">szerkesztéshez</a> is van kedve. 
+		<a href="/szerkesztes">szerkesztéshez</a> is van kedve.
 		A nyomvonal mentén további érdekes adatok, látnivalók, piknikez&#337; helyek,
 		út típusa, turistajelzések és még sokminden rögzíthet&#337;, amit mind
 		fel lehet rajzolni az OSM-re. Lásd a Kezd&#337;k kézikönyvét lentebb.</p>
@@ -114,7 +114,7 @@
 
 		<hr>
 		<p>A fentebbi szöveg részben a <a href="http://wiki.openstreetmap.org/wiki/Hu:Beginners_Guide_1.1.1">Kezdők kézikönyvéből</a>
-		származik, CC-BY-SA licenc alatt, így ugyanazon alatt tovább terjeszthető. 
+		származik, CC-BY-SA licenc alatt, így ugyanazon alatt tovább terjeszthető.
 		Ugyanott további információkat is találhatsz.</p>
 
 		<!--#include virtual="includes/cc0.html" -->

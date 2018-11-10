@@ -33,9 +33,9 @@ if(array_key_exists("page", $_GET)) {
 	$page = intval($_GET["page"]);
 }
 $mode = "all";
-if(array_key_exists("mode", $_GET) 
+if(array_key_exists("mode", $_GET)
 	&& in_array($_GET["mode"], array("u", "diktator", "latin1", "spell"))) {
-	
+
 	$mode = $_GET["mode"];
 }
 
@@ -63,7 +63,7 @@ if($mode == "u") {
 		."name LIKE '%ú.%' OR "
 		."name_case LIKE '% Utca%' OR "
 		."name_case LIKE '% Tér%' OR "
-		."name_case LIKE '% Út%')"; 
+		."name_case LIKE '% Út%')";
 } else if($mode == "latin1") {
 	$where = " AND ("
 		."name_case LIKE '%ô%' OR "
@@ -201,7 +201,7 @@ try {
 			<th>Utca neve</th>
 			<th>OSM objektumok</th>
 		</thead>
-		<tbody>			
+		<tbody>
 			<?php
 			while ($street = $streetsStmt->fetch()) {
 				$inputId = 'chk_' . $street['id'];

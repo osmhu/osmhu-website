@@ -3,38 +3,40 @@
 var $ = require('jquery');
 var isMobile = $(window).width() < 699;
 
-module.exports = function iconProvider (element, options) {
+module.exports = function iconProvider(element, options) {
 	options = options || {};
 
-	var iconUrl = options.dir || '/vendor/mapiconscollection/';
+	var baseUrl = options.dir || '/vendor/mapiconscollection/';
 	var amenity = element.tags.amenity;
 	var shop = element.tags.shop;
 	var tourism = element.tags.tourism;
 	var leisure = element.tags.leisure;
 	var natural = element.tags.natural;
+	var iconImage = '';
 
 	if (amenity && amenity in icons.amenity) {
-		iconUrl+= icons.amenity[amenity];
+		iconImage = icons.amenity[amenity];
 	} else if (shop && shop in icons.shop) {
-		iconUrl+= icons.shop[shop];
+		iconImage = icons.shop[shop];
 	} else if (tourism && tourism in icons.tourism) {
-		iconUrl+= icons.tourism[tourism];
+		iconImage = icons.tourism[tourism];
 	} else if (leisure && leisure in icons.leisure) {
-		iconUrl+= icons.leisure[leisure];
+		iconImage = icons.leisure[leisure];
 	} else if (natural && natural in icons.natural) {
-		iconUrl+= icons.natural[natural];
+		iconImage = icons.natural[natural];
 	} else {
 		// No icon found, return false
 		return false;
 	}
 
 	return {
-		iconUrl: iconUrl,
+		iconUrl: baseUrl + iconImage,
 		iconSize: isMobile ? [38, 44] : [32, 37],
-		iconAnchor: [16, 36]
+		iconAnchor: [16, 8]
 	};
 };
 
+/* eslint-disable key-spacing */
 // This object maps the tag details to the marker icons present in the `mapiconscollection` icon set
 var icons = {
 	amenity: {
@@ -101,3 +103,4 @@ var icons = {
 		beach:            'lake.png'
 	}
 };
+/* eslint-enable key-spacing */

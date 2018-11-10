@@ -1,20 +1,32 @@
+/* globals window */
+
+require('@babel/polyfill');
+
+const $ = require('jquery');
+
 // Parse params
 var queryString = require('query-string');
 var params = queryString.parse(location.search);
 
 var search = require('./search');
-var directions = require('./directions');
+var DirectionsApi = require('./directions/DirectionsApi');
+var DirectionsControl = require('./directions/DirectionsControl');
+var DirectionsResultLayer = require('./directions/DirectionsResultLayer');
 var url = require('./url');
 var marker = require('./marker');
 var introduction = require('./introduction');
 var overpass = require('./overpass');
-var typeahead = require('./typeahead');
+
+// Initializes all autocomplete fields
+const Autocomplete = require('./search/Autocomplete');
+
 var select2 = require('./select2');
 var promotion = require('./promotion');
+var Map = require('./map/Map');
 
 params.zoom = params.zoom || params.mzoom; // Backwards compatibility with old mzoom url's
 
-// Default center and zoom of Hungary*/
+// Default center and zoom of Hungary
 var lat = 47.17;
 var lon = 19.49;
 var zoom = 7;
@@ -32,21 +44,21 @@ if (markerDefined) {
 	zoom = params.zoom;
 }
 
-require('./map').initialize({
-	layer: params.layer,
-	overlays: {
+const map = new Map(
+	url,
+	{
+		lat:   lat,
+		lon:   lon,
+		zoom:  zoom,
+	},
+	params.layer,
+	{
 		tur: params.tur == 1,
 		okt: params.okt == 1,
 		ddk: params.ddk == 1,
 		akt: params.akt == 1
-	},
-	url: url,
-	view: {
-		lat:   lat,
-		lon:   lon,
-		zoom:  zoom
 	}
-});
+);
 
 $(window).on('updateUrl', url.update);
 
@@ -72,6 +84,8 @@ if (params.type && params.id) {
 // Update Org urls on page load
 url.updateOrgUrls();
 
+const autocomplete = new Autocomplete('#search-area input.autocomplete');
+
 $('#search form').on('submit', function (event) {
 	event.preventDefault();
 
@@ -90,7 +104,10 @@ $('#search form').on('submit', function (event) {
 	});
 });
 
-directions.initializeModes();
+const directionsApi = new DirectionsApi();
+const directionsResultLayer = new DirectionsResultLayer(window.map, directionsApi);
+const directionsControl = new DirectionsControl(directionsResultLayer);
+directionsControl.initializeControls();
 
 select2.initialize();
 

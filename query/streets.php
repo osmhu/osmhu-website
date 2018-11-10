@@ -21,12 +21,12 @@ $result = new stdClass();
 if (isset($_GET['city'])) {
 	require_once '../config/mysql.php';
 
-	$wholeBudapest = strtolower($_GET['city']) === 'budapest';
+	try {
+		$wholeBudapest = strtolower($_GET['city']) === 'budapest';
 
-	if ($wholeBudapest) {
-		$emptyTerm = mb_strlen($_GET['term'], 'UTF-8') === 0;
-		if (!$emptyTerm) {
-			try {
+		if ($wholeBudapest) {
+			$emptyTerm = mb_strlen($_GET['term'], 'UTF-8') === 0;
+			if (!$emptyTerm) {
 				// Get Budapest part ids from places database
 				$stmt = $db->prepare('SELECT osm_id FROM places WHERE name LIKE ?');
 				$params = array('Budapest %');
@@ -35,37 +35,29 @@ if (isset($_GET['city'])) {
 
 				$place_ids = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 				$place_in = implode(',', $place_ids);
-			} catch (PDOException $e) {
-				die('MySQL query error: ' . $e->getMessage());
 			}
-		}
-	} else {
-		try {
+		} else {
 			// Get city id from places database
 			$stmt = $db->prepare('SELECT osm_id FROM places WHERE name=? LIMIT 1');
 			$params = array($_GET['city']);
 
 			$stmt->execute($params);
-			
+
 			$place_id = $stmt->fetch(PDO::FETCH_COLUMN, 0);
 			if ($place_id) {
 				$place_in = $place_id;
 			}
-		} catch (PDOException $e) {
-			die('MySQL query error: ' . $e->getMessage());
 		}
-	}
 
-	if ($place_in) {
-		try {
+		if ($place_in) {
 			$query = 'SELECT DISTINCT MAX(placestreets.osm_id) AS id, streetnames.name AS name '
-					.'FROM streetnames '
-					.'INNER JOIN placestreets ON streetnames.id=placestreets.streetname_id '
-					.'WHERE placestreets.place_id IN (' . $place_in . ') '
-					.'AND streetnames.name LIKE ? '
-					.'GROUP BY name '
-					."ORDER BY streetnames.name REGEXP '^[a-z]' DESC, streetnames.name "
-					.'LIMIT 20';
+				.'FROM streetnames '
+				.'INNER JOIN placestreets ON streetnames.id=placestreets.streetname_id '
+				.'WHERE placestreets.place_id IN (' . $place_in . ') '
+				.'AND streetnames.name LIKE ? '
+				.'GROUP BY name '
+				."ORDER BY streetnames.name REGEXP '^[a-z]' DESC, streetnames.name "
+				.'LIMIT 20';
 
 			$stmt = $db->prepare($query);
 			$params = array($_GET['term'] . '%');
@@ -73,9 +65,9 @@ if (isset($_GET['city'])) {
 			$stmt->execute($params);
 
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		} catch (PDOException $e) {
-			die('MySQL query error: ' . $e->getMessage());
 		}
+	} catch (PDOException $e) {
+		die('MySQL query error: ' . $e->getMessage());
 	}
 }
 

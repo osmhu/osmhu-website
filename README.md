@@ -2,13 +2,13 @@ OpenStreetMap.hu weboldal
 ===
 # Fejlesztése
 A leírás azt feltételezi, hogy Ubuntu Linux -ot használsz.  
-Az én gépemen `~/wwwroot/osmhu/` a projekt mappája, lehet hogy meg kell változtatnod, ahol használják a parancsok.
+Az én gépemen `~/development/osmhu/` a projekt mappája, lehet hogy meg kell változtatnod, ahol használják a parancsok.
 ## A kód megszerzése
 ### Hozzáféréshez szükséges felhasználónév és jelszó
 Felhasználónév és jelszó kell az SVN eléréshez. Kérj.
 ### A fájlok letöltése
 ```
-cd ~/wwwroot/osmhu
+cd ~/development
 svn co https://bugs.wpsnet.hu/repos/osm/osmhu --username Fodi69
 ```
 Beírod a jelszavad és letölt mindent.
@@ -30,7 +30,7 @@ https://www.vagrantup.com/downloads.html
 A projekt könyvtárából a `vagrant up` parancs kiadásával létrejön és elindul a fejlesztői virtuális gép.
 Ezután a `vagrant ssh` paranccsal vezérelhetjük a gépet ssh kapcsolaton keresztül. A létrejövő gép jelenleg Ubuntu 16.04 operációs rendszert tartalmaz.
 ```
-cd ~/wwwroot/osmhu
+cd ~/development/osmhu
 vagrant up
 vagrant ssh
 ```
@@ -92,11 +92,11 @@ sudo a2enmod rewrite # rewrite szabályok
 A `development/apache2/osmhu.conf` fájlban át kell szerkeszteni a könyvtárakat a kívánt fejlesztési könyvtárnak megfelelően.
 A `DocumentRoot` és a `Directory` sorra különösen figyelni kell, a többihez nem feltétlenül kell hozzányúlni.
 ```
-nano ~/wwwroot/osmhu/development/apache2/osmhu.conf
+nano ~/development/osmhu/development/apache2/osmhu.conf
 ```
 Másoljuk az új virtuális hostot az apache2 sites könyvtárába:
 ```
-sudo cp /home/feri/wwwroot/osmhu/development/apache2/osmhu.conf /etc/apache2/sites-available/osmhu.conf
+sudo cp /home/feri/development/osmhu/development/apache2/osmhu.conf /etc/apache2/sites-available/osmhu.conf
 ```
 Engedélyezzük az új virtuális hostot:
 ```
@@ -117,7 +117,7 @@ sudo apt-get install -y build-essential
 [Forrás](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 ##### Felhasznált külső modulok letöltése
 ```
-cd ~/wwwroot/osmhu
+cd ~/development/osmhu
 npm i
 ```
 ##### Javascript csomag készítése
@@ -127,14 +127,14 @@ sudo npm install browserify watchify -g
 ```
 ###### Fejlesztés közben:
 ```
-cd ~/wwwroot/osmhu
+cd ~/development/osmhu
 npm run watch
 ```
 Eredmény: létrejön a `build/bundle.js` és kilépés helyett figyeli a `js/` mappát és minden változás esetén újragenerálja a létrehozott fájlt.  
 Feljesztés közben általában folyamatosan futtatom, Ctrl + C -vel lehet kilépni belőle, ha abbahagytad a JavaScript kód módosítását.
 ###### Production fájl létrehozása:
 ```
-cd ~/wwwroot/osmhu
+cd ~/development/osmhu
 npm run build
 ```
 Eredmény: létrejön a `build/bundle.js`.
@@ -169,7 +169,7 @@ Lehetőségek:
 #### 1. lehetőség: Importálni egy meglevő mentésből
 Az adatbázist a `development/mysql/export.sql` fájlból importálhatod:
 ```
-cd ~/wwwroot/osmhu/development/mysql
+cd ~/development/osmhu/development/mysql
 mysql -u osmhu -p osm_hu < export.sql
 ```
 Írd be az osmhu felhasználó jelszavát: (ezt néhány sorral fentebb adtuk meg az GRANT parancsban)
@@ -206,12 +206,12 @@ osm2pgsql -s --create --database gis /home/ubuntu/hungary-latest.osm.pbf
 ##### Üres MySQL adatbázis létrehozása
 Futtasd le az adatbázison a `scripts/db.txt` tartalmát:
 ```
-cd ~/wwwroot/osmhu/scripts
+cd ~/development/osmhu/scripts
 mysql -u osmhu -p osm_hu < db.txt
 ```
 ##### Adatok átkonvertálása PostgreSQL-ből MySQL-be
 ```
-cd ~/wwwroot/osmhu/scripts
+cd ~/development/osmhu/scripts
 APPLICATION_ENV="development" php copydb.php
 ```
 ##### Népesség adatok hozzáadása

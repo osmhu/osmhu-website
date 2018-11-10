@@ -25,7 +25,7 @@ if (isset($_GET['name'])) {
 		$params = array($_GET['name']);
 
 		$stmt->execute($params);
-		
+
 		$coordinates = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($coordinates) {
 			$result = $coordinates;

@@ -39,16 +39,16 @@
 include 'lib.php';
 
 // These are valid in "page=" query string
-$letters = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
+$letters = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
 	"k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "v", "z", "*");
-$pagenames = array("A,Á", "B", "C,Cs", "D", "E,É", "F", "G,Gy", "H", "I,Í", "J", 
+$pagenames = array("A,Á", "B", "C,Cs", "D", "E,É", "F", "G,Gy", "H", "I,Í", "J",
 	"K", "L", "M", "N,Ny", "O,Ó,Ö,Ő", "P", "R", "S,Sz", "T,Ty", "U,Ú,Ü,Ű", "V", "Z,Zs", "Mind");
 // Letter replace for accent-less short URL display
 $hutrans = array(
-	"á" => "a", "é" => "e", "í" => "i", 
+	"á" => "a", "é" => "e", "í" => "i",
 	"ó" => "o", "ö" => "o", "ő" => "o",
 	"ú" => "u", "ü" => "u", "ű" => "u",
-	"Á" => "a", "É" => "e", "Í" => "i", 
+	"Á" => "a", "É" => "e", "Í" => "i",
 	"Ó" => "o", "Ö" => "o", "Ő" => "o",
 	"Ú" => "u", "Ü" => "u", "Ű" => "u"
 	);
@@ -234,7 +234,6 @@ function genregex($name) {
 	// For non-accented first letters make case-insensitve start
 	if(substr($n, 0, 1) != "(") {
 		$n = "(".substr($name,0,1)."|".strtolower(substr($name, 0, 1)).")".substr($n, 1);
-		
 	}
 	return $n;
 

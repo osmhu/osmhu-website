@@ -52,12 +52,12 @@
 		<!-- <p><img src="kepek/josm.png" class="right illustration" title="JOSM - Java OpenStreetMap Editor - szerkesztőprogram" alt="JOSM szerkesztőprogram képernyőképe">
 		Kelleni fog egy szerkesztőprogram és információ arról amit be szeretnél rajzolni!
 		Regisztrálnod kell az <a href="http://www.openstreetmap.org">openstreetmap.org</a>
-		oldalon. Elindítani a szerkesztőprogramot, kinyitni a 
+		oldalon. Elindítani a szerkesztőprogramot, kinyitni a
 		<a href="http://wiki.openstreetmap.org/wiki/HU:Main_Page">openstreetmap wikit</a>
 		(itt keresheted meg, hogy egyes elemeket hogyan kell jelölni), és kezdődhet is
 		a rajzolás. Igen sok idő fog eltelni, mire átfogó képed lesz arról, hogy miket
-		lehet berajzolni és azt hogyan kell. De ez nem meglepő, ha 
-		figyelembe veszed, hogy országhatártól, autópályán át, telefonfülkékig vagy 
+		lehet berajzolni és azt hogyan kell. De ez nem meglepő, ha
+		figyelembe veszed, hogy országhatártól, autópályán át, telefonfülkékig vagy
 		padokig szinte mindent berajzolhatsz.</p> -->
 
 		<p class="important">Soha ne másolj SEMMIT olyan forrásból, amit annak felhasználási szerződése nem tesz lehetővé!</p>
@@ -70,7 +70,7 @@
 
 		<p>Attól függően, hogy mit szeretnél rajzolni, nem feltétlenül van szükség
 		technikai segédeszközökre. Például, ha már fel vannak rajzolva az utcák a
-		környékeden, de hiányoznak a boltok vagy hasonló részletek, azt megközelítőleg 
+		környékeden, de hiányoznak a boltok vagy hasonló részletek, azt megközelítőleg
 		szemre is könnyen
 		berajzolhatod, így akár egy <strong>notesszel és ceruzával</strong> is elkezdheted a
 		térképi munkát.</p>
@@ -84,14 +84,14 @@
 		vagy bármi amit fel szeretnél rajzolni és nem látszik a Bing műholdképen.</p>
 
 		<p><strong>GPS</strong> egységgel felvehetsz utakat, utcákat, a GPS nyomvonalat
-		a szerkesztőbe könnyen behívhatod és ott OpenStreetMap utcákká rajzolhatod át 
+		a szerkesztőbe könnyen behívhatod és ott OpenStreetMap utcákká rajzolhatod át
 		(kézzel megrajzolt egyeneseket rakosgatva a GPS nyomvonal mentén). Persze a
 		vonalakon kívül itt is sok egyéb adatra lehet szükséged, pl utcanevek, amit
 		a terepen összegyűjthetsz.</p>
 
-		<p><strong>Diktafonnal vagy fényképezővel</strong> rögzíthetsz 
+		<p><strong>Diktafonnal vagy fényképezővel</strong> rögzíthetsz
 		például utcatáblákat, boltokat, közlekedési táblákat. Ezt egy
-		ugyanakkor felvett GPS nyomvonallal kell megtámogatni, hogy a 
+		ugyanakkor felvett GPS nyomvonallal kell megtámogatni, hogy a
 		szerkesztő program a képeidet és hangodat a megfelelő helyen jelenítse meg.
 		Ez egy amolyan "modern notesz", használatának egyszerűsége is vetekszik az
 		ősével.</p>
@@ -99,7 +99,7 @@
 		<h2>Miket rajzolunk fel?</h2>
 
 		<p>Amint az a <a href="felhasznalas">felhasználási oldalon</a>
-		is látszik, igen szerteágazó információk vannak az OpenStreetMapen. 
+		is látszik, igen szerteágazó információk vannak az OpenStreetMapen.
 		Többek között felrajzoljuk:</p>
 
 		<ul>
@@ -112,7 +112,7 @@
 			<li>...és még többezer dolog, ami helyhez kötötten létezik</li>
 		</ul>
 
-		<p>Egyetlen fontos dolgot kell megjegyezned: <strong>azt rajzold fel, amihez 
+		<p>Egyetlen fontos dolgot kell megjegyezned: <strong>azt rajzold fel, amihez
 			kedved van, ami érdekel!</strong></p>
 
 		<h2>Hogyan kezdj hozzá</h2>
@@ -120,7 +120,7 @@
 		<p>Olvasnivalók:</p>
 
 		<ul>
-			<li><a href="http://wiki.openstreetmap.org/wiki/HU:Beginners%27_guide">Kezdők kézikönyve</a> 
+			<li><a href="http://wiki.openstreetmap.org/wiki/HU:Beginners%27_guide">Kezdők kézikönyve</a>
 			- bemutatja az alapvető szerkesztési feladatokat és szerkesztőprogramokat</li>
 			<li><a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary">Magyarországi térképezés</a>
 			- illetve megnézeted az éppen folyó munkákat és azok állapotát.</li>

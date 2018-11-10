@@ -4,7 +4,8 @@
 	box-sizing: border-box;
 }
 html {
-	font-size: 16px;
+	font-size: 1rem;
+	font-family: 'Arial';
 }
 #header {
 	display: block;
@@ -60,15 +61,15 @@ html {
 	display: none;
 }
 #menu ul {
-	text-align: center; 
+	text-align: center;
 	margin: 0;
 	padding: 0;
 	font-size: 0;
 }
 #menu ul li {
-	display: inline; 
+	display: inline;
 	margin: 0;
-	list-style-type: none; 
+	list-style-type: none;
 	text-align: center;
 	position: relative;
 	font-size: 14px;
@@ -83,7 +84,7 @@ html {
 #menu li a {
 	line-height: 25px;
 	padding: 3px 6px;
-	text-align: center;  
+	text-align: center;
 	text-decoration: none;
 	color: blue;
 }
@@ -134,10 +135,7 @@ html {
 #search-area #directions .fields {
 	display: inline-block;
 }
-#search-area #search .twitter-typeahead {
-	vertical-align: top;
-}
-#search-area input.typeahead {
+#search-area input.autocomplete {
 	width: 260px;
 	padding: 6px 0 5px 6px;
 	margin: 0;
@@ -197,14 +195,11 @@ html {
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
 }
 
-#search-area #directions input.typeahead {
+#search-area #directions input.autocomplete {
 	width: 210px;
 }
 #search-area input#directions-start-search {
 	border-radius: 3px;
-}
-#search-area .twitter-typeahead:nth-child(2) {
-	margin-left: 2px;
 }
 
 /* Select2 */
@@ -271,22 +266,6 @@ ul.select2-results li {
 	left: 263px;
 }
 
-/* reportError Control */
-.leaflet-control-reportError, .leaflet-control-reportError a {
-	width: 140px !important;
-}
-.leaflet-control-reportError span.icon {
-	display: inline-block;
-	width: 24px;
-	height: 24px;
-	background-image: url("/kepek/feedback_icon.png");
-	vertical-align: top;
-}
-.leaflet-control-reportError span.text {
-	margin-left: 6px;
-	color: #0000EE;
-}
-
 /* Popup for a marker present in the url */
 .popup-loaded-marker {
 	margin: 10px 10px 20px 10px;
@@ -295,7 +274,7 @@ ul.select2-results li {
 }
 
 /* Header layout on smaller screens */
-@media all and (max-width: 999px) {
+@media all and (max-width: 910px) {
 	#logo .brand, #logo .slogan {
 		display: none;
 	}
@@ -360,14 +339,11 @@ ul.select2-results li {
 		display: table;
 		width: 100%;
 	}
-	#search-area input.typeahead {
+	#search-area input.autocomplete {
 		display: table-cell;
 		font-size: 15px;
 		padding: 6px 10px 5px;
 		height: 30px;
-		width: 100%;
-	}
-	#search-area .twitter-typeahead {
 		width: 100%;
 	}
 	#search-area .search-button {
@@ -385,17 +361,11 @@ ul.select2-results li {
 		display: table-cell;
 		width: 100%;
 	}
-	#search-area #directions .fields .twitter-typeahead {
-		width: 100%;
-	}
-	#search-area #directions .fields .typeahead {
+	#search-area #directions .fields .autocomplete {
 		width: 100%;
 	}
 	#search-area #directions .search-button button {
 		height: 60px;
-	}
-	#search-area .twitter-typeahead:nth-child(2) {
-		margin-left: 0;
 	}
 	#search-area .poi-search {
 		display: table-cell;

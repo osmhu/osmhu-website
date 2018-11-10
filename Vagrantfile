@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -28,9 +28,13 @@ Vagrant.configure("2") do |config|
   # Virtualbox specific configuration
   config.vm.provider :virtualbox do |vb|
     vb.name = "osmhu-development"
-    vb.memory = "2048"
+    vb.memory = "1024"
+    #vb.memory = "4096" # need more RAM when running osm2pgsql (import OSM data into PostgreSQL)
   end
 
   # Enable provisioning with a shell script
   config.vm.provision "shell", path: "development/vagrant.sh"
+
+  # Sync folders
+  config.vm.synced_folder ".", "/vagrant", fsnotify: true
 end

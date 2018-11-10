@@ -16,7 +16,7 @@ body.info #nav, body.info #content {
 }
 body.info #nav {
 	margin: 0px 6px 6px 6px;
-	float: left; 
+	float: left;
 	width: 256px;
 }
 body.info #nav ul.submenu {

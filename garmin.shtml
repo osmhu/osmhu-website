@@ -14,12 +14,12 @@
 
 	<div id="content">
 		<h1>Az OpenStreetMap használata Garmin GPS-en</h1>
-	
+
 		<h2>Letöltés</h2>
 
 		<p>Frissebb változatok beszerzéséhez lásd: <a href="/letoltesek">Letöltések</a></p>
 
-		<p><strong>Elavult!</strong> Magyarország térképe, Garmin GPS-eken közvetlenül telepíthető és használható formátumban: 
+		<p><strong>Elavult!</strong> Magyarország térképe, Garmin GPS-eken közvetlenül telepíthető és használható formátumban:
 		<a href="letoltes/OSM%20map.exe">OSM map.exe</a> (legutóbbi frissítés: 2012.09.05.)</p>
 
 		<h2>Saját változat készítése</h2>

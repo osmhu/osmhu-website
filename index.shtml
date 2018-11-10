@@ -9,18 +9,27 @@
 	<!-- Leaflet.Locate stylesheet -->
 	<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css?rev=325">
 	<!--[if lt IE 9]>
-	  <link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.ie.min.css?rev=325">
+		<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.ie.min.css?rev=325">
 	<![endif]-->
+	<!-- Leaflet.markercluster stylesheet -->
+	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.css?rev=371">
+	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css?rev=371">
 	<!-- Select2 stylesheet -->
 	<link rel="stylesheet" href="/node_modules/select2/select2.css?rev=325">
 	<!-- Map stylesheet -->
-	<link rel="stylesheet" href="/css/map.css?rev=355">
+	<link rel="stylesheet" href="/css/map.css?rev=373">
 	<!-- Share popup stylesheet -->
 	<link rel="stylesheet" href="/css/share-popup.css?rev=319">
 	<!-- Poi popup stylesheet -->
-	<link rel="stylesheet" href="/css/poi-popup.css?rev=364">
+	<link rel="stylesheet" href="/css/poi-popup.css?rev=373">
 	<!-- Introduction stylesheet -->
 	<link rel="stylesheet" href="/css/introduction.css?rev=347">
+	<!-- AutoComplete stylesheet -->
+	<link rel="stylesheet" href="/css/autocomplete.css?rev=371">
+	<!-- EasyButton stylesheet-->
+	<link rel="stylesheet" href="/node_modules/leaflet-easybutton/src/easy-button.css">
+	<!-- MapQuest.js SDK stylesheet -->
+	<link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
 	<!-- Search results stylesheet -->
 	<link rel="stylesheet" href="/css/search-results.css?rev=351">
 	<!-- Direction results stylesheet -->
@@ -44,13 +53,13 @@
 					<div id="modes">
 						<div id="search">
 							<form>
-								<input class="typeahead" type="text" id="text-search" placeholder="Város, utca vagy keresőszó" tabindex="1"><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
+								<input class="autocomplete" type="text" id="text-search" placeholder="Város, utca vagy keresőszó" tabindex="1"><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
 							</form>
 						</div>
 						<div id="directions">
 							<form>
 								<div class="fields">
-									<input class="typeahead" type="text" id="directions-start-search" placeholder="Indulás helye" tabindex="1"><input class="typeahead" type="text" id="directions-end-search" placeholder="Érkezés helye" tabindex="1">
+									<input class="autocomplete" type="text" id="directions-start-search" placeholder="Indulás helye" tabindex="1"><input class="autocomplete" type="text" id="directions-end-search" placeholder="Érkezés helye" tabindex="1">
 								</div><div class="search-button"><button type="submit" tabindex="3"><i class="fa fa-search"></i></button></div>
 							</form>
 						</div>

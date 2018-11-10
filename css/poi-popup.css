@@ -52,7 +52,7 @@ a.leaflet-popup-close-button {
 .popup-content .opening_hours table {
 	margin: 0 auto;
 }
-.popup-content .opening_hours table tr.today {
+.popup-content .opening_hours table tr.highlighted {
 	font-weight: bold;
 }
 .popup-content .opening_hours table td.day {

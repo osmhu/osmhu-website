@@ -1,6 +1,6 @@
 var L = require('leaflet');
 
-var helpers = require('./helpers');
+const CopyButton = require('./CopyButton');
 
 var share = module.exports = {};
 
@@ -94,12 +94,7 @@ function bindPopupActions () {
 		share.setText(text);
 	});
 
-	helpers.copyButton({
-		button: $('#popup-share-copy'),
-		onCopy: function () {
-			$('#popup-share-url').select();
-		}
-	});
+  CopyButton.copyTargetOnButtonClick('#popup-share-copy', '#popup-share-url');
 }
 
 function closePopup () {

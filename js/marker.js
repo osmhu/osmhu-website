@@ -1,6 +1,7 @@
 var $ = require('jquery');
 var L = require('leaflet');
 
+const CopyButton = require('./CopyButton');
 var helpers = require('./helpers');
 var url = require('./url');
 var popup = require('./popup');
@@ -62,7 +63,7 @@ marker.fromPoi = function (options) {
 	});
 
 	customMarker.bindPopup(popupHtml, {
-		offset: L.point(0, -24),
+		offset: L.point(0, 4),
 		autoPanPaddingTopLeft: isMobile ? [44, 5] : [46, 10],
 		autoPanPaddingBottomRight: isMobile ? [54, 5] : [56, 10]
 	});
@@ -70,12 +71,7 @@ marker.fromPoi = function (options) {
 	// On popup open activate copy button
 	customMarker.on('popupopen', function (event) {
 		if (shareUrl) {
-			helpers.copyButton({
-				button: $('#popup-poi-copy'),
-				onCopy: function () {
-					$('#popup-poi-share-url').select();
-				}
-			});
+			CopyButton.copyTargetOnButtonClick('#popup-poi-copy', '#popup-poi-share-url');
 		}
 
 		url.setActivePoi(poi.type, poi.id);
@@ -122,5 +118,5 @@ marker.fromTypeAndId = function (type, id, zoom, options) {
 		map.setView(combinedCenter, zoom, { animate: false });
 
 		options.callback(newMarker);
-	});	
+	});
 };

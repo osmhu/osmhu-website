@@ -3,7 +3,11 @@ var $ = require('jquery');
 window.jQuery = $; // Hack to make select2 work
 require('select2');
 
-require('../vendor/leaflet-layer-overpass/dist/OverPassLayer');
+// Creates L.OverPassLayer class
+require('leaflet-overpass-layer/dist/OverPassLayer.bundle'); // eslint-disable-line import/no-unassigned-import
+
+// Creates L.markerClusterGroup function
+require('leaflet.markercluster/dist/leaflet.markercluster'); // eslint-disable-line import/no-unassigned-import
 
 var url = require('./url');
 var search = require('./search');
@@ -26,22 +30,35 @@ select2.set = function (category) {
 
 var overPassLayer;
 
+var previousMarkerGroup;
+
 // When the overpass query is done, show the data
 function overpassCallback (data) {
 	var elements = data.elements;
+
+	var markerGroup = L.markerClusterGroup({
+		showCoverageOnHover: false,
+		maxClusterRadius: 26,
+	});
+	if (previousMarkerGroup) {
+		map.removeLayer(previousMarkerGroup);
+	}
+	map.addLayer(markerGroup);
+	previousMarkerGroup = markerGroup;
+
 	$.each(elements, function (key, element) {
 		var position = helpers.getCenterPosition(element, elements);
 		if (position) {
 			if (element.tags &&
 					(element.tags.amenity || element.tags.shop ||
-			    	element.tags.leisure || element.tags.tourism ||
-			    	element.tags.natural) && element.tags.amenity !== 'parking_entrance') {
+						element.tags.leisure || element.tags.tourism ||
+						element.tags.natural) && element.tags.amenity !== 'parking_entrance') {
 				var m = marker.fromPoi({
 					position:     position,
 					poi:          element,
 					iconProvider: iconProvider
 				});
-				overPassLayer.addLayer(m);
+				markerGroup.addLayer(m);
 			}
 		}
 	});
@@ -66,7 +83,7 @@ select2.poiSearch = function (selected) {
 	if (overpassLayerQuery) {
 		// Add Overpass layer
 		overPassLayer = new L.OverPassLayer({
-			minzoom: 14,
+			minZoom: 15,
 			endpoint: overpass.fastestEndpoint(),
 			query: overpassLayerQuery,
 			minZoomIndicatorOptions: {
@@ -74,7 +91,7 @@ select2.poiSearch = function (selected) {
 				minZoomMessageNoLayer: 'Nincs réteg hozzáadva.',
 				minZoomMessage: '<img src="/kepek/1391811435_Warning.png">A helyek a MINZOOMLEVEL. nagyítási szinttől jelennek meg. (Jelenleg: CURRENTZOOM)'
 			},
-			callback: overpassCallback
+			onSuccess: overpassCallback
 		}).addTo(map);
 	}
 };
@@ -95,7 +112,7 @@ select2.initialize = function () {
 		},
 		matcher: function(term, text, opt) {
 			return text.toUpperCase().indexOf(term.toUpperCase()) >= 0 ||
-			       (opt.alt && opt.alt.toUpperCase().indexOf(term.toUpperCase()) >= 0);
+				(opt.alt && opt.alt.toUpperCase().indexOf(term.toUpperCase()) >= 0);
 		}
 	})
 	.on('change', function (event) {
@@ -104,6 +121,10 @@ select2.initialize = function () {
 	.on('select2-clearing', function (event) {
 		if (typeof overPassLayer !== 'undefined') {
 			map.removeLayer(overPassLayer);
+		}
+
+		if (previousMarkerGroup) {
+			map.removeLayer(previousMarkerGroup);
 		}
 
 		url.removeActivePoiLayer();
@@ -153,8 +174,8 @@ $(window).on('select2-close', function (event) {
 	var tempCounter = new Date().getTime();
 
 	if (lastOpenTime > tempCounter - 250) {
-        $(event.target).select2('open');
-    }
+		$(event.target).select2('open');
+	}
 });
 
 /**

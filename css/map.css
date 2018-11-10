@@ -34,7 +34,7 @@
 /* minZoomIdenticator Control */
 .leaflet-control-minZoomIndicator {
 	display: block;
-	top: -134px;
+	top: -120px;
 	left: 45px;
 	font-size: 1.7em;
 	background-color: rgba(255, 255, 255, 0.75);
@@ -55,7 +55,7 @@
 /* Leaflet loading indicator */
 .leaflet-control-loading-indicator {
 	display: none;
-	position: absolute;
+	position: absolute !important;
 	left: 40px;
 	padding: 5px 12px;
 	color: #0066FF;
@@ -74,6 +74,26 @@
 }
 body.loading .leaflet-control-loading-indicator {
 	display: block;
+}
+
+.leaflet-control .easy-button-button {
+	padding: 3px;
+}
+
+/* reportError Control */
+#report-error-control, #report-error-control a {
+	width: 140px !important;
+}
+#report-error-control span.icon {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url("/kepek/feedback_icon.png");
+	vertical-align: top;
+}
+#report-error-control span.text {
+	margin-left: 6px;
+	color: #0000EE;
 }
 
 /* Side panel */

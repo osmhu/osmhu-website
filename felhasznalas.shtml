@@ -15,9 +15,9 @@
 
 	<div id="content">
 		<h1>Az OpenStreetMap felhasználása</h1>
-	
+
 		<p>A <a href="http://www.openstreetmap.org/">www.openstreetmap.org</a>
-		weblap csak egy nagyon tömör bemutató a projekt lehetőségeiről 
+		weblap csak egy nagyon tömör bemutató a projekt lehetőségeiről
 		és a rendelkezésre álló adatokról, és biztosítja az infrastruktúrát a szerkesztéshez. Hasonlóan
 		az openstreetmap.hu oldal is csak néhány funkciót tartalmaz.</p>
 
@@ -51,7 +51,7 @@
 			<ul class="links nodots">
 				<li>
 					<a href="http://merretekerjek.hu/">merretekerjek.hu</a>
-					 - kerékpáros útvonalterv készítő
+					&nbsp;- kerékpáros útvonalterv készítő
 				</li>
 				<li>
 					<a href="http://www.opencyclemap.org/?zoom=15&lat=47.49579&lon=19.05492&layers=B0">OpenCycleMap</a>
@@ -93,7 +93,7 @@
 					<a href="http://www.pistes-nordiques.org/">Térkép síelőknek</a>
 				</li>-->
 				<li>
-					<a href="http://maps.stamen.com/toner/#10/47.7606/20.4156">Toner</a>, 
+					<a href="http://maps.stamen.com/toner/#10/47.7606/20.4156">Toner</a>,
 					<a href="http://maps.stamen.com/watercolor/#10/47.4996/18.8349">Vízfesték</a>
 					- Stamen design szép térképei
 				</li>
@@ -111,7 +111,7 @@
 				</li>
 				<li>
 					<a href="http://osmbuildings.org/?lat=52.52111&lon=13.40988&zoom=17">OSMBuildings</a>
-					- 3D épületek, például: 
+					- 3D épületek, például:
 					<a href="http://osmbuildings.org/?lat=47.51739&lon=19.05357&zoom=17">Budapest XIII.</a>
 				</li>
 				<li>

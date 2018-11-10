@@ -1,31 +1,19 @@
-var ZeroClipboard = require('zeroclipboard');
-ZeroClipboard.config({
-	swfPath: '/node_modules/zeroclipboard/dist/ZeroClipboard.swf'
-});
+/* globals $, L */
 
 var helpers = module.exports = {};
 
 // Search an element with the given id in a list of elements
 helpers.findElementById = function (id, elements) {
-	var found = $.grep(elements, function (element) {
-		return element.id == id;
+	let idNumber = parseInt(id, 10);
+ 	let found = $.grep(elements, function (element) {
+		return parseInt(element.id, 10) === idNumber;
 	});
 	return found[0];
 };
 
-// Uppercase first letter
-helpers.ucFirst = function (str) {
-	if (!str) return;
-
-	return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-helpers.copyButton = function (options) {
-	var zcClient = new ZeroClipboard(options.button);
-	zcClient.on('aftercopy', options.onCopy);
-};
-
 helpers.getCenterPosition = function (element, allElements) {
+	if (!element) return;
+
 	var position;
 	var bounds;
 	switch (element.type) {
@@ -36,7 +24,7 @@ helpers.getCenterPosition = function (element, allElements) {
 				wayParts.push(new L.LatLng(node.lat, node.lon));
 			});
 			var polyline = L.polyline(wayParts, {color: 'red'});
-			bounds   = polyline.getBounds();
+			bounds = polyline.getBounds();
 			position = bounds.getCenter();
 			break;
 		case 'relation':
@@ -57,7 +45,7 @@ helpers.getCenterPosition = function (element, allElements) {
 					polygonParts.push(new L.LatLng(node.lat, node.lon));
 				}
 			});
-			var polygon = L.polygon(polygonParts, {color: 'red', fill: true });
+			var polygon = L.polygon(polygonParts, { color: 'red', fill: true });
 			bounds = polygon.getBounds();
 			if (adminCentre) {
 				position = new L.LatLng(adminCentre.lat, adminCentre.lon);

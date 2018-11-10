@@ -1,29 +1,39 @@
-var opening_hours = require('opening_hours');
+const isoDayOfWeek = require('date-fns/get_iso_day');
 
-var helpers = require('./helpers');
+const OpeningHoursTable = require('./popup/OpeningHoursTable');
 
 var popup = module.exports = {};
 
-function osmBrowseUrl (element) {
-	var baseUrl = 'http://www.openstreetmap.org/browse/';
+function osmBrowseUrl(element) {
+	const baseUrl = 'http://www.openstreetmap.org/browse/';
 	return baseUrl + element.type + '/' + element.id;
 }
 
-function osmEditUrl (element) {
-	var baseUrl = 'http://www.openstreetmap.org/edit?';
+function osmEditUrl(element) {
+	const baseUrl = 'http://www.openstreetmap.org/edit?';
 	return baseUrl + element.type + '=' + element.id;
 }
 
-function wheelchairLogo (element) {
-	var unknown = false;
-	var link = 'http://wheelmap.org/hu/';
+function createWheelmapUrl(element) {
+	const baseUrl = 'https://wheelmap.org/hu';
+	let url;
 	if (element.type === 'node') {
-		link+= 'nodes/' + element.id;
+		url = baseUrl + '/nodes/' + element.id;
 	} else if (element.type === 'way') {
-		link+= 'nodes/-' + element.id;
+		url = baseUrl + '/nodes/-' + element.id;
+	} else {
+		return false;
 	}
+	return url;
+}
+
+function wheelchairLogo(element) {
+	var unknown = false;
 	var html = '<div class="wheelchair">';
-	html+= '<a href="' + link + '" target="_blank">';
+	wheelMapUrl = createWheelmapUrl(element);
+	if (wheelMapUrl) {
+		html+= '<a href="' + wheelMapUrl + '" target="_blank">';
+	}
 	var src = '/kepek/';
 	var info = '';
 	if (element.tags.wheelchair === 'yes') {
@@ -47,6 +57,12 @@ function wheelchairLogo (element) {
 	return html;
 }
 
+popup.upperCaseFirstLetter = function(str) {
+	if (!str) return;
+
+	return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 // This will return a HTML code, that can be used in a popup
 popup.generateHtml = function (element, options) {
 	var shareUrl = (typeof options.shareUrl !== 'undefined') ? options.shareUrl : true;
@@ -65,7 +81,7 @@ popup.generateHtml = function (element, options) {
 		title = 'Hely';
 	}
 
-	html+= '<h1 class="title">' + helpers.ucFirst(title) + '</h1>';
+	html+= '<h1 class="title">' + popup.upperCaseFirstLetter(title) + '</h1>';
 	if (type) {
 		html+= '<p class="type">' + type + '</p>';
 	}
@@ -128,7 +144,8 @@ popup.generateHtml = function (element, options) {
 	html+= '</div>';
 	var openingHours = element.tags.opening_hours;
 	if (openingHours) {
-		var openingHoursTable = popup.generateOpeningHoursTable(openingHours);
+		const isoDayOfWeekForToday = isoDayOfWeek(new Date());
+		var openingHoursTable = OpeningHoursTable.generateTable(openingHours, isoDayOfWeekForToday);
 		if (openingHoursTable) {
 			html+= '<div class="opening_hours">';
 			html+= '<p>Nyitvatartás:</p>';
@@ -158,7 +175,39 @@ popup.generateHtml = function (element, options) {
 	return html;
 };
 
-popup.niceType = function (tags) {
+popup.niceTitle = function(tags) {
+	return tags.name || tags.ref || tags.operator;
+};
+
+popup.niceAddress = function(tags) {
+	var city        = tags['addr:city'];
+	var street      = tags['addr:street'];
+	var housenumber = tags['addr:housenumber'];
+
+	if (!city && !street) return false;
+
+	var address = '';
+	if (city) {
+		address+= city;
+	}
+	if (city && street) {
+		address+= ', ';
+	}
+	if (street) {
+		address+= street;
+	}
+	if (street && housenumber) {
+		address+= ' ' + housenumber;
+	}
+	var lastCharacterIsNumber = /\d$/;
+	// If the last character of the housenumber is a number, add a dot
+	if (lastCharacterIsNumber.test(housenumber)) {
+		address+= '.';
+	}
+	return address;
+};
+
+popup.niceType = function(tags) {
 	if (tags.amenity === 'restaurant') return 'Étterem';
 	if (tags.amenity === 'fast_food') return 'Gyorsétterem';
 	if (tags.amenity === 'cafe') return 'Kávézó';
@@ -262,121 +311,4 @@ popup.niceType = function (tags) {
 	// Highways
 	if (tags.highway === 'residential') return 'Út';
 	if (tags.highway === 'pedestrian') return 'Gyalogos útvonal';
-};
-
-popup.niceTitle = function (tags) {
-	return tags.name || tags.ref || tags.operator;
-};
-
-popup.niceAddress = function (tags) {
-	var city        = tags['addr:city'];
-	var street      = tags['addr:street'];
-	var housenumber = tags['addr:housenumber'];
-
-	if (!city && !street) return false;
-
-	var address = '';
-	if (city) {
-		address+= city;
-	}
-	if (city && street) {
-		address+= ', ';
-	}
-	if (street) {
-		address+= street;
-	}
-	if (street && housenumber) {
-		address+= ' ' + housenumber;
-	}
-	var lastCharacterIsNumber = /\d$/;
-	// If the last character of the housenumber is a number, add a dot
-	if (lastCharacterIsNumber.test(housenumber)) {
-		address+= '.';
-	}
-	return address;
-};
-
-function getFirstDateOfCurrentWeek () {
-	var firstDate = new Date();
-	var dayOfWeek = firstDate.getDay();
-	var diff = firstDate.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-	firstDate = new Date(firstDate.setDate(diff));
-	firstDate.setHours(0);
-	firstDate.setMinutes(0);
-	firstDate.setSeconds(0);
-
-	return firstDate;
-}
-
-function dayIsToday (day) {
-	var now = new Date();
-	var dayOfWeek = now.getDay() - 1;
-	if (dayOfWeek === -1) dayOfWeek = 6;
-	return dayOfWeek === day;
-}
-
-// Add leading zero if a date part is less than 10
-function addZero (datePart) {
-	if (datePart < 10) {
-		datePart = '0' + datePart;
-	}
-	return datePart;
-}
-
-popup.generateOpeningHoursTable = function (openingHoursString) {
-	var table = '';
-
-	if (openingHoursString === '24/7') {
-		table+= '<table>';
-		table+= '<tr class="today">';
-		table+= '<td class="day">Non-stop</td>';
-		table+= '<td>(Hétfő-vasárnap 0-24)</td>';
-		table+= '</tr>';
-		table+= '</table>';
-		return table;
-	}
-
-	try {
-		var days = 'Hétfő Kedd Szerda Csütörtök Péntek Szombat Vasárnap'.split(' ');
-		var openingHours = new opening_hours(openingHoursString);
-		table+= '<table>';
-		var from = getFirstDateOfCurrentWeek();
-		for (var day = 0; day < 7; day++) {
-			if (dayIsToday(day)) {
-				table+= '<tr class="today">';
-			} else {
-				table+= '<tr>';
-			}
-			table+= '<td class="day">' + days[day] + '</td>';
-			var to = new Date(from);
-			to.setDate(to.getDate() + 1);
-			var intervals = openingHours.getOpenIntervals(from, to);
-			var open = [];
-			for (var i in intervals) {
-				var openFrom   = new Date(intervals[i][0]);
-				var openTo     = new Date(intervals[i][1]);
-				var fromHour   = addZero(openFrom.getHours());
-				var fromMinute = addZero(openFrom.getMinutes());
-				var toHour     = addZero(openTo.getHours());
-				var toMinute   = addZero(openTo.getMinutes());
-				if (toHour === '00' && toMinute === '00') {
-					toHour = '24';
-				}
-				open.push(fromHour + ':' + fromMinute + ' - ' + 
-						  toHour   + ':' + toMinute);
-			}
-			if (open.length > 0) {
-				table+= '<td>' + open.join(', ') + '</td>';
-			} else {
-				table+= '<td>zárva</td>';
-			}
-			from = to;
-			table+= '</tr>';
-		}
-		table+= '</table>';
-		return table;
-	} catch (err) {
-		console.error('Unable to parse opening_hours: ' + err);
-		return false;
-	}
 };

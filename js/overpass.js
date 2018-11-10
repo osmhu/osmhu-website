@@ -2,7 +2,7 @@ var overpass = module.exports = {};
 
 var $ = require('jquery');
 
-var overpassEndpoints = require('./config/serviceUrls').overpassEndpoints;
+var overpassEndpoints = require('./search/ServiceUrls').overpassEndpoints;
 
 // Ensure endpoint urls ends with /
 for (var i in overpassEndpoints) {
@@ -17,6 +17,8 @@ var endPointLoadTimes = {};
 
 overpass.measureEndpointLoadTimes = function () {
 	var testQuery = 'interpreter?data=[out:json];node(47.48,19.02,47.5,19.05)["amenity"="cafe"];out;';
+
+	if (!performance.now) return; // IE9
 
 	// Async comparison of available endpoints
 	overpassEndpoints.forEach(function (measuredEndpoint) {
@@ -111,55 +113,55 @@ overpass.generateComplexQuery = function (selectedList) {
 };
 
 var simple = overpass.simple = {
-	restaurant: 		'node(BBOX)["amenity"="restaurant"]',
-	fast_food: 			'node(BBOX)["amenity"="fast_food"]',
-	cafe: 				'node(BBOX)["amenity"="cafe"]',
-	convenience: 		'node(BBOX)["shop"="convenience"]',
-	supermarket: 		'node(BBOX)["shop"="supermarket"]',
-	bakery: 			'node(BBOX)["shop"="bakery"]',
-	clothes: 			'node(BBOX)["shop"="clothes"]',
-	hairdresser: 		'node(BBOX)["shop"="hairdresser"]',
-	florist: 			'node(BBOX)["shop"="florist"]',
-	confectionery:      'node(BBOX)["shop"="confectionery"]',
-	greengrocer:        'node(BBOX)["shop"="greengrocer"]',
-	bicycle: 			'node(BBOX)["shop"="bicycle"]',
-	atm: 				'(node(BBOX)["amenity"="atm"];node(BBOX)["amenity"="bank"]["atm"="yes"];)',
-	bank: 				'node(BBOX)["amenity"="bank"]',
-	bureau_de_change: 	'node(BBOX)["amenity"="bureau_de_change"]',
-	bar: 				'node(BBOX)["amenity"="bar"]',
-	pub: 				'node(BBOX)["amenity"="pub"]',
-	guest_house: 		'node(BBOX)["tourism"="guest_house"]',
-	hostel: 			'node(BBOX)["tourism"="hostel"]',
-	hotel: 				'node(BBOX)["tourism"="hotel"]',
-	information: 		'node(BBOX)["tourism"="information"]',
-	clinic: 			'node(BBOX)["amenity"="clinic"]',
-	hospital: 			'node(BBOX)["amenity"="hospital"]',
-	dentist: 			'node(BBOX)["amenity"="dentist"]',
-	doctors: 			'node(BBOX)["amenity"="doctors"]',
-	pharmacy: 			'node(BBOX)["amenity"="pharmacy"]',
-	veterinary: 		'node(BBOX)["amenity"="veterinary"]',
-	place_of_worship:   'node(BBOX)["amenity"="place_of_worship"]',
-	cinema: 			'node(BBOX)["amenity"="cinema"]',
-	community_centre: 	'node(BBOX)["amenity"="community_centre"]',
-	library: 			'node(BBOX)["amenity"="library"]',
-	museum: 			'node(BBOX)["tourism"="museum"]',
-	theatre: 			'node(BBOX)["amenity"="theatre"]',
-	park: 				'node(BBOX)["leisure"="park"]',
-	playground: 		'node(BBOX)["leisure"="playground"]',
-	sports_centre:      '(node(BBOX)["leisure"="pitch"];node(BBOX)["leisure"="track"];node(BBOX)["leisure"="sports_centre"];)',
-	fitness_station:    'node(BBOX)["leisure"="fitness_station"]',
-	beach_resort:       'node(BBOX)["leisure"="beach_resort"]',
-	water_park:         'node(BBOX)["leisure"="water_park"]',
-	natural_beach:      'node(BBOX)["natural"="beach"]',
-	swimming: 			'node(BBOX)["leisure"="sports_centre"]["sport"="swimming"]',
-	kindergarten: 		'node(BBOX)["amenity"="kindergarten"]',
-	school: 			'node(BBOX)["amenity"="school"]',
-	university: 		'(node(BBOX)["amenity"="university"];node(BBOX)["amenity"="college"])',
-	fuel: 				'node(BBOX)["amenity"="fuel"]',
-	parking: 			'node(BBOX)["amenity"="parking"]',
-	drinking_water: 	'node(BBOX)["amenity"="drinking_water"]',
-	toilets: 			'node(BBOX)["amenity"="toilets"]',
-	recycling: 			'node(BBOX)["amenity"="recycling"]'
+	restaurant: 		'node({{bbox}})["amenity"="restaurant"]',
+	fast_food: 			'node({{bbox}})["amenity"="fast_food"]',
+	cafe: 				'node({{bbox}})["amenity"="cafe"]',
+	convenience: 		'node({{bbox}})["shop"="convenience"]',
+	supermarket: 		'node({{bbox}})["shop"="supermarket"]',
+	bakery: 			'node({{bbox}})["shop"="bakery"]',
+	clothes: 			'node({{bbox}})["shop"="clothes"]',
+	hairdresser: 		'node({{bbox}})["shop"="hairdresser"]',
+	florist: 			'node({{bbox}})["shop"="florist"]',
+	confectionery:      'node({{bbox}})["shop"="confectionery"]',
+	greengrocer:        'node({{bbox}})["shop"="greengrocer"]',
+	bicycle: 			'node({{bbox}})["shop"="bicycle"]',
+	atm: 				'(node({{bbox}})["amenity"="atm"];node({{bbox}})["amenity"="bank"]["atm"="yes"];)',
+	bank: 				'node({{bbox}})["amenity"="bank"]',
+	bureau_de_change: 	'node({{bbox}})["amenity"="bureau_de_change"]',
+	bar: 				'node({{bbox}})["amenity"="bar"]',
+	pub: 				'node({{bbox}})["amenity"="pub"]',
+	guest_house: 		'node({{bbox}})["tourism"="guest_house"]',
+	hostel: 			'node({{bbox}})["tourism"="hostel"]',
+	hotel: 				'node({{bbox}})["tourism"="hotel"]',
+	information: 		'node({{bbox}})["tourism"="information"]',
+	clinic: 			'node({{bbox}})["amenity"="clinic"]',
+	hospital: 			'node({{bbox}})["amenity"="hospital"]',
+	dentist: 			'node({{bbox}})["amenity"="dentist"]',
+	doctors: 			'node({{bbox}})["amenity"="doctors"]',
+	pharmacy: 			'node({{bbox}})["amenity"="pharmacy"]',
+	veterinary: 		'node({{bbox}})["amenity"="veterinary"]',
+	place_of_worship:   'node({{bbox}})["amenity"="place_of_worship"]',
+	cinema: 			'node({{bbox}})["amenity"="cinema"]',
+	community_centre: 	'node({{bbox}})["amenity"="community_centre"]',
+	library: 			'node({{bbox}})["amenity"="library"]',
+	museum: 			'node({{bbox}})["tourism"="museum"]',
+	theatre: 			'node({{bbox}})["amenity"="theatre"]',
+	park: 				'node({{bbox}})["leisure"="park"]',
+	playground: 		'node({{bbox}})["leisure"="playground"]',
+	sports_centre:      '(node({{bbox}})["leisure"="pitch"];node({{bbox}})["leisure"="track"];node({{bbox}})["leisure"="sports_centre"];)',
+	fitness_station:    'node({{bbox}})["leisure"="fitness_station"]',
+	beach_resort:       'node({{bbox}})["leisure"="beach_resort"]',
+	water_park:         'node({{bbox}})["leisure"="water_park"]',
+	natural_beach:      'node({{bbox}})["natural"="beach"]',
+	swimming: 			'node({{bbox}})["leisure"="sports_centre"]["sport"="swimming"]',
+	kindergarten: 		'node({{bbox}})["amenity"="kindergarten"]',
+	school: 			'node({{bbox}})["amenity"="school"]',
+	university: 		'(node({{bbox}})["amenity"="university"];node({{bbox}})["amenity"="college"])',
+	fuel: 				'node({{bbox}})["amenity"="fuel"]',
+	parking: 			'node({{bbox}})["amenity"="parking"]',
+	drinking_water: 	'node({{bbox}})["amenity"="drinking_water"]',
+	toilets: 			'node({{bbox}})["amenity"="toilets"]',
+	recycling: 			'node({{bbox}})["amenity"="recycling"]'
 };
 
 var combined = overpass.combined = {

@@ -4,7 +4,6 @@ if(empty($argc)) {
 	exit;
 }
 
-
 class Place {
 	public $name;
 	public $type;
@@ -55,9 +54,9 @@ $lists = array();
 
 while(($line = fgets($stdin)) !== false) {
 	// Skip file header
-	if($first) { 
-		$first = false; 
-		continue; 
+	if($first) {
+		$first = false;
+		continue;
 	}
 	$parts = explode("|", $line);
 
