@@ -69,7 +69,7 @@ module.exports = class DirectionsResultLayer {
 				}
 			}
 
-			if (cb && error.length > 0) cb(error);
+			if (cb) cb(error);
 		});
 	}
 

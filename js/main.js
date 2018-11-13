@@ -1,4 +1,4 @@
-/* globals window */
+/* globals window, document */
 
 require('@babel/polyfill');
 
@@ -86,6 +86,12 @@ url.updateOrgUrls();
 
 const autocomplete = new Autocomplete('#search-area input.autocomplete');
 
+// Focus search field in browsers on load
+var isMobile = $(window).width() < 699;
+if (!isMobile) {
+	$('input#text-search').focus();
+}
+
 $('#search form').on('submit', function (event) {
 	event.preventDefault();
 
@@ -111,7 +117,11 @@ directionsControl.initializeControls();
 
 select2.initialize();
 
-overpass.measureEndpointLoadTimes();
+$(document).ready(() => {
+	setTimeout(() => {
+		overpass.measureEndpointLoadTimes();
+	}, 1000);
+});
 
 if (params.poi) {
 	select2.poiSearch(params.poi);

@@ -2,14 +2,14 @@
   "extends": "airbnb-base",
   "rules": {
     "indent": [ "error", "tab" ],
-    "no-tabs": [ "error", { "allowIndentationTabs": true } ],
+    "no-tabs": [ "off" ],
     "no-plusplus": [
       "error",
       {
         "allowForLoopAfterthoughts": true
       }
     ],
-    "prefer-template": 0
+    "prefer-template": "off"
   },
   "plugins": [
     "jest"

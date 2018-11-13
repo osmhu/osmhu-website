@@ -9,6 +9,7 @@ module.exports = class LocateControl extends MapControl {
 	constructor() {
 		const locateControl = L.control.locate({
 			drawCircle: false,
+			flyTo: true,
 			icon: 'fa fa-location-arrow',
 			strings: {
 				title: 'Pozíció meghatározása', // title of the locate control

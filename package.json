@@ -24,6 +24,7 @@
 		"leaflet.locatecontrol": "^0.65.1",
 		"leaflet.markercluster": "^1.4.1",
 		"moment": "^2.22.2",
+		"normalize.css": "^8.0.1",
 		"opening_hours": "^3.5.0",
 		"query-string": "^6.2.0",
 		"select2": "^3.5.2-browserify"

@@ -99,7 +99,7 @@ module.exports = class DirectionsControl {
 				transportType,
 				avoidTollRoads,
 				(error) => {
-					if (error) {
+					if (error.length > 0) {
 						$('#general-error').fadeIn(200);
 						let html = '<strong>Az útvonaltervezés jelenleg nem elérhető!</strong><br />';
 						html += 'Tipp: használd az <a href="http://www.openstreetmap.org/directions" target="_blank">OpenStreetMap.org útvonaltervezőt!</a>';

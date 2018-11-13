@@ -30,7 +30,7 @@ function createWheelmapUrl(element) {
 function wheelchairLogo(element) {
 	var unknown = false;
 	var html = '<div class="wheelchair">';
-	wheelMapUrl = createWheelmapUrl(element);
+	const wheelMapUrl = createWheelmapUrl(element);
 	if (wheelMapUrl) {
 		html+= '<a href="' + wheelMapUrl + '" target="_blank">';
 	}

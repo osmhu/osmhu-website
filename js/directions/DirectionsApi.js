@@ -1,3 +1,5 @@
+/* global document */
+
 const $ = require('jquery');
 const L = require('leaflet');
 
@@ -9,18 +11,28 @@ const apiKey = 'Fmjtd%7Cluu829ur25%2C82%3Do5-9w1gqr';
 module.exports = class DirectionsApi {
 	constructor() {
 		this.ready = false;
+		this.loading = false;
 
 		this.directions = {};
-		this.loadJs();
+		$(document).ready(() => {
+			setTimeout(() => {
+				this.loadJs();
+			}, 500);
+		});
 	}
 
 	loadJs() {
+		if (this.loading || this.ready) return;
+
+		this.loading = true;
+
 		$.getScript(mapJs)
 			.done(() => {
 				L.mapquest.key = apiKey;
 
 				this.directions = L.mapquest.directions();
 
+				this.loading = false;
 				this.ready = true;
 			});
 	}
