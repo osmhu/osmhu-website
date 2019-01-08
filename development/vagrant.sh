@@ -20,12 +20,14 @@ apt-get install -y osm2pgsql
 apt-get install -y apache2 php7.2 libapache2-mod-php php7.2-mysql php7.2-pgsql
 a2enmod include # server side includes
 a2enmod rewrite # support rewrite rules
+a2enmod ssl # HTTPS
 
 # copy apache site config
-cp /vagrant/development/apache2/osmhu.conf /etc/apache2/sites-available/osmhu.conf
-sed -i -e '/\/home\/feri\/wwwroot\/osmhu/ s/\/home\/feri\/wwwroot\/osmhu/\/var\/www/' /etc/apache2/sites-available/osmhu.conf
-sed -i -e '/osmhu.lan/ s/osmhu.lan/localhost/' /etc/apache2/sites-available/osmhu.conf
-a2ensite osmhu
+cp /vagrant/development/apache2/osmhu-http.conf /etc/apache2/sites-available/osmhu-http.conf
+cp /vagrant/development/apache2/osmhu-ssl.conf /etc/apache2/sites-available/osmhu-ssl.conf
+
+a2ensite osmhu-http
+a2ensite osmhu-ssl
 
 # install PhpMyAdmin for graphical db editing
 apt-get install -y debconf-utils

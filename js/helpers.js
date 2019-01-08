@@ -1,4 +1,5 @@
-/* globals $, L */
+const $ = require('jquery');
+const L = require('leaflet');
 
 var helpers = module.exports = {};
 

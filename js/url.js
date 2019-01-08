@@ -74,8 +74,8 @@ function orgParameters () {
  */
 url.updateOrgUrls = function () {
 	var orgUrl = orgParameters();
-	$('a#orglink').attr('href', 'http://openstreetmap.org/' + orgUrl);
-	$('a#orgEditLink').attr('href', 'http://openstreetmap.org/edit' + orgUrl);
+	$('a#orglink').attr('href', 'https://openstreetmap.org/' + orgUrl);
+	$('a#orgEditLink').attr('href', 'https://openstreetmap.org/edit' + orgUrl);
 };
 
 /**
@@ -99,7 +99,7 @@ url.update = function () {
 	if (window.history && window.history.pushState) {
 	  window.history.replaceState(null, window.document.title, withoutDomain);
 	}
-	$('input.share-url').val('http://www.openstreetmap.hu' + withoutDomain);
+	$('input.share-url').val('https://www.openstreetmap.hu' + withoutDomain);
 	url.updateOrgUrls();
 };
 

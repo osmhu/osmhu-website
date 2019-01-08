@@ -37,7 +37,8 @@ vagrant ssh
 #### Vagrant információk
 A vagrant virtuális gépen automatikusan szinkronizálva van a projekt könyvtára a `/var/www` mappába.  
 Így a gazdagépen szerkesztett fájlok azonnal elérhetőek a virtuális gép számára és fordítva.  
-A virtuális gépen található egy webszerver, amit a gazdagépről a http://localhost:8080/ címen érhetünk el.  
+A virtuális gépen található egy webszerver, amit a gazdagépről a http://localhost:8080/ és a
+https://localhost:8443/ címeken érhetünk el.  
 Mivel minden változtatás szinkronizálva van, ezért a gazdagépen való minden szerkesztés azonnal tesztelhető ezen a címen.  
 A vagrant képfájlba automatikusan feltelepítésre kerültek a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
 Ezek a jelszavak a `vagrant.sh` fájlban és a `Makefile`-ban szerkeszthetőek.
@@ -69,6 +70,10 @@ vagrant ssh
 cd /var/www
 npm run build
 ```
+
+### Fejlesztés közben HTTPS használata
+Fejlesztés közben HTTPS használatához [self signed SSL kulcspár létrehozása](/development/self-signed-ssl/README.md) szükséges.
+
 ### Fejlesztés vagrant nélkül
 #### Virtuális host
 Megnyitottam az `/etc/hosts` fájlt, például így:
@@ -89,18 +94,22 @@ sudo a2enmod php5 # php fájlok futtatása
 sudo a2enmod include # server side includes
 sudo a2enmod rewrite # rewrite szabályok
 ```
-A `development/apache2/osmhu.conf` fájlban át kell szerkeszteni a könyvtárakat a kívánt fejlesztési könyvtárnak megfelelően.
+A `development/apache2/osmhu-http.conf` és `development/apache2/osmhu-ssl.conf` fájlokban
+át kell szerkeszteni a könyvtárakat a kívánt fejlesztési könyvtárnak megfelelően.
 A `DocumentRoot` és a `Directory` sorra különösen figyelni kell, a többihez nem feltétlenül kell hozzányúlni.
 ```
-nano ~/development/osmhu/development/apache2/osmhu.conf
+nano ~/development/osmhu/development/apache2/osmhu-http.conf
+nano ~/development/osmhu/development/apache2/osmhu-ssl.conf
 ```
 Másoljuk az új virtuális hostot az apache2 sites könyvtárába:
 ```
-sudo cp /home/feri/development/osmhu/development/apache2/osmhu.conf /etc/apache2/sites-available/osmhu.conf
+sudo cp ~/development/osmhu/development/apache2/osmhu-http.conf /etc/apache2/sites-available/osmhu-http.conf
+sudo cp ~/development/osmhu/development/apache2/osmhu-ssl.conf /etc/apache2/sites-available/osmhu-ssl.conf
 ```
-Engedélyezzük az új virtuális hostot:
+Engedélyezzük az új virtuális hostokat:
 ```
-sudo a2ensite osmhu
+sudo a2ensite osmhu-http
+sudo a2ensite osmhu-ssl
 ```
 Indítsuk újra az apache2 szervert, hogy figyelembe vegye az új beállításokat:
 ```

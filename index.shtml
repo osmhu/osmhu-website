@@ -23,7 +23,7 @@
 	<!-- Poi popup stylesheet -->
 	<link rel="stylesheet" href="/css/poi-popup.css?rev=373">
 	<!-- Introduction stylesheet -->
-	<link rel="stylesheet" href="/css/introduction.css?rev=347">
+	<link rel="stylesheet" href="/css/introduction.css?rev=375">
 	<!-- AutoComplete stylesheet -->
 	<link rel="stylesheet" href="/css/autocomplete.css?rev=371">
 	<!-- EasyButton stylesheet-->
@@ -155,6 +155,6 @@
 	<div id="introduction-toggler"><p class="toggler"></p></div>
 
 	<!-- Load osmhu bundle -->
-	<script src="/build/bundle.js?rev=374"></script>
+	<script src="/build/bundle.js?rev=375"></script>
 </body>
 </html>

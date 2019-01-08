@@ -102,7 +102,7 @@ module.exports = class DirectionsControl {
 					if (error.length > 0) {
 						$('#general-error').fadeIn(200);
 						let html = '<strong>Az útvonaltervezés jelenleg nem elérhető!</strong><br />';
-						html += 'Tipp: használd az <a href="http://www.openstreetmap.org/directions" target="_blank">OpenStreetMap.org útvonaltervezőt!</a>';
+						html += 'Tipp: használd az <a href="https://www.openstreetmap.org/directions" target="_blank">OpenStreetMap.org útvonaltervezőt!</a>';
 						$('#general-error').html(html);
 						setTimeout(() => {
 							$('#general-error').fadeOut(200);

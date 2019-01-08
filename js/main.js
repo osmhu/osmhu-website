@@ -115,18 +115,18 @@ const directionsResultLayer = new DirectionsResultLayer(window.map, directionsAp
 const directionsControl = new DirectionsControl(directionsResultLayer);
 directionsControl.initializeControls();
 
-select2.initialize();
-
 $(document).ready(() => {
+	select2.initialize();
+
+	if (params.poi) {
+		select2.poiSearch(params.poi);
+		select2.set(params.poi);
+	}
+
 	setTimeout(() => {
 		overpass.measureEndpointLoadTimes();
 	}, 1000);
 });
-
-if (params.poi) {
-	select2.poiSearch(params.poi);
-	select2.set(params.poi);
-}
 
 // Search results use this global function on click
 window.searchDetails = search.details;

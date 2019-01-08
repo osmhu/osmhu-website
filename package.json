@@ -49,7 +49,7 @@
 	"scripts": {
 		"analysis": "node_modules/.bin/es6-plato -r -d report js",
 		"lint": "node_modules/.bin/eslint js/*",
-		"build": "node_modules/.bin/browserify js/main.js -g uglifyify -o build/bundle.js --full-paths=false -t [ babelify ]]",
+		"build": "NODE_ENV=production node_modules/.bin/browserify js/main.js -g uglifyify -o build/bundle.js -p --full-paths=false -t [ babelify ]]",
 		"watch": "node_modules/.bin/watchify --debug js/main.js -o build/bundle.js -v --poll=2000",
 		"test": "node_modules/.bin/jest --coverage",
 		"test-watch": "node_modules/.bin/jest --watchAll --coverage"

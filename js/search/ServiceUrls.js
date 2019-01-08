@@ -5,10 +5,7 @@ module.exports = class ServiceUrls {
 			'https://lz4.overpass-api.de/api/',
 			'https://z.overpass-api.de/api/',
 			'https://overpass.openstreetmap.fr/api/',
-			'https://overpass.kumi.systems/api/',
-			/* Unreachable
-			'http://overpass.openstreetmap.ru/cgi/'
-			*/
+			'https://overpass.kumi.systems/api/'
 		];
 	}
 

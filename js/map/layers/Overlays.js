@@ -9,7 +9,7 @@ module.exports = class Overlays extends LayerList {
 		layers.tourist = new TileLayer(
 			'tur',
 			'Turistautak',
-			'http://{s}.tile.openstreetmap.hu/tt/{z}/{x}/{y}.png',
+			'https://{s}.tile.openstreetmap.hu/tt/{z}/{x}/{y}.png',
 			19,
 		);
 		layers.tourist.maxNativeZoom = 17;

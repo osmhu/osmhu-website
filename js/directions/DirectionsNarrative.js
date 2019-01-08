@@ -26,6 +26,7 @@ module.exports = class DirectionsNarrative {
 					const focusCoordinate = maneuver.startPoint;
 					html += `<tr onclick="map.setView([${focusCoordinate.lat}, ${focusCoordinate.lng}],14);">`;
 					if (maneuver.iconUrl) {
+						maneuver.iconUrl = maneuver.iconUrl.replace(/^http:\/\//i, 'https://');
 						html += `<td><img src="${maneuver.iconUrl}"></td>`;
 					}
 					if (maneuver.narrative) {
@@ -43,7 +44,7 @@ module.exports = class DirectionsNarrative {
 		}
 		html += '</table>';
 
-		html += '<p class="copyright">Az útvonaltervezés a <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> használatával történt. Köszönjük!</p>';
+		html += '<p class="copyright">Az útvonaltervezés a <a href="https://www.mapquest.com/" target="_blank">MapQuest</a> használatával történt. Köszönjük!</p>';
 
 		this.$container.find('.results').html(html);
 

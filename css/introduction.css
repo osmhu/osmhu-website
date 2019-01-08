@@ -12,6 +12,9 @@
 }
 #introduction .description p {
 	text-align: justify;
+	line-height: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 #introduction .tryit, #introduction .project {
 	border-bottom: 1px solid #aaa;
@@ -21,6 +24,8 @@
 }
 #introduction .tryit p {
 	text-align: center;
+	margin-top: 14px;
+	margin-bottom: 14px;
 }
 #introduction .tryit a#orgEditLink {
 	display: block;
@@ -109,6 +114,9 @@
 	z-index: 22;
 	left: 259px;
 	cursor: pointer;
+}
+#introduction-toggler p.toggler {
+	margin-top: 16px;
 }
 
 @media all and (max-width: 699px) {

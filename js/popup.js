@@ -5,12 +5,12 @@ const OpeningHoursTable = require('./popup/OpeningHoursTable');
 var popup = module.exports = {};
 
 function osmBrowseUrl(element) {
-	const baseUrl = 'http://www.openstreetmap.org/browse/';
+	const baseUrl = 'https://www.openstreetmap.org/browse/';
 	return baseUrl + element.type + '/' + element.id;
 }
 
 function osmEditUrl(element) {
-	const baseUrl = 'http://www.openstreetmap.org/edit?';
+	const baseUrl = 'https://www.openstreetmap.org/edit?';
 	return baseUrl + element.type + '=' + element.id;
 }
 
@@ -57,10 +57,59 @@ function wheelchairLogo(element) {
 	return html;
 }
 
-popup.upperCaseFirstLetter = function(str) {
-	if (!str) return;
-
+popup.upperCaseFirstLetter = (str) => {
 	return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+popup.removeUrlTrailingSlash = (url) => {
+	// Remove trailing slash
+	if (url.substring(url.length - 1) === '/') {
+		return url.substring(0, url.length - 1);
+	}
+	return url;
+};
+
+popup.createShrinkedWebsiteUrlHtml = (websiteUrl, maxLength) => {
+	// Decode URI
+	let niceUrl = decodeURI(websiteUrl);
+	// Remove url beginnings
+	let hiddenUrlBegin = '';
+	let hiddenUrlEnd = '';
+
+	const beginningsToRemove = [
+		'http://www.',
+		'https://www.',
+		'http://',
+		'https://',
+	];
+	for (let i = 0; i < beginningsToRemove.length; i++) {
+		const beginningToRemove = beginningsToRemove[i];
+		if (niceUrl.substring(0, beginningToRemove.length) === beginningToRemove) {
+			niceUrl = niceUrl.substring(beginningToRemove.length);
+			hiddenUrlBegin = beginningToRemove;
+			break;
+		}
+	}
+	let visibleUrl = popup.removeUrlTrailingSlash(niceUrl);
+	// Shrink if too long
+	if (visibleUrl.length > maxLength + 2) {
+		visibleUrl = niceUrl.substring(0, maxLength);
+		hiddenUrlEnd = niceUrl.substring(maxLength);
+	}
+	let html;
+	html += '<span class="website-label">Weboldal:&nbsp;</span>';
+	html += '<span class="website-url"><a href="' + websiteUrl + '" target="_blank" title="' + (visibleUrl !== niceUrl ? niceUrl : '') + '">';
+	if (hiddenUrlBegin.length > 0) {
+		html += '<span class="hidden-part">' + hiddenUrlBegin + '</span>';
+	}
+	html += visibleUrl;
+	if (hiddenUrlEnd.length > 0) {
+		html += '<span class="hidden-part">' + hiddenUrlEnd + '</span>';
+		html += '<span class="hidden-indicator"></span>';
+	}
+	html += '</a></span>';
+
+	return html;
 };
 
 // This will return a HTML code, that can be used in a popup
@@ -96,50 +145,9 @@ popup.generateHtml = function (element, options) {
 	}
 	var website = element.tags.website || element.tags['contact:website'];
 	if (website) {
-		var niceUrl = website;
-		// Decode URI
-		niceUrl = decodeURI(niceUrl);
-		// Remove url beginnings
-		var hiddenUrlBegin = '';
-		var hiddenUrlEnd = '';
-
-		var beginningsToRemove = [
-			'http://www.',
-			'https://www.',
-			'http://',
-			'https://'
-		];
-		for (var i = 0; i < beginningsToRemove.length; i++) {
-			var beginningToRemove = beginningsToRemove[i];
-			if (niceUrl.substring(0, beginningToRemove.length) === beginningToRemove) {
-				niceUrl = niceUrl.substring(beginningToRemove.length);
-				hiddenUrlBegin = beginningToRemove;
-				break;
-			}
-		}
-		// Remove trailing slash
-		if (niceUrl.substring(niceUrl.length - 1) === '/') {
-			niceUrl = niceUrl.substring(0, niceUrl.length - 1);
-		}
-		var visibleUrl = niceUrl;
-		// Shrink if too long
-		if (visibleUrl.length > 34) {
-			visibleUrl = niceUrl.substring(0, 32);
-			hiddenUrlEnd = niceUrl.substring(32);
-		}
-		html+= '<p class="website">';
-		html+= '<span class="website-label">Weboldal:&nbsp;</span>';
-		html+= '<span class="website-url"><a href="' + website + '" target="_blank" title="' + (visibleUrl !== niceUrl ? niceUrl : '') + '">';
-		if (hiddenUrlBegin.length > 0) {
-			html+= '<span class="hidden-part">' + hiddenUrlBegin + '</span>';
-		}
-		html+= visibleUrl;
-		if (hiddenUrlEnd.length > 0) {
-			html+= '<span class="hidden-part">' + hiddenUrlEnd + '</span>';
-			html+= '<span class="hidden-indicator"></span>';
-		}
-		html+= '</a></span>';
-		html+= '</p>';
+		html += '<p class="website">';
+		html += popup.createShrinkedWebsiteUrlHtml(website, 34);
+		html += '</p>';
 	}
 	html+= '</div>';
 	var openingHours = element.tags.opening_hours;

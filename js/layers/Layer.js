@@ -1,4 +1,4 @@
-const attribution = '&copy <a href="http://www.openstreetmap.org/copyright">OpenStreetMap közreműködők</a>';
+const attribution = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap közreműködők</a>';
 
 module.exports = class Layer {
 	constructor(id, displayName, url) {
