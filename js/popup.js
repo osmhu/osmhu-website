@@ -15,7 +15,7 @@ function osmEditUrl(element) {
 }
 
 function createWheelmapUrl(element) {
-	const baseUrl = 'https://wheelmap.org/hu';
+	const baseUrl = 'https://wheelmap.org';
 	let url;
 	if (element.type === 'node') {
 		url = baseUrl + '/nodes/' + element.id;
