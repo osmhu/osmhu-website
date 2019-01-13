@@ -49,6 +49,10 @@ module.exports = class Autocomplete {
 
 		const resultCities = await Autocomplete.queryAutocompleteApi('query/cities.php', { term: cityTerm });
 
+		if (!Array.isArray(resultCities)) {
+			throw new Error('Wrong response from query/cities.php: ' + resultCities);
+		}
+
 		return resultCities.map(resultCity => ({ value: resultCity }));
 	}
 
@@ -60,6 +64,10 @@ module.exports = class Autocomplete {
 		const niceCityName = Autocomplete.niceCityName(cityTerm);
 
 		const resultStreets = await Autocomplete.queryAutocompleteApi('/query/streets.php', { city: cityTerm, term: streetTerm });
+
+		if (!Array.isArray(resultStreets)) {
+			throw new Error('Wrong response from query/streets.php: ' + resultStreets);
+		}
 
 		return resultStreets.map(resultStreet => ({
 			id: resultStreet.id,
