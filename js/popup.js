@@ -96,7 +96,7 @@ popup.createShrinkedWebsiteUrlHtml = (websiteUrl, maxLength) => {
 		visibleUrl = niceUrl.substring(0, maxLength);
 		hiddenUrlEnd = niceUrl.substring(maxLength);
 	}
-	let html;
+	let html = '';
 	html += '<span class="website-label">Weboldal:&nbsp;</span>';
 	html += '<span class="website-url"><a href="' + websiteUrl + '" target="_blank" title="' + (visibleUrl !== niceUrl ? niceUrl : '') + '">';
 	if (hiddenUrlBegin.length > 0) {
