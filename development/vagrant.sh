@@ -26,8 +26,13 @@ a2enmod ssl # HTTPS
 cp /vagrant/development/apache2/osmhu-http.conf /etc/apache2/sites-available/osmhu-http.conf
 cp /vagrant/development/apache2/osmhu-ssl.conf /etc/apache2/sites-available/osmhu-ssl.conf
 
+# remove default apache2 config
+a2dissite 000-default.conf
+
 a2ensite osmhu-http
-a2ensite osmhu-ssl
+
+# Enable development with HTTPS (needs keys, refer to README)
+#a2ensite osmhu-ssl
 
 # install PhpMyAdmin for graphical db editing
 apt-get install -y debconf-utils
@@ -36,8 +41,12 @@ echo "phpmyadmin phpmyadmin/mysql/app-pass password root" | debconf-set-selectio
 echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
 apt-get install -y phpmyadmin
 
-# restart apache after enabling features
-service apache2 restart
+# autostart apache2
+systemctl enable apache2
+
+# restart apache to apply changes
+systemctl reload apache2
+systemctl restart apache2
 
 # install node.js for frontend development
 # source: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions

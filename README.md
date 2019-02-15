@@ -3,38 +3,42 @@ OpenStreetMap.hu weboldal
 # Fejlesztése
 A leírás azt feltételezi, hogy Ubuntu Linux -ot használsz.  
 Az én gépemen `~/development/osmhu/` a projekt mappája, lehet hogy meg kell változtatnod, ahol használják a parancsok.
+
 ## A kód megszerzése
 ### Hozzáféréshez szükséges felhasználónév és jelszó
 Felhasználónév és jelszó kell az SVN eléréshez. Kérj.
+
 ### A fájlok letöltése
-```
+```bash
 cd ~/development
 svn co https://bugs.wpsnet.hu/repos/osm/osmhu --username Fodi69
 ```
 Beírod a jelszavad és letölt mindent.
+
 ## Verziókezelés
 Az SVN-hez sok grafikus szerkesztő van, én a `kdesvn` nevű verziókezelőt használom. Telepítése:
-```
+```bash
 sudo apt-get install subversion kdesvn -y
 ```
 Ha nem akarsz grafikus szerkesztőt használni, akkor elég a subversion csomag:
-```
+```bash
 sudo apt-get install subversion -y
 ```
-## Fejlesztés
-### Vagrant alapú fejlesztői virtuális gép segítségével (ajánlott)
+
+## Fejlesztés Vagrant alapú virtuális gép segítségével (ajánlott)
 A projekt tartalmaz egy Vagrantfile állományt, ezzel egy olyan virtuális gép hozható létre, ami fejlesztéshez használható.
 A Vagrant használata esetén a gazdagépre szükséges a vagrant csomag telepítése:
 https://www.vagrantup.com/downloads.html
 
 A projekt könyvtárából a `vagrant up` parancs kiadásával létrejön és elindul a fejlesztői virtuális gép.
-Ezután a `vagrant ssh` paranccsal vezérelhetjük a gépet ssh kapcsolaton keresztül. A létrejövő gép jelenleg Ubuntu 16.04 operációs rendszert tartalmaz.
-```
+Ezután a `vagrant ssh` paranccsal vezérelhetjük a gépet ssh kapcsolaton keresztül. A létrejövő gép jelenleg Ubuntu 18.04 operációs rendszert tartalmaz.
+
+```bash
 cd ~/development/osmhu
-vagrant up
-vagrant ssh
+vagrant up && vagrant ssh
 ```
-#### Vagrant információk
+
+### Virtuális gép felépítése
 A vagrant virtuális gépen automatikusan szinkronizálva van a projekt könyvtára a `/var/www` mappába.  
 Így a gazdagépen szerkesztett fájlok azonnal elérhetőek a virtuális gép számára és fordítva.  
 A virtuális gépen található egy webszerver, amit a gazdagépről a http://localhost:8080/ és a
@@ -42,40 +46,52 @@ https://localhost:8443/ címeken érhetünk el.
 Mivel minden változtatás szinkronizálva van, ezért a gazdagépen való minden szerkesztés azonnal tesztelhető ezen a címen.  
 A vagrant képfájlba automatikusan feltelepítésre kerültek a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
 Ezek a jelszavak a `vagrant.sh` fájlban és a `Makefile`-ban szerkeszthetőek.
-#### Vagrant - mysql adatbázis feltöltése friss osm adatokkal
-```
-vagrant up
-vagrant ssh
+
+### Gyakran használt parancsok
+Az alábbi parancsot **a virtuális gépen belül**, a `vagrant ssh` kapcsolaton keresztül kell kiadni.
+
+- Adatbázis feltöltése korábban exportált adatokkal
+```bash
 cd /var/www
-make all
+make init-existing-db
 ```
-#### Vagrant - mysql export készítése a `mysqldump` használatával
-```
-vagrant up
-vagrant ssh
-cd /var/www
-make export-mysql
-```
-#### Vagrant - frontend fejlesztése
-```
-vagrant up
-vagrant ssh
+
+- JavaScript frontend fejlesztése
+```bash
 cd /var/www
 npm run watch
 ```
-#### Vagrant - Production fájl létrehozása
-```
-vagrant up
-vagrant ssh
+
+- Production build létrehozása
+```bash
 cd /var/www
 npm run build
 ```
 
-### Fejlesztés közben HTTPS használata
-Fejlesztés közben HTTPS használatához [self signed SSL kulcspár létrehozása](/development/self-signed-ssl/README.md) szükséges.
+- Mysql adatbázis létrehozása frissen letöltött osm adatokkal  
+**Fontos!** Mielőtt elkezded a PostgreSQL adatbázis feltöltését, a virtuális gép memóriáját legalább 4GB méretűre kell növelni a [Vagrantfile](Vagrantfile) `vb.memory` beállítással.
+```bash
+cd /var/www
+make init-from-scratch
+```
+Az adatbázis feltöltése és az adatok MySQL -be történő sikeres áttöltése után a virtális gép memóriája visszaállítható az alapértelmezett értékre.
 
-### Fejlesztés vagrant nélkül
-#### Virtuális host
+- Mysql export készítése a `mysqldump` használatával
+```bash
+cd /var/www
+make mysql-export
+```
+
+### HTTPS használata fejlesztéshez
+Fejlesztés közben a HTTPS bekapcsolásához **a host gépen** [self signed SSL kulcspár létrehozása](/development/self-signed-ssl/README.md) szükséges.
+A kulcspár létrehozása után:
+```bash
+cd /var/www
+make https-enable
+```
+
+## Fejlesztés vagrant nélkül (nem friss leírás)
+### Virtuális host
 Megnyitottam az `/etc/hosts` fájlt, például így:
 ```
 gksudo gedit /etc/hosts

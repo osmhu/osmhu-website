@@ -12,10 +12,10 @@ class DuplicateCityException extends Exception
 		$this->cityName = $cityName;
 		$this->alreadyLoadedNodeId = $alreadyLoadedNodeId;
 		$this->newNodeId = $newNodeId;
-		parent::__construct($message, 0, $previous);
+		parent::__construct($this->getErrorMessage(), 0);
 	}
 
-	public function __toString() {
+	public function getErrorMessage() {
 		$message = "#############################################\n";
 		$message.= "# ERROR! Duplicated city place: " . $this->cityName . "\n";
 		$message.= "#############################################\n";
@@ -25,11 +25,15 @@ class DuplicateCityException extends Exception
 		$message.= "[ https://www.openstreetmap.org/node/" . $this->newNodeId . " ]\n";
 		$message.= "Recommended steps to fix the problem:\n";
 		$message.= "1. Resolve the conflict in the global osm database\n";
-		$message.= "2. Delete your local copy of the city you deleted in the global osm db:\n";
-		$message.= "with ONE of the following commands:\n";
+		$message.= "2. Delete your local copy of the city you deleted in the global osm db\n";
+		$message.= "   with ONE of the following commands:\n";
 		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->alreadyLoadedNodeId . ";\n";
 		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->newNodeId . ";\n";
 		return $message;
+	}
+
+	public function __toString() {
+		return $this->getErrorMessage();
 	}
 }
 
