@@ -1,5 +1,6 @@
 OpenStreetMap.hu weboldal
 ===
+
 # Fejlesztése
 A leírás azt feltételezi, hogy Ubuntu Linux -ot használsz.  
 Az én gépemen `~/development/osmhu/` a projekt mappája, lehet hogy meg kell változtatnod, ahol használják a parancsok.
