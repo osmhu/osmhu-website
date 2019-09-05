@@ -16,16 +16,25 @@
 	<div id="content">
 		<h1>Az OpenStreetMap felhasználása</h1>
 
-		<p>A <a href="http://www.openstreetmap.org/">www.openstreetmap.org</a>
-		weblap csak egy nagyon tömör bemutató a projekt lehetőségeiről
-		és a rendelkezésre álló adatokról, és biztosítja az infrastruktúrát a szerkesztéshez. Hasonlóan
-		az openstreetmap.hu oldal is csak néhány funkciót tartalmaz.</p>
+		<p>Az OpenStreetMap nem egy térkép, amit megnézhetünk egy weblapon 
+		vagy láthatunk 1-2 mobil alkalmazásban. Az OpenStreetMap egy
+		- apró részletekig lemenő - térképi adatbázis, amelybe az önkéntes
+		aktivisták összegyűjtik a milliónyi objektumot és adatot.</p>
+		
+		<p>A térképi adatok sokszínűségéből adódóan minden OSM-es weblap és alkalmazás
+		csak egy részlete a rendelekzésre álló adatoknak és lehetőségeknek. Beleértve ezt
+		a weblapot és a <a href="http://www.openstreetmap.org/">www.openstreetmap.org</a>
+		oldalt is.</p>
 
-		<p>Látványosabb felhasználási módokat találhatunk más OSM adatokat használó weboldalakon vagy letölthető szoftverekben. Ezen az oldalon néhány érdekesebb megvalósítást is felsorolunk.</p>
+		<p>Látványosabb felhasználási módokat találhatunk más OSM adatokat 
+		használó weboldalakon vagy letölthető szoftverekben. Ezen az oldalon 
+		néhány érdekesebb megvalósítást is felsorolunk.</p>
 
 		<h2>Letöltés</h2>
 
-		<p>Ha saját GPS-en vagy mobiltelefonon szeretnéd az OSM-et használni, vagy a nyers térképi adatokra lenne szükséged, nézd meg a <a href="/letoltesek">Letöltések oldalt</a>.</p>
+		<p>Ha saját GPS-en vagy mobiltelefonon szeretnéd az OSM-et használni,
+		vagy a nyers térképi adatokra van szükséged, nézd meg a 
+		<a href="/letoltesek">Letöltések oldalt</a>.</p>
 
 		<h2>Internetes példák</h2>
 
@@ -76,6 +85,10 @@
 
 			<li>Összetett alkalmazások
 			<ul class="links nodots">
+				<li>
+					<a href="https://www.freemap.sk/">Freemap.sk</a>
+					- autós, biciklis, gyalogos útvonal tervező. POI-k keresése stb.  Magyarul is működik.
+				</li>
 				<li>
 					<a href="https://www.mapquest.com/">MapQuest</a>
 					- Autó, bicikli és gyalogos útvonal tervezés. Éttermek, szállodák keresése az útvonal mentén.
@@ -152,7 +165,7 @@
 		<h2>További listák</h2>
 		<ul class="links">
 			<li><a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary/Tal%C3%A1lkoz%C3%B3k/2014.06.07-08._L%C3%A1batlan_t%C3%A9rk%C3%A9pez%C3%A9s/press_release#.C3.89rdekess.C3.A9gek_az_OpenStreetMap_k.C3.A9pess.C3.A9geir.C5.91l">Lábatlan sok különböző OSM szolgáltatásban</a> - a helyi térképező összejövetel alkalmával gyűjtöttük össze</li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/User:Grin/bookmarks/hu">grin könyvjelzői</a></li>
+			<li><a href="http://wiki.openstreetmap.org/wiki/User:Grin/bookmarks/hu">grin könyvjelzői</a> - még további hasznos linkekkel</li>
 			<li><a href="http://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services">OSM alapú szolgáltatások listája <sup>(en)</sup></a></li>
 			<li><a href="http://wiki.openstreetmap.org/wiki/Software/Desktop">OSM szoftverek listája <sup>(en)</sup></a></li>
 			<li><a href="http://wiki.openstreetmap.org/wiki/Software/Mobile">Mobil szoftverek listája <sup>(en)</sup></a></li>
