@@ -1,38 +1,66 @@
-/* globals map */
-
-const axios = require('axios');
 const autocompleteJs = require('autocomplete.js');
 
-const overpass = require('../overpass');
-const helpers = require('../helpers');
+const Ajax = require('../Ajax');
 
 module.exports = class Autocomplete {
-	constructor(fieldSelector) {
-		this.fieldSelector = fieldSelector;
-		this.initializeField();
+	constructor(mapInstance) {
+		this.map = mapInstance;
 	}
 
-	initializeField() {
-		this.field = autocompleteJs(this.fieldSelector, { debug: false }, [
-			{ source: Autocomplete.querySearch },
-		]);
-		this.field.on('autocomplete:selected', Autocomplete.resultSelected);
+	/* istanbul ignore next */
+	initUi(fieldSelector) {
+		this.field = autocompleteJs(
+			fieldSelector,
+			{ debug: false },
+			[
+				{
+					source: async (query, cb) => {
+						const results = await Autocomplete.search(query);
+						cb(results);
+					},
+				},
+			],
+		);
+
+		this.field.on('autocomplete:selected', (event, selectedItem) => {
+			if (!selectedItem || !selectedItem.id || !selectedItem.value) return;
+
+			this.processSelection(selectedItem.id, selectedItem.value);
+		});
 	}
 
-	static resultSelected(event, selectedItem) {
-		if (!selectedItem || !selectedItem.value) return;
-
-		const citySelected = selectedItem.value.indexOf(',') === -1;
-		if (citySelected) {
-			const searchField = event.target;
-			searchField.value = `${selectedItem.value}, `;
-			Autocomplete.focusCity(selectedItem.value);
-		} else {
-			Autocomplete.focusStreet(selectedItem.id);
+	/* istanbul ignore next */
+	setFieldValue(newValue) {
+		if (this.field) {
+			this.field.value = newValue;
 		}
 	}
 
-	static async querySearch(query, cb) {
+	async processSelection(selectedId, selectedValue) {
+		const citySelected = selectedValue.indexOf(',') === -1;
+		if (citySelected) {
+			const cityName = selectedValue;
+			this.setFieldValue(`${cityName}, `);
+			const coordinates = await Autocomplete.getCenterCoordinatesByCityName(cityName);
+			this.map.setView([coordinates.lat, coordinates.lon], 14);
+		} else {
+			this.map.focusWay(selectedId);
+		}
+	}
+
+	static async getCenterCoordinatesByCityName(city) {
+		const coordinates = await Ajax.getWithParams('/query/coordinates.php', { name: city });
+
+		const validLat = Object.hasOwnProperty.call(coordinates, 'lat') && coordinates.lat !== null;
+		const validLon = Object.hasOwnProperty.call(coordinates, 'lon') && coordinates.lon !== null;
+
+		if (!validLat || !validLon) {
+			throw new Error('Invalid coordinates returned for city ' + city);
+		}
+		return coordinates;
+	}
+
+	static async search(query) {
 		const { city, street } = Autocomplete.splitQuery(query);
 
 		let results;
@@ -41,13 +69,13 @@ module.exports = class Autocomplete {
 		} else {
 			results = await Autocomplete.searchCity(city);
 		}
-		cb(results);
+		return results;
 	}
 
 	static async searchCity(city) {
 		const cityTerm = city.trim();
 
-		const resultCities = await Autocomplete.queryAutocompleteApi('query/cities.php', { term: cityTerm });
+		const resultCities = await Autocomplete.queryAutocompleteApi('/query/cities.php', { term: cityTerm });
 
 		if (!Array.isArray(resultCities)) {
 			throw new Error('Wrong response from query/cities.php: ' + resultCities);
@@ -61,7 +89,6 @@ module.exports = class Autocomplete {
 
 		const cityTerm = city.trim();
 		const streetTerm = street.trim();
-		const niceCityName = Autocomplete.niceCityName(cityTerm);
 
 		const resultStreets = await Autocomplete.queryAutocompleteApi('/query/streets.php', { city: cityTerm, term: streetTerm });
 
@@ -69,6 +96,7 @@ module.exports = class Autocomplete {
 			throw new Error('Wrong response from query/streets.php: ' + resultStreets);
 		}
 
+		const niceCityName = Autocomplete.niceCityName(cityTerm);
 		return resultStreets.map(resultStreet => ({
 			id: resultStreet.id,
 			value: `${niceCityName}, ${resultStreet.name}`,
@@ -76,11 +104,9 @@ module.exports = class Autocomplete {
 	}
 
 	static async queryAutocompleteApi(url, params) {
-		let response;
+		let result;
 		try {
-			response = await axios.get(url, { params });
-
-			const result = response.data;
+			result = await Ajax.getWithParams(url, params);
 
 			if (!result.length || result.length === 0) {
 				return [];
@@ -88,32 +114,7 @@ module.exports = class Autocomplete {
 
 			return result;
 		} catch (error) {
-			throw new Error('Autocomplete query error: ' + error + '. Response: ' + response.data);
-		}
-	}
-
-	static async focusCity(city) {
-		const response = await axios.get('/query/coordinates.php', { params: { name: city } });
-
-		const coordinates = response.data;
-
-		const validLat = Object.hasOwnProperty.call(coordinates, 'lat') && coordinates.lat !== null;
-		const validLon = Object.hasOwnProperty.call(coordinates, 'lon') && coordinates.lon !== null;
-
-		if (validLat && validLon) {
-			map.setView([coordinates.lat, coordinates.lon], 14);
-		}
-	}
-
-	static async focusStreet(id) {
-		const street = await overpass.getDetailsByTypeAndId('way', id);
-
-		if (street.elements.length === 0) return;
-
-		const way = helpers.findElementById(id, street.elements);
-		const position = helpers.getCenterPosition(way, street.elements);
-		if (position) {
-			map.fitBounds(position.bounds, { maxZoom: 18 });
+			throw new Error('Autocomplete query error: ' + error.responseText);
 		}
 	}
 

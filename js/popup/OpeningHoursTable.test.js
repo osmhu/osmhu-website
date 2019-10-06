@@ -8,6 +8,12 @@ it('ensures leading zeros for values', () => {
 	expect(OpeningHoursTable.ensureLeadingZero('60')).toEqual('60');
 });
 
+it('throws error for invalid opening hours string', () => {
+	expect(() => {
+		OpeningHoursTable.generateTable('invalidString', 1);
+	}).toThrow();
+});
+
 it('renders correctly for non-stop poi', () => {
 	const table = OpeningHoursTable.generateTable('24/7', 1);
 	expect(table).toMatchSnapshot();
@@ -15,6 +21,11 @@ it('renders correctly for non-stop poi', () => {
 
 it('renders correctly for Mo-Su 10:00-19:00', () => {
 	const table = OpeningHoursTable.generateTable('Mo-Su 10:00-19:00', 1);
+	expect(table).toMatchSnapshot();
+});
+
+it('renders correctly for Mo-Fr 09:00-00:00', () => {
+	const table = OpeningHoursTable.generateTable('Mo-Fr 09:00-00:00', 1);
 	expect(table).toMatchSnapshot();
 });
 

@@ -11,8 +11,9 @@ try {
 	$db = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $options);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	$devEnv = 'development' === getenv('APPLICATION_ENV');
+	http_response_code(500);
 
+	$devEnv = 'development' === getenv('APPLICATION_ENV');
 	if ($devEnv) {
 		die('MySQL kapcsolódási hiba: ' . $e->getMessage());
 	} else {

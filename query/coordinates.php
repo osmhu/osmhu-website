@@ -31,8 +31,10 @@ if (isset($_GET['name'])) {
 			$result = $coordinates;
 		}
 	} catch (PDOException $e) {
-		die('MySQL query error: ' . $e->getMessage());
+		http_response_code(500);
+		die('MySQL lekérdezés hiba: ' . $e->getMessage());
 	}
 }
 
+header('Content-type: application/json; charset=utf-8');
 echo json_encode($result);

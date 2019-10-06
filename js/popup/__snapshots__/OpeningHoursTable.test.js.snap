@@ -1,11 +1,175 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`highlights day of the week correctly 1`] = `"<table><tr><td class=\\"day\\">Hétfő</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Kedd</td><td>10:00 - 19:00</td></tr><tr class=\\"highlighted\\"><td class=\\"day\\">Szerda</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Csütörtök</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Péntek</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Szombat</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Vasárnap</td><td>10:00 - 19:00</td></tr></table>"`;
+exports[`highlights day of the week correctly 1`] = `
+<table>
+  <tr>
+    <td class="day">Hétfő</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Kedd</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr class="highlighted">
+    <td class="day">Szerda</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Csütörtök</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Péntek</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szombat</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Vasárnap</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+</table>
+`;
 
-exports[`renders correctly for Mo-Fr 09:00-12:00,13:00-17:00; Sa 08:00-12:00 1`] = `"<table><tr class=\\"highlighted\\"><td class=\\"day\\">Hétfő</td><td>09:00 - 12:00, 13:00 - 17:00</td></tr><tr><td class=\\"day\\">Kedd</td><td>09:00 - 12:00, 13:00 - 17:00</td></tr><tr><td class=\\"day\\">Szerda</td><td>09:00 - 12:00, 13:00 - 17:00</td></tr><tr><td class=\\"day\\">Csütörtök</td><td>09:00 - 12:00, 13:00 - 17:00</td></tr><tr><td class=\\"day\\">Péntek</td><td>09:00 - 12:00, 13:00 - 17:00</td></tr><tr><td class=\\"day\\">Szombat</td><td>08:00 - 12:00</td></tr><tr><td class=\\"day\\">Vasárnap</td><td>zárva</td></tr></table>"`;
+exports[`renders correctly for Mo-Fr 09:00-00:00 1`] = `
+<table>
+  <tr class="highlighted">
+    <td class="day">Hétfő</td>
+    <td>09:00 - 24:00</td>
+  </tr>
+  <tr>
+    <td class="day">Kedd</td>
+    <td>09:00 - 24:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szerda</td>
+    <td>09:00 - 24:00</td>
+  </tr>
+  <tr>
+    <td class="day">Csütörtök</td>
+    <td>09:00 - 24:00</td>
+  </tr>
+  <tr>
+    <td class="day">Péntek</td>
+    <td>09:00 - 24:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szombat</td>
+    <td>zárva</td>
+  </tr>
+  <tr>
+    <td class="day">Vasárnap</td>
+    <td>zárva</td>
+  </tr>
+</table>
+`;
 
-exports[`renders correctly for Mo-Sa 07:00-21:00; Su 08:00-18:00 1`] = `"<table><tr class=\\"highlighted\\"><td class=\\"day\\">Hétfő</td><td>07:00 - 21:00</td></tr><tr><td class=\\"day\\">Kedd</td><td>07:00 - 21:00</td></tr><tr><td class=\\"day\\">Szerda</td><td>07:00 - 21:00</td></tr><tr><td class=\\"day\\">Csütörtök</td><td>07:00 - 21:00</td></tr><tr><td class=\\"day\\">Péntek</td><td>07:00 - 21:00</td></tr><tr><td class=\\"day\\">Szombat</td><td>07:00 - 21:00</td></tr><tr><td class=\\"day\\">Vasárnap</td><td>08:00 - 18:00</td></tr></table>"`;
+exports[`renders correctly for Mo-Fr 09:00-12:00,13:00-17:00; Sa 08:00-12:00 1`] = `
+<table>
+  <tr class="highlighted">
+    <td class="day">Hétfő</td>
+    <td>09:00 - 12:00, 13:00 - 17:00</td>
+  </tr>
+  <tr>
+    <td class="day">Kedd</td>
+    <td>09:00 - 12:00, 13:00 - 17:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szerda</td>
+    <td>09:00 - 12:00, 13:00 - 17:00</td>
+  </tr>
+  <tr>
+    <td class="day">Csütörtök</td>
+    <td>09:00 - 12:00, 13:00 - 17:00</td>
+  </tr>
+  <tr>
+    <td class="day">Péntek</td>
+    <td>09:00 - 12:00, 13:00 - 17:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szombat</td>
+    <td>08:00 - 12:00</td>
+  </tr>
+  <tr>
+    <td class="day">Vasárnap</td>
+    <td>zárva</td>
+  </tr>
+</table>
+`;
 
-exports[`renders correctly for Mo-Su 10:00-19:00 1`] = `"<table><tr class=\\"highlighted\\"><td class=\\"day\\">Hétfő</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Kedd</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Szerda</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Csütörtök</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Péntek</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Szombat</td><td>10:00 - 19:00</td></tr><tr><td class=\\"day\\">Vasárnap</td><td>10:00 - 19:00</td></tr></table>"`;
+exports[`renders correctly for Mo-Sa 07:00-21:00; Su 08:00-18:00 1`] = `
+<table>
+  <tr class="highlighted">
+    <td class="day">Hétfő</td>
+    <td>07:00 - 21:00</td>
+  </tr>
+  <tr>
+    <td class="day">Kedd</td>
+    <td>07:00 - 21:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szerda</td>
+    <td>07:00 - 21:00</td>
+  </tr>
+  <tr>
+    <td class="day">Csütörtök</td>
+    <td>07:00 - 21:00</td>
+  </tr>
+  <tr>
+    <td class="day">Péntek</td>
+    <td>07:00 - 21:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szombat</td>
+    <td>07:00 - 21:00</td>
+  </tr>
+  <tr>
+    <td class="day">Vasárnap</td>
+    <td>08:00 - 18:00</td>
+  </tr>
+</table>
+`;
 
-exports[`renders correctly for non-stop poi 1`] = `"<table><tr class=\\"highlighted\\"><td class=\\"day\\">Non-stop</td><td>(Hétfő-vasárnap 0-24)</td></tr></table>"`;
+exports[`renders correctly for Mo-Su 10:00-19:00 1`] = `
+<table>
+  <tr class="highlighted">
+    <td class="day">Hétfő</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Kedd</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szerda</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Csütörtök</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Péntek</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Szombat</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+  <tr>
+    <td class="day">Vasárnap</td>
+    <td>10:00 - 19:00</td>
+  </tr>
+</table>
+`;
+
+exports[`renders correctly for non-stop poi 1`] = `
+<table>
+  <tr class="highlighted">
+    <td class="day">Non-stop</td>
+    <td>(Hétfő-vasárnap 0-24)</td>
+  </tr>
+</table>
+`;

@@ -1,8 +1,9 @@
-const axios = require('axios');
 const L = require('leaflet');
+
+const Ajax = require('../Ajax');
 const GeoJsonLayer = require('./GeoJsonLayer');
 
-jest.mock('axios');
+jest.mock('../Ajax');
 
 const validGeoJson = JSON.stringify({
 	type: 'Feature',
@@ -16,8 +17,9 @@ const validGeoJson = JSON.stringify({
 });
 
 beforeEach(() => {
-	axios.mockReset();
-	axios.get.mockResolvedValue(validGeoJson);
+	Ajax.mockReset();
+	Ajax.get.mockResolvedValue(validGeoJson);
+	console.log = jest.fn(); // eslint-disable-line no-console
 });
 
 afterEach(() => {
@@ -41,7 +43,7 @@ test('should not download if getLayer is called', () => {
 
 	geoJsonLayer.getLayer();
 
-	expect(axios.get).toHaveBeenCalledTimes(0);
+	expect(Ajax.get).toHaveBeenCalledTimes(0);
 });
 
 test('ensureLoaded should start download if not loaded yet', () => {
@@ -49,11 +51,11 @@ test('ensureLoaded should start download if not loaded yet', () => {
 
 	geoJsonLayer.ensureLoaded();
 
-	expect(axios.get).toHaveBeenCalledTimes(1);
+	expect(Ajax.get).toHaveBeenCalledTimes(1);
 });
 
 test('ensureLoaded should not start download while loading', () => {
-	axios.get.mockImplementation(() => new Promise((resolve) => {
+	Ajax.get.mockImplementation(() => new Promise((resolve) => {
 		const id = setTimeout(() => {
 			clearTimeout(id);
 			resolve(validGeoJson);
@@ -64,21 +66,21 @@ test('ensureLoaded should not start download while loading', () => {
 
 	geoJsonLayer.ensureLoaded();
 
-	expect(axios.get).toHaveBeenCalledTimes(1);
+	expect(Ajax.get).toHaveBeenCalledTimes(1);
 
 	geoJsonLayer.ensureLoaded();
 
-	expect(axios.get).toHaveBeenCalledTimes(1);
+	expect(Ajax.get).toHaveBeenCalledTimes(1);
 });
 
-test('ensureLoaded should not download same content if already downloaded', () => {
+test('ensureLoaded should not download same content if already downloaded', async () => {
 	const geoJsonLayer = new GeoJsonLayer(1, 'displayName', 'testUrl');
 
-	geoJsonLayer.ensureLoaded();
+	await geoJsonLayer.ensureLoaded();
 
-	expect(axios.get).toHaveBeenCalledTimes(1);
+	expect(Ajax.get).toHaveBeenCalledTimes(1);
 
-	geoJsonLayer.ensureLoaded();
+	await geoJsonLayer.ensureLoaded();
 
-	expect(axios.get).toHaveBeenCalledTimes(1);
+	expect(Ajax.get).toHaveBeenCalledTimes(1);
 });

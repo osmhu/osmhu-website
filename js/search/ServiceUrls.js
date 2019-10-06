@@ -5,7 +5,7 @@ module.exports = class ServiceUrls {
 			'https://lz4.overpass-api.de/api/',
 			'https://z.overpass-api.de/api/',
 			'https://overpass.openstreetmap.fr/api/',
-			'https://overpass.kumi.systems/api/'
+			'https://overpass.kumi.systems/api/',
 		];
 	}
 

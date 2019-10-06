@@ -1,6 +1,8 @@
 const isoDayOfWeek = require('date-fns/get_iso_day');
 
 const OpeningHoursTable = require('./popup/OpeningHoursTable');
+const WebsiteUrl = require('./popup/WebsiteUrl');
+const Wheelchair = require('./popup/Wheelchair');
 
 var popup = module.exports = {};
 
@@ -14,102 +16,8 @@ function osmEditUrl(element) {
 	return baseUrl + element.type + '=' + element.id;
 }
 
-function createWheelmapUrl(element) {
-	const baseUrl = 'https://wheelmap.org';
-	let url;
-	if (element.type === 'node') {
-		url = baseUrl + '/nodes/' + element.id;
-	} else if (element.type === 'way') {
-		url = baseUrl + '/nodes/-' + element.id;
-	} else {
-		return false;
-	}
-	return url;
-}
-
-function wheelchairLogo(element) {
-	var unknown = false;
-	var html = '<div class="wheelchair">';
-	const wheelMapUrl = createWheelmapUrl(element);
-	if (wheelMapUrl) {
-		html+= '<a href="' + wheelMapUrl + '" target="_blank">';
-	}
-	var src = '/kepek/';
-	var info = '';
-	if (element.tags.wheelchair === 'yes') {
-		src+= 'wheelchair-green.png';
-		info = 'akadálymentes';
-	} else if (element.tags.wheelchair === 'limited') {
-		src+= 'wheelchair-yellow.png';
-		info = 'részben akadálymentes';
-	} else if (element.tags.wheelchair === 'no') {
-		src+= 'wheelchair-red.png';
-		info = 'nem akadálymentes';
-	} else {
-		unknown = true;
-		html = '';
-	}
-	if (!unknown) {
-		html+= '<img src="' + src + '" alt="' + info + '" title="' + info + '">';
-		html+= '</a>';
-		html+= '</div>';
-	}
-	return html;
-}
-
 popup.upperCaseFirstLetter = (str) => {
 	return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-popup.removeUrlTrailingSlash = (url) => {
-	// Remove trailing slash
-	if (url.substring(url.length - 1) === '/') {
-		return url.substring(0, url.length - 1);
-	}
-	return url;
-};
-
-popup.createShrinkedWebsiteUrlHtml = (websiteUrl, maxLength) => {
-	// Decode URI
-	let niceUrl = decodeURI(websiteUrl);
-	// Remove url beginnings
-	let hiddenUrlBegin = '';
-	let hiddenUrlEnd = '';
-
-	const beginningsToRemove = [
-		'http://www.',
-		'https://www.',
-		'http://',
-		'https://',
-	];
-	for (let i = 0; i < beginningsToRemove.length; i++) {
-		const beginningToRemove = beginningsToRemove[i];
-		if (niceUrl.substring(0, beginningToRemove.length) === beginningToRemove) {
-			niceUrl = niceUrl.substring(beginningToRemove.length);
-			hiddenUrlBegin = beginningToRemove;
-			break;
-		}
-	}
-	let visibleUrl = popup.removeUrlTrailingSlash(niceUrl);
-	// Shrink if too long
-	if (visibleUrl.length > maxLength + 2) {
-		visibleUrl = niceUrl.substring(0, maxLength);
-		hiddenUrlEnd = niceUrl.substring(maxLength);
-	}
-	let html = '';
-	html += '<span class="website-label">Weboldal:&nbsp;</span>';
-	html += '<span class="website-url"><a href="' + websiteUrl + '" target="_blank" title="' + (visibleUrl !== niceUrl ? niceUrl : '') + '">';
-	if (hiddenUrlBegin.length > 0) {
-		html += '<span class="hidden-part">' + hiddenUrlBegin + '</span>';
-	}
-	html += visibleUrl;
-	if (hiddenUrlEnd.length > 0) {
-		html += '<span class="hidden-part">' + hiddenUrlEnd + '</span>';
-		html += '<span class="hidden-indicator"></span>';
-	}
-	html += '</a></span>';
-
-	return html;
 };
 
 // This will return a HTML code, that can be used in a popup
@@ -118,7 +26,7 @@ popup.generateHtml = function (element, options) {
 
 	var html = '<div class="popup-content">';
 
-	html+= wheelchairLogo(element);
+	html+= Wheelchair.createLogo(element.id, element.type, element.tags);
 
 	var title = popup.niceTitle(element.tags);
 	var type = popup.niceType(element.tags);
@@ -146,7 +54,8 @@ popup.generateHtml = function (element, options) {
 	var website = element.tags.website || element.tags['contact:website'];
 	if (website) {
 		html += '<p class="website">';
-		html += popup.createShrinkedWebsiteUrlHtml(website, 34);
+		html += '<span class="website-label">Weboldal:&nbsp;</span>';
+		html += WebsiteUrl.shrink(website, 34);
 		html += '</p>';
 	}
 	html+= '</div>';

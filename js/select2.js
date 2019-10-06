@@ -13,7 +13,6 @@ var url = require('./url');
 var search = require('./search');
 var overpass = require('./overpass');
 var marker = require('./marker');
-var helpers = require('./helpers');
 var iconProvider = require('./iconProvider');
 
 var select2 = module.exports = {};
@@ -47,7 +46,7 @@ function overpassCallback (data) {
 	previousMarkerGroup = markerGroup;
 
 	$.each(elements, function (key, element) {
-		var position = helpers.getCenterPosition(element, elements);
+		var position = overpass.getElementLocationFromResults(element, elements);
 		if (position) {
 			if (element.tags &&
 					(element.tags.amenity || element.tags.shop ||

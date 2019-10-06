@@ -13,14 +13,17 @@ const TileLayers = require('./layers/TileLayers');
 const Overlays = require('./layers/Overlays');
 const GeoJsonLayer = require('../layers/GeoJsonLayer');
 
+const overpass = require('../overpass');
+
 const tileLayers = new TileLayers();
 const overlays = new Overlays();
 
-module.exports = class Map {
+module.exports = class Map extends L.Map {
 	constructor(url, view, activeLayer, activeOverlays) {
 		// Initialize map into #map
-		const map = L.map('map');
-		window.map = map;
+		const map = super('map');
+
+		window.map = map; // TODO remove
 
 		map.addControl(new LocateControl().getMapControl());
 
@@ -79,5 +82,17 @@ module.exports = class Map {
 				map.addLayer(overlays.getById(id).getLayer());
 			}
 		});
+	}
+
+	async focusWay(wayId) {
+		const wayAndContainedNodes = await overpass.getDetailsByTypeAndId('way', wayId);
+
+		if (wayAndContainedNodes.elements.length === 0) return;
+
+		const way = overpass.findElementById(wayId, wayAndContainedNodes.elements);
+		const position = overpass.getElementLocationFromResults(way, wayAndContainedNodes.elements);
+		if (position) {
+			this.fitBounds(position.bounds, { maxZoom: 18 });
+		}
 	}
 };

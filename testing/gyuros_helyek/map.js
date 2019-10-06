@@ -50,7 +50,7 @@ $(function () {
 	function overpassCallback (data) {
 		var elements = data.elements;
 		$.each(elements, function (key, element) {
-			var position = osmhu.helpers.getCenterPosition(element, elements);
+			var position = osmhu.overpass.getElementLocationFromResults(element, elements);
 			if (position) {
 				if (element.tags['leisure']) {
 					var marker = osmhu.marker.fromPoi({

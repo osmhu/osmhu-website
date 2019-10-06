@@ -62,3 +62,18 @@ test('can return layer by id', () => {
 
 	expect(testLayerList.getById(layerId)).toEqual(layers.searchedLayer);
 });
+
+test('throw error if id is not present', () => {
+	const invalidLayerId = 'invalidLayerId';
+
+	const layers = {};
+
+	layers.layer1 = new Layer('string id 1', 'testName', 'testUrl');
+	layers.layer2 = new Layer('string id 2', 'testName', 'testUrl');
+
+	const testLayerList = new LayerList(layers);
+
+	expect(() => {
+		testLayerList.getById(invalidLayerId);
+	}).toThrow();
+});

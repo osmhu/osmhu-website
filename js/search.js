@@ -4,7 +4,6 @@ const $ = require('jquery');
 const Coordinates = require('coordinate-parser');
 
 const NominatimResult = require('./search/NominatimResult');
-var helpers = require('./helpers');
 var overpass = require('./overpass');
 var marker = require('./marker');
 

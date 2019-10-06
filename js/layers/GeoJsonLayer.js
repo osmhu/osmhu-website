@@ -1,6 +1,6 @@
 const L = require('leaflet');
-const axios = require('axios');
 
+const Ajax = require('../Ajax');
 const Layer = require('./Layer');
 
 module.exports = class GeoJsonLayer extends Layer {
@@ -21,14 +21,18 @@ module.exports = class GeoJsonLayer extends Layer {
 		}
 		if (this.loading) return false;
 
-		if (this.url == null) throw new Error('Layer url must be set');
+		if (!this.url) throw new Error('Layer url must be set');
 
 		this.loading = true;
 
-		const response = await axios.get(this.url);
+		const result = await Ajax.get(this.url);
 
-		if (response.data) {
-			this.layer.addData(response.data);
+		if (result) {
+			try {
+				this.layer.addData(result);
+			} catch (error) { //  ex. Invalid GeoJson
+				console.log(error.message); // eslint-disable-line no-console
+			}
 		}
 
 		this.loading = false;

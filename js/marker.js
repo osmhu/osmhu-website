@@ -2,7 +2,6 @@ var $ = require('jquery');
 var L = require('leaflet');
 
 const CopyButton = require('./CopyButton');
-var helpers = require('./helpers');
 var url = require('./url');
 var popup = require('./popup');
 var overpass = require('./overpass');
@@ -96,9 +95,9 @@ marker.fromTypeAndId = function (type, id, zoom, options) {
 		if (result.elements.length === 10000) return options.fallback && options.fallback();
 
 		url.setActivePoi(type, id); // Set the url
-		var element = helpers.findElementById(id, result.elements);
+		var element = overpass.findElementById(id, result.elements);
 		if (!element) return;
-		var position = helpers.getCenterPosition(element, result.elements);
+		var position = overpass.getElementLocationFromResults(element, result.elements);
 		// Settings the map view is needed to calculate popup height
 		map.setView(position.center, zoom, { animate: false });
 

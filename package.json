@@ -8,10 +8,8 @@
 		"@babel/polyfill": "^7.0.0",
 		"@babel/runtime": "^7.1.5",
 		"autocomplete.js": "^0.32.0",
-		"axios": "^0.18.0",
 		"clipboard": "^2.0.1",
 		"coordinate-parser": "^1.0.2",
-		"country-language": "^0.1.7",
 		"date-fns": "^1.29.0",
 		"font-awesome": "^4.5.0",
 		"history.js": "^1.8.0",
@@ -43,16 +41,22 @@
 		"eslint-plugin-import": "^2.14.0",
 		"eslint-plugin-jest": "^22.0.0",
 		"jest": "^23.6.0",
+		"jest-serializer-html-string": "^1.0.1",
 		"uglifyify": "^5.0.1",
 		"watchify": "^3.11.0"
 	},
 	"scripts": {
-		"analysis": "node_modules/.bin/es6-plato -r -d report js",
-		"lint": "node_modules/.bin/eslint js/*",
-		"build": "NODE_ENV=production node_modules/.bin/browserify js/main.js -g uglifyify -o build/bundle.js -p --full-paths=false -t [ babelify ]]",
-		"watch": "node_modules/.bin/watchify --debug js/main.js -o build/bundle.js -v --poll=2000",
-		"test": "node_modules/.bin/jest --coverage",
-		"test-watch": "node_modules/.bin/jest --watchAll --coverage"
+		"analysis": "es6-plato -r -d report js",
+		"lint": "eslint js/*",
+		"build": "NODE_ENV=production browserify js/main.js -g uglifyify -o build/bundle.js -p --full-paths=false -t [ babelify ]]",
+		"watch": "watchify --debug js/main.js -o build/bundle.js -v --poll=2000",
+		"test": "jest --coverage",
+		"test-watch": "jest --watchAll --coverage"
+	},
+	"jest": {
+		"snapshotSerializers": [
+			"jest-serializer-html-string"
+		]
 	},
 	"author": "Fodor Ferenc",
 	"license": "MIT"

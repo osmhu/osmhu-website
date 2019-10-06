@@ -67,6 +67,74 @@ overpass.getDetailsByTypeAndId = function (type, id) {
 	return $.getJSON(query);
 };
 
+// Search an element with the given id in a list of elements
+overpass.findElementById = function (id, elements) {
+	let idNumber = parseInt(id, 10);
+ 	let found = $.grep(elements, function (element) {
+		return parseInt(element.id, 10) === idNumber;
+	});
+	return found[0];
+};
+
+overpass.getElementLocationFromResults = function (element, allElements) {
+	if (!element) return;
+
+	var position;
+	var bounds;
+	switch (element.type) {
+		case 'way':
+			var wayParts = [];
+			$.each(element.nodes, function (i, nodeId) {
+				var node = overpass.findElementById(nodeId, allElements);
+				wayParts.push(new L.LatLng(node.lat, node.lon));
+			});
+			var polyline = L.polyline(wayParts, {color: 'red'});
+			bounds = polyline.getBounds();
+			position = bounds.getCenter();
+			break;
+		case 'relation':
+			var polygonParts = [];
+			var adminCentre = false;
+			$.each(element.members, function (i, member) {
+				if (member.role === 'admin_centre') {
+					adminCentre = overpass.findElementById(member.ref, allElements);
+				}
+				if (member.type === 'way') {
+					var way = overpass.findElementById(member.ref, allElements);
+					$.each(way.nodes, function (j, nodeId) {
+						var node = overpass.findElementById(nodeId, allElements);
+						polygonParts.push(new L.LatLng(node.lat, node.lon));
+					});
+				} else if (member.type === 'node') {
+					var node = overpass.findElementById(member.ref, allElements);
+					polygonParts.push(new L.LatLng(node.lat, node.lon));
+				}
+			});
+			// eslint-disable-next-line no-var
+			var polygon = L.polygon(polygonParts, { color: 'red', fill: true });
+			bounds = polygon.getBounds();
+			if (adminCentre) {
+				position = new L.LatLng(adminCentre.lat, adminCentre.lon);
+			} else {
+				position = bounds.getCenter();
+			}
+			break;
+		case 'node':
+			if (!element.tags) {
+				return;
+			}
+			position = new L.LatLng(element.lat, element.lon);
+			break;
+		default:
+			console.error('Unknown type');
+	}
+
+	return {
+		center: position,
+		bounds: bounds
+	};
+};
+
 /**
  * Generate a complex query url, that can be later given to an overpassLayer
  * Examples:

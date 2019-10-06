@@ -122,9 +122,10 @@ module.exports = class DirectionsControl {
 		const city = parts[0];
 
 		let allOtherParts = '';
-		parts.forEach((part) => {
+		for (let i = 1; i < parts.length; i++) {
+			const part = parts[i];
 			allOtherParts += `${part}, `;
-		});
+		}
 
 		return `${allOtherParts}${city}, Hungary`;
 	}

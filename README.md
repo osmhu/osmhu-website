@@ -1,35 +1,35 @@
-OpenStreetMap.hu weboldal
-===
+# OpenStreetMap.hu weboldal
 
-# Fejlesztése
-A leírás azt feltételezi, hogy Ubuntu Linux -ot használsz.  
+## Előszó
+
+A leírás azt feltételezi, hogy Ubuntu Linux -ot használsz, de bármilyen Linuxon működnie kell.  
 Az én gépemen `~/development/osmhu/` a projekt mappája, lehet hogy meg kell változtatnod, ahol használják a parancsok.
 
 ## A kód megszerzése
+
 ### Hozzáféréshez szükséges felhasználónév és jelszó
+
 Felhasználónév és jelszó kell az SVN eléréshez. Kérj.
 
 ### A fájlok letöltése
+
 ```bash
 cd ~/development
 svn co https://bugs.wpsnet.hu/repos/osm/osmhu --username Fodi69
 ```
+
 Beírod a jelszavad és letölt mindent.
 
 ## Verziókezelés
-Az SVN-hez sok grafikus szerkesztő van, én a `kdesvn` nevű verziókezelőt használom. Telepítése:
-```bash
-sudo apt-get install subversion kdesvn -y
-```
-Ha nem akarsz grafikus szerkesztőt használni, akkor elég a subversion csomag:
-```bash
-sudo apt-get install subversion -y
-```
+
+[Subversion (SVN)](https://subversion.apache.org/)
 
 ## Fejlesztés Vagrant alapú virtuális gép segítségével (ajánlott)
+
 A projekt tartalmaz egy Vagrantfile állományt, ezzel egy olyan virtuális gép hozható létre, ami fejlesztéshez használható.
-A Vagrant használata esetén a gazdagépre szükséges a vagrant csomag telepítése:
-https://www.vagrantup.com/downloads.html
+A Vagrant használata esetén a gazdagépre szükséges a vagrant telepítése:
+
+[Vagrant letöltése](https://www.vagrantup.com/downloads.html)
 
 A projekt könyvtárából a `vagrant up` parancs kiadásával létrejön és elindul a fejlesztői virtuális gép.
 Ezután a `vagrant ssh` paranccsal vezérelhetjük a gépet ssh kapcsolaton keresztül. A létrejövő gép jelenleg Ubuntu 18.04 operációs rendszert tartalmaz.
@@ -40,56 +40,75 @@ vagrant up && vagrant ssh
 ```
 
 ### Virtuális gép felépítése
+
 A vagrant virtuális gépen automatikusan szinkronizálva van a projekt könyvtára a `/var/www` mappába.  
 Így a gazdagépen szerkesztett fájlok azonnal elérhetőek a virtuális gép számára és fordítva.  
-A virtuális gépen található egy webszerver, amit a gazdagépről a http://localhost:8080/ és a
-https://localhost:8443/ címeken érhetünk el.  
 Mivel minden változtatás szinkronizálva van, ezért a gazdagépen való minden szerkesztés azonnal tesztelhető ezen a címen.  
-A vagrant képfájlba automatikusan feltelepítésre kerültek a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
+A virtuális gépre automatikusan feltelepítésre kerültek a szükséges webszerver, a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
 Ezek a jelszavak a `vagrant.sh` fájlban és a `Makefile`-ban szerkeszthetőek.
 
-### Gyakran használt parancsok
-Az alábbi parancsot **a virtuális gépen belül**, a `vagrant ssh` kapcsolaton keresztül kell kiadni.
+### Virtuális gép weboldalának elérése
 
-- Adatbázis feltöltése korábban exportált adatokkal
+Gazdagépen:  
+[http://localhost:8080/](http://localhost:8080/)
+
+### Gyakran használt parancsok
+
+Az alábbi parancsokat **a virtuális gépen belül**, a `vagrant ssh` kapcsolaton keresztül kell kiadni.
+
+#### Adatbázis feltöltése korábban exportált adatokkal
+
 ```bash
 cd /var/www
 make init-existing-db
 ```
 
-- JavaScript frontend fejlesztése
+#### JavaScript frontend fejlesztése (újrafordítás minden szerkesztésnél)
+
 ```bash
 cd /var/www
 npm run watch
 ```
 
-- Production build létrehozása
+#### Production build létrehozása
+
 ```bash
 cd /var/www
 npm run build
 ```
 
-- Mysql adatbázis létrehozása frissen letöltött osm adatokkal  
+#### Mysql adatbázis létrehozása frissen letöltött osm adatokkal  
+
 **Fontos!** Mielőtt elkezded a PostgreSQL adatbázis feltöltését, a virtuális gép memóriáját legalább 4GB méretűre kell növelni a [Vagrantfile](Vagrantfile) `vb.memory` beállítással.
+
 ```bash
 cd /var/www
 make init-from-scratch
 ```
+
 Az adatbázis feltöltése és az adatok MySQL -be történő sikeres áttöltése után a virtális gép memóriája visszaállítható az alapértelmezett értékre.
 
-- Mysql export készítése a `mysqldump` használatával
+#### Mysql export készítése a `mysqldump` használatával
+
 ```bash
 cd /var/www
 make mysql-export
 ```
 
 ### HTTPS használata fejlesztéshez
+
 Fejlesztés közben a HTTPS bekapcsolásához **a host gépen** [self signed SSL kulcspár létrehozása](/development/self-signed-ssl/README.md) szükséges.
 A kulcspár létrehozása után:
+
 ```bash
 cd /var/www
 make https-enable
 ```
+
+HTTPS port gazdagépen:  
+[http://localhost:8443/](http://localhost:8443/)
+
+### [Település lakosság adatok hozzáadása](/development/nepessegi_adatok.md)
 
 ## Fejlesztés vagrant nélkül (nem friss leírás)
 ### Virtuális host
@@ -106,7 +125,7 @@ A kód néhány helyen használja ezt a címet, így ne változtasd meg, ha ninc
 A kód az apache2 webszerverrel működik megbízhatóan.
 Telepítése:
 ```
-sudo apt-get install apache2 php5 libapache2-mod-php5 php5-mysql php5-pgsql -y
+sudo apt-get install -y apache2 php5 libapache2-mod-php5 php5-mysql php5-pgsql
 sudo a2enmod php5 # php fájlok futtatása
 sudo a2enmod include # server side includes
 sudo a2enmod rewrite # rewrite szabályok
@@ -169,7 +188,7 @@ Eredmény: létrejön a `build/bundle.js`.
 #### MySQL telepítése
 Telepítés:
 ```
-sudo apt-get install mysql-server mysql-client -y
+sudo apt-get install -y mysql-server mysql-client
 ```
 Állítsd be az adminisztrátor jelszót, ez lehet erős vagy gyenge jelszó, attól függően, hogy a géped mennyire szeretnéd biztonságban tudni. Ezt a jelszót fejlesztés közben nem fogod használni, de azért ne veszítsd el. A parancs:
 ```
@@ -240,5 +259,3 @@ mysql -u osmhu -p osm_hu < db.txt
 cd ~/development/osmhu/scripts
 APPLICATION_ENV="development" php copydb.php
 ```
-##### Népesség adatok hozzáadása
-Lásd `development/nepessegi_adatok.txt`

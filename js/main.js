@@ -84,7 +84,8 @@ if (params.type && params.id) {
 // Update Org urls on page load
 url.updateOrgUrls();
 
-const autocomplete = new Autocomplete('#search-area input.autocomplete');
+const autocomplete = new Autocomplete(map);
+autocomplete.initUi('#search-area input.autocomplete');
 
 // Focus search field in browsers on load
 var isMobile = $(window).width() < 699;

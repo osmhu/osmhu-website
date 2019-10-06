@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* globals document */
 
 const ClipboardJS = require('clipboard/dist/clipboard.min');

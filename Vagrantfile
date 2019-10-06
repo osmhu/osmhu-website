@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
+  config.vm.network "forwarded_port", guest: 22, host: 2322, id: "ssh" # Explicitly override the default forwarded SSH port.
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 443, host: 8443
 
@@ -29,6 +30,7 @@ Vagrant.configure("2") do |config|
   # Virtualbox specific configuration
   config.vm.provider :virtualbox do |vb|
     vb.name = "osmhu-development"
+    vb.customize ["modifyvm", :id, "--description", "Development machine for osmhu, start with vagrant up from project directory"]
     vb.memory = "1024"
     #vb.memory = "4096" # need more RAM when running osm2pgsql (import OSM data into PostgreSQL)
   end
