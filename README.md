@@ -81,6 +81,8 @@ npm run build
 
 **Fontos!** Mielőtt elkezded a PostgreSQL adatbázis feltöltését, a virtuális gép memóriáját legalább 4GB méretűre kell növelni a [Vagrantfile](Vagrantfile) `vb.memory` beállítással.
 
+Ha már korábban is futtattad, akkor a development/hungary-latest.osm.pbf letörlésével kényszerítheted ki friss adatok letöltéstét.
+
 ```bash
 cd /var/www
 make init-from-scratch
