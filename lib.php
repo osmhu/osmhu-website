@@ -125,7 +125,7 @@ class StreetsDB
 
 	function change_city_id($oldCity, $newCity) {
 		try {
-			$stmt = $this->mysql->prepare('UPDATE places SET osm_id = :newId WHERE osm_id = :oldId');
+			$stmt = $this->mydb->prepare('UPDATE places SET osm_id = :newId WHERE osm_id = :oldId');
 			$res = $stmt->execute(array(
 				':oldId' => $oldCity->osm_id,
 				':newId' => $newCity->osm_id,
