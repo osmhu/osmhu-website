@@ -1,4 +1,5 @@
 const L = require('leaflet');
+const log = require('loglevel');
 
 const Ajax = require('../Ajax');
 const GeoJsonLayer = require('./GeoJsonLayer');
@@ -19,7 +20,7 @@ const validGeoJson = JSON.stringify({
 beforeEach(() => {
 	Ajax.mockReset();
 	Ajax.get.mockResolvedValue(validGeoJson);
-	console.log = jest.fn(); // eslint-disable-line no-console
+	log.setLevel('silent');
 });
 
 afterEach(() => {

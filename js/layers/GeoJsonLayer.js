@@ -1,4 +1,5 @@
 const L = require('leaflet');
+const log = require('loglevel');
 
 const Ajax = require('../Ajax');
 const Layer = require('./Layer');
@@ -30,8 +31,8 @@ module.exports = class GeoJsonLayer extends Layer {
 		if (result) {
 			try {
 				this.layer.addData(result);
-			} catch (error) { //  ex. Invalid GeoJson
-				console.log(error.message); // eslint-disable-line no-console
+			} catch (error) { // ex. Invalid GeoJson
+				log.warn(error.message);
 			}
 		}
 

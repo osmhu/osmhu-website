@@ -6,7 +6,6 @@ jest.mock('../Ajax');
 
 beforeEach(() => {
 	Ajax.mockReset();
-	console.log = jest.fn(); // eslint-disable-line no-console
 });
 
 afterEach(() => {

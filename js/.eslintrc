@@ -9,7 +9,14 @@
         "allowForLoopAfterthoughts": true
       }
     ],
-    "prefer-template": "off"
+    "prefer-template": "off",
+    "max-len": ["error", 120, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false,
+      "ignoreRegExpLiterals": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }]
   },
   "plugins": [
     "jest"

@@ -91,7 +91,7 @@ module.exports = class OpeningHoursTable {
 
 			return table;
 		} catch (error) {
-			throw Error(`Unable to parse opening hours string '${openingHoursString}': ${error}`);
+			throw new Error(`Unable to parse opening hours string '${openingHoursString}': ${error}`);
 		}
 	}
 };

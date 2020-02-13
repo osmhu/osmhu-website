@@ -3,11 +3,11 @@
 const $ = require('jquery');
 const Coordinates = require('coordinate-parser');
 
+const MobileDetector = require('./MobileDetector');
 const NominatimResult = require('./search/NominatimResult');
-var overpass = require('./overpass');
-var marker = require('./marker');
+const Marker = require('./marker/Marker');
 
-var nominatimUrl = require('./search/ServiceUrls').nominatimUrl;
+const nominatimUrl = 'https://nominatim.openstreetmap.org/search';
 
 var search = module.exports = {};
 
@@ -100,58 +100,44 @@ search.resultRenderer = function (result) {
 };
 
 search.convertToLatLon = (string) => {
-  const coordinates = new Coordinates(string);
+	const coordinates = new Coordinates(string);
 
-  return {
-    lat: coordinates.getLatitude(),
-    lon: coordinates.getLongitude(),
-  };
+	return {
+		lat: coordinates.getLatitude(),
+		lon: coordinates.getLongitude(),
+	};
 };
 
 search.focusIfCoordinates = (query) => {
-  try {
-    const { lat, lon } = search.convertToLatLon(query.trim());
+	try {
+		const { lat, lon } = search.convertToLatLon(query.trim());
 
-    window.map.setView([lat, lon], 14);
+		window.map.setView([lat, lon], 14);
 
-    return true;
-  } catch (error) {
-    return false;
-  }
+		return true;
+	} catch (error) {
+		return false;
+	}
 };
 
 var visibleSearchResult;
 
-search.details = function (type, id, boundingbox, options) {
+search.details = async (type, id, boundingbox) => {
 	if (visibleSearchResult) {
 		map.removeLayer(visibleSearchResult);
 		visibleSearchResult = null;
 	}
 
-	var zoom = map.getBoundsZoom([
-		[ boundingbox[0], boundingbox[2] ],
-		[ boundingbox[1], boundingbox[3] ]
+	const zoom = map.getBoundsZoom([
+		[boundingbox[0], boundingbox[2]],
+		[boundingbox[1], boundingbox[3]],
 	]);
 
-	var isMobile = $(window).width() < 699;
-	if (isMobile) {
+	if (MobileDetector.isMobile()) {
 		searchResults.hide(200);
 	}
 	$('body').addClass('loading');
 
-	marker.fromTypeAndId(type, id, zoom, {
-		fallback: function () {
-			var fallbackMarker = L.marker([ options.lat, options.lon ]);
-			fallbackMarker.bindPopup('<h2>' + options.name + '</h2>', {
-				offset: L.point(0, -24)
-			});
-			fallbackMarker.addTo(map).openPopup();
-			map.setView([ options.lat, options.lon ], zoom, { animate: false });
-			$('body').removeClass('loading');
-		},
-		callback: function (displayedMarker) {
-			visibleSearchResult = displayedMarker;
-			$('body').removeClass('loading');
-		}
-	});
+	visibleSearchResult = await Marker.fromTypeAndId(type, id, zoom, map);
+	$('body').removeClass('loading');
 };

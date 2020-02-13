@@ -8,21 +8,27 @@ const $ = require('jquery');
 var queryString = require('query-string');
 var params = queryString.parse(location.search);
 
-var search = require('./search');
-var DirectionsApi = require('./directions/DirectionsApi');
-var DirectionsControl = require('./directions/DirectionsControl');
-var DirectionsResultLayer = require('./directions/DirectionsResultLayer');
-var url = require('./url');
-var marker = require('./marker');
+const MobileDetector = require('./MobileDetector');
+const search = require('./search');
+const DirectionsApi = require('./directions/DirectionsApi');
+const DirectionsControl = require('./directions/DirectionsControl');
+const DirectionsResultLayer = require('./directions/DirectionsResultLayer');
+const Marker = require('./marker/Marker');
 var introduction = require('./introduction');
-var overpass = require('./overpass');
+
+const OverpassEndpoint = require('./poi/OverpassEndpoint');
+const PoiLayer = require('./poi/PoiLayer');
 
 // Initializes all autocomplete fields
 const Autocomplete = require('./search/Autocomplete');
 
+const Url = require('./url/Url');
+
+const share = require('./share');
+
 var select2 = require('./select2');
 var promotion = require('./promotion');
-var Map = require('./map/Map');
+const Map = require('./map/Map');
 
 params.zoom = params.zoom || params.mzoom; // Backwards compatibility with old mzoom url's
 
@@ -44,9 +50,7 @@ if (markerDefined) {
 	zoom = params.zoom;
 }
 
-const map = new Map(
-	url,
-	{
+const map = new Map({
 		lat:   lat,
 		lon:   lon,
 		zoom:  zoom,
@@ -60,6 +64,9 @@ const map = new Map(
 	}
 );
 
+const url = new Url(map, share);
+url.bindUrlUpdateHooks();
+
 $(window).on('updateUrl', url.update);
 
 $('#introduction-toggler').on('click', introduction.toggle);
@@ -68,17 +75,12 @@ $(window).on('search-results-show', introduction.overDrawn);
 $(window).on('search-results-hide', introduction.overDrawnEnd);
 
 if (markerDefined) {
-	// Display a marker at the given position with the text in the url
-	marker.displayOnLoad({
-		lat:  lat,
-		lon:  lon,
-		text: params.mtext
-	});
+	Marker.displayRedMarker(map, [lat, lon], params.mtext);
 }
 
 // If the params define an osm type and id
 if (params.type && params.id) {
-	marker.fromTypeAndId(params.type, params.id, params.zoom);
+	Marker.fromTypeAndId(params.type, params.id, params.zoom, map);
 }
 
 // Update Org urls on page load
@@ -88,8 +90,7 @@ const autocomplete = new Autocomplete(map);
 autocomplete.initUi('#search-area input.autocomplete');
 
 // Focus search field in browsers on load
-var isMobile = $(window).width() < 699;
-if (!isMobile) {
+if (!MobileDetector.isMobile()) {
 	$('input#text-search').focus();
 }
 
@@ -98,7 +99,7 @@ $('#search form').on('submit', function (event) {
 
 	var selectedPoiGroup  = $('#poi-search').select2('val');
 	if (selectedPoiGroup.length > 0) {
-		select2.poiSearch(selectedPoiGroup);
+		PoiLayer.displayPoiLayer(map, selectedPoiGroup);
 	}
 
 	var field = $('input#text-search');
@@ -120,12 +121,12 @@ $(document).ready(() => {
 	select2.initialize();
 
 	if (params.poi) {
-		select2.poiSearch(params.poi);
+		PoiLayer.displayPoiLayer(window.map, params.poi);
 		select2.set(params.poi);
 	}
 
 	setTimeout(() => {
-		overpass.measureEndpointLoadTimes();
+		OverpassEndpoint.measureEndpointLoadTimes();
 	}, 1000);
 });
 
@@ -133,8 +134,7 @@ $(document).ready(() => {
 window.searchDetails = search.details;
 
 function repositionMap () {
-	var isMobile = $(window).width() < 699;
-	if (isMobile) {
+	if (MobileDetector.isMobile()) {
 		$('#map-container').css('top', $('#header').css('height'))
 	}
 }

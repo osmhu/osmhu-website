@@ -21,9 +21,11 @@
 		"leaflet-overpass-layer": "^2.8.3",
 		"leaflet.locatecontrol": "^0.65.1",
 		"leaflet.markercluster": "^1.4.1",
+		"loglevel": "^1.6.6",
 		"moment": "^2.22.2",
 		"normalize.css": "^8.0.1",
 		"opening_hours": "^3.5.0",
+		"present": "^1.0.0",
 		"query-string": "^6.2.0",
 		"select2": "^3.5.2-browserify"
 	},
@@ -47,7 +49,7 @@
 	},
 	"scripts": {
 		"analysis": "es6-plato -r -d report js",
-		"lint": "eslint js/*",
+		"lint": "eslint js/",
 		"build": "NODE_ENV=production browserify js/main.js -g uglifyify -o build/bundle.js -p --full-paths=false -t [ babelify ]]",
 		"watch": "watchify --debug js/main.js -o build/bundle.js -v --poll=2000",
 		"test": "jest --coverage",

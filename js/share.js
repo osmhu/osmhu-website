@@ -15,7 +15,7 @@ share.getText = function () {
 
 share.setText = function (text) {
 	marker.text = text;
-	$(window).trigger('updateUrl');
+	share.triggerChangeNotifierCallback();
 };
 
 share.getMarkerPosition = function () {
@@ -32,7 +32,19 @@ share.toggle = function () {
 	} else {
 		openPopup();
 	}
-	$(window).trigger('updateUrl');
+	share.triggerChangeNotifierCallback();
+};
+
+let changeNotifierCallback = null;
+
+share.setChangeNotifierCallback = (callback) => {
+	changeNotifierCallback = callback;
+};
+
+share.triggerChangeNotifierCallback = () => {
+	if (changeNotifierCallback) {
+		changeNotifierCallback();
+	}
 };
 
 function openPopup () {
@@ -52,7 +64,7 @@ function openPopup () {
 		}).openPopup();
 
 		$('#popup-share-text').val(share.getText());
-		$(window).trigger('updateUrl');
+		share.triggerChangeNotifierCallback();
 
 		bindPopupActions();
 	});
@@ -63,7 +75,7 @@ function openPopup () {
 		var needToUpdate = $('#popup-share-text').val() !== share.getText();
 		if (needToUpdate) {
 			$('#popup-share-text').val(share.getText());
-			$(window).trigger('updateUrl');
+			share.triggerChangeNotifierCallback();
 		}
 
 		bindPopupActions();
@@ -102,7 +114,7 @@ function closePopup () {
 		map.removeLayer(marker);
 	}
 	marker = null;
-	$(window).trigger('updateUrl');
+	share.triggerChangeNotifierCallback();
 }
 
 function popupContent () {
