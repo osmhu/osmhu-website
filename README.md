@@ -70,6 +70,13 @@ cd /var/www
 npm run watch
 ```
 
+#### Tesztek futtatása fejlesztés közben (újrafuttatás minden szerkesztésnél)
+
+```bash
+cd /var/www
+npm run test-watch
+```
+
 #### Production build létrehozása
 
 ```bash
@@ -77,11 +84,18 @@ cd /var/www
 npm run build
 ```
 
+#### JavaScript frontend tesztelése
+
+```bash
+cd /var/www
+npm run test
+```
+
 #### Mysql adatbázis létrehozása frissen letöltött osm adatokkal  
 
 **Fontos!** Mielőtt elkezded a PostgreSQL adatbázis feltöltését, a virtuális gép memóriáját legalább 4GB méretűre kell növelni a [Vagrantfile](Vagrantfile) `vb.memory` beállítással.
 
-Ha már korábban is futtattad, akkor a development/hungary-latest.osm.pbf letörlésével kényszerítheted ki friss adatok letöltéstét.
+Ha már korábban is futtattad, akkor a `development/hungary-latest.osm.pbf` letörlésével kényszerítheted ki friss adatok letöltéstét.
 
 ```bash
 cd /var/www
