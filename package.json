@@ -50,8 +50,8 @@
 	"scripts": {
 		"analysis": "es6-plato -r -d report js",
 		"lint": "eslint js/",
-		"build": "NODE_ENV=production browserify js/main.js -g uglifyify -o build/bundle.js -p --full-paths=false -t [ babelify ]]",
-		"watch": "watchify --debug js/main.js -o build/bundle.js -v --poll=2000",
+		"build": "NODE_ENV=production browserify js/main.js --global-transform=uglifyify --outfile build/bundle.js --full-paths=false --transform [ babelify ]]",
+		"watch": "watchify js/main.js --entry js/main.js --outfile build/bundle.js --debug --verbose --poll=2000",
 		"test": "jest --coverage",
 		"test-watch": "jest --watchAll --coverage"
 	},
