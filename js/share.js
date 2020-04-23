@@ -1,6 +1,7 @@
 var L = require('leaflet');
 
 const CopyButton = require('./CopyButton');
+const UrlParamChangeNotifier = require('./url/UrlParamChangeNotifier');
 
 var share = module.exports = {};
 
@@ -15,7 +16,7 @@ share.getText = function () {
 
 share.setText = function (text) {
 	marker.text = text;
-	share.triggerChangeNotifierCallback();
+	UrlParamChangeNotifier.trigger();
 };
 
 share.getMarkerPosition = function () {
@@ -32,19 +33,7 @@ share.toggle = function () {
 	} else {
 		openPopup();
 	}
-	share.triggerChangeNotifierCallback();
-};
-
-let changeNotifierCallback = null;
-
-share.setChangeNotifierCallback = (callback) => {
-	changeNotifierCallback = callback;
-};
-
-share.triggerChangeNotifierCallback = () => {
-	if (changeNotifierCallback) {
-		changeNotifierCallback();
-	}
+	UrlParamChangeNotifier.trigger();
 };
 
 function openPopup () {
@@ -64,7 +53,7 @@ function openPopup () {
 		}).openPopup();
 
 		$('#popup-share-text').val(share.getText());
-		share.triggerChangeNotifierCallback();
+		UrlParamChangeNotifier.trigger();
 
 		bindPopupActions();
 	});
@@ -75,7 +64,7 @@ function openPopup () {
 		var needToUpdate = $('#popup-share-text').val() !== share.getText();
 		if (needToUpdate) {
 			$('#popup-share-text').val(share.getText());
-			share.triggerChangeNotifierCallback();
+			UrlParamChangeNotifier.trigger();
 		}
 
 		bindPopupActions();
@@ -114,7 +103,7 @@ function closePopup () {
 		map.removeLayer(marker);
 	}
 	marker = null;
-	share.triggerChangeNotifierCallback();
+	UrlParamChangeNotifier.trigger();
 }
 
 function popupContent () {

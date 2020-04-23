@@ -1,6 +1,6 @@
 # Self signed SSL kulcspár létrehozása
 
-Linuxon:
+Host gépen (linux):
 
 1. [Brew](https://brew.sh/) telepítése
 

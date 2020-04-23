@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
     vb.name = "osmhu-development"
     vb.customize ["modifyvm", :id, "--description", "Development machine for osmhu, start with vagrant up from project directory"]
     vb.memory = "1024"
-    #vb.memory = "4096" # need more RAM when running osm2pgsql (import OSM data into PostgreSQL)
+    # vb.memory = "4096" # need more RAM when running osm2pgsql (import OSM data into PostgreSQL)
   end
 
   # Enable provisioning with a shell script
@@ -40,4 +40,11 @@ Vagrant.configure("2") do |config|
 
   # Sync folders
   config.vm.synced_folder ".", "/vagrant", fsnotify: true
+
+  # Restart apache2 after startup (sites-enabled only becomes available after mounting /vagrant)
+  config.trigger.after :up do |trigger|
+    trigger.name = "Restart apache2"
+    trigger.info = "Restarting apache2..."
+    trigger.run_remote = { inline: "systemctl restart apache2" }
+  end
 end

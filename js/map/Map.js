@@ -6,6 +6,7 @@ L.Icon.Default.imagePath = '/node_modules/leaflet/dist/images/';
 
 const Ajax = require('../Ajax');
 
+const ZoomControl = require('./controls/ZoomControl');
 const LocateControl = require('./controls/LocateControl');
 const ScaleControl = require('./controls/ScaleControl');
 const MarkerCreatorControl = require('./controls/MarkerCreatorControl');
@@ -19,15 +20,21 @@ const OverpassQuery = require('../poi/OverpassQuery');
 const OverpassEndpoint = require('../poi/OverpassEndpoint');
 const Coordinate = require('../poi/Coordinate');
 
+const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
+
 const tileLayers = new TileLayers();
 const overlays = new Overlays();
 
 module.exports = class Map extends L.Map {
 	constructor(initialView, defaultBaseLayerId, defaultOverlaysOnLoad) {
 		// Initialize map into #map
-		const map = super('map');
+		const map = super('map', {
+			zoomControl: false,
+		});
 
 		window.map = map; // TODO remove
+
+		map.addControl(new ZoomControl().getMapControl());
 
 		map.addControl(new LocateControl().getMapControl());
 
@@ -50,7 +57,7 @@ module.exports = class Map extends L.Map {
 		map.setView([initialView.lat, initialView.lon], initialView.zoom);
 
 		map.on('moveend', () => {
-			this.triggerChangeNotifier();
+			UrlParamChangeNotifier.trigger();
 		});
 
 		// On base layer switch, zoom to maxZoom if the new layers maxZoom is exceeded
@@ -61,7 +68,7 @@ module.exports = class Map extends L.Map {
 				map.setZoom(newMaxZoom);
 			}
 			this.activeBaseLayerId = event.layer.options.id;
-			this.triggerChangeNotifier();
+			UrlParamChangeNotifier.trigger();
 		});
 
 		this.activeOverlayIds = [];
@@ -74,7 +81,7 @@ module.exports = class Map extends L.Map {
 				overlay.ensureLoaded();
 			}
 			this.activeOverlayIds.push(overlayId);
-			this.triggerChangeNotifier();
+			UrlParamChangeNotifier.trigger();
 		});
 
 		map.on('overlayremove', (event) => {
@@ -84,7 +91,7 @@ module.exports = class Map extends L.Map {
 					this.activeOverlayIds.splice(i, 1);
 				}
 			}
-			this.triggerChangeNotifier();
+			UrlParamChangeNotifier.trigger();
 		});
 
 		// Display given overlays on load (must be called after 'overlayadd' listener is added)
@@ -101,16 +108,6 @@ module.exports = class Map extends L.Map {
 
 	getActiveOverlayIds() {
 		return this.activeOverlayIds;
-	}
-
-	setChangeNotifierCallback(callback) {
-		this.changeNotifierCallback = callback;
-	}
-
-	triggerChangeNotifier() {
-		if (this.changeNotifierCallback) {
-			this.changeNotifierCallback();
-		}
 	}
 
 	async focusWay(wayId) {

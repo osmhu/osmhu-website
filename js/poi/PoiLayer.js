@@ -6,25 +6,22 @@ require('leaflet-overpass-layer/dist/OverPassLayer.bundle'); // eslint-disable-l
 // Creates L.markerClusterGroup function
 require('leaflet.markercluster/dist/leaflet.markercluster'); // eslint-disable-line import/no-unassigned-import
 
+const MobileDetector = require('../MobileDetector');
 const Marker = require('../marker/Marker');
 const OverpassQuery = require('./OverpassQuery');
 const OverpassEndpoint = require('./OverpassEndpoint');
+const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
+const PopupHtmlCreatorAsync = require('../popup/PopupHtmlCreatorAsync');
+const LoadingIndicator = require('../map/LoadingIndicator');
 
 const poiSearchHierarchyData = require('./poiSearchHierarchyData');
 const PoiSearchHierarchyTraversal = require('./PoiSearchHierarchyTraversal');
 
 const poiSearchHierarchy = new PoiSearchHierarchyTraversal(poiSearchHierarchyData);
 
+const minZoomForPoiLayer = 15;
+
 let activePoiLayer = null;
-let poiLayerLoading = false;
-
-let changeNotifierCallback = null;
-
-const triggerChangeNotifierCallback = () => {
-	if (changeNotifierCallback) {
-		changeNotifierCallback();
-	}
-};
 
 module.exports = class PoiLayer {
 	constructor(map, searchId) {
@@ -37,30 +34,35 @@ module.exports = class PoiLayer {
 		this.map.addLayer(this.markerGroup);
 		this.overpassLayer = this.createOverpassLayer(searchId);
 		this.map.addLayer(this.overpassLayer);
-		poiLayerLoading = true;
+		this.idsWithMarker = [];
+		if (this.map.getZoom() >= minZoomForPoiLayer) {
+			LoadingIndicator.setLoading(true);
+		}
 	}
 
 	static displayPoiLayer(map, searchId) {
 		if (searchId.length === 0) return;
-
-		if (poiLayerLoading === true) {
-			throw new Error('Another poi layer is already loading');
-		}
 
 		if (activePoiLayer) {
 			activePoiLayer.remove();
 		}
 
 		activePoiLayer = new PoiLayer(map, searchId);
-		triggerChangeNotifierCallback();
-	}
-
-	static setChangeNotifierCallback(callback) {
-		changeNotifierCallback = callback;
+		UrlParamChangeNotifier.trigger();
 	}
 
 	remove() {
 		if (typeof this.overpassLayer !== 'undefined') {
+			// OverpassLayer does not itself remove MinZoomIndicator during remove
+			if (this.overpassLayer._zoomControl) { // eslint-disable-line no-underscore-dangle
+				try {
+					this.map.removeControl(this.overpassLayer._zoomControl); // eslint-disable-line no-underscore-dangle
+				} catch (error) {
+					// no problem, remove throws an error
+				}
+				this.map.zoomIndicator = null; // New zoom indicator is created by next instance
+			}
+
 			this.map.removeLayer(this.overpassLayer);
 		}
 
@@ -79,9 +81,9 @@ module.exports = class PoiLayer {
 	}
 
 	static destroyActive() {
-		if (activePoiLayer && !poiLayerLoading) {
+		if (activePoiLayer) {
 			activePoiLayer.remove();
-			triggerChangeNotifierCallback();
+			UrlParamChangeNotifier.trigger();
 		}
 	}
 
@@ -93,7 +95,7 @@ module.exports = class PoiLayer {
 		}
 
 		return new L.OverPassLayer({
-			minZoom: 15,
+			minZoom: minZoomForPoiLayer,
 			endPoint: OverpassEndpoint.fastestEndpoint,
 			query: overpassQuery,
 			minZoomIndicatorOptions: {
@@ -101,24 +103,48 @@ module.exports = class PoiLayer {
 				minZoomMessageNoLayer: 'Nincs réteg hozzáadva.',
 				minZoomMessage: '<img src="/kepek/1391811435_Warning.png">A helyek a MINZOOMLEVEL. nagyítási szinttől jelennek meg. (Jelenleg: CURRENTZOOM)',
 			},
+			beforeRequest: () => LoadingIndicator.setLoading(true),
+			onError: () => LoadingIndicator.setLoading(false),
 			onSuccess: data => this.displayOverpassResultsOnMap(data.elements),
 		});
 	}
 
 	displayOverpassResultsOnMap(overpassResults) {
-		const markers = [];
+		const markers = {};
+		const overpassResultsForPopupCreation = [];
 
 		Object.values(overpassResults).forEach((overpassResult) => {
-			if (overpassResult.tags
+			const noMarkerYet = this.idsWithMarker.indexOf('' + overpassResult.id) === -1;
+			if (noMarkerYet && overpassResult.tags
 				&& (overpassResult.tags.amenity || overpassResult.tags.shop
 					|| overpassResult.tags.leisure || overpassResult.tags.tourism
 					|| overpassResult.tags.natural) && overpassResult.tags.amenity !== 'parking_entrance') {
-				markers.push(Marker.createFromOverpassResult(overpassResult));
+				const marker = Marker.createFromOverpassResult(overpassResult);
+				markers[overpassResult.id] = marker;
+				overpassResultsForPopupCreation.push(overpassResult);
 			}
 		});
 
-		this.markerGroup.addLayers(markers);
+		PopupHtmlCreatorAsync.create(overpassResultsForPopupCreation, (results) => {
+			results.forEach(([markerId, popupHtml]) => {
+				const marker = markers[markerId];
+				if (marker) {
+					// Add popup to show poi information on marker click
+					marker.bindPopup(popupHtml, {
+						offset: L.point(0, 4),
+						autoPanPaddingTopLeft: MobileDetector.isMobile() ? [44, 5] : [46, 10],
+						autoPanPaddingBottomRight: MobileDetector.isMobile() ? [54, 5] : [56, 10],
+					});
+				}
+			});
+		});
 
-		poiLayerLoading = false;
+		// Add new marker ids
+		this.idsWithMarker = this.idsWithMarker.concat(Object.keys(markers));
+
+		const layers = Object.values(markers);
+		this.markerGroup.addLayers(layers);
+
+		LoadingIndicator.setLoading(false);
 	}
 };

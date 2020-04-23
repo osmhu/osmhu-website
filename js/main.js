@@ -4,6 +4,8 @@ require('@babel/polyfill');
 
 const $ = require('jquery');
 
+const log = require('loglevel');
+
 // Parse params
 var queryString = require('query-string');
 var params = queryString.parse(location.search);
@@ -29,6 +31,8 @@ const share = require('./share');
 var select2 = require('./select2');
 var promotion = require('./promotion');
 const Map = require('./map/Map');
+
+log.setLevel('info');
 
 params.zoom = params.zoom || params.mzoom; // Backwards compatibility with old mzoom url's
 
@@ -65,7 +69,6 @@ const map = new Map({
 );
 
 const url = new Url(map, share);
-url.bindUrlUpdateHooks();
 
 $(window).on('updateUrl', url.update);
 

@@ -4,20 +4,15 @@ const UrlHelper = require('./UrlHelper');
 const HistoryApi = require('./HistoryApi');
 const Marker = require('../marker/Marker');
 const PoiLayer = require('../poi/PoiLayer');
+const UrlParamChangeNotifier = require('./UrlParamChangeNotifier');
 
 module.exports = class Url {
 	constructor(mapInstance, share) {
 		this.map = mapInstance;
 		this.share = share;
-		this.bindUrlUpdateHooks = this.bindUrlUpdateHooks.bind(this);
 		this.update = this.update.bind(this);
-	}
 
-	bindUrlUpdateHooks() {
-		this.map.setChangeNotifierCallback(this.update);
-		Marker.setChangeNotifierCallback(this.update);
-		PoiLayer.setChangeNotifierCallback(this.update);
-		this.share.setChangeNotifierCallback(this.update);
+		UrlParamChangeNotifier.setNotificationCallback(this.update);
 	}
 
 	createQueryString() {

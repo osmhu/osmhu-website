@@ -11,10 +11,10 @@ const OverpassQuery = require('../poi/OverpassQuery');
 const OverpassEndpoint = require('../poi/OverpassEndpoint');
 const Ajax = require('../Ajax');
 const UrlHelper = require('../url/UrlHelper');
+const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
 const popup = require('../popup');
 const IconProvider = require('../marker/IconProvider');
 
-let changeNotifierCallback = null;
 let activePoi = null;
 
 log.setDefaultLevel('info');
@@ -39,16 +39,6 @@ module.exports = class Marker {
 			redMarker.bindPopup(html, {
 				offset: L.point(0, -28),
 			}).openPopup();
-		}
-	}
-
-	static setChangeNotifierCallback(callback) {
-		changeNotifierCallback = callback;
-	}
-
-	static triggerChangeNotifierCallback() {
-		if (changeNotifierCallback) {
-			changeNotifierCallback();
 		}
 	}
 
@@ -79,30 +69,32 @@ module.exports = class Marker {
 			log.info('No icon found for', overpassResult.type, overpassResult.id, 'tags were:', overpassResult.tags);
 		}
 
-		// Add popup to show poi information on marker click
-		const popupHtml = popup.generateHtml(overpassResult);
-
-		customMarker.bindPopup(popupHtml, {
-			offset: L.point(0, 4),
-			autoPanPaddingTopLeft: MobileDetector.isMobile() ? [44, 5] : [46, 10],
-			autoPanPaddingBottomRight: MobileDetector.isMobile() ? [54, 5] : [56, 10],
-		});
-
 		// On popup open activate copy button
 		customMarker.on('popupopen', () => {
 			CopyButton.copyTargetOnButtonClick('#popup-poi-copy', '#popup-poi-share-url');
 
 			Marker.setActivePoi(overpassResult.type, overpassResult.id);
 			$(window).trigger('popup-open');
-			Marker.triggerChangeNotifierCallback();
+			UrlParamChangeNotifier.trigger();
 		});
 
 		customMarker.on('popupclose', () => {
 			Marker.removeActivePoi();
-			Marker.triggerChangeNotifierCallback();
+			UrlParamChangeNotifier.trigger();
 		});
 
 		return customMarker;
+	}
+
+	static createPopupForMarkerSync(marker, overpassResult) {
+		const popupHtml = popup.generateHtml(overpassResult);
+
+		// Add popup to show poi information on marker click
+		marker.bindPopup(popupHtml, {
+			offset: L.point(0, 4),
+			autoPanPaddingTopLeft: MobileDetector.isMobile() ? [44, 5] : [46, 10],
+			autoPanPaddingBottomRight: MobileDetector.isMobile() ? [54, 5] : [56, 10],
+		});
 	}
 
 	static async fromTypeAndId(type, id, zoom, map) {
@@ -110,7 +102,7 @@ module.exports = class Marker {
 		const result = await Ajax.get(OverpassEndpoint.fastestEndpoint + query);
 
 		Marker.setActivePoi(type, id);
-		Marker.triggerChangeNotifierCallback();
+		UrlParamChangeNotifier.trigger();
 		const element = result.elements.find(e => parseInt(e.id, 10) === parseInt(id, 10));
 		if (!element) throw new Error('Queried element was not found in results');
 
@@ -119,6 +111,7 @@ module.exports = class Marker {
 		map.setView(position, zoom, { animate: false });
 
 		const newMarker = Marker.createFromOverpassResult(element);
+		Marker.createPopupForMarkerSync(newMarker, element);
 		newMarker.addTo(map).openPopup();
 
 		// Center the marker and the popup

@@ -22,16 +22,19 @@ module.exports = class GeoJsonLayer extends Layer {
 		}
 		if (this.loading) return false;
 
+		/* istanbul ignore if */
 		if (!this.url) throw new Error('Layer url must be set');
 
 		this.loading = true;
 
 		const result = await Ajax.get(this.url);
 
+		/* istanbul ignore else */
 		if (result) {
 			try {
 				this.layer.addData(result);
 			} catch (error) { // ex. Invalid GeoJson
+				/* istanbul ignore next */
 				log.warn(error.message);
 			}
 		}
