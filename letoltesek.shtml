@@ -27,8 +27,8 @@
 				<img class="play-download-badge" src="/kepek/google-play-badge.png" alt="Letöltés a Google Play-ből">
 			</a>
 
-			<p>Telepítsd az <strong>OsmAnd</strong> nevű programot a <strong>Google Play áruházból</strong>, majd a 
-			<em>Beállítások -&gt; Offline adatok -&gt; Letöltés</em> alatt telepítsd a "Hungary Europe" térképet.</p>
+			<p>Telepítsd az <strong>OsmAnd</strong> nevű programot a <strong>Google Play áruházból</strong>, ezután
+			automatikusan felajánlja Magyarország letöltését (vagy a menüből válaszd a <em>Térképek letöltését</em>).</p>
 			<p>Javasolt Android alkalmazások még: MAPS.ME, Mapy.cz, Locus.
 			További ötleteket a <a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary/Android">wiki Android oldalán</a> találsz.</p> 
 
@@ -99,15 +99,15 @@
 
 			<h3>OpenStreetMap.hu Névjegy</h3>
 
-			<a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf">
+			<a href="/letoltes/openstreetmap_bizz_90x50_go_3a.pdf">
 				<img src="/letoltes/openstreetmap_hu_nevjegy_90x50.jpg" class="left illustration">
 				<p>Kapcsolati adatok nélküli névjegy, odaadható az érdeklődöknek terepen, rendezvényeken stb.</p>
 			</a>
 
 			<div class="clearfix"></div>
 			<p>
-				<a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf">A4 1 névjegy</a> (460 kB)<br>
-				<a href="/letoltes/openstreetmap_hu_nevjegy_90x50_lap.pdf">A4 sok</a> (3.3 MB)
+				Új: <a href="/letoltes/openstreetmap_bizz_90x50_go_3a.pdf">két oldalas OSM biankó névjegy</a> (640 kB)<br/>
+				Régi: <a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf">A4 1 névjegy</a> (460 kB), <a href="/letoltes/openstreetmap_hu_nevjegy_90x50_lap.pdf">A4 sok</a> (3.3 MB)
 			</p>
 		</div>
 		<!--#include virtual="includes/cc0.html" -->

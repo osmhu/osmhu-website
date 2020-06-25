@@ -43,13 +43,13 @@
 			<li>Turista térképek
 			<ul class="links nodots">
 				<li>
+					<a href="https://turistautak.openstreetmap.hu/">Turistautak.openstreetmap.hu</a>
+				</li>
+				<li>
 					<a href="http://hiking.waymarkedtrails.org/hu/?zoom=12&lat=47.30806&lon=17.80218&route=1&hill=1.07">Waymarked Trails turistatérkép</a> - turistatérkép (a régi Lonvia térképből)
 				</li>
 				<li>
 					<a href="http://www.wanderreitkarte.de/">WanderReitKarte</a> - túra- és lovastérkép
-				</li>
-				<li>
-					<a href="http://hikebikemap.de/?zoom=14&lat=46.9822&lon=17.8859&layers=B0000TFFTF">HikeBike map</a> - másik szép turistatérkép
 				</li>
 				<li>
 					<a href="http://www.4umaps.eu/map.htm?zoom=14&lat=48.06563&lon=20.7162&layers=B">4UMaps</a> - túra és bringatérkép, panoramio képekkel
@@ -71,20 +71,13 @@
 				</li>
 			</ul></li>
 
-			<li>Útvonaltervezők
+			<li>Útvonaltervezők, összetett alkalmazások
+
 			<ul class="links nodots">
 				<li>
 					<a href="http://map.project-osrm.org/">OSRM - OpenSource Routing Machine</a>
 					- autós tervező
 				</li>
-				<li>
-					<a href="http://www.yournavigation.org/">YourNavigation</a>
-					- autós, biciklis, gyalogos tervező
-				</li>
-			</ul></li>
-
-			<li>Összetett alkalmazások
-			<ul class="links nodots">
 				<li>
 					<a href="https://www.freemap.sk/">Freemap.sk</a>
 					- autós, biciklis, gyalogos útvonal tervező. POI-k keresése stb.  Magyarul is működik.
@@ -101,15 +94,6 @@
 					<a href="http://wheelmap.org/hu/map#/?lat=47.4983377&lon=19.0404712&zoom=17">Wheelmap</a>
 					- Akadálymentes helyek keresése és felvitele.
 				</li>
-				<!-- Jelenleg nem érhető el
-				<li>
-					<a href="http://www.pistes-nordiques.org/">Térkép síelőknek</a>
-				</li>-->
-				<li>
-					<a href="http://maps.stamen.com/toner/#10/47.7606/20.4156">Toner</a>,
-					<a href="http://maps.stamen.com/watercolor/#10/47.4996/18.8349">Vízfesték</a>
-					- Stamen design szép térképei
-				</li>
 			</ul></li>
 
 			<li>3D térképek
@@ -119,24 +103,16 @@
 					- Bejárható, forgatható, teljes 3D
 				</li>
 				<li>
-					<a href="http://osm.kyblsoft.cz/3dmapa/?zoom=15&lat=75.58299&lon=14.69586&layers=B">Izometrikus térkép</a>
-					- Csehország izometrikus nézetben
-				</li>
-				<li>
 					<a href="http://osmbuildings.org/?lat=52.52111&lon=13.40988&zoom=17">OSMBuildings</a>
 					- 3D épületek, például:
 					<a href="http://osmbuildings.org/?lat=47.51739&lon=19.05357&zoom=17">Budapest XIII.</a>
-				</li>
-				<li>
-					<a href="http://glosm.amdmi3.ru/">GLosm</a>
-					- 3D teszt Ukrajnában
 				</li>
 			</ul></li>
 
 			<li>Nyomtatáshoz
 			<ul class="links nodots">
 				<li>
-					<a href="http://maposmatic.org/">MapOSMatic</a>
+					<a href="https://print.get-map.org/">MapOSMatic</a>
 					- szép, nyomtatható térkép utcaindexszel
 				</li>
 				<li>
@@ -144,8 +120,8 @@
 					- nyomtatás helyszíni térképezéshez
 				</li>
 				<li>
-					<a href="http://fieldpapers.org/">Field Papers</a>
-					- szintén helyszíni térképezéshez
+					<a href="https://wiki.openstreetmap.org/wiki/OSM_on_Paper">OSM_on_Paper (Wiki)</a>
+					- Válogatás a nyomtatással kapcsolatos programokból
 				</li>
 			</ul></li>
 		</ul>
@@ -160,6 +136,7 @@
 			<li><a href="http://www.ingatlan.com">ingatlan.com</a></li>
 			<li><a href="http://idokep.hu">Időkép</a></li>
 			<li><a href="http://www.ksh.hu/apps/hntr.main?p_lang=HU">Magyarország helységnévtára (KSH)</a></li>
+			<li><a href="https://menetrendek.hu/">Menetrendek.hu</a></li>
 		</ul>
 
 		<h2>További listák</h2>

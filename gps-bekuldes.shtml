@@ -44,19 +44,21 @@
 		<img class="right illustration" src="/kepek/gps-track.gif" alt="GPS nyomvonal">
 		<ul>
 			<li>Kapcsold ki a GPS-ben az úthoz illesztést</li>
-			<li> Állítsd a GPS pontok tárolási sebességét a legnagyobbra (pl. 1 másodperc)</li>
-			<li> Ha tudja a készülék, állítsd a mentést GPX formátumra, így később nem kell konvertálnod</li>
-			<li> A GPS bekapcsolása után mozogj néhány percet, amíg pontossá válik a pozíciód</li>
-			<li> Indítsd el a GPS nyomvonal felvételét</li>
-			<li> Vedd fel az útvonalat, autóval, biciklivel, gyalog, vonattal, hajóval vagy bármivel</li>
-			<li> Nagyobb területeket körbejárva fogsz tudni ábrázolni</li>
+			<li>Állítsd a GPS pontok tárolási sebességét a legnagyobbra (pl. 1 másodperc)</li>
+			<li>Ha tudja a készülék, állítsd a mentést GPX formátumra, így később nem kell konvertálnod</li>
+			<li>A GPS bekapcsolása után mozogj néhány percet, amíg pontossá válik a pozíciód</li>
+			<li>Indítsd el a GPS nyomvonal felvételét</li>
+			<li>Vedd fel az útvonalat, autóval, biciklivel, gyalog, vonattal, hajóval vagy bármivel</li>
 		</ul>
 
-		<p>Ha <strong>Androidos</strong> telefonod van OsmAnd GPS trackek rögzítésére is alkalmas:
-		Nyomd meg a kis műhold ikont a bal felső sarokban az iránytű mellett,
-		ezen belül pedig az <em>Alvó mód bekapcsolása</em> (nagyon fontos, hogy a képernyő kikapcsolásakor is rögzítsen)
-		majd pedig a <em>GPX nyonyomvonal mentése</em> gombokat.
-		De rözítéshez sokkal egyszerűbb programokat is használhatsz, próbáld ki az <strong>OSM Tracker</strong> nevűt.</p>
+		<p>Ha <strong>Androidos</strong> telefonod van <a href="https://play.google.com/store/apps/details?id=net.osmand&hl=en_US" target="_blank">OsmAnd</a> GPS trackek rögzítésére is alkalmas:
+		Ha nem látható a GPX feliratú gombod a jobb felső sarokban, kapcsold be a menüben: 
+		<em>Képernyő beállítása -> Jobb panel -> GPX naplózás</em>.
+		Most már csak ezt a gombot kell megnyomnod a rögzítés indításához és megállításához. Ha rögzítés
+		befejezése után megint megnyomod, akkor ad lehetőséget a rögzített nyomvonal kimentésére.
+		A nyomvonalak a <code>Android/data/net.osmand/files/tracks/rec</code> könyvtárban lesznek. Ezeket vagy 
+		adatkábellel áttöltheted vagy egyszerűen elküldöd magadnak e-mailben.
+		De rözítéshez sokkal egyszerűbb programokat is használhatsz, próbáld ki az <a href="https://play.google.com/store/apps/details?id=net.osmtracker&hl=en_US" target="_blank">OSM Tracker</a> nevűt.</p>
 
 		<div class="clearfix"></div>
 		<h2>GPX formátumra konvertálás, szükségtelen részek levágása</h2>
