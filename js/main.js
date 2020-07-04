@@ -19,7 +19,7 @@ const Marker = require('./marker/Marker');
 var introduction = require('./introduction');
 
 const OverpassEndpoint = require('./poi/OverpassEndpoint');
-const PoiLayer = require('./poi/PoiLayer');
+const PoiLayers = require('./poi/PoiLayers');
 
 // Initializes all autocomplete fields
 const Autocomplete = require('./search/Autocomplete');
@@ -68,10 +68,6 @@ const map = new Map({
 	}
 );
 
-const url = new Url(map, share);
-
-$(window).on('updateUrl', url.update);
-
 $('#introduction-toggler').on('click', introduction.toggle);
 
 $(window).on('search-results-show', introduction.overDrawn);
@@ -85,6 +81,12 @@ if (markerDefined) {
 if (params.type && params.id) {
 	Marker.fromTypeAndId(params.type, params.id, params.zoom, map);
 }
+
+const poiLayers = new PoiLayers(map);
+
+const url = new Url(map, share, poiLayers);
+
+$(window).on('updateUrl', url.update);
 
 // Update Org urls on page load
 url.updateOrgUrls();
@@ -121,11 +123,17 @@ const directionsControl = new DirectionsControl(directionsResultLayer);
 directionsControl.initializeControls();
 
 $(document).ready(() => {
-	select2.initialize();
+	select2.initialize(poiLayers);
 
 	if (params.poi) {
-		PoiLayer.displayPoiLayer(window.map, params.poi);
-		select2.set(params.poi);
+		const poiSearchIds = params.poi.split(',');
+		poiSearchIds.forEach((poiSearchId) => {
+			poiLayers.addBySearchId(poiSearchId);
+		});
+
+		if (poiSearchIds.length === 1) {
+			select2.set(poiSearchIds[0]);
+		}
 	}
 
 	setTimeout(() => {

@@ -30,6 +30,8 @@ class MockedMap {
 	}
 
 	addLayer() {}
+
+	removeLayer() {}
 }
 
 module.exports = class MapMockFactory {

@@ -2,15 +2,10 @@ var $ = require('jquery');
 window.jQuery = $; // Hack to make select2 work
 require('select2');
 
-const poiSearchHierarchyData = require('./poi/poiSearchHierarchyData');
-const PoiSearchHierarchyTraversal = require('./poi/PoiSearchHierarchyTraversal');
-
 const MobileDetector = require('./MobileDetector');
-const PoiLayer = require('./poi/PoiLayer');
+const PoiSearchHierarchy = require('./poi/PoiSearchHierarchy');
 
 var select2 = module.exports = {};
-
-const poiSearchHierarchy = new PoiSearchHierarchyTraversal(poiSearchHierarchyData);
 
 var minimumResultsForSearch = null;
 if (MobileDetector.isMobile()) {
@@ -21,9 +16,9 @@ select2.set = function (category) {
 	$('#poi-search').select2('val', category);
 };
 
-select2.initialize = function () {
+select2.initialize = function (poiLayers) {
 	$('#poi-search').select2({
-		data: poiSearchHierarchy.getSelect2Hierarchy(),
+		data: PoiSearchHierarchy.getSelect2Hierarchy(),
 		minimumResultsForSearch: minimumResultsForSearch,
 		formatNoMatches: 'Nem található egyezés.',
 		allowClear: true,
@@ -41,10 +36,11 @@ select2.initialize = function () {
 		}
 	})
 	.on('change', function (event) {
-		PoiLayer.displayPoiLayer(window.map, event.val);
+		poiLayers.removeAll();
+		poiLayers.addBySearchId(event.val);
 	})
 	.on('select2-clearing', function () {
-		PoiLayer.destroyActive();
+		poiLayers.removeAll();
 	});
 };
 

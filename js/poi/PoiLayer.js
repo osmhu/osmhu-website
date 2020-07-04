@@ -6,27 +6,20 @@ require('leaflet-overpass-layer/dist/OverPassLayer.bundle'); // eslint-disable-l
 // Creates L.markerClusterGroup function
 require('leaflet.markercluster/dist/leaflet.markercluster'); // eslint-disable-line import/no-unassigned-import
 
-const MobileDetector = require('../MobileDetector');
 const Marker = require('../marker/Marker');
 const OverpassQuery = require('./OverpassQuery');
 const OverpassEndpoint = require('./OverpassEndpoint');
-const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
 const PopupHtmlCreatorAsync = require('../popup/PopupHtmlCreatorAsync');
-const LoadingIndicator = require('../map/LoadingIndicator');
-
-const poiSearchHierarchyData = require('./poiSearchHierarchyData');
-const PoiSearchHierarchyTraversal = require('./PoiSearchHierarchyTraversal');
-
-const poiSearchHierarchy = new PoiSearchHierarchyTraversal(poiSearchHierarchyData);
+const PoiSearchHierarchy = require('./PoiSearchHierarchy');
 
 const minZoomForPoiLayer = 15;
 
-let activePoiLayer = null;
-
 module.exports = class PoiLayer {
-	constructor(map, searchId) {
+	constructor(map, searchId, onLoadingStateChangedFunction) {
 		this.map = map;
 		this.searchId = searchId;
+		this.onLoadingStateChanged = onLoadingStateChangedFunction;
+
 		this.markerGroup = L.markerClusterGroup({
 			showCoverageOnHover: false,
 			maxClusterRadius: 26,
@@ -35,20 +28,10 @@ module.exports = class PoiLayer {
 		this.overpassLayer = this.createOverpassLayer(searchId);
 		this.map.addLayer(this.overpassLayer);
 		this.idsWithMarker = [];
+
 		if (this.map.getZoom() >= minZoomForPoiLayer) {
-			LoadingIndicator.setLoading(true);
+			this.onLoadingStateChanged(true);
 		}
-	}
-
-	static displayPoiLayer(map, searchId) {
-		if (searchId.length === 0) return;
-
-		if (activePoiLayer) {
-			activePoiLayer.remove();
-		}
-
-		activePoiLayer = new PoiLayer(map, searchId);
-		UrlParamChangeNotifier.trigger();
 	}
 
 	remove() {
@@ -69,26 +52,10 @@ module.exports = class PoiLayer {
 		if (this.markerGroup) {
 			this.map.removeLayer(this.markerGroup);
 		}
-
-		activePoiLayer = null;
-	}
-
-	static getActivePoiLayerSearchId() {
-		if (!(activePoiLayer instanceof PoiLayer)) {
-			throw new Error('No active poi layer');
-		}
-		return activePoiLayer.searchId;
-	}
-
-	static destroyActive() {
-		if (activePoiLayer) {
-			activePoiLayer.remove();
-			UrlParamChangeNotifier.trigger();
-		}
 	}
 
 	createOverpassLayer(searchId) {
-		const criteria = poiSearchHierarchy.getOverpassQueryById(searchId);
+		const criteria = PoiSearchHierarchy.getOverpassQueryById(searchId);
 		const overpassQuery = OverpassQuery.generateQuery(criteria);
 		if (!overpassQuery) {
 			throw new Error('Could not generate overpass query for criteria ' + criteria + ' for search id: ' + searchId);
@@ -103,8 +70,8 @@ module.exports = class PoiLayer {
 				minZoomMessageNoLayer: 'Nincs réteg hozzáadva.',
 				minZoomMessage: '<img src="/kepek/1391811435_Warning.png">A helyek a MINZOOMLEVEL. nagyítási szinttől jelennek meg. (Jelenleg: CURRENTZOOM)',
 			},
-			beforeRequest: () => LoadingIndicator.setLoading(true),
-			onError: () => LoadingIndicator.setLoading(false),
+			beforeRequest: () => this.onLoadingStateChanged(true),
+			onError: () => this.onLoadingStateChanged(false),
 			onSuccess: data => this.displayOverpassResultsOnMap(data.elements),
 		});
 	}
@@ -129,12 +96,7 @@ module.exports = class PoiLayer {
 			results.forEach(([markerId, popupHtml]) => {
 				const marker = markers[markerId];
 				if (marker) {
-					// Add popup to show poi information on marker click
-					marker.bindPopup(popupHtml, {
-						offset: L.point(0, 4),
-						autoPanPaddingTopLeft: MobileDetector.isMobile() ? [44, 5] : [46, 10],
-						autoPanPaddingBottomRight: MobileDetector.isMobile() ? [54, 5] : [56, 10],
-					});
+					Marker.createPopupForMarker(marker, popupHtml);
 				}
 			});
 		});
@@ -145,6 +107,6 @@ module.exports = class PoiLayer {
 		const layers = Object.values(markers);
 		this.markerGroup.addLayers(layers);
 
-		LoadingIndicator.setLoading(false);
+		this.onLoadingStateChanged(false);
 	}
 };

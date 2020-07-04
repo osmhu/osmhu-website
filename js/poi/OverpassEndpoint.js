@@ -29,15 +29,20 @@ module.exports = class OverpassEndpoint {
 		endpointLoadTimes = {};
 
 		await asyncForEach(overpassEndpoints, async (measuredEndpoint) => {
-			const endpointLoadTime = await OverpassEndpoint.measureEndpoint(measuredEndpoint);
-			log.debug('Endpoint', measuredEndpoint, 'load time was', endpointLoadTime, 'ms');
+			try {
+				const endpointLoadTime = await OverpassEndpoint.measureEndpoint(measuredEndpoint);
 
-			endpointLoadTimes[measuredEndpoint] = endpointLoadTime;
+				log.debug('Endpoint', measuredEndpoint, 'load time was', endpointLoadTime, 'ms');
 
-			const fastestEndpointNotMeasured = !Object.prototype.hasOwnProperty.call(endpointLoadTimes, fastestEndpoint);
-			const currentEndpointFasterThanFastest = endpointLoadTimes[fastestEndpoint] > endpointLoadTime;
-			if (fastestEndpointNotMeasured || currentEndpointFasterThanFastest) {
-				fastestEndpoint = measuredEndpoint;
+				endpointLoadTimes[measuredEndpoint] = endpointLoadTime;
+
+				const fastestEndpointNotMeasured = !Object.prototype.hasOwnProperty.call(endpointLoadTimes, fastestEndpoint);
+				const currentEndpointFasterThanFastest = endpointLoadTimes[fastestEndpoint] > endpointLoadTime;
+				if (fastestEndpointNotMeasured || currentEndpointFasterThanFastest) {
+					fastestEndpoint = measuredEndpoint;
+				}
+			} catch (error) {
+				log.debug('Endpoint', measuredEndpoint, 'did not load with error: ', error);
 			}
 		});
 	}
@@ -48,7 +53,12 @@ module.exports = class OverpassEndpoint {
 		const start = present();
 
 		const measureUrl = endpoint + measureQuery;
-		await Ajax.get(measureUrl);
+		const result = await Ajax.get(measureUrl);
+
+		const resultIsValid = result instanceof Object;
+		if (!resultIsValid) {
+			throw new Error('Response is not Object, it was ' + (typeof result) + ': ' + result);
+		}
 
 		const end = present();
 		const elapsedMilliseconds = end - start;

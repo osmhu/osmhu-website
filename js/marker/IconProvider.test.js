@@ -4,7 +4,7 @@ const IconProvider = require('./IconProvider');
 
 const assertIcon = (icon, expectedIcon) => {
 	expect(icon).toBeInstanceOf(L.Icon);
-	expect(icon.options.iconUrl).toEqual('/vendor/mapiconscollection/' + expectedIcon);
+	expect(icon.options.iconUrl).toEqual('/kepek/mapicons/marker/' + expectedIcon);
 };
 
 it('should return restaurant icon when amenity=restaurant', () => {

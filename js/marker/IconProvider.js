@@ -80,7 +80,7 @@ module.exports = class IconProvider {
 	}
 
 	iconForTagKey(tagKey) {
-		const baseUrl = '/vendor/mapiconscollection/';
+		const baseUrl = '/kepek/mapicons/marker/';
 		const tagValue = this.tags[tagKey];
 		const imageUrl = tagIcons[tagKey][tagValue];
 

@@ -89,7 +89,10 @@ module.exports = class Marker {
 	static createPopupForMarkerSync(marker, overpassResult) {
 		const popupHtml = popup.generateHtml(overpassResult);
 
-		// Add popup to show poi information on marker click
+		Marker.createPopupForMarker(marker, popupHtml);
+	}
+
+	static createPopupForMarker(marker, popupHtml) {
 		marker.bindPopup(popupHtml, {
 			offset: L.point(0, 4),
 			autoPanPaddingTopLeft: MobileDetector.isMobile() ? [44, 5] : [46, 10],

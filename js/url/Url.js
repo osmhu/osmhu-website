@@ -3,13 +3,13 @@ const $ = require('jquery');
 const UrlHelper = require('./UrlHelper');
 const HistoryApi = require('./HistoryApi');
 const Marker = require('../marker/Marker');
-const PoiLayer = require('../poi/PoiLayer');
 const UrlParamChangeNotifier = require('./UrlParamChangeNotifier');
 
 module.exports = class Url {
-	constructor(mapInstance, share) {
+	constructor(mapInstance, share, poiLayers) {
 		this.map = mapInstance;
 		this.share = share;
+		this.poiLayers = poiLayers;
 		this.update = this.update.bind(this);
 
 		UrlParamChangeNotifier.setNotificationCallback(this.update);
@@ -58,7 +58,13 @@ module.exports = class Url {
 
 		try {
 			if (!Marker.getActivePoiPopup()) {
-				queryStringParts.push('poi=' + PoiLayer.getActivePoiLayerSearchId());
+				const searchIds = [];
+				this.poiLayers.getAllSearchIds().forEach((searchId) => {
+					searchIds.push(searchId);
+				});
+				if (searchIds.length > 0) {
+					queryStringParts.push('poi=' + searchIds.join(','));
+				}
 			}
 		} catch (error) {
 			// Poi layer not active
