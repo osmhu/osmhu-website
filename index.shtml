@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="/css/share-popup.css?rev=319">
 	<!-- Poi popup stylesheet -->
 	<link rel="stylesheet" href="/css/poi-popup.css?rev=373">
+	<!-- Poi layer selector stylesheet -->
+	<link rel="stylesheet" href="/css/poi-layer-selector.css?rev=396">
 	<!-- Introduction stylesheet -->
 	<link rel="stylesheet" href="/css/introduction.css?rev=375">
 	<!-- AutoComplete stylesheet -->
@@ -68,8 +70,11 @@
 							</form>
 						</div>
 					</div>
-					<div class="poi-search">
-						<input type="hidden" id="poi-search" data-placeholder="Helyek" tabindex="3">
+					<div class="poi-layer-selector">
+						<div class="poi-layer-selector-trigger"><span class="title">Helyek keresése</span><div class="poi-layer-selector-state"></div></div>
+						<div class="poi-layer-selector-dropdown">
+							<div class="poi-layer-selector-categories"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -155,6 +160,6 @@
 	<div id="introduction-toggler"><p class="toggler"></p></div>
 
 	<!-- Load osmhu bundle -->
-	<script src="/build/bundle.js?rev=395"></script>
+	<script src="/build/bundle.js?rev=396"></script>
 </body>
 </html>

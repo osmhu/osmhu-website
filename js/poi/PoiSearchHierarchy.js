@@ -11,4 +11,8 @@ module.exports = class PoiSearchHierarchy {
 	static getOverpassQueryById(searchId) {
 		return poiSearchHierarchy.getOverpassQueryById(searchId);
 	}
+
+	static getHierarchy() {
+		return poiSearchHierarchyData;
+	}
 };

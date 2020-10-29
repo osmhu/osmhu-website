@@ -19,6 +19,7 @@ var introduction = require('./introduction');
 
 const OverpassEndpoint = require('./poi/OverpassEndpoint');
 const PoiLayers = require('./poi/PoiLayers');
+const PoiLayerSelector = require('./poi/PoiLayerSelector');
 
 const Autocomplete = require('./search/Autocomplete');
 const NominatimSearch = require('./search/NominatimSearch');
@@ -28,7 +29,6 @@ const SearchField = require('./search/SearchField');
 const Url = require('./url/Url');
 const Share = require('./share/Share');
 
-var select2 = require('./select2');
 var promotion = require('./promotion');
 const Map = require('./map/Map');
 
@@ -108,6 +108,8 @@ if (!MobileDetector.isMobile()) {
 	searchField.focus();
 }
 
+const poiLayerSelector = new PoiLayerSelector(poiLayers);
+
 $('#search form').on('submit', async (event) => {
 	event.preventDefault();
 
@@ -122,17 +124,12 @@ const directionsControl = new DirectionsControl(directionsResultLayer);
 directionsControl.initializeControls();
 
 $(document).ready(() => {
-	select2.initialize(poiLayers);
-
 	if (params.poi) {
 		const poiSearchIds = params.poi.split(',');
-		poiSearchIds.forEach((poiSearchId) => {
-			poiLayers.addBySearchId(poiSearchId);
-		});
 
-		if (poiSearchIds.length === 1) {
-			select2.set(poiSearchIds[0]);
-		}
+		poiSearchIds.forEach((poiSearchId) => {
+			poiLayerSelector.activate(poiSearchId);
+		});
 	}
 
 	setTimeout(() => {

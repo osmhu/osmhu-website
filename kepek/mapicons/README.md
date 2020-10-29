@@ -2,6 +2,7 @@
 
 ## Tartalom
 
+- [simple](https://mapicons.mapsmarker.com/category/markers/stores/?style=simple)
 - [marker](https://mapicons.mapsmarker.com/category/markers/)
 
 ## Liszensz
