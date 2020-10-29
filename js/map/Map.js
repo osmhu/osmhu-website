@@ -95,9 +95,9 @@ module.exports = class Map extends L.Map {
 		});
 
 		// Display given overlays on load (must be called after 'overlayadd' listener is added)
-		overlays.getAllIds().forEach((id) => {
-			if (defaultOverlaysOnLoad[id]) {
-				map.addLayer(overlays.getById(id).getLayer());
+		overlays.getAllIds().forEach((overlayId) => {
+			if (defaultOverlaysOnLoad[overlayId]) {
+				map.addLayer(overlays.getById(overlayId).getLayer());
 			}
 		});
 	}
@@ -117,9 +117,11 @@ module.exports = class Map extends L.Map {
 		if (result.elements.length === 0) return;
 
 		const way = result.elements.find(element => parseInt(element.id, 10) === parseInt(wayId, 10));
-		const bounds = Coordinate.getBoundsFromOverpassResult(way);
-		if (bounds) {
-			this.fitBounds(bounds, { maxZoom: 18 });
+		if (way) {
+			const bounds = Coordinate.getBoundsFromOverpassResult(way);
+			if (bounds) {
+				this.fitBounds(bounds, { maxZoom: 18 });
+			}
 		}
 	}
 };

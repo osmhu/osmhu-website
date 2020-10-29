@@ -42,7 +42,7 @@ exports[`renders correctly for long url with https protocol without www 1`] = `
 
 exports[`renders correctly for long url with https protocol without www ending with / 1`] = `
 <span class="website-url">
-  <a href="https://openstreetmap.hu/" target="_blank" title="openstreetmap.hu/">
+  <a href="https://openstreetmap.hu/" target="_blank" title="openstreetmap.hu">
     <span class="hidden-part">https://</span>openstreet
     <span class="hidden-part">map.hu/</span>
     <span class="hidden-indicator"></span>
@@ -61,7 +61,7 @@ exports[`renders correctly for long url without protocol 1`] = `
 
 exports[`renders correctly for long url without protocol ending with / 1`] = `
 <span class="website-url">
-  <a href="http://openstreetmap.hu/" target="_blank" title="openstreetmap.hu/">openstreet
+  <a href="http://openstreetmap.hu/" target="_blank" title="openstreetmap.hu">openstreet
     <span class="hidden-part">map.hu/</span>
     <span class="hidden-indicator"></span>
   </a>
@@ -91,7 +91,7 @@ exports[`renders correctly for short url with https protocol with www 1`] = `
 
 exports[`renders correctly for short url with https protocol with www ending with / 1`] = `
 <span class="website-url">
-  <a href="https://www.openstreetmap.hu/" target="_blank" title="openstreetmap.hu/">
+  <a href="https://www.openstreetmap.hu/" target="_blank" title="">
     <span class="hidden-part">https://www.</span>openstreetmap.hu</a>
 </span>
 `;

@@ -42,6 +42,7 @@ module.exports = class WebsiteUrl {
 		}
 
 		let visibleUrl = removeTrailingSlash(niceUrl);
+		const titleUrl = visibleUrl;
 
 		// Shrink url if too long, but make it copyable
 		let hiddenUrlEnd = '';
@@ -51,7 +52,7 @@ module.exports = class WebsiteUrl {
 			hiddenUrlEnd = niceUrl.substring(maxLength);
 		}
 		let html = '';
-		html += '<span class="website-url"><a href="' + href + '" target="_blank" title="' + (visibleUrl !== niceUrl ? niceUrl : '') + '">';
+		html += '<span class="website-url"><a href="' + href + '" target="_blank" title="' + (visibleUrl !== titleUrl ? titleUrl : '') + '">';
 		if (hiddenUrlBegin.length > 0) {
 			html += '<span class="hidden-part">' + hiddenUrlBegin + '</span>';
 		}

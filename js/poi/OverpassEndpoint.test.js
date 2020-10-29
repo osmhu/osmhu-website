@@ -22,7 +22,7 @@ it('should return the fastest endpoint', async () => {
 	});
 
 	await OverpassEndpoint.measureEndpointLoadTimes();
-	expect(OverpassEndpoint.measureEndpoint).toHaveBeenCalledTimes(4);
+	expect(OverpassEndpoint.measureEndpoint).toHaveBeenCalledTimes(OverpassEndpoint.all.length);
 	expect(OverpassEndpoint.fastestEndpoint).toEqual(fastestTestEndpoint);
 
 	// Reset mocking

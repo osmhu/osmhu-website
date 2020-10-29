@@ -79,7 +79,7 @@ if (markerDefined) {
 
 // If the params define an osm type and id
 if (params.type && params.id) {
-	Marker.fromTypeAndId(params.type, params.id, params.zoom, map);
+	Marker.fromTypeAndId(params.type, params.id, map);
 }
 
 const poiLayers = new PoiLayers(map);
@@ -104,7 +104,8 @@ $('#search form').on('submit', function (event) {
 
 	var selectedPoiGroup  = $('#poi-search').select2('val');
 	if (selectedPoiGroup.length > 0) {
-		PoiLayer.displayPoiLayer(map, selectedPoiGroup);
+		poiLayers.removeAll();
+		poiLayers.addBySearchId(selectedPoiGroup);
 	}
 
 	var field = $('input#text-search');

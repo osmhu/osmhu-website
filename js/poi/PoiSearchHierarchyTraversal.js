@@ -16,7 +16,7 @@ module.exports = class PoiSearchHierarchyTraversal {
 			} else {
 				const hasChildrenProperty = Object.prototype.hasOwnProperty.call(topLevelElement, 'children');
 				if (!hasChildrenProperty || topLevelElement.children.length < 1) {
-					throw new Error('Every top level element should have at least 1 child');
+					throw new Error('Top level element ' + id + ' does not have at least 1 child');
 				}
 
 				Object.entries(topLevelElement.children).forEach(([childKey, child]) => {
@@ -33,29 +33,26 @@ module.exports = class PoiSearchHierarchyTraversal {
 
 	getSelect2Hierarchy() {
 		const select2Options = [];
-		Object.entries(this.searchHierarchy).forEach((topLevelElement) => {
+		Object.entries(this.searchHierarchy).forEach(([topLevelElementKey, topLevelElement]) => {
 			const children = [];
 
-			Object.entries(topLevelElement[1].children).forEach((childEntry) => {
-				const childKey = childEntry[0];
-				const child = childEntry[1];
-
-				const object = {
+			Object.entries(topLevelElement.children).forEach(([childKey, child]) => {
+				const innerChild = {
 					id: childKey,
 					text: child.title,
 				};
 
 				if (Object.hasOwnProperty.call(child, 'alternativeSearchText')) {
 					// eslint-disable-next-line prefer-destructuring
-					object.alt = child.alternativeSearchText[0];
+					innerChild.alt = child.alternativeSearchText[0];
 				}
 
-				children.push(object);
+				children.push(innerChild);
 			});
 
 			select2Options.push({
-				id: topLevelElement[0],
-				text: topLevelElement[1].title,
+				id: topLevelElementKey,
+				text: topLevelElement.title,
 				children,
 			});
 		});

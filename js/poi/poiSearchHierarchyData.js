@@ -26,16 +26,12 @@ module.exports = {
 					amenity: 'cafe',
 				}],
 			},
-			bar: {
-				title: 'Bár',
-				overpassQuery: [{
-					amenity: 'bar',
-				}],
-			},
 			pub: {
-				title: 'Kocsma',
+				title: 'Kocsma / Bár',
 				alternativeSearchText: ['pub'],
 				overpassQuery: [{
+					amenity: 'bar',
+				}, {
 					amenity: 'pub',
 				}],
 			},
@@ -55,15 +51,15 @@ module.exports = {
 				}],
 			},
 			supermarket: {
-				title: 'Bevásárlóközpont',
+				title: 'Bevásárló központ',
 				overpassQuery: [{
 					shop: 'supermarket',
 				}],
 			},
-			bakery: {
-				title: 'Pékség',
+			tobacco: {
+				title: 'Dohánybolt',
 				overpassQuery: [{
-					shop: 'bakery',
+					shop: 'tobacco',
 				}],
 			},
 			clothes: {
@@ -72,10 +68,22 @@ module.exports = {
 					shop: 'clothes',
 				}],
 			},
+			bakery: {
+				title: 'Pékség',
+				overpassQuery: [{
+					shop: 'bakery',
+				}],
+			},
 			hairdresser: {
 				title: 'Fodrász',
 				overpassQuery: [{
 					shop: 'hairdresser',
+				}],
+			},
+			car_repair: {
+				title: 'Autószervíz',
+				overpassQuery: [{
+					shop: 'car_repair',
 				}],
 			},
 			florist: {
@@ -84,16 +92,40 @@ module.exports = {
 					shop: 'florist',
 				}],
 			},
+			greengrocer: {
+				title: 'Zöldséges',
+				overpassQuery: [{
+					shop: 'greengrocer',
+				}],
+			},
 			confectionery: {
 				title: 'Cukrászda',
 				overpassQuery: [{
 					shop: 'confectionery',
 				}],
 			},
-			greengrocer: {
-				title: 'Zöldséges',
+			beauty: {
+				title: 'Szépségszalon',
 				overpassQuery: [{
-					shop: 'greengrocer',
+					shop: 'beauty',
+				}],
+			},
+			car: {
+				title: 'Autószalon',
+				overpassQuery: [{
+					shop: 'car',
+				}],
+			},
+			chemist: {
+				title: 'Drogéria',
+				overpassQuery: [{
+					shop: 'chemist',
+				}],
+			},
+			butcher: {
+				title: 'Húsbolt',
+				overpassQuery: [{
+					shop: 'butcher',
 				}],
 			},
 			bicycle: {
@@ -166,15 +198,11 @@ module.exports = {
 	healthcare: {
 		title: 'Egészségügy',
 		children: {
-			clinic: {
-				title: 'Klinika',
+			hospital: {
+				title: 'Kórház / Klinika',
 				overpassQuery: [{
 					amenity: 'clinic',
-				}],
-			},
-			hospital: {
-				title: 'Kórház',
-				overpassQuery: [{
+				}, {
 					amenity: 'hospital',
 				}],
 			},

@@ -100,7 +100,7 @@ module.exports = class Marker {
 		});
 	}
 
-	static async fromTypeAndId(type, id, zoom, map) {
+	static async fromTypeAndId(type, id, map) {
 		const query = OverpassQuery.generateQueryByTypeAndId(type, id);
 		const result = await Ajax.get(OverpassEndpoint.fastestEndpoint + query);
 
@@ -110,8 +110,10 @@ module.exports = class Marker {
 		if (!element) throw new Error('Queried element was not found in results');
 
 		const position = Coordinate.getCenterPositionOfOverpassResult(element);
+		const idealZoom = map.getBoundsZoom(Coordinate.getBoundsFromOverpassResult(element));
+
 		// Map view update is needed to calculate popup height
-		map.setView(position, zoom, { animate: false });
+		map.setView(position, idealZoom, { animate: false });
 
 		const newMarker = Marker.createFromOverpassResult(element);
 		Marker.createPopupForMarkerSync(newMarker, element);
@@ -123,7 +125,7 @@ module.exports = class Marker {
 		positionInPixel.y -= popupHeight / 2;
 		const combinedCenter = map.unproject(positionInPixel);
 
-		map.setView(combinedCenter, zoom, { animate: false });
+		map.setView(combinedCenter, idealZoom, { animate: false });
 
 		return newMarker;
 	}

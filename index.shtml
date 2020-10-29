@@ -155,6 +155,6 @@
 	<div id="introduction-toggler"><p class="toggler"></p></div>
 
 	<!-- Load osmhu bundle -->
-	<script src="/build/bundle.js?rev=390"></script>
+	<script src="/build/bundle.js?rev=393"></script>
 </body>
 </html>

@@ -78,12 +78,7 @@ search.resultRenderer = function (result) {
 	row+= '<div class="result">';
 	row+= '<a onclick="searchDetails(';
 	row+= "'" + result.osm_type + "'" + ', ';
-	row+= "'" + result.osm_id + "'" + ', [';
-	row+= result.boundingbox[0] + ', ';
-	row+= result.boundingbox[1] + ', ';
-	row+= result.boundingbox[2] + ', ';
-	row+= result.boundingbox[3] + '],';
-	row+= '{ name: ' + "'" + primaryName.replace(/'/g, "\\\'") + "'" + ', lat: ' + result.lat + ', lon: ' + result.lon + '}';
+	row+= "'" + result.osm_id + "'";
 	row+= ');">';
 	if (result.icon) {
 		row+= '<span class="icon">';
@@ -122,22 +117,17 @@ search.focusIfCoordinates = (query) => {
 
 var visibleSearchResult;
 
-search.details = async (type, id, boundingbox) => {
+search.details = async (type, id) => {
 	if (visibleSearchResult) {
 		map.removeLayer(visibleSearchResult);
 		visibleSearchResult = null;
 	}
-
-	const zoom = map.getBoundsZoom([
-		[boundingbox[0], boundingbox[2]],
-		[boundingbox[1], boundingbox[3]],
-	]);
 
 	if (MobileDetector.isMobile()) {
 		searchResults.hide(200);
 	}
 	$('body').addClass('loading');
 
-	visibleSearchResult = await Marker.fromTypeAndId(type, id, zoom, map);
+	visibleSearchResult = await Marker.fromTypeAndId(type, id, map);
 	$('body').removeClass('loading');
 };

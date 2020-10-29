@@ -25,6 +25,10 @@ const asyncForEach = async (array, callback) => {
 };
 
 module.exports = class OverpassEndpoint {
+	static get all() {
+		return overpassEndpoints;
+	}
+
 	static async measureEndpointLoadTimes() {
 		endpointLoadTimes = {};
 

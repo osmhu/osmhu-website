@@ -1,13 +1,12 @@
 /* istanbul ignore file */
-
-const $ = require('jquery');
+/* globals document */
 
 module.exports = class LoadingIndicator {
 	static setLoading(isLoading) {
 		if (isLoading) {
-			$('body').addClass('loading');
+			document.body.classList.add('loading');
 		} else {
-			$('body').removeClass('loading');
+			document.body.classList.remove('loading');
 		}
 	}
 };
