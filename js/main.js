@@ -11,7 +11,6 @@ var queryString = require('query-string');
 var params = queryString.parse(location.search);
 
 const MobileDetector = require('./MobileDetector');
-const search = require('./search');
 const DirectionsApi = require('./directions/DirectionsApi');
 const DirectionsControl = require('./directions/DirectionsControl');
 const DirectionsResultLayer = require('./directions/DirectionsResultLayer');
@@ -21,8 +20,10 @@ var introduction = require('./introduction');
 const OverpassEndpoint = require('./poi/OverpassEndpoint');
 const PoiLayers = require('./poi/PoiLayers');
 
-// Initializes all autocomplete fields
 const Autocomplete = require('./search/Autocomplete');
+const NominatimSearch = require('./search/NominatimSearch');
+const SearchResults = require('./search/SearchResults');
+const SearchField = require('./search/SearchField');
 
 const Url = require('./url/Url');
 const Share = require('./share/Share');
@@ -93,30 +94,26 @@ $(window).on('updateUrl', url.update);
 url.updateOrgUrls();
 
 const autocomplete = new Autocomplete(map);
+// Initialize all autocomplete fields
 autocomplete.initUi('#search-area input.autocomplete');
+
+const searchResults = new SearchResults(map, '#search-results');
+
+const nominatimSearch = new NominatimSearch(map, searchResults);
+
+const searchField = new SearchField('input#text-search');
 
 // Focus search field in browsers on load
 if (!MobileDetector.isMobile()) {
-	$('input#text-search').focus();
+	searchField.focus();
 }
 
-$('#search form').on('submit', function (event) {
+$('#search form').on('submit', async (event) => {
 	event.preventDefault();
 
-	var selectedPoiGroup  = $('#poi-search').select2('val');
-	if (selectedPoiGroup.length > 0) {
-		poiLayers.removeAll();
-		poiLayers.addBySearchId(selectedPoiGroup);
-	}
-
-	var field = $('input#text-search');
-
-	search.focusIfCoordinates(field.val());
-
-	search.nominatim({
-		field: field,
-		resultRenderer: search.resultRenderer
-	});
+	searchField.enableSearchingState();
+	await nominatimSearch.search(searchField.value);
+	searchField.disableSearchingState();
 });
 
 const directionsApi = new DirectionsApi();

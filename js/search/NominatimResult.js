@@ -1,4 +1,18 @@
+const SearchResult = require('./SearchResult');
+
 module.exports = class NominatimResult {
+	static convertToSearchResult(nominatimResult) {
+		const { primaryName, surroundingArea } = NominatimResult.niceNameFromResult(nominatimResult);
+
+		return new SearchResult(
+			nominatimResult.osm_type,
+			nominatimResult.osm_id,
+			nominatimResult.icon,
+			primaryName,
+			surroundingArea,
+		);
+	}
+
 	static niceNameFromResult(nominatimResult) {
 		let primaryName;
 		const surroundingArea = [];
