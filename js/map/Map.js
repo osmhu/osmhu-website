@@ -9,7 +9,6 @@ const Ajax = require('../Ajax');
 const ZoomControl = require('./controls/ZoomControl');
 const LocateControl = require('./controls/LocateControl');
 const ScaleControl = require('./controls/ScaleControl');
-const MarkerCreatorControl = require('./controls/MarkerCreatorControl');
 const LoadingIndicatorControl = require('./controls/LoadingIndicatorControl');
 
 const TileLayers = require('./layers/TileLayers');
@@ -27,10 +26,13 @@ const overlays = new Overlays();
 
 module.exports = class Map extends L.Map {
 	constructor(initialView, defaultBaseLayerId, defaultOverlaysOnLoad) {
+		const id = 'map';
 		// Initialize map into #map
-		const map = super('map', {
+		const map = super(id, {
 			zoomControl: false,
 		});
+
+		this.id = id;
 
 		window.map = map; // TODO remove
 
@@ -39,8 +41,6 @@ module.exports = class Map extends L.Map {
 		map.addControl(new LocateControl().getMapControl());
 
 		map.addControl(new ScaleControl().getMapControl());
-
-		map.addControl(new MarkerCreatorControl().getMapControl());
 
 		map.addControl(new LoadingIndicatorControl().getMapControl());
 
@@ -100,6 +100,10 @@ module.exports = class Map extends L.Map {
 				map.addLayer(overlays.getById(overlayId).getLayer());
 			}
 		});
+	}
+
+	getId() {
+		return this.id;
 	}
 
 	getActiveBaseLayerId() {

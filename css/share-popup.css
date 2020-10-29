@@ -5,31 +5,31 @@
 }
 
 /* Share popup */
-.popup-share {
+.share-popup {
 	text-align: center;
 }
-.popup-share h1 {
+.share-popup h1 {
 	font-size: 150%;
 	text-align: left;
 }
-.popup-share p {
+.share-popup p {
 	font-size: 100%;
 }
-.popup-share textarea {
+.share-popup textarea {
 	width: 100%;
 	padding: 5px;
 }
-.popup-share input.share-url {
+.share-popup input.share-url {
 	width: 200px;
 	margin-left: 5px;
 	padding: 1px 3px;
 	border: 1px solid #AAA;
 	font-size: 75%;
 }
-.popup-share button {
+.share-popup button {
 	cursor: pointer;
 }
-.popup-share .help {
+.share-popup .help {
 	text-align: center;
 	font-size: 90%;
 }

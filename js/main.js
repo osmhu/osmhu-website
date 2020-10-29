@@ -25,8 +25,7 @@ const PoiLayers = require('./poi/PoiLayers');
 const Autocomplete = require('./search/Autocomplete');
 
 const Url = require('./url/Url');
-
-const share = require('./share');
+const Share = require('./share/Share');
 
 var select2 = require('./select2');
 var promotion = require('./promotion');
@@ -81,6 +80,8 @@ if (markerDefined) {
 if (params.type && params.id) {
 	Marker.fromTypeAndId(params.type, params.id, map);
 }
+
+const share = new Share(map);
 
 const poiLayers = new PoiLayers(map);
 
