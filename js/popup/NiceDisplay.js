@@ -2,19 +2,23 @@ const log = require('loglevel');
 
 module.exports = class NiceDisplay {
 	static names(tags) {
-		let primaryNameExists = false;
 		let primaryName = '';
 
-		if (tags.name || tags.ref || tags.operator) {
-			primaryNameExists = true;
-			primaryName = tags.name || tags.ref || tags.operator;
+		const hungarianName = tags['name:hu'];
+		if (tags.name || hungarianName) {
+			const hungarianNameDifferent = tags.name !== tags['name:hu'];
+			if (hungarianName && hungarianNameDifferent) {
+				primaryName = `${tags.name} (${hungarianName})`;
+			} else {
+				primaryName = tags.name;
+			}
+		} else if (tags.ref || tags.operator) {
+			primaryName = tags.ref || tags.operator;
 		}
 
-		let secondaryNameExists = false;
 		let secondaryName = '';
 		try {
 			secondaryName = NiceDisplay.type(tags);
-			secondaryNameExists = true;
 		} catch (error) {
 			/* istanbul ignore next */
 			if (error.message !== 'Cannot determinate type from tags') {
@@ -23,21 +27,18 @@ module.exports = class NiceDisplay {
 			// No problem
 		}
 
-		if (!primaryNameExists && secondaryNameExists) {
+		if (primaryName.length === 0 && secondaryName.length > 0) {
 			primaryName = secondaryName;
-			primaryNameExists = true;
 			secondaryName = '';
-			secondaryNameExists = false;
 		}
 
-		if (!primaryNameExists && !secondaryNameExists) {
+		if (primaryName.length === 0 && secondaryName.length === 0) {
 			primaryName = 'Hely';
-			primaryNameExists = true;
 		}
 
 		return {
 			primaryName,
-			secondaryName: secondaryNameExists ? secondaryName : undefined,
+			secondaryName: secondaryName.length > 0 ? secondaryName : undefined,
 		};
 	}
 

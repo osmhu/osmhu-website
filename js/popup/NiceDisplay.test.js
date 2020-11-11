@@ -99,6 +99,28 @@ describe('names', () => {
 			secondaryName: 'Ivóvíz',
 		});
 	});
+
+	it('should return name and hungarian name in primaryName when both exist and differ', () => {
+		const tags = {
+			name: 'testName',
+			'name:hu': 'testHungarianName',
+		};
+
+		expect(NiceDisplay.names(tags)).toEqual({
+			primaryName: 'testName (testHungarianName)',
+		});
+	});
+
+	it('should return name in primaryName when hungarian name exists, but same as name', () => {
+		const tags = {
+			name: 'testName',
+			'name:hu': 'testName',
+		};
+
+		expect(NiceDisplay.names(tags)).toEqual({
+			primaryName: 'testName',
+		});
+	});
 });
 
 describe('address', () => {

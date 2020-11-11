@@ -39,18 +39,23 @@ module.exports = class NominatimResult {
 				}
 			}
 
-			// Entrances
-			if (nominatimResult.class === 'building' && nominatimResult.type === 'yes' && nominatimResult.address.house_number) {
-				if (nominatimResult.address.road) {
-					primaryName = nominatimResult.address.road;
+			// Buildings
+			if (nominatimResult.class === 'building' && nominatimResult.address.house_number) {
+				const firstPartOfDisplayName = NominatimResult.firstPartOfDisplayName(nominatimResult);
+				if (firstPartOfDisplayName !== nominatimResult.address.house_number) {
+					primaryName = firstPartOfDisplayName;
+				} else {
+					if (nominatimResult.address.road) {
+						primaryName = nominatimResult.address.road;
+					}
+					primaryName += ` ${nominatimResult.address.house_number}`;
 				}
-				primaryName += ` ${nominatimResult.address.house_number}`;
 			}
 
 			// Administrative areas
 			if (nominatimResult.class === 'boundary' && nominatimResult.type === 'administrative') {
-				if (nominatimResult.address.city) {
-					primaryName = nominatimResult.address.city;
+				if (nominatimResult.address.city || nominatimResult.address.village) {
+					primaryName = NominatimResult.firstPartOfDisplayName(nominatimResult);
 				} else if (nominatimResult.address.country) {
 					primaryName = nominatimResult.address.country;
 				}
@@ -90,5 +95,13 @@ module.exports = class NominatimResult {
 			primaryName,
 			surroundingArea,
 		};
+	}
+
+	static firstPartOfDisplayName(nominatimResult) {
+		if (!nominatimResult.display_name) {
+			return '';
+		}
+		const [firstPartOfDisplayName] = nominatimResult.display_name.split(', ');
+		return firstPartOfDisplayName;
 	}
 };

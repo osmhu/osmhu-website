@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 module.exports = class SearchResult {
 	constructor(type, id, icon, primaryName, surroundingArea) {
 		this.type = type;

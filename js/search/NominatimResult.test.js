@@ -251,6 +251,73 @@ test('should generate nice name for village street', () => {
 	});
 });
 
+test('should use first part of displayname if differs from address', () => {
+	const eastStation = {
+		display_name: 'Keleti pályaudvar, 1, Baross tér, Kerepesdűlő, Budapest, Közép-Magyarország, 1087, Magyarország',
+		class: 'building',
+		type: 'train_station',
+		address: {
+			building: 'Keleti pályaudvar',
+			city: 'Budapest',
+			country: 'Magyarország',
+			country_code: 'hu',
+			house_number: '1',
+			postcode: '1087',
+			region: 'Közép-Magyarország',
+			road: 'Baross tér',
+			suburb: 'Kerepesdűlő',
+		},
+	};
+
+	expect(NominatimResult.niceNameFromResult(eastStation)).toEqual({
+		primaryName: 'Keleti pályaudvar',
+		surroundingArea: ['Budapest'],
+	});
+});
+
+test('should use first part of displayname when city exists', () => {
+	const parkany = {
+		display_name: 'Párkány, Érsekújvári járás, Nyitrai kerület, Nyugat-Szlovákia, Szlovákia',
+		class: 'boundary',
+		type: 'administrative',
+		address: {
+			city: 'Érsekújvári járás',
+			city_district: 'Párkány',
+			country: 'Szlovákia',
+			country_code: 'sk',
+			region: 'Nyugat-Szlovákia',
+			state: 'Nyitrai kerület',
+		},
+	};
+
+	expect(NominatimResult.niceNameFromResult(parkany)).toEqual({
+		primaryName: 'Párkány',
+		surroundingArea: ['Szlovákia'],
+	});
+});
+
+test('should use first part of displayname as primary name if village is found', () => {
+	const balatonVillage = {
+		display_name: 'Balaton, Bélapátfalvai járás, Heves megye, Észak-Magyarország, Alföld és Észak, 3347, Magyarország',
+		class: 'boundary',
+		type: 'administrative',
+		address: {
+			country: 'Magyarország',
+			country_code: 'hu',
+			county: 'Heves megye',
+			municipality: 'Bélapátfalvai járás',
+			postcode: '3347',
+			region: 'Észak-Magyarország',
+			village: 'Balaton',
+		},
+	};
+
+	expect(NominatimResult.niceNameFromResult(balatonVillage)).toEqual({
+		primaryName: 'Balaton',
+		surroundingArea: ['Heves megye'],
+	});
+});
+
 test('should use first part of displayname as primary name if cannot determine otherwise', () => {
 	const dwelling = {
 		display_name: 'Viktória Fogadó, Inárcs, Dabasi járás, Pest megye, Közép-Magyarország, Magyarország',
