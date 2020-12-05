@@ -96,7 +96,7 @@ module.exports = class Marker {
 
 	static createPopupForMarker(marker, popupHtml) {
 		marker.bindPopup(popupHtml, {
-			offset: L.point(0, 4),
+			offset: L.point(0, -22),
 			autoPanPaddingTopLeft: MobileDetector.isMobile() ? [44, 5] : [46, 10],
 			autoPanPaddingBottomRight: MobileDetector.isMobile() ? [54, 5] : [56, 10],
 		});

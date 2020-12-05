@@ -94,7 +94,7 @@ module.exports = class IconProvider {
 		return L.icon({
 			iconUrl: baseUrl + imageUrl,
 			iconSize: MobileDetector.isMobile() ? [38, 44] : [32, 37],
-			iconAnchor: [16, 8],
+			iconAnchor: [16, 35],
 		});
 	}
 
