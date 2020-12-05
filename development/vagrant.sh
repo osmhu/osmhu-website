@@ -6,78 +6,99 @@
 # source: https://serverfault.com/questions/500764/dpkg-reconfigure-unable-to-re-open-stdin-no-file-or-directory
 export DEBIAN_FRONTEND=noninteractive
 
-# update package repository
-apt-get -qq update
+echo "Update packages..."
+apt-get -qq update > /dev/null
 
-# install MySQL
+echo "Install MySQL..."
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-apt-get install -qq mysql-server mysql-client
+apt-get install -qq mysql-server mysql-client > /dev/null
 
-# install PostgreSQL
-apt-get install -qq postgresql-10 postgis postgresql-10-postgis-scripts
+echo "Install PostgreSQL..."
+apt-get install -qq postgresql-12 postgis postgresql-12-postgis-scripts > /dev/null
 
-# install database importer
-apt-get install -qq osm2pgsql
+echo "Install database importer tool (osm2pgsql)..."
+apt-get install -qq osm2pgsql > /dev/null
 
-# install web server
-apt-get install -qq apache2 php7.2 libapache2-mod-php php7.2-mysql php7.2-pgsql
+echo "Install apache2 and PHP..."
+apt-get install -qq apache2 php7.4 libapache2-mod-php php7.4-mysql php7.4-pgsql > /dev/null
 a2enmod -q include # server side includes
 a2enmod -q rewrite # support rewrite rules
 a2enmod -q ssl # HTTPS
 
-# copy apache site config
+echo "Copy apache site configs..."
 cp /vagrant/development/apache2/osmhu-http.conf /etc/apache2/sites-available/osmhu-http.conf
 cp /vagrant/development/apache2/osmhu-ssl.conf /etc/apache2/sites-available/osmhu-ssl.conf
 
-# remove default apache2 config
+echo "Remove default apache2 config..."
 a2dissite -q 000-default.conf
 
+echo "Enabling http site config..."
 a2ensite -q osmhu-http
 
-# Enable development with HTTPS (needs keys, refer to README)
+# enable development with HTTPS (needs keys, refer to README)
 #a2ensite osmhu-ssl
 
-# install PhpMyAdmin for graphical db editing
-apt-get install -qq debconf-utils
+echo "Install PhpMyAdmin for graphical db editing..."
+apt-get install -qq debconf-utils > /dev/null
 echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/mysql/app-pass password root" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
-apt-get install -qq phpmyadmin
+apt-get install -qq phpmyadmin > /dev/null
 
-# autostart apache2
-systemctl enable apache2
+echo "Enable apache2 autostart..."
+systemctl enable --quiet apache2
 
-# restart apache to apply changes
+echo "Restart apache2 to apply changes..."
 systemctl reload apache2
 systemctl restart apache2
 
-# install node.js for frontend development
-# source: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-apt-get install -qq nodejs build-essential
+echo "Install build-essential required by nodejs native code..."
+apt-get install -qq build-essential > /dev/null
 
-# update npm
-npm update -g npm
+echo "Install node.js for frontend development..."
+# https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
+curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn apt-key --quiet add -
+VERSION=node_14.x
+DISTRO="$(lsb_release -s -c)"
+echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list > /dev/null
+echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list > /dev/null
+apt-get update > /dev/null
+apt-get install -qq nodejs > /dev/null
 
-# sync project dir with /var/www
+echo "Update npm..."
+npm install --silent --global npm
+
+echo "Create /var/www as a link to synced /vagrant dir..."
 if ! [ -L /var/www ]; then
   rm -rf /var/www
   ln -fs /vagrant /var/www
 fi
 
-# default directory when connecting from ssh
+echo "Set default directory when connecting from ssh..."
 if ! [ -e /home/vagrant/.bash_profile ]; then
   echo "cd /var/www" >> /home/vagrant/.bash_profile
 fi
 
-# install npm packages needed by frontend
-cd /var/www
-npm i --quiet # supress output, show stderr and warnings
+if [ ! -d /var/www/node_modules ]; then
+  echo "Install npm packages needed by frontend..."
+  # on virtualbox, need to do npm install in not synced directory, because npm install has problems in synced dirs
+  # https://github.com/laravel/homestead/issues/1239#issuecomment-523320952
+  mkdir -p /tmp/npm_install/
+  cp /var/www/package.json /tmp/npm_install
+  cd /tmp/npm_install
+  npm i --quiet # supress output, show stderr and warnings
+  cp -r /tmp/npm_install/node_modules /var/www
+  rm -rf /tmp/npm_install/
+  cd /var/www/node_modules
+  npm i # verify, audit and generate package-lock.json in project directory
+else
+  echo "Skipping npm install, because node_modules found in project directory"
+fi
 
-# tab completion for npm
+echo "Install tab completion for npm..."
 # source: https://docs.npmjs.com/cli/completion
 npm completion >> ~/.bashrc
 
-# utility
-apt-get install -qq htop
+echo "Install htop..."
+apt-get install -qq htop > /dev/null

@@ -1,5 +1,6 @@
 const L = require('leaflet');
-const MapControl = require('../../controls/MapControl');
+
+const MapControl = require('./MapControl');
 
 const LoadingIndicator = L.Control.extend({
 	options: {

@@ -14,8 +14,6 @@
 	<!-- Leaflet.markercluster stylesheet -->
 	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.css?rev=371">
 	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css?rev=371">
-	<!-- Select2 stylesheet -->
-	<link rel="stylesheet" href="/node_modules/select2/select2.css?rev=325">
 	<!-- Map stylesheet -->
 	<link rel="stylesheet" href="/css/map.css?rev=373">
 	<!-- Share popup stylesheet -->
@@ -142,7 +140,7 @@
 			<p><strong>Próbáld ki, és szerkessz valamit!</strong></p>
 			<div class="button"><a id="orgEditLink" href="https://openstreetmap.org/edit">Terület szerkesztése</a></div>
 		</div>
-		<div class="project" style="display: none;">
+		<div class="promotion" style="display: none;">
 			<!--
 			<p class="title"><strong>Kiemelt projekt</strong></p>
 			<p class="slogan">Kerekesszékes térkép</p>
@@ -159,7 +157,7 @@
 	<!-- Introduction toggler icon -->
 	<div id="introduction-toggler"><p class="toggler"></p></div>
 
-	<!-- Load osmhu bundle -->
-	<script src="/build/bundle.js?rev=396"></script>
+	<!-- Load javascript bundle -->
+	<script src="/build/bundle.js?rev=398"></script>
 </body>
 </html>

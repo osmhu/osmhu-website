@@ -1,7 +1,7 @@
 const present = require('present');
 const log = require('loglevel');
 
-const Ajax = require('../Ajax');
+const Ajax = require('../common/Ajax');
 
 log.setDefaultLevel('info');
 

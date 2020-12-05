@@ -1,6 +1,7 @@
-const PoiLayer = require('./PoiLayer');
 const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
-const LoadingIndicator = require('../map/LoadingIndicator');
+const LoadingIndicator = require('../common/LoadingIndicator');
+
+const PoiLayer = require('./PoiLayer');
 
 module.exports = class PoiLayers {
 	constructor(map) {

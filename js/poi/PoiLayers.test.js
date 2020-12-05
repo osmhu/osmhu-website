@@ -1,5 +1,6 @@
-const PoiLayers = require('./PoiLayers');
 const MapMockFactory = require('../map/test-helper/MapMockFactory');
+
+const PoiLayers = require('./PoiLayers');
 
 describe('PoiLayers', () => {
 	let poiLayers;

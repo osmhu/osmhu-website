@@ -1,7 +1,8 @@
-const Url = require('./Url');
 const Marker = require('../marker/Marker');
 const MapMockFactory = require('../map/test-helper/MapMockFactory');
 const ShareMockFactory = require('../share/test-helper/ShareMockFactory');
+
+const Url = require('./Url');
 
 jest.mock('../marker/Marker');
 

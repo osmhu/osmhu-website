@@ -1,8 +1,9 @@
 const $ = require('jquery');
 
+const Marker = require('../marker/Marker');
+
 const UrlHelper = require('./UrlHelper');
 const HistoryApi = require('./HistoryApi');
-const Marker = require('../marker/Marker');
 const UrlParamChangeNotifier = require('./UrlParamChangeNotifier');
 
 module.exports = class Url {

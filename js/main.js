@@ -3,83 +3,47 @@
 require('@babel/polyfill');
 
 const $ = require('jquery');
-
 const log = require('loglevel');
 
-// Parse params
-var queryString = require('query-string');
-var params = queryString.parse(location.search);
-
-const MobileDetector = require('./MobileDetector');
+const MobileDetector = require('./common/MobileDetector');
 const DirectionsApi = require('./directions/DirectionsApi');
 const DirectionsControl = require('./directions/DirectionsControl');
 const DirectionsResultLayer = require('./directions/DirectionsResultLayer');
 const Marker = require('./marker/Marker');
-var introduction = require('./introduction');
-
+const Introduction = require('./introduction/Introduction');
 const OverpassEndpoint = require('./poi/OverpassEndpoint');
 const PoiLayers = require('./poi/PoiLayers');
 const PoiLayerSelector = require('./poi/PoiLayerSelector');
-
 const Autocomplete = require('./search/Autocomplete');
 const NominatimSearch = require('./search/NominatimSearch');
 const SearchResults = require('./search/SearchResults');
 const SearchField = require('./search/SearchField');
-
 const Url = require('./url/Url');
+const UrlParams = require('./url/UrlParams');
 const Share = require('./share/Share');
-
-var promotion = require('./promotion');
 const Map = require('./map/Map');
 
 log.setLevel('info');
 
-params.zoom = params.zoom || params.mzoom; // Backwards compatibility with old mzoom url's
-
-// Default center and zoom of Hungary
-var lat = 47.17;
-var lon = 19.49;
-var zoom = 7;
-
-// If the url params define a marker
-var markerDefined = params.zoom && params.mlat && params.mlon;
-if (markerDefined) {
-	lat = params.mlat;
-	lon = params.mlon;
-	zoom = params.zoom;
-// If the url params define a position
-} else if (params.zoom && params.lat && params.lon) {
-	lat = params.lat;
-	lon = params.lon;
-	zoom = params.zoom;
-}
+const urlParams = new UrlParams(window.location.search);
 
 const map = new Map({
-		lat:   lat,
-		lon:   lon,
-		zoom:  zoom,
-	},
-	params.layer,
-	{
-		tur: params.tur == 1,
-		okt: params.okt == 1,
-		ddk: params.ddk == 1,
-		akt: params.akt == 1
-	}
-);
+	lat: urlParams.lat,
+	lon: urlParams.lon,
+	zoom: urlParams.zoom,
+}, urlParams.layer, {
+	tur: urlParams.isOverlayActive('tur'),
+	okt: urlParams.isOverlayActive('okt'),
+	ddk: urlParams.isOverlayActive('ddk'),
+	akt: urlParams.isOverlayActive('akt'),
+});
 
-$('#introduction-toggler').on('click', introduction.toggle);
-
-$(window).on('search-results-show', introduction.overDrawn);
-$(window).on('search-results-hide', introduction.overDrawnEnd);
-
-if (markerDefined) {
-	Marker.displayRedMarker(map, [lat, lon], params.mtext);
+if (urlParams.isMarkerDefined()) {
+	Marker.displayRedMarker(map, [urlParams.lat, urlParams.lon], urlParams.markerText);
 }
 
-// If the params define an osm type and id
-if (params.type && params.id) {
-	Marker.fromTypeAndId(params.type, params.id, map);
+if (urlParams.isOsmObjectDefined()) {
+	Marker.fromTypeAndId(urlParams.osmObjectType, urlParams.osmObjectId, map);
 }
 
 const share = new Share(map);
@@ -103,6 +67,9 @@ const nominatimSearch = new NominatimSearch(map, searchResults);
 
 const searchField = new SearchField('input#text-search');
 
+const introduction = new Introduction(searchResults);
+introduction.initUi();
+
 // Focus search field in browsers on load
 if (!MobileDetector.isMobile()) {
 	searchField.focus();
@@ -124,10 +91,8 @@ const directionsControl = new DirectionsControl(directionsResultLayer);
 directionsControl.initializeControls();
 
 $(document).ready(() => {
-	if (params.poi) {
-		const poiSearchIds = params.poi.split(',');
-
-		poiSearchIds.forEach((poiSearchId) => {
+	if (urlParams.isPoiLayersDefined()) {
+		urlParams.poiLayers.forEach((poiSearchId) => {
 			poiLayerSelector.activate(poiSearchId);
 		});
 	}
@@ -137,20 +102,17 @@ $(document).ready(() => {
 	}, 1000);
 });
 
-// Search results use this global function on click
-window.searchDetails = search.details;
-
-function repositionMap () {
+function repositionMap() {
 	if (MobileDetector.isMobile()) {
-		$('#map-container').css('top', $('#header').css('height'))
+		$('#map-container').css('top', $('#header').css('height'));
 	}
 }
 
 repositionMap();
 $(window).on('mode-change', repositionMap);
 
-function popupResize () {
-	var width = $(window).width() - 135;
+function popupResize() {
+	const width = $(window).width() - 135;
 	$('.leaflet-popup-content').css('max-width', width);
 }
 

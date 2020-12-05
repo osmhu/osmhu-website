@@ -6,7 +6,7 @@ const log = require('loglevel');
 // Creates L.control.locate function
 require('leaflet.locatecontrol'); // eslint-disable-line import/no-unassigned-import
 
-const MapControl = require('../../controls/MapControl');
+const MapControl = require('./MapControl');
 
 function navigateToHttps() {
 	document.location.replace(`https:${document.location.href.substring(document.location.protocol.length)}`);

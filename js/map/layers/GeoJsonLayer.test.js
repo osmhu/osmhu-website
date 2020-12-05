@@ -1,10 +1,11 @@
 const L = require('leaflet');
 const log = require('loglevel');
 
-const Ajax = require('../Ajax');
+const Ajax = require('../../common/Ajax');
+
 const GeoJsonLayer = require('./GeoJsonLayer');
 
-jest.mock('../Ajax');
+jest.mock('../../common/Ajax');
 
 const validGeoJson = JSON.stringify({
 	type: 'Feature',

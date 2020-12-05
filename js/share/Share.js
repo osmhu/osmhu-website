@@ -3,7 +3,7 @@
 const L = require('leaflet');
 const log = require('loglevel');
 
-const CopyButton = require('../CopyButton');
+const CopyButton = require('../common/CopyButton');
 const MarkerCreatorControl = require('../map/controls/MarkerCreatorControl');
 const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
 

@@ -1,5 +1,6 @@
 const L = require('leaflet');
-const MobileDetector = require('../MobileDetector');
+
+const MobileDetector = require('../common/MobileDetector');
 
 // Prioritized list of icons from `mapiconscollection` icon set
 // The first icon is returned, that has matching tags

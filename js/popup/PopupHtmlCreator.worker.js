@@ -1,4 +1,7 @@
-const popup = require('../popup');
+/* istanbul ignore file */
+/* eslint-env worker */
+
+const PopupHtmlCreator = require('./PopupHtmlCreator');
 
 module.exports = (self) => {
 	self.addEventListener('message', (event) => {
@@ -6,7 +9,7 @@ module.exports = (self) => {
 		const results = {};
 
 		Object.values(overpassResults).forEach((overpassResult) => {
-			const popupHtml = popup.generateHtml(overpassResult);
+			const popupHtml = PopupHtmlCreator.generateHtml(overpassResult);
 			results[overpassResult.id] = popupHtml;
 		});
 

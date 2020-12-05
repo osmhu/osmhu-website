@@ -4,22 +4,19 @@ const L = require('leaflet');
 
 L.Icon.Default.imagePath = '/node_modules/leaflet/dist/images/';
 
-const Ajax = require('../Ajax');
+const Ajax = require('../common/Ajax');
+const OverpassQuery = require('../poi/OverpassQuery');
+const OverpassEndpoint = require('../poi/OverpassEndpoint');
+const Coordinate = require('../poi/Coordinate');
+const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
 
 const ZoomControl = require('./controls/ZoomControl');
 const LocateControl = require('./controls/LocateControl');
 const ScaleControl = require('./controls/ScaleControl');
 const LoadingIndicatorControl = require('./controls/LoadingIndicatorControl');
-
 const TileLayers = require('./layers/TileLayers');
 const Overlays = require('./layers/Overlays');
-const GeoJsonLayer = require('../layers/GeoJsonLayer');
-
-const OverpassQuery = require('../poi/OverpassQuery');
-const OverpassEndpoint = require('../poi/OverpassEndpoint');
-const Coordinate = require('../poi/Coordinate');
-
-const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
+const GeoJsonLayer = require('./layers/GeoJsonLayer');
 
 const tileLayers = new TileLayers();
 const overlays = new Overlays();

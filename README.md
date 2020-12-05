@@ -11,6 +11,10 @@ Az én gépemen `~/development/osmhu/` a projekt mappája, lehet hogy meg kell v
 
 Felhasználónév és jelszó kell az SVN eléréshez. Kérj.
 
+### Verziókezelés
+
+[Subversion (SVN)](https://subversion.apache.org/)
+
 ### A fájlok letöltése
 
 ```bash
@@ -20,10 +24,6 @@ svn co https://bugs.wpsnet.hu/repos/osm/osmhu --username Fodi69
 
 Beírod a jelszavad és letölt mindent.
 
-## Verziókezelés
-
-[Subversion (SVN)](https://subversion.apache.org/)
-
 ## Fejlesztés Vagrant alapú virtuális gép segítségével (ajánlott)
 
 A projekt tartalmaz egy Vagrantfile állományt, ezzel egy olyan virtuális gép hozható létre, ami fejlesztéshez használható.
@@ -32,7 +32,7 @@ A Vagrant használata esetén a gazdagépre szükséges a vagrant telepítése:
 [Vagrant letöltése](https://www.vagrantup.com/downloads.html)
 
 A projekt könyvtárából a `vagrant up` parancs kiadásával létrejön és elindul a fejlesztői virtuális gép.
-Ezután a `vagrant ssh` paranccsal vezérelhetjük a gépet ssh kapcsolaton keresztül. A létrejövő gép jelenleg Ubuntu 18.04 operációs rendszert tartalmaz.
+Ezután a `vagrant ssh` paranccsal vezérelhetjük a gépet ssh kapcsolaton keresztül. A létrejövő gép jelenleg Ubuntu 20.04 operációs rendszert tartalmaz.
 
 ```bash
 cd ~/development/osmhu
@@ -54,62 +54,71 @@ Gazdagépen:
 
 ### Gyakran használt parancsok
 
-Az alábbi parancsokat **a virtuális gépen belül**, a `vagrant ssh` kapcsolaton keresztül kell kiadni.
+**Fontos! A virtuális gépen belül**, a `vagrant ssh` kapcsolaton keresztül használható parancsok:
 
-#### Adatbázis feltöltése korábban exportált adatokkal
+- Production build létrehozása
 
-```bash
-cd /var/www
-make init-existing-db
-```
+  ```bash
+  cd /var/www
+  npm run build
+  ```
 
-#### JavaScript frontend fejlesztése (újrafordítás minden szerkesztésnél)
+- Adatbázis feltöltése korábban exportált adatokkal
 
-```bash
-cd /var/www
-npm run watch
-```
+  ```bash
+  cd /var/www
+  make init-existing-db
+  ```
 
-#### Tesztek futtatása fejlesztés közben (újrafuttatás minden szerkesztésnél)
+- JavaScript frontend tesztelése
 
-```bash
-cd /var/www
-npm run test-watch
-```
+  ```bash
+  cd /var/www
+  npm run test
+  ```
 
-#### Production build létrehozása
+- JavaScript frontend fejlesztése (újrafordítás minden szerkesztésnél)
 
-```bash
-cd /var/www
-npm run build
-```
+  ```bash
+  cd /var/www
+  npm run watch
+  ```
 
-#### JavaScript frontend tesztelése
+- Tesztek futtatása fejlesztés közben (újrafuttatás minden szerkesztésnél)
 
-```bash
-cd /var/www
-npm run test
-```
+  ```bash
+  cd /var/www
+  npm run test-watch
+  ```
 
-#### Mysql adatbázis létrehozása frissen letöltött osm adatokkal  
+- JavaScript frontend kódjának ellenőrzése a javasolt szabályok szerint
 
-**Fontos!** Mielőtt elkezded a PostgreSQL adatbázis feltöltését, a virtuális gép memóriáját legalább 4GB méretűre kell növelni a [Vagrantfile](Vagrantfile) `vb.memory` beállítással.
+  ```bash
+  cd /var/www
+  npm run lint
+  ```
 
-Ha már korábban is futtattad, akkor a `development/hungary-latest.osm.pbf` letörlésével kényszerítheted ki friss adatok letöltéstét.
+  *A JavaScript frontend [ESLint recommended](https://eslint.org/docs/rules/) és [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) -ot használ.*
 
-```bash
-cd /var/www
-make init-from-scratch
-```
+- Mysql adatbázis létrehozása frissen letöltött osm adatokkal  
 
-Az adatbázis feltöltése és az adatok MySQL -be történő sikeres áttöltése után a virtális gép memóriája visszaállítható az alapértelmezett értékre.
+  **Fontos!** Mielőtt elkezded a PostgreSQL adatbázis feltöltését, a virtuális gép memóriáját legalább 4GB méretűre kell növelni a [Vagrantfile](Vagrantfile) `vb.memory` beállítással.
 
-#### Mysql export készítése a `mysqldump` használatával
+  Ha már korábban is futtattad, akkor a `development/hungary-latest.osm.pbf` törlésével kényszerítheted ki friss adatok letöltését.
 
-```bash
-cd /var/www
-make mysql-export
-```
+  ```bash
+  cd /var/www
+  make init-from-scratch
+  ```
+
+  Az adatbázis feltöltése és az adatok MySQL -be történő sikeres áttöltése után a virtális gép memóriája visszaállítható az alapértelmezett értékre.
+
+- Mysql export készítése a `mysqldump` használatával
+
+  ```bash
+  cd /var/www
+  make mysql-export
+  ```
 
 ### HTTPS használata fejlesztéshez
 

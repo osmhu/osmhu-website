@@ -1,4 +1,5 @@
 const L = require('leaflet');
+
 const TileLayer = require('./TileLayer');
 
 test('getLayer returns a valid L.tileLayer', () => {

@@ -6,10 +6,11 @@ require('leaflet-overpass-layer/dist/OverPassLayer.bundle'); // eslint-disable-l
 // Creates L.markerClusterGroup function
 require('leaflet.markercluster/dist/leaflet.markercluster'); // eslint-disable-line import/no-unassigned-import
 
+const PopupHtmlCreator = require('../popup/PopupHtmlCreator');
 const Marker = require('../marker/Marker');
+
 const OverpassQuery = require('./OverpassQuery');
 const OverpassEndpoint = require('./OverpassEndpoint');
-const PopupHtmlCreatorAsync = require('../popup/PopupHtmlCreatorAsync');
 const PoiSearchHierarchy = require('./PoiSearchHierarchy');
 
 const minZoomForPoiLayer = 15;
@@ -76,7 +77,7 @@ module.exports = class PoiLayer {
 		});
 	}
 
-	displayOverpassResultsOnMap(overpassResults) {
+	async displayOverpassResultsOnMap(overpassResults) {
 		const markers = {};
 		const overpassResultsForPopupCreation = [];
 
@@ -85,20 +86,21 @@ module.exports = class PoiLayer {
 			if (noMarkerYet && overpassResult.tags
 				&& (overpassResult.tags.amenity || overpassResult.tags.shop
 					|| overpassResult.tags.leisure || overpassResult.tags.tourism
-					|| overpassResult.tags.natural) && overpassResult.tags.amenity !== 'parking_entrance') {
+					|| overpassResult.tags.natural) && overpassResult.tags.amenity !== 'parking_entrance'
+			) {
 				const marker = Marker.createFromOverpassResult(overpassResult);
 				markers[overpassResult.id] = marker;
 				overpassResultsForPopupCreation.push(overpassResult);
 			}
 		});
 
-		PopupHtmlCreatorAsync.create(overpassResultsForPopupCreation, (results) => {
-			results.forEach(([markerId, popupHtml]) => {
-				const marker = markers[markerId];
-				if (marker) {
-					Marker.createPopupForMarker(marker, popupHtml);
-				}
-			});
+		const results = await PopupHtmlCreator.create(overpassResultsForPopupCreation);
+
+		results.forEach(([markerId, popupHtml]) => {
+			const marker = markers[markerId];
+			if (marker) {
+				Marker.createPopupForMarker(marker, popupHtml);
+			}
 		});
 
 		// Add new marker ids

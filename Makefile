@@ -62,7 +62,8 @@ mysql-clean-db:
 .PHONY: mysql-create-db
 mysql-create-db:
 	mysql -u root -p$(mysql-root-password) -e "CREATE DATABASE osm_hu CHARACTER SET utf8 COLLATE utf8_hungarian_ci;" && \
-	mysql -u root -p$(mysql-root-password) -e "GRANT ALL ON osm_hu.* TO 'osmhu'@'%' IDENTIFIED BY '$(mysql-password)';"
+	mysql -u root -p$(mysql-root-password) -e "CREATE USER IF NOT EXISTS osmhu IDENTIFIED BY '$(mysql-password)';" && \
+	mysql -u root -p$(mysql-root-password) -e "GRANT ALL ON osm_hu.* TO 'osmhu'@'%';"
 
 .PHONY: mysql-init-empty
 mysql-init-empty:

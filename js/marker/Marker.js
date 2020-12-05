@@ -4,15 +4,16 @@ const $ = require('jquery');
 const L = require('leaflet');
 const log = require('loglevel');
 
-const MobileDetector = require('../MobileDetector');
-const CopyButton = require('../CopyButton');
+const MobileDetector = require('../common/MobileDetector');
+const CopyButton = require('../common/CopyButton');
+const HtmlElement = require('../common/HtmlElement');
 const Coordinate = require('../poi/Coordinate');
 const OverpassQuery = require('../poi/OverpassQuery');
 const OverpassEndpoint = require('../poi/OverpassEndpoint');
-const Ajax = require('../Ajax');
+const Ajax = require('../common/Ajax');
 const UrlHelper = require('../url/UrlHelper');
 const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
-const popup = require('../popup');
+const PopupHtmlCreator = require('../popup/PopupHtmlCreator');
 const IconProvider = require('../marker/IconProvider');
 
 let activePoi = null;
@@ -71,7 +72,8 @@ module.exports = class Marker {
 
 		// On popup open activate copy button
 		customMarker.on('popupopen', () => {
-			CopyButton.copyTargetOnButtonClick('#popup-poi-copy', '#popup-poi-share-url');
+			const copyTarget = HtmlElement.singleElementFromSelector(`#popup-content-${overpassResult.type}-${overpassResult.id} #popup-poi-share-url`);
+			CopyButton.copyTargetOnButtonClick(`#popup-content-${overpassResult.type}-${overpassResult.id} #popup-poi-copy`, copyTarget);
 
 			Marker.setActivePoi(overpassResult.type, overpassResult.id);
 			$(window).trigger('popup-open');
@@ -87,7 +89,7 @@ module.exports = class Marker {
 	}
 
 	static createPopupForMarkerSync(marker, overpassResult) {
-		const popupHtml = popup.generateHtml(overpassResult);
+		const popupHtml = PopupHtmlCreator.generateHtml(overpassResult);
 
 		Marker.createPopupForMarker(marker, popupHtml);
 	}

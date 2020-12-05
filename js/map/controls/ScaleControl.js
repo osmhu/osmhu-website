@@ -1,6 +1,6 @@
 const L = require('leaflet');
 
-const MapControl = require('../../controls/MapControl');
+const MapControl = require('./MapControl');
 
 module.exports = class LocateControl extends MapControl {
 	constructor() {

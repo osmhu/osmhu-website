@@ -1,7 +1,8 @@
 const L = require('leaflet');
 const log = require('loglevel');
 
-const Ajax = require('../Ajax');
+const Ajax = require('../../common/Ajax');
+
 const Layer = require('./Layer');
 
 module.exports = class GeoJsonLayer extends Layer {

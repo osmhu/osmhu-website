@@ -1,5 +1,5 @@
-const LayerList = require('../../layers/LayerList');
-const TileLayer = require('../../layers/TileLayer');
+const LayerList = require('./LayerList');
+const TileLayer = require('./TileLayer');
 
 module.exports = class TileLayers extends LayerList {
 	constructor() {

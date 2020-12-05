@@ -38,7 +38,7 @@ module.exports = class DirectionsApi {
 	}
 
 	route(options, cb) {
-		if (!this.ready) throw new Error('MapQuest library is not ready yet');
+		if (!this.ready) cb('MapQuest library is not ready yet');
 
 		return this.directions.route(options, cb);
 	}

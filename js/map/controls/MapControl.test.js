@@ -1,4 +1,5 @@
 const L = require('leaflet');
+
 const MapControl = require('./MapControl');
 
 test('constructor only accepts instance of L.Control', () => {

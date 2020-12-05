@@ -1,8 +1,8 @@
+const Ajax = require('../common/Ajax');
+
 const Autocomplete = require('./Autocomplete');
 
-const Ajax = require('../Ajax');
-
-jest.mock('../Ajax');
+jest.mock('../common/Ajax');
 
 beforeEach(() => {
 	Ajax.mockReset();

@@ -1,6 +1,6 @@
 const autocompleteJs = require('autocomplete.js');
 
-const Ajax = require('../Ajax');
+const Ajax = require('../common/Ajax');
 
 module.exports = class Autocomplete {
 	constructor(mapInstance) {

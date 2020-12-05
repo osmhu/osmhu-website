@@ -1,5 +1,6 @@
 const $ = require('jquery');
 const L = require('leaflet');
+
 const DirectionsNarrative = require('./DirectionsNarrative');
 
 module.exports = class DirectionsResultLayer {

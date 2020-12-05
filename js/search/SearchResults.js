@@ -2,10 +2,11 @@
 
 const $ = require('jquery');
 
-const LoadingIndicator = require('../map/LoadingIndicator');
-const SearchResult = require('./SearchResult');
+const LoadingIndicator = require('../common/LoadingIndicator');
 const Marker = require('../marker/Marker');
-const MobileDetector = require('../MobileDetector');
+const MobileDetector = require('../common/MobileDetector');
+
+const SearchResult = require('./SearchResult');
 
 module.exports = class SearchResults {
 	constructor(map, searchResultsSelector) {
@@ -19,6 +20,10 @@ module.exports = class SearchResults {
 		});
 
 		this.visibleSearchResultLayerOnMap = null;
+	}
+
+	isActive() {
+		return this.$searchResults.is(':visible');
 	}
 
 	showResults(results) {
@@ -35,6 +40,7 @@ module.exports = class SearchResults {
 			this.$searchResults.find('.results').show();
 		}
 		this.$searchResults.show();
+		$(window).trigger('search-results-show');
 	}
 
 	async showResultOnMap(result) {

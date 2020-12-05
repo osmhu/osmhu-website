@@ -54,21 +54,3 @@ it('should return fooddrink search', () => {
 		amenity: 'cafe',
 	}]);
 });
-
-it('should return select 2 options', () => {
-	expect(testPoiSearchHierarchyTraversal.getSelect2Hierarchy()).toEqual([{
-		id: 'fooddrink',
-		text: 'Vendéglátás',
-		children: [{
-			id: 'restaurant',
-			text: 'Étterem',
-		}, {
-			id: 'fast_food',
-			text: 'Gyorsétterem',
-		}, {
-			id: 'cafe',
-			text: 'Kávézó',
-			alt: 'Alternative',
-		}],
-	}]);
-});

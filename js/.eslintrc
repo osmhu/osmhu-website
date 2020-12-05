@@ -1,5 +1,10 @@
 {
-  "extends": "airbnb-base",
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
   "rules": {
     "indent": [ "error", "tab" ],
     "no-tabs": [ "off" ],
@@ -16,6 +21,9 @@
       "ignoreRegExpLiterals": true,
       "ignoreStrings": true,
       "ignoreTemplateLiterals": true
+    }],
+    "import/order": ["warn", {
+      "newlines-between": "always"
     }]
   },
   "plugins": [

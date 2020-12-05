@@ -1,5 +1,6 @@
-const Ajax = require('../Ajax');
+const Ajax = require('../common/Ajax');
 const Map = require('../map/Map');
+
 const CoordinateSearch = require('./CoordinateSearch');
 const NominatimResult = require('./NominatimResult');
 const SearchResults = require('./SearchResults');

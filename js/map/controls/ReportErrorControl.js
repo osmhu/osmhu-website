@@ -1,6 +1,6 @@
 const L = require('leaflet');
 
-const MapControl = require('../../controls/MapControl');
+const MapControl = require('./MapControl');
 
 // Creates L.easyButton
 require('leaflet-easybutton'); // eslint-disable-line import/no-unassigned-import

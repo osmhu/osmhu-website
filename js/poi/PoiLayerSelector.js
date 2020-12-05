@@ -108,7 +108,7 @@ module.exports = class PoiLayerSelector {
 	}
 
 	getElementBySearchId(searchId) {
-		return this.$dropdown.find(`#poi-layer-selector-toggle-${searchId}`)
+		return this.$dropdown.find(`#poi-layer-selector-toggle-${searchId}`);
 	}
 
 	inactivate(searchId) {

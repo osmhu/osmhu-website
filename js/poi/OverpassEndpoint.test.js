@@ -1,8 +1,10 @@
 const present = require('present');
-const Ajax = require('../Ajax');
+
+const Ajax = require('../common/Ajax');
+
 const OverpassEndpoint = require('./OverpassEndpoint');
 
-jest.mock('../Ajax');
+jest.mock('../common/Ajax');
 jest.mock('present');
 
 it('should ensure url has trailing slash', () => {

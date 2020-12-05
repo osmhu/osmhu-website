@@ -1,6 +1,7 @@
 /* globals window */
 
 const $ = require('jquery');
+const log = require('loglevel');
 
 const $startField = $('#directions #directions-start-search');
 const $endField = $('#directions #directions-end-search');
@@ -99,7 +100,10 @@ module.exports = class DirectionsControl {
 				transportType,
 				avoidTollRoads,
 				(error) => {
-					if (error.length > 0) {
+					$endField.removeClass('searching');
+
+					if (error instanceof Error || error.length > 0) {
+						log.error(error);
 						$('#general-error').fadeIn(200);
 						let html = '<strong>Az útvonaltervezés jelenleg nem elérhető!</strong><br />';
 						html += 'Tipp: használd az <a href="https://www.openstreetmap.org/directions" target="_blank">OpenStreetMap.org útvonaltervezőt!</a>';
@@ -107,9 +111,9 @@ module.exports = class DirectionsControl {
 						setTimeout(() => {
 							$('#general-error').fadeOut(200);
 						}, 15000);
+					} else {
+						$(window).trigger('search-results-show');
 					}
-					$endField.removeClass('searching');
-					$(window).trigger('search-results-show');
 				},
 			);
 

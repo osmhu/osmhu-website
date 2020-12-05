@@ -1,6 +1,6 @@
-const LayerList = require('../../layers/LayerList');
-const GeoJsonLayer = require('../../layers/GeoJsonLayer');
-const TileLayer = require('../../layers/TileLayer');
+const LayerList = require('./LayerList');
+const GeoJsonLayer = require('./GeoJsonLayer');
+const TileLayer = require('./TileLayer');
 
 module.exports = class Overlays extends LayerList {
 	constructor() {
