@@ -1,4 +1,4 @@
-const isoDayOfWeek = require('date-fns/get_iso_day');
+const isoDayOfWeek = require('date-fns/getISODay');
 const log = require('loglevel');
 const present = require('present');
 const webworkify = require('webworkify');
@@ -90,7 +90,9 @@ module.exports = class PopupHtmlCreator {
 		html += '<div class="options">';
 		if (shareUrl) {
 			html += '<span class="mobile-hidden">';
-			html += '<button onclick="$(this).parents().find(\'.share\').show(); $(this).parents().find(\'.share input.share-url\').select();">Megosztás</button>';
+			// eslint-disable-next-line quotes
+			const onClick = `this.parentElement.parentElement.querySelector('.share').style.display = 'block'; this.parentElement.parentElement.querySelector('.share .share-url').select()`;
+			html += '<button onclick="' + onClick + '">Megosztás</button>';
 			html += '</span>';
 		}
 		const browseUrl = PopupHtmlCreator.osmBrowseUrl(element);

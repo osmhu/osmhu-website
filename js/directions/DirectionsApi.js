@@ -1,5 +1,3 @@
-/* global document */
-
 const $ = require('jquery');
 const L = require('leaflet');
 
@@ -14,37 +12,54 @@ module.exports = class DirectionsApi {
 		this.loading = false;
 
 		this.directions = {};
-		$(document).ready(() => {
-			setTimeout(() => {
-				this.loadJs();
-			}, 500);
-		});
 	}
 
-	loadJs() {
-		if (this.loading || this.ready) return;
+	async loadJs() {
+		if (this.loading || this.ready) return Promise.resolve();
 
 		this.loading = true;
 
-		$.getScript(mapJs)
-			.done(() => {
-				L.mapquest.key = apiKey;
+		return new Promise((resolve, reject) => {
+			$.getScript(mapJs)
+				.done(() => {
+					L.mapquest.key = apiKey;
 
-				this.directions = L.mapquest.directions();
+					this.directions = L.mapquest.directions();
 
-				this.loading = false;
-				this.ready = true;
+					this.loading = false;
+					this.ready = true;
+					resolve();
+				})
+				.fail((jqxhr, settings, exception) => {
+					this.loading = false;
+					reject(new Error('Failure while loading Mapquest.js: ' + exception));
+				});
+		});
+	}
+
+	async route(options) {
+		if (!this.ready) {
+			await this.loadJs();
+		}
+
+		return new Promise((resolve, reject) => {
+			this.directions.route(options, (error, response) => {
+				const errorIsEmpty = Object.keys(error).length === 0 && error.constructor === Object;
+				if (error instanceof Error) {
+					reject(error);
+				} else if (!errorIsEmpty) {
+					reject(new Error(error));
+				} else if (response) {
+					resolve(response);
+				}
 			});
+		});
 	}
 
-	route(options, cb) {
-		if (!this.ready) cb('MapQuest library is not ready yet');
-
-		return this.directions.route(options, cb);
-	}
-
-	directionsLayer(options) {
-		if (!this.ready) throw new Error('MapQuest library is not ready yet');
+	async directionsLayer(options) {
+		if (!this.ready) {
+			await this.loadJs();
+		}
 
 		return L.mapquest.directionsLayer(options);
 	}

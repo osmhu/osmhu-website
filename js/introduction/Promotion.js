@@ -1,8 +1,8 @@
 const $ = require('jquery');
 const format = require('date-fns/format');
 const parse = require('date-fns/parse');
-const distanceInWordsStrict = require('date-fns/distance_in_words_strict');
-const differenceInMinutes = require('date-fns/difference_in_minutes');
+const formatDistanceStrict = require('date-fns/formatDistanceStrict');
+const differenceInMinutes = require('date-fns/differenceInMinutes');
 const huLocale = require('date-fns/locale/hu');
 
 const eventStart = parse('2018-11-13 17:45:00');
@@ -66,7 +66,7 @@ module.exports = class Promotion {
 		const now = new Date();
 		const minutesTillStart = differenceInMinutes(eventStart, now);
 		if (minutesTillStart > 0) {
-			const distanceFormatted = distanceInWordsStrict(eventStart, new Date(), {
+			const distanceFormatted = formatDistanceStrict(eventStart, new Date(), {
 				addSuffix: true,
 				locale: huLocale,
 			});

@@ -54,7 +54,7 @@ module.exports = class PoiLayerSelector {
 			this.$root.addClass('opened');
 
 			setTimeout(() => {
-				$(document).on('click.background', event => this.close(event));
+				$(document).on('click.background', (event) => this.close(event));
 			}, 100);
 		}
 		this.refreshButtonState();
@@ -99,7 +99,7 @@ module.exports = class PoiLayerSelector {
 	}
 
 	toggle(searchId) {
-		const searchIdIsActive = this.poiLayers.getAllSearchIds().some(id => id === searchId);
+		const searchIdIsActive = this.poiLayers.getAllSearchIds().some((id) => id === searchId);
 		if (searchIdIsActive) {
 			this.inactivate(searchId);
 		} else {
@@ -124,7 +124,7 @@ module.exports = class PoiLayerSelector {
 	}
 
 	appendSearchToggle(searchId, searchObject, parentToAppendTo) {
-		const activeClass = this.poiLayers.getAllSearchIds().some(id => id === searchId) ? ' active' : '';
+		const activeClass = this.poiLayers.getAllSearchIds().some((id) => id === searchId) ? ' active' : '';
 		const icon = '/kepek/mapicons/simple/' + searchObject.icon + '.png';
 
 		const html = `

@@ -6,8 +6,8 @@ const defaultCenterAndZoomForHungary = {
 	zoom: 7,
 };
 
-const floatParam = value => Number.parseFloat(value);
-const intParam = value => Number.parseInt(value, 10);
+const floatParam = (value) => Number.parseFloat(value);
+const intParam = (value) => Number.parseInt(value, 10);
 
 module.exports = class UrlParams {
 	constructor(locationSearchQuery) {

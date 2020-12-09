@@ -158,6 +158,6 @@
 	<div id="introduction-toggler"><p class="toggler"></p></div>
 
 	<!-- Load javascript bundle -->
-	<script src="/build/bundle.js?rev=398"></script>
+	<script src="/build/bundle.js?rev=400"></script>
 </body>
 </html>

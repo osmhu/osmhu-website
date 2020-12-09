@@ -71,12 +71,7 @@ module.exports = class Share {
 			const markerPosition = this.shareMarker.getLatLng();
 			this.map.setView([markerPosition.lat, markerPosition.lng]);
 
-			this.createPopupAndOpen();
-
-			this.textFieldHtmlElement.value = this.getText();
-			UrlParamChangeNotifier.trigger();
-
-			this.bindPopupActions();
+			this.shareMarker.openPopup();
 		});
 
 		this.shareMarker.on('popupopen', () => {
@@ -85,9 +80,8 @@ module.exports = class Share {
 			const needToUpdate = this.textFieldHtmlElement.value !== this.getText();
 			if (needToUpdate) {
 				this.textFieldHtmlElement.value = this.getText();
-				UrlParamChangeNotifier.trigger();
 			}
-
+			UrlParamChangeNotifier.trigger();
 			this.bindPopupActions();
 		});
 

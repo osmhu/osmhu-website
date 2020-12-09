@@ -14,7 +14,8 @@ const Ajax = require('../common/Ajax');
 const UrlHelper = require('../url/UrlHelper');
 const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
 const PopupHtmlCreator = require('../popup/PopupHtmlCreator');
-const IconProvider = require('../marker/IconProvider');
+
+const IconProvider = require('./IconProvider');
 
 let activePoi = null;
 
@@ -65,8 +66,10 @@ module.exports = class Marker {
 
 		const iconProvider = new IconProvider(overpassResult.tags);
 		try {
-			customMarker.setIcon(iconProvider.getFirstMatchingIcon());
+			const matchingIcon = iconProvider.getFirstMatchingIcon();
+			customMarker.setIcon(matchingIcon);
 		} catch (error) {
+			customMarker.options.icon.options.popupAnchor = [0, -8];
 			log.info('No icon found for', overpassResult.type, overpassResult.id, 'tags were:', overpassResult.tags);
 		}
 
@@ -108,7 +111,7 @@ module.exports = class Marker {
 
 		Marker.setActivePoi(type, id);
 		UrlParamChangeNotifier.trigger();
-		const element = result.elements.find(e => parseInt(e.id, 10) === parseInt(id, 10));
+		const element = result.elements.find((e) => parseInt(e.id, 10) === parseInt(id, 10));
 		if (!element) throw new Error('Queried element was not found in results');
 
 		const position = Coordinate.getCenterPositionOfOverpassResult(element);

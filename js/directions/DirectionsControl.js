@@ -74,7 +74,7 @@ module.exports = class DirectionsControl {
 		$(window).trigger('mode-change');
 	}
 
-	startDirections() {
+	async startDirections() {
 		const start = $startField.val();
 		const end = $endField.val();
 
@@ -94,30 +94,26 @@ module.exports = class DirectionsControl {
 			const routeStart = DirectionsControl.convertToMapQuestFormat(start);
 			const routeEnd = DirectionsControl.convertToMapQuestFormat(end);
 
-			this.directionsResultLayer.route(
-				routeStart,
-				routeEnd,
-				transportType,
-				avoidTollRoads,
-				(error) => {
-					$endField.removeClass('searching');
-
-					if (error instanceof Error || error.length > 0) {
-						log.error(error);
-						$('#general-error').fadeIn(200);
-						let html = '<strong>Az útvonaltervezés jelenleg nem elérhető!</strong><br />';
-						html += 'Tipp: használd az <a href="https://www.openstreetmap.org/directions" target="_blank">OpenStreetMap.org útvonaltervezőt!</a>';
-						$('#general-error').html(html);
-						setTimeout(() => {
-							$('#general-error').fadeOut(200);
-						}, 15000);
-					} else {
-						$(window).trigger('search-results-show');
-					}
-				},
-			);
-
-			$endField.addClass('searching');
+			try {
+				$endField.addClass('searching');
+				await this.directionsResultLayer.route(
+					routeStart,
+					routeEnd,
+					transportType,
+					avoidTollRoads,
+				);
+				$(window).trigger('search-results-show');
+			} catch (error) {
+				log.error(error);
+				$('#general-error').fadeIn(200);
+				let html = '<strong>Az útvonaltervezés jelenleg nem elérhető!</strong><br />';
+				html += 'Tipp: használd az <a href="https://www.openstreetmap.org/directions" target="_blank">OpenStreetMap.org útvonaltervezőt!</a>';
+				$('#general-error').html(html);
+				setTimeout(() => {
+					$('#general-error').fadeOut(200);
+				}, 15000);
+			}
+			$endField.removeClass('searching');
 		}
 	}
 

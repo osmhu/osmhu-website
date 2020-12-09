@@ -73,7 +73,7 @@ module.exports = class PoiLayer {
 			},
 			beforeRequest: () => this.onLoadingStateChanged(true),
 			onError: () => this.onLoadingStateChanged(false),
-			onSuccess: data => this.displayOverpassResultsOnMap(data.elements),
+			onSuccess: (data) => this.displayOverpassResultsOnMap(data.elements),
 		});
 	}
 

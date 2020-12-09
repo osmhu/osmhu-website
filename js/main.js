@@ -1,6 +1,7 @@
 /* globals window, document */
 
-require('@babel/polyfill');
+require('core-js/stable');
+require('regenerator-runtime/runtime');
 
 const $ = require('jquery');
 const log = require('loglevel');

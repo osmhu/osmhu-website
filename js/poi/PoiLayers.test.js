@@ -1,4 +1,4 @@
-const MapMockFactory = require('../map/test-helper/MapMockFactory');
+const MockedMap = require('../map/test-helper/MockedMap');
 
 const PoiLayers = require('./PoiLayers');
 
@@ -6,7 +6,7 @@ describe('PoiLayers', () => {
 	let poiLayers;
 
 	beforeAll(() => {
-		const mockedMap = MapMockFactory.build(13, 47.49843, 19.04115);
+		const mockedMap = MockedMap.build(13, 47.49843, 19.04115);
 		poiLayers = new PoiLayers(mockedMap);
 	});
 

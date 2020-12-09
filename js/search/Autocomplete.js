@@ -81,7 +81,7 @@ module.exports = class Autocomplete {
 			throw new Error('Wrong response from query/cities.php: ' + resultCities);
 		}
 
-		return resultCities.map(resultCity => ({ value: resultCity }));
+		return resultCities.map((resultCity) => ({ value: resultCity }));
 	}
 
 	static async searchStreet(city, street) {
@@ -97,7 +97,7 @@ module.exports = class Autocomplete {
 		}
 
 		const niceCityName = Autocomplete.niceCityName(cityTerm);
-		return resultStreets.map(resultStreet => ({
+		return resultStreets.map((resultStreet) => ({
 			id: resultStreet.id,
 			value: `${niceCityName}, ${resultStreet.name}`,
 		}));

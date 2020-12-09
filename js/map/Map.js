@@ -117,7 +117,7 @@ module.exports = class Map extends L.Map {
 
 		if (result.elements.length === 0) return;
 
-		const way = result.elements.find(element => parseInt(element.id, 10) === parseInt(wayId, 10));
+		const way = result.elements.find((element) => parseInt(element.id, 10) === parseInt(wayId, 10));
 		if (way) {
 			const bounds = Coordinate.getBoundsFromOverpassResult(way);
 			if (bounds) {

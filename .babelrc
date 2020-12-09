@@ -3,7 +3,6 @@
   "presets": [
     ["@babel/preset-env",
       {
-        "useBuiltIns": "entry",
         "targets": {
           "browsers": ">0.05% in hu"
         }

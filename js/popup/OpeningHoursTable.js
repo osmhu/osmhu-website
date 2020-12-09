@@ -1,5 +1,5 @@
-const startOfWeek = require('date-fns/start_of_week');
-const addDays = require('date-fns/add_days');
+const startOfWeek = require('date-fns/startOfWeek');
+const addDays = require('date-fns/addDays');
 const OpeningHours = require('opening_hours');
 
 // For opening_hours localization
