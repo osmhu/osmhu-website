@@ -13,7 +13,7 @@ const OverpassEndpoint = require('../poi/OverpassEndpoint');
 const Ajax = require('../common/Ajax');
 const UrlHelper = require('../url/UrlHelper');
 const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
-const PopupHtmlCreator = require('../popup/PopupHtmlCreator');
+const PopupHtmlCreatorSingle = require('../popup/PopupHtmlCreatorSingle');
 
 const IconProvider = require('./IconProvider');
 
@@ -92,7 +92,7 @@ module.exports = class Marker {
 	}
 
 	static createPopupForMarkerSync(marker, overpassResult) {
-		const popupHtml = PopupHtmlCreator.generateHtml(overpassResult);
+		const popupHtml = PopupHtmlCreatorSingle.create(overpassResult);
 
 		Marker.createPopupForMarker(marker, popupHtml);
 	}

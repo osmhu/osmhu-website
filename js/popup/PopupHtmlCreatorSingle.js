@@ -1,7 +1,5 @@
-const isoDayOfWeek = require('date-fns/getISODay');
+const getISODay = require('date-fns/getISODay');
 const log = require('loglevel');
-const present = require('present');
-const webworkify = require('webworkify');
 
 const StringUtil = require('../common/StringUtil');
 
@@ -12,32 +10,8 @@ const Wheelchair = require('./Wheelchair');
 
 log.setDefaultLevel('info');
 
-module.exports = class PopupHtmlCreator {
-	/* istanbul ignore next */
-	static async create(overpassResults) {
-		return new Promise((resolve) => {
-			// Require here instead of globally because testing would not work otherwise
-			// (webworkify function returns error in test environment)
-			const popupHtmlCreatorWorker = webworkify(require('./PopupHtmlCreator.worker.js')); // eslint-disable-line global-require
-
-			const start = present();
-
-			popupHtmlCreatorWorker.addEventListener('message', (event) => {
-				const results = event.data;
-
-				const end = present();
-				const elapsedMilliseconds = Math.round(end - start);
-				const itemCount = overpassResults.length;
-				log.debug('Generated poi popup html for ' + itemCount + ' items in ' + elapsedMilliseconds + 'ms');
-
-				resolve(Object.entries(results));
-			});
-
-			popupHtmlCreatorWorker.postMessage(overpassResults);
-		});
-	}
-
-	static generateHtml(element) {
+module.exports = class PopupHtmlCreatorSingle {
+	static create(element) {
 		const shareUrl = true;
 
 		let html = `<div id="popup-content-${element.type}-${element.id}" class="popup-content">`;
@@ -74,7 +48,7 @@ module.exports = class PopupHtmlCreator {
 		html += '</div>';
 		const openingHours = element.tags.opening_hours;
 		if (openingHours) {
-			const isoDayOfWeekForToday = isoDayOfWeek(new Date());
+			const isoDayOfWeekForToday = getISODay(new Date());
 			try {
 				const openingHoursTable = OpeningHoursTable.generateTable(openingHours, isoDayOfWeekForToday);
 				if (openingHoursTable) {
@@ -95,9 +69,9 @@ module.exports = class PopupHtmlCreator {
 			html += '<button onclick="' + onClick + '">Megosztás</button>';
 			html += '</span>';
 		}
-		const browseUrl = PopupHtmlCreator.osmBrowseUrl(element);
+		const browseUrl = PopupHtmlCreatorSingle.osmBrowseUrl(element);
 		html += '<button onclick="window.open(\'' + browseUrl + '\')">Minden adat</button>';
-		const editUrl = PopupHtmlCreator.osmEditUrl(element);
+		const editUrl = PopupHtmlCreatorSingle.osmEditUrl(element);
 		html += '<button onclick="window.open(\'' + editUrl + '\')">Szerkesztés</button>';
 		if (shareUrl) {
 			html += '<div class="share">';

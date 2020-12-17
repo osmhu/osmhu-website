@@ -6,7 +6,7 @@ require('leaflet-overpass-layer/dist/OverPassLayer.bundle'); // eslint-disable-l
 // Creates L.markerClusterGroup function
 require('leaflet.markercluster/dist/leaflet.markercluster'); // eslint-disable-line import/no-unassigned-import
 
-const PopupHtmlCreator = require('../popup/PopupHtmlCreator');
+const PopupHtmlCreatorMulti = require('../popup/PopupHtmlCreatorMulti');
 const Marker = require('../marker/Marker');
 
 const OverpassQuery = require('./OverpassQuery');
@@ -94,7 +94,7 @@ module.exports = class PoiLayer {
 			}
 		});
 
-		const results = await PopupHtmlCreator.create(overpassResultsForPopupCreation);
+		const results = await PopupHtmlCreatorMulti.create(overpassResultsForPopupCreation);
 
 		results.forEach(([markerId, popupHtml]) => {
 			const marker = markers[markerId];
