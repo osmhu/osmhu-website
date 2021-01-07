@@ -44,7 +44,7 @@ module.exports = class Introduction {
 	}
 
 	changeTogglerIcon(icon) {
-		this.$toggler.find('.toggler').html(icon);
+		this.$toggler.find('.toggler-button').html(icon);
 	}
 
 	isVisible() {

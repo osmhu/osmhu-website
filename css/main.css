@@ -15,11 +15,8 @@ html {
 }
 /* Logo and branding */
 #logo {
-	position: absolute;
-	top: 17px;
-	left: 17px;
-	width: 221px;
-	height: 63px;
+	padding: 16px 0 0 16px;
+	width: 260px;
 	font-family: Arial;
 }
 #logo a {
@@ -95,14 +92,6 @@ html {
 	background-color: #f0f0f0;
 }
 
-/* Social buttons */
-#social {
-	position: absolute;
-	top: 40px;
-	right: 0;
-	width: 120px;
-}
-
 /* Search area */
 #search-area {
 	position: absolute;
@@ -110,6 +99,40 @@ html {
 	left: 264px;
 	z-index: 100;
 	font-family: Arial;
+}
+
+span.svg-icon {
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+
+#search-area #mode-selector svg.icon, #search-area #mode-selector .title {
+	vertical-align: middle;
+}
+
+span.svg-icon.location-arrow-icon {
+	background-image: url('/kepek/font-awesome-icons/location-arrow-solid.svg');
+	width: 13px;
+	height: 13px;
+	vertical-align: middle;
+}
+
+span.svg-icon.caret-down-icon {
+	background-image: url('/kepek/font-awesome-icons/caret-down-solid.svg');
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+}
+
+span.svg-icon.caret-up-icon {
+	background-image: url('/kepek/font-awesome-icons/caret-up-solid.svg');
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+}
+
+#search-area label {
+	display: none;
 }
 
 #search-area #search-mode, #search-area #directions-mode {
@@ -130,6 +153,7 @@ html {
 }
 #search-area #modes {
 	display: inline-block;
+	vertical-align: middle;
 }
 #search-area #directions {
 	display: none;
@@ -141,8 +165,6 @@ html {
 	width: 260px;
 	padding: 6px 0 5px 6px;
 	margin: 0;
-	font-size: 95%;
-	height: 32px;
 	border: 1px solid #aaa;
 	border-radius: 3px 0 0 3px;
 }
@@ -175,21 +197,19 @@ html {
 #search-area .tt-suggestion p {
     margin: 0;
 }
-#search-area .search-button {
+#search-area .search-button-container {
 	display: inline-block;
 	margin: 0;
 	vertical-align: top;
 }
-#search-area .search-button button {
-	position: relative;
-	font-size: 95%;
+#search-area .search-button-container .search-button {
 	cursor: pointer;
 	margin: 0;
-	padding: 6px 10px 7px 8px;
-	height: 32px;
+	padding: 6px 7px 5px;
 	border: 1px solid #aaa;
 	border-left-width: 0;
 	border-radius: 0 3px 3px 0;
+	line-height: 0;
 	color: #e8f0de;
 	background: #64991e;
 	background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
@@ -197,8 +217,12 @@ html {
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
 }
 
+#search-area .search-button-container .search-button svg.icon {
+	color: white;
+}
+
 #search-area #directions input.autocomplete {
-	width: 210px;
+	width: 200px;
 }
 #search-area input#directions-start-search {
 	border-radius: 3px;
@@ -257,7 +281,7 @@ html {
 
 /* Map layout on mobile or small screen */
 @media all and (max-width: 699px) {
-	.panel, #menu li.mobile-hidden, .mobile-hidden, #social, #logo, #separator, .toggler {
+	.panel, #menu li.mobile-hidden, .mobile-hidden, #logo, #separator, .toggler {
 		display: none;
 	}
 	#header {
@@ -318,11 +342,11 @@ html {
 		height: 30px;
 		width: 100%;
 	}
-	#search-area .search-button {
+	#search-area .search-button-container {
 		display: table-cell;
 		width: 31px;
 	}
-	#search-area .search-button button {
+	#search-area .search-button-container .search-button {
 		width: 31px;
 		height: 30px;
 		font-size: 80%;
@@ -336,7 +360,7 @@ html {
 	#search-area #directions .fields .autocomplete {
 		width: 100%;
 	}
-	#search-area #directions .search-button button {
+	#search-area #directions .search-button-container .search-button {
 		height: 60px;
 	}
 	.leaflet-left {

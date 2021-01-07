@@ -10,7 +10,7 @@
 		"coordinate-parser": "^1.0.7",
 		"core-js": "^3.8.1",
 		"date-fns": "^2.16.1",
-		"font-awesome": "^4.7.0",
+		"fg-loadcss": "^3.1.0",
 		"i18next-client": "^1.11.5",
 		"jquery": "^3.5.1",
 		"js-cookie": "^2.2.1",
@@ -52,6 +52,9 @@
 		"watch": "watchify js/main.js js/debug.js --entry js/main.js --outfile build/bundle.js --debug --verbose --poll=2000",
 		"test": "jest --coverage",
 		"test-watch": "jest --watchAll --coverage"
+	},
+	"engines": {
+		"node": ">=14.15.3"
 	},
 	"jest": {
 		"snapshotSerializers": [

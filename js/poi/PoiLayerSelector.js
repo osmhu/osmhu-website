@@ -18,12 +18,21 @@ module.exports = class PoiLayerSelector {
 		this.refreshButtonState();
 		this.generateHierarchy();
 		this.refreshTitle();
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') {
+				if (this.isOpened()) {
+					this.close();
+					this.$trigger.trigger('focus');
+				}
+			}
+		});
 	}
 
 	refreshButtonState() {
 		const newIcon = this.isOpened() ? 'up' : 'down';
 
-		this.$trigger.find('.poi-layer-selector-state').html(`<i class="fa fa-caret-${newIcon}">`);
+		this.$trigger.find('.poi-layer-selector-state').html(`<span class="svg-icon caret-${newIcon}-icon">`);
 	}
 
 	refreshTitle() {
@@ -39,12 +48,10 @@ module.exports = class PoiLayerSelector {
 		return this.$root.hasClass('opened');
 	}
 
-	close(event) {
-		if (this.$root !== event.target && !this.$root.has(event.target).length) {
-			this.$root.removeClass('opened');
-			$(document).off('.background');
-			this.refreshButtonState();
-		}
+	close() {
+		this.$root.removeClass('opened');
+		$(document).off('.background');
+		this.refreshButtonState();
 	}
 
 	toggleOpened() {
@@ -54,7 +61,11 @@ module.exports = class PoiLayerSelector {
 			this.$root.addClass('opened');
 
 			setTimeout(() => {
-				$(document).on('click.background', (event) => this.close(event));
+				$(document).on('click.background', (event) => {
+					if (this.$root !== event.target && !this.$root.has(event.target).length) {
+						this.close();
+					}
+				});
 			}, 100);
 		}
 		this.refreshButtonState();
@@ -128,14 +139,14 @@ module.exports = class PoiLayerSelector {
 		const icon = '/kepek/mapicons/simple/' + searchObject.icon + '.png';
 
 		const html = `
-			<div id="poi-layer-selector-toggle-${searchId}" class="poi-layer-selector-toggle${activeClass}">
+			<button id="poi-layer-selector-toggle-${searchId}" class="poi-layer-selector-toggle${activeClass}">
 				<div class="poi-layer-selector-toggle-icon">
-					<img src="${icon}" alt="${searchObject.title}" />
+					<img src="${icon}" alt="${searchObject.title} ikon" width="32" height="37" />
 				</div>
 				<div class="poi-layer-selector-toggle-title">
 					<span>${searchObject.title}</span>
 				</div>
-			</div>
+			</button>
 		`;
 
 		parentToAppendTo.append(html);

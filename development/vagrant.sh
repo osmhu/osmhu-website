@@ -87,11 +87,11 @@ if [ ! -d /var/www/node_modules ]; then
   mkdir -p /tmp/npm_install/
   cp /var/www/package.json /tmp/npm_install
   cd /tmp/npm_install
-  npm i --quiet # supress output, show stderr and warnings
+  npm i --silent # supress output, show stderr and warnings
   cp -r /tmp/npm_install/node_modules /var/www
   rm -rf /tmp/npm_install/
   cd /var/www/node_modules
-  npm i # verify, audit and generate package-lock.json in project directory
+  npm i --silent # verify, audit and generate package-lock.json in project directory
 else
   echo "Skipping npm install, because node_modules found in project directory"
 fi

@@ -69,7 +69,7 @@ module.exports = class PoiLayer {
 			minZoomIndicatorOptions: {
 				position: 'topleft',
 				minZoomMessageNoLayer: 'Nincs réteg hozzáadva.',
-				minZoomMessage: '<img src="/kepek/1391811435_Warning.png">A helyek a MINZOOMLEVEL. nagyítási szinttől jelennek meg. (Jelenleg: CURRENTZOOM)',
+				minZoomMessage: '<img src="/kepek/1391811435_Warning.png" alt="Figyelem" width="20" height="20">A helyek a MINZOOMLEVEL. nagyítási szinttől jelennek meg. (Jelenleg: CURRENTZOOM)',
 			},
 			beforeRequest: () => this.onLoadingStateChanged(true),
 			onError: () => this.onLoadingStateChanged(false),

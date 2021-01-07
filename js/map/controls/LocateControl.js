@@ -17,7 +17,7 @@ module.exports = class LocateControl extends MapControl {
 		const locateControl = L.control.locate({
 			drawCircle: false,
 			flyTo: true,
-			icon: 'fa fa-location-arrow',
+			icon: 'svg-icon location-arrow-icon',
 			onLocationError: (error) => {
 				const isNotUsingHttps = document.location.protocol !== 'https:';
 
