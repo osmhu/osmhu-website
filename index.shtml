@@ -13,15 +13,15 @@
 	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.css?rev=371">
 	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css?rev=371">
 	<!-- Map stylesheet -->
-	<link rel="stylesheet" href="/css/map.css?rev=373">
+	<link rel="stylesheet" href="/css/map.css?rev=405">
 	<!-- Share popup stylesheet -->
-	<link rel="stylesheet" href="/css/share-popup.css?rev=319">
+	<link rel="stylesheet" href="/css/share-popup.css?rev=405">
 	<!-- Poi popup stylesheet -->
 	<link rel="stylesheet" href="/css/poi-popup.css?rev=373">
 	<!-- Poi layer selector stylesheet -->
-	<link rel="stylesheet" href="/css/poi-layer-selector.css?rev=396">
+	<link rel="stylesheet" href="/css/poi-layer-selector.css?rev=405">
 	<!-- Introduction stylesheet -->
-	<link rel="stylesheet" href="/css/introduction.css?rev=375">
+	<link rel="stylesheet" href="/css/introduction.css?rev=405">
 	<!-- AutoComplete stylesheet -->
 	<link rel="stylesheet" href="/css/autocomplete.css?rev=371">
 	<!-- EasyButton stylesheet-->
