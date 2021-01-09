@@ -32,6 +32,8 @@ RewriteRule ^terkep$ /terkep.php [L]
 RewriteRule ^terkep\/$ /terkep.php [L]
 RewriteRule ^terkep\/([a-z\*])$ /terkep.php?page=$1 [L,QSA]
 
+# These city short links are created with
+# https://www.openstreetmap.hu/terkep/*?tool=rewrite
 RewriteRule ^terkep\/(A|a)ba/?$ \/?zoom=15\&lat=47.0291899046344\&lon=18.5216608098659 [R]
 RewriteRule ^terkep\/(A|a)b(á|a)dszal(ó|o)k/?$ \/?zoom=15\&lat=47.4760138780053\&lon=20.5997747892911 [R]
 RewriteRule ^terkep\/(A|a)baliget/?$ \/?zoom=15\&lat=46.1409780193728\&lon=18.1167440277391 [R]
