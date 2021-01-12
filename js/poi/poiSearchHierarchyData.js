@@ -56,7 +56,7 @@ module.exports = {
 				}],
 			},
 			supermarket: {
-				title: 'Bevásárló központ',
+				title: 'Bevásárlóközpont',
 				icon: 'supermarket',
 				overpassQuery: [{
 					shop: 'supermarket',
