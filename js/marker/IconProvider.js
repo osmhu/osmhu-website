@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const MobileDetector = require('../common/MobileDetector');
+import MobileDetector from '../common/MobileDetector';
 
 // Prioritized list of icons from `mapiconscollection` icon set
 // The first icon is returned, that has matching tags
@@ -77,7 +77,7 @@ const tagIcons = {
 	},
 };
 
-module.exports = class IconProvider {
+export default class IconProvider {
 	constructor(tags) {
 		this.tags = tags;
 	}
@@ -121,4 +121,4 @@ module.exports = class IconProvider {
 
 		throw new Error('No tag matched');
 	}
-};
+}

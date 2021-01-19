@@ -1,4 +1,4 @@
-module.exports = class PoiSearchHierarchyTraversal {
+export default class PoiSearchHierarchyTraversal {
 	constructor(searchHierarchy) {
 		this.searchHierarchy = searchHierarchy;
 	}
@@ -30,4 +30,4 @@ module.exports = class PoiSearchHierarchyTraversal {
 
 		return overpassQuery;
 	}
-};
+}

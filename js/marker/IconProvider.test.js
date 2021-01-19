@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const IconProvider = require('./IconProvider');
+import IconProvider from './IconProvider';
 
 const assertIcon = (icon, expectedIcon) => {
 	expect(icon).toBeInstanceOf(L.Icon);

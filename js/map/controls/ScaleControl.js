@@ -1,8 +1,8 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const MapControl = require('./MapControl');
+import MapControl from './MapControl';
 
-module.exports = class LocateControl extends MapControl {
+export default class LocateControl extends MapControl {
 	constructor() {
 		const scaleControl = L.control.scale({
 			maxWidth: 200,
@@ -11,4 +11,4 @@ module.exports = class LocateControl extends MapControl {
 
 		super(scaleControl);
 	}
-};
+}

@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const Coordinate = require('./Coordinate');
+import Coordinate from './Coordinate';
 
 describe('center from bounds', () => {
 	it('should return same coordinates when southWest and northEast are the same', () => {

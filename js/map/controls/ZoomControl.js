@@ -1,8 +1,8 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const MapControl = require('./MapControl');
+import MapControl from './MapControl';
 
-module.exports = class ZoomControl extends MapControl {
+export default class ZoomControl extends MapControl {
 	constructor() {
 		const zoomControl = L.control.zoom({
 			zoomInTitle: 'Nagyítás',
@@ -11,4 +11,4 @@ module.exports = class ZoomControl extends MapControl {
 
 		super(zoomControl);
 	}
-};
+}

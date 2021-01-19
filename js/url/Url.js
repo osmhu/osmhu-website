@@ -1,12 +1,12 @@
-const $ = require('jquery');
+import $ from 'jquery';
 
-const Marker = require('../marker/Marker');
+import Marker from '../marker/Marker';
 
-const UrlHelper = require('./UrlHelper');
-const HistoryApi = require('./HistoryApi');
-const UrlParamChangeNotifier = require('./UrlParamChangeNotifier');
+import UrlHelper from './UrlHelper';
+import HistoryApi from './HistoryApi';
+import UrlParamChangeNotifier from './UrlParamChangeNotifier';
 
-module.exports = class Url {
+export default class Url {
 	constructor(mapInstance, share, poiLayers) {
 		this.map = mapInstance;
 		this.share = share;
@@ -97,4 +97,4 @@ module.exports = class Url {
 		$('a#orglink').attr('href', 'https://openstreetmap.org/' + orgQueryString);
 		$('a#orgEditLink').attr('href', 'https://openstreetmap.org/edit' + orgQueryString);
 	}
-};
+}

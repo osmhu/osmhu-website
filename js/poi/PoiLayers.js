@@ -1,9 +1,9 @@
-const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
-const LoadingIndicator = require('../common/LoadingIndicator');
+import UrlParamChangeNotifier from '../url/UrlParamChangeNotifier';
+import LoadingIndicator from '../common/LoadingIndicator';
 
-const PoiLayer = require('./PoiLayer');
+import PoiLayer from './PoiLayer';
 
-module.exports = class PoiLayers {
+export default class PoiLayers {
 	constructor(map) {
 		this.map = map;
 		this.poiLayers = {};
@@ -40,4 +40,4 @@ module.exports = class PoiLayers {
 		});
 		UrlParamChangeNotifier.trigger();
 	}
-};
+}

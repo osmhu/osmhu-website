@@ -1,13 +1,13 @@
 /* globals document */
 
-const L = require('leaflet');
-const log = require('loglevel');
+import L from 'leaflet';
+import log from 'loglevel';
 
-const CopyButton = require('../common/CopyButton');
-const MarkerCreatorControl = require('../map/controls/MarkerCreatorControl');
-const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
+import CopyButton from '../common/CopyButton';
+import MarkerCreatorControl from '../map/controls/MarkerCreatorControl';
+import UrlParamChangeNotifier from '../url/UrlParamChangeNotifier';
 
-module.exports = class Share {
+export default class Share {
 	constructor(map) {
 		this.map = map;
 		this.shareMarker = null; // L.Marker
@@ -62,8 +62,9 @@ module.exports = class Share {
 	openPopup() {
 		const mapCenter = this.map.getCenter();
 
-		this.shareMarker = new L.marker([mapCenter.lat, mapCenter.lng], { // eslint-disable-line new-cap
+		this.shareMarker = L.marker([mapCenter.lat, mapCenter.lng], {
 			draggable: true,
+			autoPan: true,
 			zIndexOffset: 1000,
 		});
 
@@ -88,7 +89,6 @@ module.exports = class Share {
 		this.shareMarker.addTo(this.map);
 
 		this.createPopupAndOpen();
-		this.bindPopupActions();
 	}
 
 	bindPopupActions() {
@@ -154,4 +154,4 @@ module.exports = class Share {
 	get copyButtonHtmlElement() {
 		return this.getHtmlElement('copy');
 	}
-};
+}

@@ -1,4 +1,4 @@
-const CoordinateSearch = require('./CoordinateSearch');
+import CoordinateSearch from './CoordinateSearch';
 
 test('converter should handle GPS coordinates in the form of lat, lon', () => {
 	const { lat, lon } = CoordinateSearch.convertToLatLon('47.7544, 18.5620');

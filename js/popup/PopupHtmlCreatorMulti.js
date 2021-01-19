@@ -1,14 +1,13 @@
-const log = require('loglevel');
-const present = require('present');
-const webworkify = require('webworkify');
+import log from 'loglevel';
+import present from 'present';
 
-module.exports = class PopupHtmlCreatorMulti {
+import PopupHtmlCreatorWorker from './PopupHtmlCreator.worker'; // eslint-disable-line import/default
+
+export default class PopupHtmlCreatorMulti {
 	/* istanbul ignore next */
 	static async create(osmElements) {
 		return new Promise((resolve) => {
-			// Require here instead of globally because testing would not work otherwise
-			// (webworkify function returns error in test environment)
-			const popupHtmlCreatorWorker = webworkify(require('./PopupHtmlCreator.worker.js')); // eslint-disable-line global-require
+			const popupHtmlCreatorWorker = new PopupHtmlCreatorWorker();
 
 			const start = present();
 
@@ -26,4 +25,4 @@ module.exports = class PopupHtmlCreatorMulti {
 			popupHtmlCreatorWorker.postMessage(osmElements);
 		});
 	}
-};
+}

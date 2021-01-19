@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-module.exports = class SearchResult {
+export default class SearchResult {
 	constructor(type, id, icon, primaryName, surroundingArea) {
 		this.type = type;
 		this.id = id;
@@ -8,4 +8,4 @@ module.exports = class SearchResult {
 		this.primaryName = primaryName;
 		this.surroundingArea = surroundingArea;
 	}
-};
+}

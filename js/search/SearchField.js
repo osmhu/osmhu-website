@@ -1,6 +1,6 @@
-const HtmlElement = require('../common/HtmlElement');
+import HtmlElement from '../common/HtmlElement';
 
-module.exports = class SearchField {
+export default class SearchField {
 	constructor(fieldSelector) {
 		this.field = HtmlElement.singleElementFromSelector(fieldSelector);
 	}
@@ -20,4 +20,4 @@ module.exports = class SearchField {
 	disableSearchingState() {
 		this.field.classList.remove('searching');
 	}
-};
+}

@@ -1,4 +1,4 @@
-const WebsiteUrl = require('./WebsiteUrl');
+import WebsiteUrl from './WebsiteUrl';
 
 it('renders correctly for short url without protocol', () => {
 	const html = WebsiteUrl.shrink('openstreetmap.hu', 34);

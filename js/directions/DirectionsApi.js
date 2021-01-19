@@ -1,6 +1,6 @@
-const $ = require('jquery');
-const L = require('leaflet');
-const stylesheetLoader = require('fg-loadcss');
+import $ from 'jquery';
+import L from 'leaflet';
+import { loadCSS } from 'fg-loadcss';
 
 // Add L.mapquest
 const mapquestJsScriptUrl = 'https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-core.js';
@@ -10,7 +10,7 @@ const apiKey = 'Fmjtd%7Cluu829ur25%2C82%3Do5-9w1gqr';
 // Stylesheet
 const mapquestStylesheetUrl = 'https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css';
 
-module.exports = class DirectionsApi {
+export default class DirectionsApi {
 	constructor() {
 		this.ready = false;
 		this.loading = false;
@@ -50,7 +50,7 @@ module.exports = class DirectionsApi {
 	async loadCss() {
 		return new Promise((resolve) => {
 			if (!this.cssLoaded) {
-				stylesheetLoader.loadCSS(mapquestStylesheetUrl);
+				loadCSS(mapquestStylesheetUrl);
 				this.cssLoaded = true;
 			}
 			resolve();
@@ -83,4 +83,4 @@ module.exports = class DirectionsApi {
 
 		return L.mapquest.directionsLayer(options);
 	}
-};
+}

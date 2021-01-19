@@ -1,11 +1,11 @@
-const L = require('leaflet');
-const log = require('loglevel');
+import L from 'leaflet';
+import log from 'loglevel';
 
-const Ajax = require('../../common/Ajax');
+import Ajax from '../../common/Ajax';
 
-const Layer = require('./Layer');
+import Layer from './Layer';
 
-module.exports = class GeoJsonLayer extends Layer {
+export default class GeoJsonLayer extends Layer {
 	constructor(id, displayName, url) {
 		super(id, displayName, url);
 
@@ -45,4 +45,4 @@ module.exports = class GeoJsonLayer extends Layer {
 
 		return true;
 	}
-};
+}

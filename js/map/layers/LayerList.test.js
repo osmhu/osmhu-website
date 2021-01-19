@@ -1,5 +1,5 @@
-const LayerList = require('./LayerList');
-const Layer = require('./Layer');
+import LayerList from './LayerList';
+import Layer from './Layer';
 
 test('constructor only accepts instances of Layer', () => {
 	const invalidLayers = {};

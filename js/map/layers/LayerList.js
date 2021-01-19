@@ -1,6 +1,6 @@
-const Layer = require('./Layer');
+import Layer from './Layer';
 
-module.exports = class LayerList {
+export default class LayerList {
 	constructor(layers) {
 		Object.values(layers).forEach((layer) => {
 			if (!(layer instanceof Layer)) {
@@ -56,4 +56,4 @@ module.exports = class LayerList {
 
 		return ids;
 	}
-};
+}

@@ -1,10 +1,10 @@
 /* globals document */
 
-const $ = require('jquery');
+import $ from 'jquery';
 
-const PoiSearchHierarchy = require('./PoiSearchHierarchy');
+import PoiSearchHierarchy from './PoiSearchHierarchy';
 
-module.exports = class PoiLayerSelector {
+export default class PoiLayerSelector {
 	constructor(poiLayers) {
 		this.poiLayers = poiLayers;
 
@@ -16,7 +16,10 @@ module.exports = class PoiLayerSelector {
 
 		this.$searchCategories = this.$root.find('.poi-layer-selector-categories');
 		this.refreshButtonState();
-		this.generateHierarchy();
+
+		$(() => {
+			this.generateHierarchy();
+		});
 		this.refreshTitle();
 
 		document.addEventListener('keydown', (event) => {
@@ -152,4 +155,4 @@ module.exports = class PoiLayerSelector {
 		parentToAppendTo.append(html);
 		parentToAppendTo.find(`#poi-layer-selector-toggle-${searchId}`).on('click', () => this.toggle(searchId));
 	}
-};
+}

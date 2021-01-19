@@ -1,16 +1,16 @@
-const getISODay = require('date-fns/getISODay');
-const log = require('loglevel');
+import { getISODay } from 'date-fns';
+import log from 'loglevel';
 
-const StringUtil = require('../common/StringUtil');
+import StringUtil from '../common/StringUtil';
 
-const NiceDisplay = require('./NiceDisplay');
-const OpeningHoursTable = require('./OpeningHoursTable');
-const WebsiteUrl = require('./WebsiteUrl');
-const Wheelchair = require('./Wheelchair');
+import NiceDisplay from './NiceDisplay';
+import OpeningHoursTable from './OpeningHoursTable';
+import WebsiteUrl from './WebsiteUrl';
+import Wheelchair from './Wheelchair';
 
 log.setDefaultLevel('info');
 
-module.exports = class PopupHtmlCreatorSingle {
+export default class PopupHtmlCreatorSingle {
 	static create(element) {
 		const shareUrl = true;
 
@@ -92,4 +92,4 @@ module.exports = class PopupHtmlCreatorSingle {
 	static osmEditUrl(element) {
 		return `https://www.openstreetmap.org/edit?${element.type}=${element.id}`;
 	}
-};
+}

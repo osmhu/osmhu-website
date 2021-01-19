@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const TileLayer = require('./TileLayer');
+import TileLayer from './TileLayer';
 
 test('getLayer returns a valid L.tileLayer', () => {
 	const tileLayer = new TileLayer(1, 'displayName', 'url', 'maxZoom');

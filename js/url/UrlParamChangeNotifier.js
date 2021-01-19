@@ -1,10 +1,10 @@
-const log = require('loglevel');
+import log from 'loglevel';
 
 let notificationCallback = () => {
 	log.debug('url param change notification callback called, but no callback has been set');
 };
 
-module.exports = class UrlParamChangeNotifier {
+export default class UrlParamChangeNotifier {
 	static trigger() {
 		notificationCallback();
 	}
@@ -16,4 +16,4 @@ module.exports = class UrlParamChangeNotifier {
 		}
 		notificationCallback = cb;
 	}
-};
+}

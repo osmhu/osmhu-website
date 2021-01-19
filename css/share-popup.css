@@ -1,7 +1,7 @@
 /* Marker Control */
-.leaflet-control-marker a {
-	background-image: url('/kepek/share-icon.png');
-	padding: 0px;
+.leaflet-control-marker-creator {
+	padding: 3px;
+	line-height: 1 !important;
 }
 
 /* Share popup */

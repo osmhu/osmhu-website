@@ -1,6 +1,6 @@
-const Ajax = require('../common/Ajax');
+import Ajax from '../common/Ajax';
 
-const Autocomplete = require('./Autocomplete');
+import Autocomplete from './Autocomplete';
 
 jest.mock('../common/Ajax');
 

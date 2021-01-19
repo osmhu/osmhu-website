@@ -24,8 +24,6 @@
 	<link rel="stylesheet" href="/css/introduction.css?rev=405">
 	<!-- AutoComplete stylesheet -->
 	<link rel="stylesheet" href="/css/autocomplete.css?rev=371">
-	<!-- EasyButton stylesheet-->
-	<link rel="stylesheet" href="/node_modules/leaflet-easybutton/src/easy-button.css">
 	<!-- Search results stylesheet -->
 	<link rel="stylesheet" href="/css/search-results.css?rev=351">
 	<!-- Direction results stylesheet -->
@@ -47,14 +45,14 @@
 				<div id="search-mode" class="active">
 					<a href="#">
 						<svg class="icon" width="13" height="13" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-							<use href="/kepek/font-awesome-icons/search-solid.svg#search" />
+							<use href="/kepek/font-awesome-icons/search-solid.svg#search"></use>
 						</svg>
 						<span class="title">Keresés</span>
 					</a>
 				</div><div id="directions-mode">
 					<a href="#">
 						<svg class="icon" width="13" height="13" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-							<use href="/kepek/font-awesome-icons/car-solid.svg#car" />
+							<use href="/kepek/font-awesome-icons/car-solid.svg#car"></use>
 						</svg>
 						<span class="title">Útvonalterv</span></a>
 				</div>
@@ -71,7 +69,7 @@
 									<button class="search-button" type="submit" alt="Keresés" aria-label="Keresés">
 										<span></span>
 										<svg class="icon" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-											<use href="/kepek/font-awesome-icons/search-solid.svg#search" />
+											<use href="/kepek/font-awesome-icons/search-solid.svg#search"></use>
 										</svg>
 									</button>
 								</div>
@@ -90,7 +88,7 @@
 									<button class="search-button" type="submit" alt="Keresés" aria-label="Keresés">
 										<span></span>
 										<svg class="icon" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-											<use href="/kepek/font-awesome-icons/search-solid.svg#search" />
+											<use href="/kepek/font-awesome-icons/search-solid.svg#search"></use>
 										</svg>
 									</button>
 								</div>
@@ -187,6 +185,7 @@
 	</div>
 
 	<!-- Load javascript bundle -->
-	<script src="/build/bundle.js?rev=401"></script>
+	<script src="/build/vendor.js?rev=410"></script>
+	<script src="/build/main.js?rev=410"></script>
 </body>
 </html>

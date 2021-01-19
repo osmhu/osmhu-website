@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
-module.exports = class MockedShare {
+export default class MockedShare {
 	constructor(isOpen, lat, lng, text) {
 		this._isOpen = isOpen;
 		this._lat = lat;
@@ -38,4 +38,4 @@ module.exports = class MockedShare {
 	getText() {
 		return this._text;
 	}
-};
+}

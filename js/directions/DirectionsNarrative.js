@@ -1,4 +1,4 @@
-module.exports = class DirectionsNarrative {
+export default class DirectionsNarrative {
 	constructor(narrativeContainer) {
 		this.$container = narrativeContainer;
 	}
@@ -52,4 +52,4 @@ module.exports = class DirectionsNarrative {
 		this.$container.find('.results').show();
 		this.$container.show();
 	}
-};
+}

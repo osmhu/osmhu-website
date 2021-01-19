@@ -1,6 +1,6 @@
-const SearchResult = require('./SearchResult');
+import SearchResult from './SearchResult';
 
-module.exports = class NominatimResult {
+export default class NominatimResult {
 	static convertToSearchResult(nominatimResult) {
 		const { primaryName, surroundingArea } = NominatimResult.niceNameFromResult(nominatimResult);
 
@@ -104,4 +104,4 @@ module.exports = class NominatimResult {
 		const [firstPartOfDisplayName] = nominatimResult.display_name.split(', ');
 		return firstPartOfDisplayName;
 	}
-};
+}

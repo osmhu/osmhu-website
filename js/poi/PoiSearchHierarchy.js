@@ -1,9 +1,9 @@
-const poiSearchHierarchyData = require('./poiSearchHierarchyData');
-const PoiSearchHierarchyTraversal = require('./PoiSearchHierarchyTraversal');
+import poiSearchHierarchyData from './poiSearchHierarchyData';
+import PoiSearchHierarchyTraversal from './PoiSearchHierarchyTraversal';
 
 const poiSearchHierarchy = new PoiSearchHierarchyTraversal(poiSearchHierarchyData);
 
-module.exports = class PoiSearchHierarchy {
+export default class PoiSearchHierarchy {
 	static getOverpassQueryById(searchId) {
 		return poiSearchHierarchy.getOverpassQueryById(searchId);
 	}
@@ -11,4 +11,4 @@ module.exports = class PoiSearchHierarchy {
 	static getHierarchy() {
 		return poiSearchHierarchyData;
 	}
-};
+}

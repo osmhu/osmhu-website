@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* globals document */
 
-module.exports = class HtmlElement {
+export default class HtmlElement {
 	static singleElementFromSelector(selector) {
 		const results = document.querySelectorAll(selector);
 		if (results.length === 0) {
@@ -14,4 +14,4 @@ module.exports = class HtmlElement {
 
 		return htmlElement;
 	}
-};
+}

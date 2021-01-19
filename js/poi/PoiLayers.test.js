@@ -1,6 +1,8 @@
-const MockedMap = require('../map/test-helper/MockedMap');
+import MockedMap from '../map/test-helper/MockedMap';
 
-const PoiLayers = require('./PoiLayers');
+import PoiLayers from './PoiLayers';
+
+jest.mock('../popup/PopupHtmlCreator.worker.js');
 
 describe('PoiLayers', () => {
 	let poiLayers;

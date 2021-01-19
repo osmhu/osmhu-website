@@ -1,4 +1,4 @@
-const NiceDisplay = require('./NiceDisplay');
+import NiceDisplay from './NiceDisplay';
 
 describe('names', () => {
 	it('should return *Hely* as primaryName when no tags exist', () => {

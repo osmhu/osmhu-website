@@ -1,4 +1,4 @@
-const OpeningHoursTable = require('./OpeningHoursTable');
+import OpeningHoursTable from './OpeningHoursTable';
 
 it('ensures leading zeros for values', () => {
 	expect(OpeningHoursTable.ensureLeadingZero('0')).toEqual('00');

@@ -1,4 +1,4 @@
-const Wheelchair = require('./Wheelchair');
+import Wheelchair from './Wheelchair';
 
 it('renders nothing if wheelchair tag does not exist', () => {
 	const html = Wheelchair.createLogo('1', 'node', {});

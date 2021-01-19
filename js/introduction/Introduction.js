@@ -1,13 +1,13 @@
 /* globals window, map */
 
-const $ = require('jquery');
-const Cookies = require('js-cookie');
+import $ from 'jquery';
+import Cookies from 'js-cookie';
 
 const introductionHideOnLoadCookie = 'introduction-hidden';
 const panelWidth = 262;
 const animationOptions = { duration: 200,	queue: false };
 
-module.exports = class Introduction {
+export default class Introduction {
 	constructor(searchResults) {
 		this.$panel = $('#introduction');
 		this.$mapContainer = $('#map-container');
@@ -142,4 +142,4 @@ module.exports = class Introduction {
 			this.$toggler.show();
 		}
 	}
-};
+}

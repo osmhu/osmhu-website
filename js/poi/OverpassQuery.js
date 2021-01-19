@@ -1,4 +1,4 @@
-module.exports = class OverpassQuery {
+export default class OverpassQuery {
 	static generateQuery(criteria) {
 		let queryBody = this.generateQueryForNode(criteria);
 		queryBody += this.generateQueryForWay(criteria);
@@ -56,4 +56,4 @@ module.exports = class OverpassQuery {
 
 		return 'interpreter?data=[out:json];(' + type + '(' + id + '););out geom qt 10000;';
 	}
-};
+}

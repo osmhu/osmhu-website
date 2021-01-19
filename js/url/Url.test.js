@@ -1,10 +1,11 @@
-const Marker = require('../marker/Marker');
-const MockedMap = require('../map/test-helper/MockedMap');
-const MockedShare = require('../share/test-helper/MockedShare');
+import Marker from '../marker/Marker';
+import MockedMap from '../map/test-helper/MockedMap';
+import MockedShare from '../share/test-helper/MockedShare';
 
-const Url = require('./Url');
+import Url from './Url';
 
 jest.mock('../marker/Marker');
+jest.mock('../popup/PopupHtmlCreator.worker.js');
 
 describe('query string', () => {
 	test.each([

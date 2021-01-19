@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const MapControl = require('./MapControl');
+import MapControl from './MapControl';
 
 test('constructor only accepts instance of L.Control', () => {
 	const notControl = {};

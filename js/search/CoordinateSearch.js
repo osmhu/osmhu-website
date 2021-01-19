@@ -1,9 +1,9 @@
-const Coordinates = require('coordinate-parser');
+import Coordinates from 'coordinate-parser';
 
-module.exports = class NominatimSearch {
+export default class CoordinateSearch {
 	static focusMapIfCoordinates(map, searchTerm) {
 		try {
-			const { lat, lon } = NominatimSearch.convertToLatLon(searchTerm);
+			const { lat, lon } = CoordinateSearch.convertToLatLon(searchTerm);
 
 			map.setView([lat, lon], 14);
 
@@ -21,4 +21,4 @@ module.exports = class NominatimSearch {
 			lon: coordinates.getLongitude(),
 		};
 	}
-};
+}

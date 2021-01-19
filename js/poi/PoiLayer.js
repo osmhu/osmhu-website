@@ -1,21 +1,21 @@
-const L = require('leaflet');
+import L from 'leaflet';
+
+import PopupHtmlCreatorMulti from '../popup/PopupHtmlCreatorMulti';
+import Marker from '../marker/Marker';
+
+import OverpassQuery from './OverpassQuery';
+import OverpassEndpoint from './OverpassEndpoint';
+import PoiSearchHierarchy from './PoiSearchHierarchy';
 
 // Creates L.OverPassLayer class
-require('leaflet-overpass-layer/dist/OverPassLayer.bundle'); // eslint-disable-line import/no-unassigned-import
+import 'leaflet-overpass-layer/dist/OverPassLayer.bundle';
 
 // Creates L.markerClusterGroup function
-require('leaflet.markercluster/dist/leaflet.markercluster'); // eslint-disable-line import/no-unassigned-import
-
-const PopupHtmlCreatorMulti = require('../popup/PopupHtmlCreatorMulti');
-const Marker = require('../marker/Marker');
-
-const OverpassQuery = require('./OverpassQuery');
-const OverpassEndpoint = require('./OverpassEndpoint');
-const PoiSearchHierarchy = require('./PoiSearchHierarchy');
+import 'leaflet.markercluster/dist/leaflet.markercluster';
 
 const minZoomForPoiLayer = 15;
 
-module.exports = class PoiLayer {
+export default class PoiLayer {
 	constructor(map, searchId, onLoadingStateChangedFunction) {
 		this.map = map;
 		this.searchId = searchId;
@@ -111,4 +111,4 @@ module.exports = class PoiLayer {
 
 		this.onLoadingStateChanged(false);
 	}
-};
+}

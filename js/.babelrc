@@ -1,10 +1,12 @@
+// all .babelrc options must me mirrored in webpack.config.js
 {
   "sourceType": "unambiguous",
   "presets": [
     ["@babel/preset-env",
       {
+        // "debug": true,
         "targets": {
-          "browsers": ">0.05% in hu"
+          "browsers": ">0.05% in hu, ie 11"
         }
       }
     ]

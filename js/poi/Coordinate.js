@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-module.exports = class Coordinate {
+export default class Coordinate {
 	static getBoundsFromOverpassResult(overpassResult) {
 		let bounds;
 
@@ -71,4 +71,4 @@ module.exports = class Coordinate {
 
 		return center;
 	}
-};
+}

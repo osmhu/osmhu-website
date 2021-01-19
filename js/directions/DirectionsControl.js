@@ -1,7 +1,7 @@
 /* globals window */
 
-const $ = require('jquery');
-const log = require('loglevel');
+import $ from 'jquery';
+import log from 'loglevel';
 
 const $startField = $('#directions #directions-start-search');
 const $endField = $('#directions #directions-end-search');
@@ -9,7 +9,7 @@ const $endField = $('#directions #directions-end-search');
 let avoidTollRoads = false;
 let transportType = 'fastest';
 
-module.exports = class DirectionsControl {
+export default class DirectionsControl {
 	constructor(directionsResultLayer) {
 		this.directionsResultLayer = directionsResultLayer;
 	}
@@ -129,4 +129,4 @@ module.exports = class DirectionsControl {
 
 		return `${allOtherParts}${city}, Hungary`;
 	}
-};
+}

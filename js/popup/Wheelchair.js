@@ -12,7 +12,7 @@ function createUrl(id, type) {
 	return url;
 }
 
-module.exports = class Wheelchair {
+export default class Wheelchair {
 	static createLogo(id, type, tags) {
 		let html = '<div class="wheelchair">';
 		const wheelMapUrl = createUrl(id, type);
@@ -42,4 +42,4 @@ module.exports = class Wheelchair {
 
 		return html;
 	}
-};
+}

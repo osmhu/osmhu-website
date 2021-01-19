@@ -1,21 +1,31 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const MapControl = require('./MapControl');
+import MapControl from './MapControl';
 
-// Creates L.easyButton
-require('leaflet-easybutton'); // eslint-disable-line import/no-unassigned-import
-
-module.exports = class ReportErrorControl extends MapControl {
+export default class ReportErrorControl extends MapControl {
 	constructor() {
-		const markerCreatorControl = L.easyButton({
-			id: 'report-error-control',
-			position: 'bottomright',
-			states: [{
-				icon: '<span class="icon"></span><span class="text">Hiba bejelentése</span>',
-				onClick: () => { throw new Error('Not implemented'); },
-			}],
+		const ReportErrorControlClass = L.Control.extend({
+			options: {
+				position: 'bottomright',
+			},
+			onAdd() {
+				const container = L.DomUtil.create('div', 'leaflet-bar');
+				const link = L.DomUtil.create('a', 'leaflet-bar-part leaflet-bar-part-single leaflet-control-report-error', container);
+				link.innerHTML = '';
+				link.href = '#';
+				link.title = 'Hiba bejelentése';
+
+				link.setAttribute('role', 'button');
+				link.setAttribute('aria-label', 'Hely küldése');
+
+				L.DomEvent.disableClickPropagation(link);
+				L.DomEvent.on(link, 'click', L.DomEvent.stop);
+				L.DomEvent.on(link, 'click', () => { throw new Error('Not implemented'); });
+
+				return container;
+			},
 		});
 
-		super(markerCreatorControl);
+		super(new ReportErrorControlClass());
 	}
-};
+}

@@ -13,7 +13,7 @@ function removeTrailingSlash(url) {
 	return url;
 }
 
-module.exports = class WebsiteUrl {
+export default class WebsiteUrl {
 	/**
 	 * Return shrinked url HTML, but make the full url copyable
 	 */
@@ -65,4 +65,4 @@ module.exports = class WebsiteUrl {
 
 		return html;
 	}
-};
+}

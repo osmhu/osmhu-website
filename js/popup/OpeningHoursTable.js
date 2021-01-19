@@ -1,6 +1,5 @@
-const startOfWeek = require('date-fns/startOfWeek');
-const addDays = require('date-fns/addDays');
-const OpeningHours = require('opening_hours');
+import { addDays, startOfWeek } from 'date-fns';
+import OpeningHours from 'opening_hours';
 
 // For opening_hours localization
 const nominatimObjectForHungary = {
@@ -26,7 +25,7 @@ function nonStopTable() {
 	return table;
 }
 
-module.exports = class OpeningHoursTable {
+export default class OpeningHoursTable {
 	static ensureLeadingZero(datePart) {
 		let datePartWithLeadingZero = datePart;
 		if (datePart < 10) {
@@ -94,4 +93,4 @@ module.exports = class OpeningHoursTable {
 			throw new Error(`Unable to parse opening hours string '${openingHoursString}': ${error}`);
 		}
 	}
-};
+}

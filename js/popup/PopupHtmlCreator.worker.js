@@ -1,18 +1,18 @@
 /* istanbul ignore file */
 /* eslint-env worker */
 
-const PopupHtmlCreatorSingle = require('./PopupHtmlCreatorSingle');
+import 'core-js/features/object/values'; // IE 11 polyfill
 
-module.exports = (self) => {
-	self.addEventListener('message', (event) => {
-		const osmElements = event.data;
-		const results = {};
+import PopupHtmlCreatorSingle from './PopupHtmlCreatorSingle';
 
-		Object.values(osmElements).forEach((osmElement) => {
-			const popupHtml = PopupHtmlCreatorSingle.create(osmElement);
-			results[osmElement.id] = popupHtml;
-		});
+onmessage = (event) => {
+	const osmElements = event.data;
+	const results = {};
 
-		self.postMessage(results);
+	Object.values(osmElements).forEach((osmElement) => {
+		const popupHtml = PopupHtmlCreatorSingle.create(osmElement);
+		results[osmElement.id] = popupHtml;
 	});
+
+	postMessage(results);
 };

@@ -1,6 +1,6 @@
-const log = require('loglevel');
+import log from 'loglevel';
 
-module.exports = class NiceDisplay {
+export default class NiceDisplay {
 	static names(tags) {
 		let primaryName = '';
 
@@ -184,4 +184,4 @@ module.exports = class NiceDisplay {
 
 		throw new Error('Cannot determinate type from tags');
 	}
-};
+}

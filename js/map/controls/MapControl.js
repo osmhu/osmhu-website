@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-module.exports = class MapControl {
+export default class MapControl {
 	constructor(control) {
 		if (!(control instanceof L.Control)) {
 			throw new Error('Control must be an instance of L.Control');
@@ -11,4 +11,4 @@ module.exports = class MapControl {
 	getMapControl() {
 		return this.control;
 	}
-};
+}

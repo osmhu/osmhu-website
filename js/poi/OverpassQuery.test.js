@@ -1,4 +1,4 @@
-const OverpassQuery = require('./OverpassQuery');
+import OverpassQuery from './OverpassQuery';
 
 describe('overpass combined search query generator', () => {
 	// Combined overpass queries can be tested at https://overpass-turbo.eu/

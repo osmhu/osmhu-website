@@ -1,28 +1,29 @@
 /* globals window, document */
 
-require('core-js/stable');
-require('regenerator-runtime/runtime');
+import './common/oldBrowserSupport';
 
-const $ = require('jquery');
-const log = require('loglevel');
+import 'regenerator-runtime/runtime';
 
-const MobileDetector = require('./common/MobileDetector');
-const DirectionsApi = require('./directions/DirectionsApi');
-const DirectionsControl = require('./directions/DirectionsControl');
-const DirectionsResultLayer = require('./directions/DirectionsResultLayer');
-const Marker = require('./marker/Marker');
-const Introduction = require('./introduction/Introduction');
-const OverpassEndpoint = require('./poi/OverpassEndpoint');
-const PoiLayers = require('./poi/PoiLayers');
-const PoiLayerSelector = require('./poi/PoiLayerSelector');
-const Autocomplete = require('./search/Autocomplete');
-const NominatimSearch = require('./search/NominatimSearch');
-const SearchResults = require('./search/SearchResults');
-const SearchField = require('./search/SearchField');
-const Url = require('./url/Url');
-const UrlParams = require('./url/UrlParams');
-const Share = require('./share/Share');
-const Map = require('./map/Map');
+import $ from 'jquery';
+import log from 'loglevel';
+
+import MobileDetector from './common/MobileDetector';
+import DirectionsApi from './directions/DirectionsApi';
+import DirectionsControl from './directions/DirectionsControl';
+import DirectionsResultLayer from './directions/DirectionsResultLayer';
+import Marker from './marker/Marker';
+import Introduction from './introduction/Introduction';
+import OverpassEndpoint from './poi/OverpassEndpoint';
+import PoiLayers from './poi/PoiLayers';
+import PoiLayerSelector from './poi/PoiLayerSelector';
+import Autocomplete from './search/Autocomplete';
+import NominatimSearch from './search/NominatimSearch';
+import SearchResults from './search/SearchResults';
+import SearchField from './search/SearchField';
+import Url from './url/Url';
+import UrlParams from './url/UrlParams';
+import Share from './share/Share';
+import Map from './map/Map';
 
 log.setLevel('info');
 
@@ -59,8 +60,6 @@ $(window).on('updateUrl', url.update);
 url.updateOrgUrls();
 
 const autocomplete = new Autocomplete(map);
-// Initialize all autocomplete fields
-autocomplete.initUi('#search-area input.autocomplete');
 
 const searchResults = new SearchResults(map, '#search-results');
 
@@ -69,12 +68,16 @@ const nominatimSearch = new NominatimSearch(map, searchResults);
 const searchField = new SearchField('input#text-search');
 
 const introduction = new Introduction(searchResults);
-introduction.initUi();
 
-// Focus search field in browsers on load
-if (!MobileDetector.isMobile()) {
-	searchField.focus();
-}
+$(() => {
+	autocomplete.initUi('#search-area input.autocomplete'); // Initialize all autocomplete fields
+	introduction.initUi();
+
+	// Focus search field in browsers on load
+	if (!MobileDetector.isMobile()) {
+		searchField.focus();
+	}
+});
 
 const poiLayerSelector = new PoiLayerSelector(poiLayers);
 

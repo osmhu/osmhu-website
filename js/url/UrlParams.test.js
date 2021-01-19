@@ -1,4 +1,4 @@
-const UrlParams = require('./UrlParams');
+import UrlParams from './UrlParams';
 
 describe('parsing map parameters', () => {
 	const testUrlMapParams = (locationQueryString, expectedZoom, expectedLat, expectedLon) => {

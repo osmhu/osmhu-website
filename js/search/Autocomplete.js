@@ -1,8 +1,8 @@
-const autocompleteJs = require('autocomplete.js');
+import autocompleteJs from 'autocomplete.js';
 
-const Ajax = require('../common/Ajax');
+import Ajax from '../common/Ajax';
 
-module.exports = class Autocomplete {
+export default class Autocomplete {
 	constructor(mapInstance) {
 		this.map = mapInstance;
 	}
@@ -163,4 +163,4 @@ module.exports = class Autocomplete {
 
 		return result;
 	}
-};
+}

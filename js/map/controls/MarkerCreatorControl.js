@@ -1,20 +1,31 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const MapControl = require('./MapControl');
+import MapControl from './MapControl';
 
-// Creates L.easyButton
-require('leaflet-easybutton'); // eslint-disable-line import/no-unassigned-import
-
-module.exports = class MarkerCreatorControl extends MapControl {
+export default class MarkerCreatorControl extends MapControl {
 	constructor(share) {
-		const markerCreatorControl = L.easyButton({
-			states: [{
-				icon: '<img src="/kepek/share-icon.png" alt="Hely küldése" width="24" height="24">',
-				onClick: share.toggle.bind(share),
-				title: 'Hely küldése',
-			}],
+		const MarkerCreatorControlClass = L.Control.extend({
+			options: {
+				position: 'topleft',
+			},
+			onAdd() {
+				const container = L.DomUtil.create('div', 'leaflet-bar');
+				const link = L.DomUtil.create('a', 'leaflet-bar-part leaflet-bar-part-single leaflet-control-marker-creator', container);
+				link.innerHTML = '<img src="/kepek/share-icon.png" alt="Hely küldése" width="24" height="24" />';
+				link.href = '#';
+				link.title = 'Hely küldése';
+
+				link.setAttribute('role', 'button');
+				link.setAttribute('aria-label', 'Hely küldése');
+
+				L.DomEvent.disableClickPropagation(link);
+				L.DomEvent.on(link, 'click', L.DomEvent.stop);
+				L.DomEvent.on(link, 'click', share.toggle.bind(share), this);
+
+				return container;
+			},
 		});
 
-		super(markerCreatorControl);
+		super(new MarkerCreatorControlClass());
 	}
-};
+}

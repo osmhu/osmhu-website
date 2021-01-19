@@ -1,4 +1,4 @@
-const NominatimResult = require('./NominatimResult');
+import NominatimResult from './NominatimResult';
 
 test('should only return country name for countries', () => {
 	const hungary = {

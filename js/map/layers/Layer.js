@@ -1,6 +1,6 @@
 const attribution = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap közreműködők</a>';
 
-module.exports = class Layer {
+export default class Layer {
 	constructor(id, displayName, url) {
 		this.id = id;
 		this.displayName = displayName;
@@ -20,4 +20,4 @@ module.exports = class Layer {
 
 		return false;
 	}
-};
+}

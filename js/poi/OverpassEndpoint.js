@@ -1,7 +1,7 @@
-const present = require('present');
-const log = require('loglevel');
+import present from 'present';
+import log from 'loglevel';
 
-const Ajax = require('../common/Ajax');
+import Ajax from '../common/Ajax';
 
 log.setDefaultLevel('info');
 
@@ -24,7 +24,7 @@ const asyncForEach = async (array, callback) => {
 	}
 };
 
-module.exports = class OverpassEndpoint {
+export default class OverpassEndpoint {
 	static get all() {
 		return overpassEndpoints;
 	}
@@ -81,4 +81,4 @@ module.exports = class OverpassEndpoint {
 		}
 		return returnedUrl;
 	}
-};
+}

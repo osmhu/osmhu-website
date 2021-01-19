@@ -1,27 +1,27 @@
 /* globals window */
 
-const L = require('leaflet');
+import L from 'leaflet';
+
+import Ajax from '../common/Ajax';
+import OverpassQuery from '../poi/OverpassQuery';
+import OverpassEndpoint from '../poi/OverpassEndpoint';
+import Coordinate from '../poi/Coordinate';
+import UrlParamChangeNotifier from '../url/UrlParamChangeNotifier';
+
+import ZoomControl from './controls/ZoomControl';
+import LocateControl from './controls/LocateControl';
+import ScaleControl from './controls/ScaleControl';
+import LoadingIndicatorControl from './controls/LoadingIndicatorControl';
+import TileLayers from './layers/TileLayers';
+import Overlays from './layers/Overlays';
+import GeoJsonLayer from './layers/GeoJsonLayer';
 
 L.Icon.Default.imagePath = '/node_modules/leaflet/dist/images/';
-
-const Ajax = require('../common/Ajax');
-const OverpassQuery = require('../poi/OverpassQuery');
-const OverpassEndpoint = require('../poi/OverpassEndpoint');
-const Coordinate = require('../poi/Coordinate');
-const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
-
-const ZoomControl = require('./controls/ZoomControl');
-const LocateControl = require('./controls/LocateControl');
-const ScaleControl = require('./controls/ScaleControl');
-const LoadingIndicatorControl = require('./controls/LoadingIndicatorControl');
-const TileLayers = require('./layers/TileLayers');
-const Overlays = require('./layers/Overlays');
-const GeoJsonLayer = require('./layers/GeoJsonLayer');
 
 const tileLayers = new TileLayers();
 const overlays = new Overlays();
 
-module.exports = class Map extends L.Map {
+export default class Map extends L.Map {
 	constructor(initialView, defaultBaseLayerId, defaultOverlaysOnLoad) {
 		const id = 'map';
 		// Initialize map into #map
@@ -125,4 +125,4 @@ module.exports = class Map extends L.Map {
 			}
 		}
 	}
-};
+}

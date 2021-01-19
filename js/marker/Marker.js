@@ -1,27 +1,27 @@
 /* globals window */
 
-const $ = require('jquery');
-const L = require('leaflet');
-const log = require('loglevel');
+import $ from 'jquery';
+import L from 'leaflet';
+import log from 'loglevel';
 
-const MobileDetector = require('../common/MobileDetector');
-const CopyButton = require('../common/CopyButton');
-const HtmlElement = require('../common/HtmlElement');
-const Coordinate = require('../poi/Coordinate');
-const OverpassQuery = require('../poi/OverpassQuery');
-const OverpassEndpoint = require('../poi/OverpassEndpoint');
-const Ajax = require('../common/Ajax');
-const UrlHelper = require('../url/UrlHelper');
-const UrlParamChangeNotifier = require('../url/UrlParamChangeNotifier');
-const PopupHtmlCreatorSingle = require('../popup/PopupHtmlCreatorSingle');
+import Ajax from '../common/Ajax';
+import MobileDetector from '../common/MobileDetector';
+import CopyButton from '../common/CopyButton';
+import HtmlElement from '../common/HtmlElement';
+import Coordinate from '../poi/Coordinate';
+import OverpassQuery from '../poi/OverpassQuery';
+import OverpassEndpoint from '../poi/OverpassEndpoint';
+import UrlHelper from '../url/UrlHelper';
+import UrlParamChangeNotifier from '../url/UrlParamChangeNotifier';
+import PopupHtmlCreatorMulti from '../popup/PopupHtmlCreatorMulti';
 
-const IconProvider = require('./IconProvider');
+import IconProvider from './IconProvider';
 
 let activePoi = null;
 
 log.setDefaultLevel('info');
 
-module.exports = class Marker {
+export default class Marker {
 	static displayRedMarker(map, coordinates, text = '') {
 		const redIcon = L.icon({
 			iconUrl: 'kepek/marker-icon-red.png',
@@ -91,10 +91,12 @@ module.exports = class Marker {
 		return customMarker;
 	}
 
-	static createPopupForMarkerSync(marker, overpassResult) {
-		const popupHtml = PopupHtmlCreatorSingle.create(overpassResult);
+	static async createPopupForMarkerSingle(marker, element) {
+		const results = await PopupHtmlCreatorMulti.create([element]);
 
-		Marker.createPopupForMarker(marker, popupHtml);
+		results.forEach(([markerId, popupHtml]) => { // eslint-disable-line no-unused-vars
+			Marker.createPopupForMarker(marker, popupHtml);
+		});
 	}
 
 	static createPopupForMarker(marker, popupHtml) {
@@ -121,7 +123,7 @@ module.exports = class Marker {
 		map.setView(position, idealZoom, { animate: false });
 
 		const newMarker = Marker.createFromOverpassResult(element);
-		Marker.createPopupForMarkerSync(newMarker, element);
+		await Marker.createPopupForMarkerSingle(newMarker, element);
 		newMarker.addTo(map).openPopup();
 
 		// Center the marker and the popup
@@ -134,4 +136,4 @@ module.exports = class Marker {
 
 		return newMarker;
 	}
-};
+}

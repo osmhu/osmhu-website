@@ -1,14 +1,14 @@
 /* globals window */
 
-const $ = require('jquery');
+import $ from 'jquery';
 
-const LoadingIndicator = require('../common/LoadingIndicator');
-const Marker = require('../marker/Marker');
-const MobileDetector = require('../common/MobileDetector');
+import LoadingIndicator from '../common/LoadingIndicator';
+import Marker from '../marker/Marker';
+import MobileDetector from '../common/MobileDetector';
 
-const SearchResult = require('./SearchResult');
+import SearchResult from './SearchResult';
 
-module.exports = class SearchResults {
+export default class SearchResults {
 	constructor(map, searchResultsSelector) {
 		this.map = map;
 		this.$searchResults = $(searchResultsSelector);
@@ -88,4 +88,4 @@ module.exports = class SearchResults {
 
 		return row;
 	}
-};
+}

@@ -1,6 +1,6 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const MapControl = require('./MapControl');
+import MapControl from './MapControl';
 
 const LoadingIndicator = L.Control.extend({
 	options: {
@@ -15,9 +15,9 @@ const LoadingIndicator = L.Control.extend({
 	},
 });
 
-module.exports = class LoadingIndicatorControl extends MapControl {
+export default class LoadingIndicatorControl extends MapControl {
 	constructor() {
 		const loadingIndicator = new LoadingIndicator();
 		super(loadingIndicator);
 	}
-};
+}

@@ -1,18 +1,18 @@
 /* global document, window */
 
-const L = require('leaflet');
-const log = require('loglevel');
+import L from 'leaflet';
+import log from 'loglevel';
+
+import MapControl from './MapControl';
 
 // Creates L.control.locate function
-require('leaflet.locatecontrol'); // eslint-disable-line import/no-unassigned-import
-
-const MapControl = require('./MapControl');
+import 'leaflet.locatecontrol';
 
 function navigateToHttps() {
 	document.location.replace(`https:${document.location.href.substring(document.location.protocol.length)}`);
 }
 
-module.exports = class LocateControl extends MapControl {
+export default class LocateControl extends MapControl {
 	constructor() {
 		const locateControl = L.control.locate({
 			drawCircle: false,
@@ -45,4 +45,4 @@ module.exports = class LocateControl extends MapControl {
 
 		super(locateControl);
 	}
-};
+}

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* globals document */
 
-module.exports = class LoadingIndicator {
+export default class LoadingIndicator {
 	static setLoading(isLoading) {
 		if (isLoading) {
 			document.body.classList.add('loading');
@@ -9,4 +9,4 @@ module.exports = class LoadingIndicator {
 			document.body.classList.remove('loading');
 		}
 	}
-};
+}

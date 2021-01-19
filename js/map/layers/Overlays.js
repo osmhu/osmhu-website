@@ -1,8 +1,8 @@
-const LayerList = require('./LayerList');
-const GeoJsonLayer = require('./GeoJsonLayer');
-const TileLayer = require('./TileLayer');
+import LayerList from './LayerList';
+import GeoJsonLayer from './GeoJsonLayer';
+import TileLayer from './TileLayer';
 
-module.exports = class Overlays extends LayerList {
+export default class Overlays extends LayerList {
 	constructor() {
 		const layers = {};
 
@@ -34,4 +34,4 @@ module.exports = class Overlays extends LayerList {
 
 		super(layers);
 	}
-};
+}

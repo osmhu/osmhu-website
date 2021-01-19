@@ -1,4 +1,4 @@
-const queryString = require('query-string');
+import queryString from 'query-string';
 
 const defaultCenterAndZoomForHungary = {
 	lat: 47.17,
@@ -9,7 +9,7 @@ const defaultCenterAndZoomForHungary = {
 const floatParam = (value) => Number.parseFloat(value);
 const intParam = (value) => Number.parseInt(value, 10);
 
-module.exports = class UrlParams {
+export default class UrlParams {
 	constructor(locationSearchQuery) {
 		this.params = queryString.parse(locationSearchQuery);
 
@@ -80,4 +80,4 @@ module.exports = class UrlParams {
 	isPoiLayersDefined() {
 		return this.params.poi;
 	}
-};
+}

@@ -1,4 +1,4 @@
-const UrlParamChangeNotifier = require('./UrlParamChangeNotifier');
+import UrlParamChangeNotifier from './UrlParamChangeNotifier';
 
 it('should not throw if callback is not specified', () => {
 	expect(() => {

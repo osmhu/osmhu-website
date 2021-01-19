@@ -1,15 +1,15 @@
-const Ajax = require('../common/Ajax');
-const Map = require('../map/Map');
+import Ajax from '../common/Ajax';
+import Map from '../map/Map';
 
-const CoordinateSearch = require('./CoordinateSearch');
-const NominatimResult = require('./NominatimResult');
-const SearchResults = require('./SearchResults');
+import CoordinateSearch from './CoordinateSearch';
+import NominatimResult from './NominatimResult';
+import SearchResults from './SearchResults';
 
 const nominatimUrl = 'https://nominatim.openstreetmap.org/search';
 const resultLimit = 50;
 const contactEmail = 'info@openstreetmap.hu'; // Adviced at https://nominatim.org/release-docs/latest/api/Search/#other
 
-module.exports = class NominatimSearch {
+export default class NominatimSearch {
 	constructor(map, searchResults) {
 		if (!(map instanceof Map)) {
 			throw new Error('map must be instanceof Map');
@@ -59,4 +59,4 @@ module.exports = class NominatimSearch {
 
 		return viewbox;
 	}
-};
+}

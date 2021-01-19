@@ -1,9 +1,9 @@
-const $ = require('jquery');
-const L = require('leaflet');
+import $ from 'jquery';
+import L from 'leaflet';
 
-const DirectionsNarrative = require('./DirectionsNarrative');
+import DirectionsNarrative from './DirectionsNarrative';
 
-module.exports = class DirectionsResultLayer {
+export default class DirectionsResultLayer {
 	constructor(targetMap, directionsApi) {
 		this.targetMap = targetMap;
 
@@ -83,4 +83,4 @@ module.exports = class DirectionsResultLayer {
 		latLngBounds = latLngBounds.pad(0.1);
 		this.targetMap.fitBounds(latLngBounds);
 	}
-};
+}

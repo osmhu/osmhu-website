@@ -1,5 +1,5 @@
-module.exports = class StringUtil {
+export default class StringUtil {
 	static upperCaseFirstLetter(str) {
 		return str.charAt(0).toUpperCase() + str.slice(1);
 	}
-};
+}

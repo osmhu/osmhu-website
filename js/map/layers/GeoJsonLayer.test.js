@@ -1,9 +1,9 @@
-const L = require('leaflet');
-const log = require('loglevel');
+import L from 'leaflet';
+import log from 'loglevel';
 
-const Ajax = require('../../common/Ajax');
+import Ajax from '../../common/Ajax';
 
-const GeoJsonLayer = require('./GeoJsonLayer');
+import GeoJsonLayer from './GeoJsonLayer';
 
 jest.mock('../../common/Ajax');
 

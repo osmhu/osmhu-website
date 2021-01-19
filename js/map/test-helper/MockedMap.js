@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
-module.exports = class MockedMap {
+export default class MockedMap {
 	constructor(zoom, lat, lng, baseLayerId, overlayIds) {
 		this._zoom = zoom;
 		this._lat = lat;
@@ -36,4 +36,4 @@ module.exports = class MockedMap {
 	addLayer() {}
 
 	removeLayer() {}
-};
+}

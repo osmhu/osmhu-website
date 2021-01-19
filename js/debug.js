@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* globals window */
 
-const $ = require('jquery');
-const log = require('loglevel');
+import $ from 'jquery';
+import log from 'loglevel';
 
 // Show all log levels during development
 log.enableAll();

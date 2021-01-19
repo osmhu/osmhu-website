@@ -1,7 +1,7 @@
-const LayerList = require('./LayerList');
-const TileLayer = require('./TileLayer');
+import LayerList from './LayerList';
+import TileLayer from './TileLayer';
 
-module.exports = class TileLayers extends LayerList {
+export default class TileLayers extends LayerList {
 	constructor() {
 		const layers = {};
 
@@ -59,4 +59,4 @@ module.exports = class TileLayers extends LayerList {
 
 		super(layers);
 	}
-};
+}

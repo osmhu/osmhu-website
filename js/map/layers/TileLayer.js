@@ -1,8 +1,8 @@
-const L = require('leaflet');
+import L from 'leaflet';
 
-const Layer = require('./Layer');
+import Layer from './Layer';
 
-module.exports = class TileLayer extends Layer {
+export default class TileLayer extends Layer {
 	constructor(id, displayName, url, maxZoom) {
 		super(id, displayName, url);
 
@@ -17,4 +17,4 @@ module.exports = class TileLayer extends Layer {
 			attribution: this.attribution,
 		});
 	}
-};
+}

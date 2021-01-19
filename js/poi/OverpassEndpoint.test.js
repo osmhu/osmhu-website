@@ -1,8 +1,8 @@
-const present = require('present');
+import present from 'present';
 
-const Ajax = require('../common/Ajax');
+import Ajax from '../common/Ajax';
 
-const OverpassEndpoint = require('./OverpassEndpoint');
+import OverpassEndpoint from './OverpassEndpoint';
 
 jest.mock('../common/Ajax');
 jest.mock('present');

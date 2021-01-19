@@ -1,11 +1,11 @@
 /* istanbul ignore file */
 
-const ClipboardJS = require('clipboard/dist/clipboard.min');
+import Clipboard from 'clipboard';
 
-module.exports = class CopyButton {
+export default class CopyButton {
 	static copyTargetOnButtonClick(buttonHtmlElement, targetHtmlElement) {
-		this.clipboard = new ClipboardJS(buttonHtmlElement, {
+		this.clipboard = new Clipboard(buttonHtmlElement, {
 			target: () => targetHtmlElement,
 		});
 	}
-};
+}

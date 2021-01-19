@@ -4,7 +4,7 @@
  * overpassQuery is used for searching with Overpass API
  */
 
-module.exports = {
+export default {
 	fooddrink: {
 		title: 'Vendéglátás',
 		children: {

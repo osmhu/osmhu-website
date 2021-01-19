@@ -1,4 +1,4 @@
-const PoiSearchHierarchyTraversal = require('./PoiSearchHierarchyTraversal');
+import PoiSearchHierarchyTraversal from './PoiSearchHierarchyTraversal';
 
 const testPoiSearchHierarchy = {
 	fooddrink: {

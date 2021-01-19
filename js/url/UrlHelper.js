@@ -1,4 +1,4 @@
-module.exports = class UrlHelper {
+export default class UrlHelper {
 	static roundToFiveDigits(coordinate) {
 		const rounding = 100000;
 		return Math.round(coordinate * rounding) / rounding;
@@ -12,4 +12,4 @@ module.exports = class UrlHelper {
 			.replace(/"/g, '&quot;')
 			.replace(/\r?\n/g, '<br>'); // Replace newline with <br>
 	}
-};
+}

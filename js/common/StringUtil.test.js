@@ -1,4 +1,4 @@
-const StringUtil = require('./StringUtil');
+import StringUtil from './StringUtil';
 
 describe('upperCaseFirstLetter', () => {
 	it('should uppercase first letter', () => {

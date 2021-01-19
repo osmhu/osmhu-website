@@ -1,4 +1,4 @@
-const UrlHelper = require('./UrlHelper');
+import UrlHelper from './UrlHelper';
 
 describe('sanitize', () => {
 	test('should escape & character', () => {

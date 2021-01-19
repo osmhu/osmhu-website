@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
-const $ = require('jquery');
+import $ from 'jquery';
 
-module.exports = class Ajax {
+export default class Ajax {
 	static get(url) {
 		return $.ajax({
 			url,
@@ -15,4 +15,4 @@ module.exports = class Ajax {
 			data: params,
 		});
 	}
-};
+}

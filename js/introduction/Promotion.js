@@ -1,9 +1,8 @@
-const $ = require('jquery');
-const format = require('date-fns/format');
-const parse = require('date-fns/parse');
-const formatDistanceStrict = require('date-fns/formatDistanceStrict');
-const differenceInMinutes = require('date-fns/differenceInMinutes');
-const huLocale = require('date-fns/locale/hu');
+import $ from 'jquery';
+import {
+	format, parse, formatDistanceStrict, differenceInMinutes,
+} from 'date-fns';
+import huLocale from 'date-fns/locale';
 
 const eventStart = parse('2018-11-13 17:45:00');
 const visibleForMinutesAfterStart = 180;
@@ -29,7 +28,7 @@ const template = `
 	</div>
 `;
 
-module.exports = class Promotion {
+export default class Promotion {
 	constructor(introduction, searchResults) {
 		this.introduction = introduction;
 		this.searchResults = searchResults;
@@ -74,4 +73,4 @@ module.exports = class Promotion {
 			this.$promotion.find('.remaining').html(distanceFormatted + ' múlva');
 		}
 	}
-};
+}
