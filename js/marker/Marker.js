@@ -19,8 +19,6 @@ import IconProvider from './IconProvider';
 
 let activePoi = null;
 
-log.setDefaultLevel('info');
-
 export default class Marker {
 	static displayRedMarker(map, coordinates, text = '') {
 		const redIcon = L.icon({

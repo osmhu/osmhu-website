@@ -25,7 +25,9 @@ import UrlParams from './url/UrlParams';
 import Share from './share/Share';
 import Map from './map/Map';
 
-log.setLevel('info');
+if (!window.__DEV__) {
+	log.setDefaultLevel('info');
+}
 
 const urlParams = new UrlParams(window.location.search);
 
@@ -90,7 +92,7 @@ $('#search form').on('submit', async (event) => {
 });
 
 const directionsApi = new DirectionsApi();
-const directionsResultLayer = new DirectionsResultLayer(window.map, directionsApi);
+const directionsResultLayer = new DirectionsResultLayer(map, directionsApi);
 const directionsControl = new DirectionsControl(directionsResultLayer);
 directionsControl.initializeControls();
 
@@ -122,3 +124,8 @@ function popupResize() {
 
 $(window).on('resize', popupResize);
 $(window).on('popup-open', popupResize);
+
+// Production debug variables
+window.osmhu = {};
+window.osmhu.log = log;
+window.osmhu.map = map;

@@ -31,8 +31,6 @@ export default class Map extends L.Map {
 
 		this.id = id;
 
-		window.map = map; // TODO remove
-
 		map.addControl(new ZoomControl().getMapControl());
 
 		map.addControl(new LocateControl().getMapControl());

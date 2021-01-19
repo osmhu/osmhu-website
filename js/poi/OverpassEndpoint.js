@@ -3,8 +3,6 @@ import log from 'loglevel';
 
 import Ajax from '../common/Ajax';
 
-log.setDefaultLevel('info');
-
 // Source: https://wiki.openstreetmap.org/wiki/Overpass_API#Public_Overpass_API_instances
 const overpassEndpoints = [
 	'https://lz4.overpass-api.de/api/',
@@ -36,7 +34,7 @@ export default class OverpassEndpoint {
 			try {
 				const endpointLoadTime = await OverpassEndpoint.measureEndpoint(measuredEndpoint);
 
-				log.debug('Endpoint', measuredEndpoint, 'load time was', endpointLoadTime, 'ms');
+				log.debug(`Endpoint ${measuredEndpoint} load time was ${Math.round(endpointLoadTime)}ms`);
 
 				endpointLoadTimes[measuredEndpoint] = endpointLoadTime;
 
@@ -70,7 +68,9 @@ export default class OverpassEndpoint {
 	}
 
 	static get fastestEndpoint() {
-		log.debug('Fastest endpoint is', fastestEndpoint, ' (', endpointLoadTimes[fastestEndpoint], 'ms)');
+		const roundedLoadTime = Math.round(endpointLoadTimes[fastestEndpoint]);
+		const measurement = Number.isNaN(roundedLoadTime) ? ' not measured' : ` with ${roundedLoadTime}ms`;
+		log.debug(`Fastest endpoint is ${fastestEndpoint}` + measurement);
 		return OverpassEndpoint.ensureUrlHasTrailingSlash(fastestEndpoint);
 	}
 

@@ -8,8 +8,6 @@ import OpeningHoursTable from './OpeningHoursTable';
 import WebsiteUrl from './WebsiteUrl';
 import Wheelchair from './Wheelchair';
 
-log.setDefaultLevel('info');
-
 export default class PopupHtmlCreatorSingle {
 	static create(element) {
 		const shareUrl = true;

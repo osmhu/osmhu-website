@@ -21,7 +21,7 @@
 	<!-- Poi layer selector stylesheet -->
 	<link rel="stylesheet" href="/css/poi-layer-selector.css?rev=405">
 	<!-- Introduction stylesheet -->
-	<link rel="stylesheet" href="/css/introduction.css?rev=405">
+	<link rel="stylesheet" href="/css/introduction.css?rev=411">
 	<!-- AutoComplete stylesheet -->
 	<link rel="stylesheet" href="/css/autocomplete.css?rev=371">
 	<!-- Search results stylesheet -->
@@ -186,6 +186,6 @@
 
 	<!-- Load javascript bundle -->
 	<script src="/build/vendor.js?rev=410"></script>
-	<script src="/build/main.js?rev=410"></script>
+	<script src="/build/main.js?rev=411"></script>
 </body>
 </html>
