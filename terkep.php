@@ -2,6 +2,7 @@
 	<title>Magyarországi városok és falvak térképe</title>
 
 	<?php include 'includes/head_scripts.html' ?>
+	<link rel="stylesheet" href="/css/info/info.css?rev=412">
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="/testing/old/overpass.js?rev=249"></script>
 	<script>

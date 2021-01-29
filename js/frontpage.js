@@ -1,5 +1,3 @@
-/* globals window, document */
-
 import './common/oldBrowserSupport';
 
 import 'regenerator-runtime/runtime';
@@ -25,6 +23,7 @@ import UrlParams from './url/UrlParams';
 import Share from './share/Share';
 import Map from './map/Map';
 
+// eslint-disable-next-line no-underscore-dangle
 if (!window.__DEV__) {
 	log.setDefaultLevel('info');
 }
@@ -69,7 +68,7 @@ const nominatimSearch = new NominatimSearch(map, searchResults);
 
 const searchField = new SearchField('input#text-search');
 
-const introduction = new Introduction(searchResults);
+const introduction = new Introduction(searchResults, map);
 
 $(() => {
 	autocomplete.initUi('#search-area input.autocomplete'); // Initialize all autocomplete fields

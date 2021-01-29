@@ -1,5 +1,3 @@
-/* globals window, map */
-
 import $ from 'jquery';
 import Cookies from 'js-cookie';
 
@@ -8,11 +6,12 @@ const panelWidth = 262;
 const animationOptions = { duration: 200,	queue: false };
 
 export default class Introduction {
-	constructor(searchResults) {
+	constructor(searchResults, map) {
 		this.$panel = $('#introduction');
 		this.$mapContainer = $('#map-container');
 		this.$toggler = $('#introduction-toggler');
 		this.searchResults = searchResults;
+		this.map = map;
 	}
 
 	initUi() {
@@ -86,7 +85,7 @@ export default class Introduction {
 				duration: 200,
 				queue: false,
 				complete: () => {
-					map.invalidateSize();
+					this.map.invalidateSize();
 				},
 			});
 		}
@@ -119,7 +118,7 @@ export default class Introduction {
 			duration: 200,
 			queue: false,
 			complete: () => {
-				map.invalidateSize();
+				this.map.invalidateSize();
 			},
 		});
 
@@ -134,7 +133,7 @@ export default class Introduction {
 				duration: 200,
 				queue: false,
 				complete: () => {
-					map.invalidateSize();
+					this.map.invalidateSize();
 					this.$toggler.show();
 				},
 			});

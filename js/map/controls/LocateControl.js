@@ -1,5 +1,3 @@
-/* global document, window */
-
 import L from 'leaflet';
 import log from 'loglevel';
 

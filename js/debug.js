@@ -1,5 +1,4 @@
 /* istanbul ignore file */
-/* globals window */
 
 import $ from 'jquery';
 import log from 'loglevel';
@@ -13,4 +12,5 @@ window.log = log;
 // make jQuery accessible in browser
 window.$ = $;
 
+// eslint-disable-next-line no-underscore-dangle
 window.__DEV__ = true;

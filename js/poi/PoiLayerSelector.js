@@ -1,5 +1,3 @@
-/* globals document */
-
 import $ from 'jquery';
 
 import PoiSearchHierarchy from './PoiSearchHierarchy';
@@ -141,13 +139,23 @@ export default class PoiLayerSelector {
 		const activeClass = this.poiLayers.getAllSearchIds().some((id) => id === searchId) ? ' active' : '';
 		const icon = '/kepek/mapicons/simple/' + searchObject.icon + '.png';
 
+		let htmlTitle = '';
+		if (searchObject.title.includes('|')) {
+			const titleParts = searchObject.title.split('|');
+			titleParts.forEach((categoryTitlePart) => {
+				htmlTitle += `<span>${categoryTitlePart}</span>`;
+			});
+		} else {
+			htmlTitle = searchObject.title;
+		}
+
 		const html = `
 			<button id="poi-layer-selector-toggle-${searchId}" class="poi-layer-selector-toggle${activeClass}">
 				<div class="poi-layer-selector-toggle-icon">
 					<img src="${icon}" alt="${searchObject.title} ikon" width="32" height="37" />
 				</div>
-				<div class="poi-layer-selector-toggle-title">
-					<span>${searchObject.title}</span>
+				<div class="poi-layer-selector-toggle-title-container">
+					<p class="poi-layer-selector-toggle-title">${htmlTitle}</p>
 				</div>
 			</button>
 		`;

@@ -1,5 +1,3 @@
-/* globals window */
-
 import L from 'leaflet';
 
 import Ajax from '../common/Ajax';
@@ -23,14 +21,17 @@ const overlays = new Overlays();
 
 export default class Map extends L.Map {
 	constructor(initialView, defaultBaseLayerId, defaultOverlaysOnLoad) {
-		const id = 'map';
-		// Initialize map into #map
-		const map = super(id, {
+		const mapContainerHtmlElementId = 'map';
+
+		const map = super(mapContainerHtmlElementId, {
 			zoomControl: false,
 		});
 
-		this.id = id;
+		this.id = mapContainerHtmlElementId;
+		this.initializeLeafletMap(map, initialView, defaultBaseLayerId, defaultOverlaysOnLoad);
+	}
 
+	initializeLeafletMap(map, initialView, defaultBaseLayerId, defaultOverlaysOnLoad) {
 		map.addControl(new ZoomControl().getMapControl());
 
 		map.addControl(new LocateControl().getMapControl());

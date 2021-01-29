@@ -3,6 +3,7 @@
 	<meta name="description" content="GPS nyomvonalak rögzítésével segítheted az OpenStreetMap térkép pontosítását, kiegészítését.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
+	<link rel="stylesheet" href="/css/info/info.css?rev=412">
 </head>
 <body class="info">
 	<div id="header">

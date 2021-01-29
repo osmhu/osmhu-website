@@ -3,6 +3,7 @@
 	<meta name="description" content="Magyarország térkép és más országok letöltése (Android, Apple stb) vagy az OpenStreetMap szerkesztőprogram letöltése.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
+	<link rel="stylesheet" href="/css/info/info.css?rev=412">
 </head>
 <body class="info">
 	<div id="header">

@@ -1,5 +1,3 @@
-/* globals window */
-
 import $ from 'jquery';
 import log from 'loglevel';
 

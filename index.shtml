@@ -2,6 +2,7 @@
 	<title>OpenStreetMap - A szabad világtérkép</title>
 	<meta name="description" content="Szabadon letölthető és felhasználható, közösségi szerkesztésű térkép Magyarországról és az egész világról.">
 
+	<!--#include virtual="includes/head_scripts.html" -->
 	<!-- Leaflet stylesheet -->
 	<link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css?rev=325">
 	<!-- Leaflet.Locate stylesheet -->
@@ -13,22 +14,23 @@
 	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.css?rev=371">
 	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css?rev=371">
 	<!-- Map stylesheet -->
-	<link rel="stylesheet" href="/css/map.css?rev=405">
+	<link rel="stylesheet" href="/css/frontpage/map.css?rev=405">
 	<!-- Share popup stylesheet -->
-	<link rel="stylesheet" href="/css/share-popup.css?rev=405">
+	<link rel="stylesheet" href="/css/frontpage/share-popup.css?rev=405">
 	<!-- Poi popup stylesheet -->
-	<link rel="stylesheet" href="/css/poi-popup.css?rev=373">
+	<link rel="stylesheet" href="/css/frontpage/poi-popup.css?rev=373">
 	<!-- Poi layer selector stylesheet -->
-	<link rel="stylesheet" href="/css/poi-layer-selector.css?rev=405">
+	<link rel="stylesheet" href="/css/frontpage/poi-layer-selector.css?rev=405">
 	<!-- Introduction stylesheet -->
-	<link rel="stylesheet" href="/css/introduction.css?rev=411">
+	<link rel="stylesheet" href="/css/frontpage/introduction.css?rev=411">
 	<!-- AutoComplete stylesheet -->
-	<link rel="stylesheet" href="/css/autocomplete.css?rev=371">
+	<link rel="stylesheet" href="/css/frontpage/autocomplete.css?rev=371">
 	<!-- Search results stylesheet -->
-	<link rel="stylesheet" href="/css/search-results.css?rev=351">
+	<link rel="stylesheet" href="/css/frontpage/search-results.css?rev=351">
 	<!-- Direction results stylesheet -->
-	<link rel="stylesheet" href="/css/direction-results.css?rev=351">
-	<!--#include virtual="includes/head_scripts.html" -->
+	<link rel="stylesheet" href="/css/frontpage/direction-results.css?rev=351">
+	<!-- Main stylesheet -->
+	<link rel="stylesheet" href="/css/frontpage/main.css?rev=373">
 
 	<!-- Preconnect to default OSM tile servers and default overpass api -->
 	<link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin>
@@ -184,8 +186,8 @@
 		</div>
 	</div>
 
-	<!-- Load javascript bundle -->
-	<script src="/build/vendor.js?rev=410"></script>
-	<script src="/build/main.js?rev=411"></script>
+	<!-- Load frontpage javascript bundle -->
+	<script src="/build/vendor.js?rev=412"></script>
+	<script src="/build/frontpage.js?rev=412"></script>
 </body>
 </html>

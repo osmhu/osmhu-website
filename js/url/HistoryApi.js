@@ -1,5 +1,4 @@
 /* istanbul ignore file */
-/* globals window */
 
 export default class HistoryApi {
 	static replaceState(queryString) {

@@ -3,6 +3,7 @@
 	<meta name="description" content="Az OpenStreetMap egy közösségi szerkesztésű, szabadon letölthető és felhasználható térkép Magyarországról és az egész világról.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
+	<link rel="stylesheet" href="/css/info/info.css?rev=412">
 </head>
 <body class="info about">
 	<div id="header">

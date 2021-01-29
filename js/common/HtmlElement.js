@@ -1,5 +1,4 @@
 /* istanbul ignore file */
-/* globals document */
 
 export default class HtmlElement {
 	static singleElementFromSelector(selector) {

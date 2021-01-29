@@ -1,5 +1,4 @@
 /* istanbul ignore file */
-/* globals window */
 
 import $ from 'jquery';
 

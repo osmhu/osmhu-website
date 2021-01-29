@@ -1,5 +1,3 @@
-/* globals document */
-
 import L from 'leaflet';
 import log from 'loglevel';
 
@@ -86,7 +84,7 @@ export default class Share {
 			this.bindPopupActions();
 		});
 
-		this.shareMarker.addTo(this.map);
+		this.map.addLayer(this.shareMarker);
 
 		this.createPopupAndOpen();
 	}

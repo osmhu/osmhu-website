@@ -6,8 +6,8 @@ module.exports = (env) => ({
 	mode: env.development ? 'development' : 'production',
 	devtool: env.development ? 'eval-source-map' : 'source-map',
 	entry: {
-		main: {
-			import: env.development ? ['./js/debug.js', './js/main.js'] : './js/main.js',
+		frontpage: {
+			import: env.development ? ['./js/debug.js', './js/frontpage.js'] : ['./js/frontpage.js'],
 		},
 	},
 	stats: env.development ? 'normal' : 'minimal', // console output verbosity
@@ -42,14 +42,12 @@ module.exports = (env) => ({
 		rules: [
 			{
 				test: /\.worker\.js$/,
-				use: [
-					{
-						loader: 'worker-loader',
-						options: {
-							filename: '[name].js',
-						},
+				use: {
+					loader: 'worker-loader',
+					options: {
+						filename: '[name].js',
 					},
-				],
+				},
 			},
 			{
 				test: /\.m?js$/,

@@ -96,7 +96,12 @@
 	text-decoration: none;
 	color: white;
 }
-
+#introduction .fbstyle a.fbpage {
+	background-image: url("/kepek/fb-icon16.png");
+	padding-left: 20px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
 /* Introduction toggler */
 #introduction-toggler {
 	display: block;
