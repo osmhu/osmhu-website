@@ -10,9 +10,9 @@ RewriteRule ^terkepek$ /terkepek.shtml [L]
 RewriteRule ^garmin$ /garmin.shtml [L]
 RewriteRule ^letoltesek$ /letoltesek.shtml [L]
 RewriteRule ^gps-bekuldes$ /gps-bekuldes.shtml [L]
+RewriteRule ^javascript-license$ /javascript-license.shtml [L]
 RewriteRule ^kereso-mobil$ / [R]
 RewriteRule ^gps-beküldes$ /gps-bekuldes [R]
-
 
 # layer value before and after adding OsmBugs :-/
 #RewriteCond %{QUERY_STRING} ^(.*)layers=B00000(.*)$

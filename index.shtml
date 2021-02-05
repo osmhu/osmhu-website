@@ -186,6 +186,10 @@
 		</div>
 	</div>
 
+	<div class="js-license-information">
+		<a href="/javascript-license" data-jslicense="1">JavaScript license information</a>
+	</div>
+
 	<!-- Load frontpage javascript bundle -->
 	<script src="/build/vendor.js?rev=412"></script>
 	<script src="/build/frontpage.js?rev=412"></script>
