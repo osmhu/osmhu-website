@@ -20,7 +20,7 @@
 		"leaflet.markercluster": "^1.4.1",
 		"loglevel": "^1.7.1",
 		"normalize.css": "^8.0.1",
-		"opening_hours": "git+https://github.com/fodor0205/opening_hours.js.git",
+		"opening_hours": "^3.6.0",
 		"present": "^1.0.0",
 		"query-string": "^6.13.7",
 		"regenerator-runtime": "^0.13.7",
