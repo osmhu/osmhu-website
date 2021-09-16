@@ -1,7 +1,12 @@
 import L from 'leaflet';
 
-import PopupHtmlCreatorMulti from '../popup/PopupHtmlCreatorMulti';
+import LoadingIndicator from '../common/LoadingIndicator';
+import OsmElement from '../common/OsmElement';
+import OsmElementId from '../common/OsmElementId';
 import Marker from '../marker/Marker';
+import Markers from '../marker/Markers';
+import PopupHtmlCreatorMulti from '../popup/PopupHtmlCreatorMulti';
+import PopupHtmlStore from '../popup/PopupHtmlStore';
 
 import OverpassQuery from './OverpassQuery';
 import OverpassEndpoint from './OverpassEndpoint';
@@ -16,22 +21,21 @@ import 'leaflet.markercluster/dist/leaflet.markercluster';
 const minZoomForPoiLayer = 15;
 
 export default class PoiLayer {
-	constructor(map, searchId, onLoadingStateChangedFunction) {
+	constructor(layerId, map) {
+		this.layerId = layerId;
 		this.map = map;
-		this.searchId = searchId;
-		this.onLoadingStateChanged = onLoadingStateChangedFunction;
+		this.popupHtmlStore = new PopupHtmlStore();
 
 		this.markerGroup = L.markerClusterGroup({
 			showCoverageOnHover: false,
 			maxClusterRadius: 26,
 		});
 		this.map.addLayer(this.markerGroup);
-		this.overpassLayer = this.createOverpassLayer(searchId);
+		this.overpassLayer = this.createOverpassLayer(layerId);
 		this.map.addLayer(this.overpassLayer);
-		this.idsWithMarker = [];
 
 		if (this.map.getZoom() >= minZoomForPoiLayer) {
-			this.onLoadingStateChanged(true);
+			LoadingIndicator.show();
 		}
 	}
 
@@ -55,11 +59,11 @@ export default class PoiLayer {
 		}
 	}
 
-	createOverpassLayer(searchId) {
-		const criteria = PoiSearchHierarchy.getOverpassQueryById(searchId);
+	createOverpassLayer(layerId) {
+		const criteria = PoiSearchHierarchy.getOverpassQueryById(layerId);
 		const overpassQuery = OverpassQuery.generateQuery(criteria);
 		if (!overpassQuery) {
-			throw new Error('Could not generate overpass query for criteria ' + criteria + ' for search id: ' + searchId);
+			throw new Error('Could not generate overpass query for criteria ' + criteria + ' for poi layer id: ' + layerId);
 		}
 
 		return new L.OverPassLayer({
@@ -71,44 +75,50 @@ export default class PoiLayer {
 				minZoomMessageNoLayer: 'Nincs réteg hozzáadva.',
 				minZoomMessage: '<img src="/kepek/1391811435_Warning.png" alt="Figyelem" width="20" height="20">A helyek a MINZOOMLEVEL. nagyítási szinttől jelennek meg. (Jelenleg: CURRENTZOOM)',
 			},
-			beforeRequest: () => this.onLoadingStateChanged(true),
-			onError: () => this.onLoadingStateChanged(false),
+			retryOnTimeout: true,
+			beforeRequest: () => LoadingIndicator.show(),
+			onError: () => {
+				this.map.removeLayer(this.overpassLayer);
+				this.map.addLayer(this.overpassLayer);
+			},
 			onSuccess: (data) => this.displayOverpassResultsOnMap(data.elements),
 		});
 	}
 
 	async displayOverpassResultsOnMap(overpassResults) {
-		const markers = {};
-		const overpassResultsForPopupCreation = [];
+		const markers = new Markers();
+		const osmElementsForPopupCreation = [];
 
 		Object.values(overpassResults).forEach((overpassResult) => {
-			const noMarkerYet = this.idsWithMarker.indexOf('' + overpassResult.id) === -1;
+			const osmElementId = new OsmElementId(overpassResult.type, overpassResult.id);
+
+			const noMarkerYet = !this.popupHtmlStore.hasId(osmElementId);
 			if (noMarkerYet && overpassResult.tags
 				&& (overpassResult.tags.amenity || overpassResult.tags.shop
 					|| overpassResult.tags.leisure || overpassResult.tags.tourism
 					|| overpassResult.tags.natural) && overpassResult.tags.amenity !== 'parking_entrance'
 			) {
 				const marker = Marker.createFromOverpassResult(overpassResult);
-				markers[overpassResult.id] = marker;
-				overpassResultsForPopupCreation.push(overpassResult);
+				markers.add(marker);
+
+				const osmElement = new OsmElement(osmElementId, overpassResult.tags);
+				osmElementsForPopupCreation.push(osmElement);
 			}
 		});
 
-		const results = await PopupHtmlCreatorMulti.create(overpassResultsForPopupCreation);
+		const results = await PopupHtmlCreatorMulti.create(osmElementsForPopupCreation);
 
-		results.forEach(([markerId, popupHtml]) => {
-			const marker = markers[markerId];
+		results.forEach(([osmElementIdObjectPropertyName, popupHtml]) => {
+			const osmElementId = OsmElementId.fromObjectPropertyName(osmElementIdObjectPropertyName);
+			const marker = markers.getByOsmElementId(osmElementId);
 			if (marker) {
-				Marker.createPopupForMarker(marker, popupHtml);
+				marker.createPopupFromHtml(popupHtml);
+				this.popupHtmlStore.add(marker.osmElementId, popupHtml);
 			}
 		});
 
-		// Add new marker ids
-		this.idsWithMarker = this.idsWithMarker.concat(Object.keys(markers));
+		this.markerGroup.addLayers(markers.getAllLeafletMarkers());
 
-		const layers = Object.values(markers);
-		this.markerGroup.addLayers(layers);
-
-		this.onLoadingStateChanged(false);
+		LoadingIndicator.hide();
 	}
 }

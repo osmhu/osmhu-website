@@ -74,6 +74,15 @@ export default class OverpassEndpoint {
 		return OverpassEndpoint.ensureUrlHasTrailingSlash(fastestEndpoint);
 	}
 
+	static get randomEndpoint() {
+		const randomEndpointIndex = Math.floor(Math.random() * overpassEndpoints.length);
+		const randomOverpassEndpoint = overpassEndpoints[randomEndpointIndex];
+		if (!randomOverpassEndpoint) {
+			log.error(`Could not select random endpoint from ${overpassEndpoints} with index ${randomEndpointIndex}`);
+		}
+		return OverpassEndpoint.ensureUrlHasTrailingSlash(randomOverpassEndpoint);
+	}
+
 	static ensureUrlHasTrailingSlash(url) {
 		let returnedUrl = url;
 		if (url.substring(url.length - 1) !== '/') {

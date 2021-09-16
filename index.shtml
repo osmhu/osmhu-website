@@ -15,8 +15,8 @@
 	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css?rev=371">
 	<!-- Map stylesheet -->
 	<link rel="stylesheet" href="/css/frontpage/map.css?rev=405">
-	<!-- Share popup stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/share-popup.css?rev=405">
+	<!-- Send location popup stylesheet -->
+	<link rel="stylesheet" href="/css/frontpage/send-location-popup.css?rev=405">
 	<!-- Poi popup stylesheet -->
 	<link rel="stylesheet" href="/css/frontpage/poi-popup.css?rev=373">
 	<!-- Poi layer selector stylesheet -->
@@ -191,7 +191,7 @@
 	</div>
 
 	<!-- Load frontpage javascript bundle -->
-	<script src="/build/vendor.js?rev=412"></script>
-	<script src="/build/frontpage.js?rev=412"></script>
+	<script src="/build/vendor.js?rev=416"></script>
+	<script src="/build/frontpage.js?rev=416"></script>
 </body>
 </html>

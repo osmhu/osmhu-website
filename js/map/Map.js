@@ -1,6 +1,7 @@
 import L from 'leaflet';
 
 import Ajax from '../common/Ajax';
+import OsmElementId from '../common/OsmElementId';
 import OverpassQuery from '../poi/OverpassQuery';
 import OverpassEndpoint from '../poi/OverpassEndpoint';
 import Coordinate from '../poi/Coordinate';
@@ -111,7 +112,7 @@ export default class Map extends L.Map {
 	}
 
 	async focusWay(wayId) {
-		const query = OverpassQuery.generateQueryByTypeAndId('way', wayId);
+		const query = OverpassQuery.generateQueryByOsmElementId(new OsmElementId('way', wayId));
 		const result = await Ajax.get(OverpassEndpoint.fastestEndpoint + query);
 
 		if (result.elements.length === 0) return;

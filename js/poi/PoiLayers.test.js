@@ -12,56 +12,56 @@ describe('PoiLayers', () => {
 		poiLayers = new PoiLayers(mockedMap);
 	});
 
-	describe('getAllSearchIds', () => {
+	describe('getAllLayerIds', () => {
 		it('should return empty list when no layers have been added', () => {
-			expect(poiLayers.getAllSearchIds()).toEqual([]);
+			expect(poiLayers.getAllLayerIds()).toEqual([]);
 		});
 
 		it('should return layer when a layer have been added', () => {
-			poiLayers.addBySearchId('restaurant');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant');
+			poiLayers.add('restaurant');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant');
 		});
 
 		it('should return layers when multiple layers have been added', () => {
-			poiLayers.addBySearchId('restaurant');
-			poiLayers.addBySearchId('cafe');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant', 'cafe');
+			poiLayers.add('restaurant');
+			poiLayers.add('cafe');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant', 'cafe');
 		});
 
 		it('should return layers when adding then removing layers', () => {
-			poiLayers.addBySearchId('restaurant');
-			poiLayers.addBySearchId('atm');
-			poiLayers.addBySearchId('cafe');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant', 'atm', 'cafe');
-			poiLayers.removeBySearchId('atm');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant', 'cafe');
+			poiLayers.add('restaurant');
+			poiLayers.add('atm');
+			poiLayers.add('cafe');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant', 'atm', 'cafe');
+			poiLayers.remove('atm');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant', 'cafe');
 		});
 
 		it('should return empty list when removing all added layers', () => {
-			poiLayers.addBySearchId('restaurant');
-			poiLayers.addBySearchId('atm');
-			poiLayers.addBySearchId('cafe');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant', 'atm', 'cafe');
-			poiLayers.removeBySearchId('restaurant');
-			poiLayers.removeBySearchId('atm');
-			poiLayers.removeBySearchId('cafe');
-			expect(poiLayers.getAllSearchIds()).toEqual([]);
+			poiLayers.add('restaurant');
+			poiLayers.add('atm');
+			poiLayers.add('cafe');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant', 'atm', 'cafe');
+			poiLayers.remove('restaurant');
+			poiLayers.remove('atm');
+			poiLayers.remove('cafe');
+			expect(poiLayers.getAllLayerIds()).toEqual([]);
 		});
 
 		it('should return empty list when removing all layers', () => {
-			poiLayers.addBySearchId('restaurant');
-			poiLayers.addBySearchId('atm');
-			poiLayers.addBySearchId('cafe');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant', 'atm', 'cafe');
+			poiLayers.add('restaurant');
+			poiLayers.add('atm');
+			poiLayers.add('cafe');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant', 'atm', 'cafe');
 			poiLayers.removeAll();
-			expect(poiLayers.getAllSearchIds()).toEqual([]);
+			expect(poiLayers.getAllLayerIds()).toEqual([]);
 		});
 
 		it('should not throw while removing a not added layer', () => {
-			poiLayers.addBySearchId('restaurant');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant');
-			poiLayers.removeBySearchId('cafe');
-			expect(poiLayers.getAllSearchIds()).toContain('restaurant');
+			poiLayers.add('restaurant');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant');
+			poiLayers.remove('cafe');
+			expect(poiLayers.getAllLayerIds()).toContain('restaurant');
 		});
 	});
 });

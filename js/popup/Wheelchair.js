@@ -1,11 +1,11 @@
 const baseUrl = 'https://wheelmap.org';
 
-function createUrl(id, type) {
+function createUrl(osmElementId) {
 	let url;
-	if (type === 'node') {
-		url = baseUrl + '/nodes/' + id;
-	} else if (type === 'way') {
-		url = baseUrl + '/nodes/-' + id;
+	if (osmElementId.type === 'node') {
+		url = baseUrl + '/nodes/' + osmElementId.id;
+	} else if (osmElementId.type === 'way') {
+		url = baseUrl + '/nodes/-' + osmElementId.id;
 	} else {
 		return false;
 	}
@@ -13,21 +13,21 @@ function createUrl(id, type) {
 }
 
 export default class Wheelchair {
-	static createLogo(id, type, tags) {
+	static createLogo(poiRelevantContent) {
 		let html = '<div class="wheelchair">';
-		const wheelMapUrl = createUrl(id, type);
+		const wheelMapUrl = createUrl(poiRelevantContent.osmElementId);
 		if (wheelMapUrl) {
 			html += '<a href="' + wheelMapUrl + '" target="_blank">';
 		}
 		let image;
 		let status;
-		if (tags.wheelchair === 'yes') {
+		if (poiRelevantContent.wheelchair === 'yes') {
 			image = 'wheelchair-green.png';
 			status = 'akadálymentes';
-		} else if (tags.wheelchair === 'limited') {
+		} else if (poiRelevantContent.wheelchair === 'limited') {
 			image = 'wheelchair-yellow.png';
 			status = 'részben akadálymentes';
-		} else if (tags.wheelchair === 'no') {
+		} else if (poiRelevantContent.wheelchair === 'no') {
 			image = 'wheelchair-red.png';
 			status = 'nem akadálymentes';
 		} else {

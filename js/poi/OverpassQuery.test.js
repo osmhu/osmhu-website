@@ -1,3 +1,5 @@
+import OsmElementId from '../common/OsmElementId';
+
 import OverpassQuery from './OverpassQuery';
 
 describe('overpass combined search query generator', () => {
@@ -98,16 +100,12 @@ describe('overpass relation search query part generator', () => {
 	});
 });
 
-describe('overpass query by id', () => {
-	it('should generate query for node', () => {
-		expect(OverpassQuery.generateQueryByTypeAndId('node', 1)).toEqual('interpreter?data=[out:json];(node(1););out geom qt 10000;');
-	});
+it.each([
+	{ type: 'node', id: 1, expectedQuery: 'interpreter?data=[out:json];(node(1););out geom qt 10000;' },
+	{ type: 'way', id: 1, expectedQuery: 'interpreter?data=[out:json];(way(1););out geom qt 10000;' },
+	{ type: 'relation', id: 1, expectedQuery: 'interpreter?data=[out:json];(relation(1););out geom qt 10000;' },
+])('should generate overpass query for $type', ({ type, id, expectedQuery }) => {
+	const actualQuery = OverpassQuery.generateQueryByOsmElementId(new OsmElementId(type, id));
 
-	it('should generate query for way', () => {
-		expect(OverpassQuery.generateQueryByTypeAndId('way', 1)).toEqual('interpreter?data=[out:json];(way(1););out geom qt 10000;');
-	});
-
-	it('should generate query for relation', () => {
-		expect(OverpassQuery.generateQueryByTypeAndId('relation', 1)).toEqual('interpreter?data=[out:json];(relation(1););out geom qt 10000;');
-	});
+	expect(actualQuery).toEqual(expectedQuery);
 });

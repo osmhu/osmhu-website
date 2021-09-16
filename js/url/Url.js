@@ -2,6 +2,7 @@ import $ from 'jquery';
 
 import Marker from '../marker/Marker';
 
+import OsmOrgUrl from './OsmOrgUrl';
 import UrlHelper from './UrlHelper';
 import HistoryApi from './HistoryApi';
 import UrlParamChangeNotifier from './UrlParamChangeNotifier';
@@ -59,12 +60,12 @@ export default class Url {
 
 		try {
 			if (!Marker.getActivePoiPopup()) {
-				const searchIds = [];
-				this.poiLayers.getAllSearchIds().forEach((searchId) => {
-					searchIds.push(searchId);
+				const layerIds = [];
+				this.poiLayers.getAllLayerIds().forEach((layerId) => {
+					layerIds.push(layerId);
 				});
-				if (searchIds.length > 0) {
-					queryStringParts.push('poi=' + searchIds.join(','));
+				if (layerIds.length > 0) {
+					queryStringParts.push('poi=' + layerIds.join(','));
 				}
 			}
 		} catch (error) {
@@ -81,20 +82,20 @@ export default class Url {
 
 	update() {
 		const queryString = this.createQueryString();
-		$('input.share-url').val('https://www.openstreetmap.hu' + queryString);
+		let shareUrl = 'https://www.openstreetmap.hu' + queryString;
+		// eslint-disable-next-line no-underscore-dangle
+		if (window.__DEV__) {
+			// eslint-disable-next-line no-underscore-dangle
+			shareUrl = window.__DEV_SHARE_URL__ + queryString;
+		}
+		$('input.send-location-url').val(shareUrl);
+		$('input.share-url').val(shareUrl);
 		HistoryApi.replaceState(queryString);
 		this.updateOrgUrls();
 	}
 
-	createOsmDotOrgQueryString() {
-		const lat = UrlHelper.roundToFiveDigits(this.map.getCenter().lat);
-		const lon = UrlHelper.roundToFiveDigits(this.map.getCenter().lng);
-		return '#map=' + this.map.getZoom() + '/' + lat + '/' + lon;
-	}
-
 	updateOrgUrls() {
-		const orgQueryString = this.createOsmDotOrgQueryString();
-		$('a#orglink').attr('href', 'https://openstreetmap.org/' + orgQueryString);
-		$('a#orgEditLink').attr('href', 'https://openstreetmap.org/edit' + orgQueryString);
+		$('a#orglink').attr('href', OsmOrgUrl.browseUrlFromMapCenterAndZoom(this.map.getCenter(), this.map.getZoom()));
+		$('a#orgEditLink').attr('href', OsmOrgUrl.editUrlFromMapCenterAndZoom(this.map.getCenter(), this.map.getZoom()));
 	}
 }

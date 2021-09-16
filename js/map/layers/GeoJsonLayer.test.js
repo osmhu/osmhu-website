@@ -18,14 +18,24 @@ const validGeoJson = JSON.stringify({
 	},
 });
 
+let originalLogLevel;
+
+beforeAll(() => {
+	originalLogLevel = log.getLevel();
+	log.setLevel('silent');
+});
+
 beforeEach(() => {
 	Ajax.mockReset();
 	Ajax.get.mockResolvedValue(validGeoJson);
-	log.setLevel('silent');
 });
 
 afterEach(() => {
 	jest.clearAllMocks();
+});
+
+afterAll(() => {
+	log.setLevel(originalLogLevel);
 });
 
 test('getLayer returns a valid L.GeoJSON', () => {

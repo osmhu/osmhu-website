@@ -33,6 +33,10 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--description", "Development machine for osmhu, start with vagrant up from project directory"]
     vb.memory = "1024"
     # vb.memory = "4096" # need more RAM when running osm2pgsql (import OSM data into PostgreSQL)
+
+    # Enable symlinks on Windows
+    # Source: https://vomtom.at/running-vagrant-with-symbolic-links-enabled/
+    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
 
   # Enable provisioning with a shell script

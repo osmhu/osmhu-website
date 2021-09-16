@@ -1,7 +1,15 @@
 import log from 'loglevel';
 
-export default class NiceDisplay {
-	static names(tags) {
+export default class SignificantNames {
+	constructor(primaryName, secondaryName) {
+		this.primaryName = primaryName || '';
+		this.secondaryName = secondaryName || '';
+	}
+
+	static generateFromTags(tags) {
+		if (!tags) {
+			return new SignificantNames();
+		}
 		let primaryName = '';
 
 		const hungarianName = tags['name:hu'];
@@ -18,13 +26,14 @@ export default class NiceDisplay {
 
 		let secondaryName = '';
 		try {
-			secondaryName = NiceDisplay.type(tags);
+			secondaryName = SignificantNames.elementType(tags);
 		} catch (error) {
-			/* istanbul ignore next */
-			if (error.message !== 'Cannot determinate type from tags') {
+			if (error.message === 'Could not determinate element type from tags') {
+				// No problem, but probably interesting
+				log.debug(error.message, tags);
+			} else {
 				log.error('Failed to parse type from tags', tags, error);
 			}
-			// No problem
 		}
 
 		if (primaryName.length === 0 && secondaryName.length > 0) {
@@ -36,42 +45,12 @@ export default class NiceDisplay {
 			primaryName = 'Hely';
 		}
 
-		return {
-			primaryName,
-			secondaryName: secondaryName.length > 0 ? secondaryName : undefined,
-		};
-	}
-
-	static address(tags) {
-		const city = tags['addr:city'];
-		const street = tags['addr:street'];
-		const housenumber = tags['addr:housenumber'];
-
-		if (!city && !street) throw new Error('Necessary tags missing');
-
-		let address = '';
-		if (city) {
-			address += city;
-		}
-		if (city && street) {
-			address += ', ';
-		}
-		if (street) {
-			address += street;
-		}
-		if (street && housenumber) {
-			address += ' ' + housenumber;
-		}
-		const housenumberLastCharacterIsNumber = new RegExp(/.*\d$/).test(housenumber);
-		if (street && housenumber && housenumberLastCharacterIsNumber) {
-			address += '.';
-		}
-		return address;
+		return new SignificantNames(primaryName, secondaryName);
 	}
 
 	// Ordered by importance
 	/* istanbul ignore next */
-	static type(tags) {
+	static elementType(tags) {
 		if (tags.amenity === 'restaurant') return 'Étterem';
 		if (tags.amenity === 'fast_food') return 'Gyorsétterem';
 		if (tags.amenity === 'cafe') return 'Kávézó';
@@ -182,6 +161,6 @@ export default class NiceDisplay {
 		if (tags.highway === 'residential') return 'Út';
 		if (tags.highway === 'pedestrian') return 'Gyalogos útvonal';
 
-		throw new Error('Cannot determinate type from tags');
+		throw new Error('Could not determinate element type from tags');
 	}
 }

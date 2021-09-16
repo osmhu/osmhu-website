@@ -1,50 +1,64 @@
 import { getISODay } from 'date-fns';
 import log from 'loglevel';
 
-import StringUtil from '../common/StringUtil';
+import OsmOrgUrl from '../url/OsmOrgUrl';
 
-import NiceDisplay from './NiceDisplay';
 import OpeningHoursTable from './OpeningHoursTable';
 import WebsiteUrl from './WebsiteUrl';
 import Wheelchair from './Wheelchair';
 
 export default class PopupHtmlCreatorSingle {
-	static create(element) {
+	static address(address) {
+		if (address.displayable !== true) {
+			return '';
+		}
+
+		let displayedAddress = '';
+		if (address.city) {
+			displayedAddress += address.city;
+		}
+		if (address.city && address.street) {
+			displayedAddress += ', ';
+		}
+		if (address.street) {
+			displayedAddress += address.street;
+		}
+		if (address.street && address.housenumber) {
+			displayedAddress += ' ' + address.housenumber;
+		}
+		const housenumberLastCharacterIsNumber = new RegExp(/.*\d$/).test(address.housenumber);
+		if (address.street && address.housenumber && housenumberLastCharacterIsNumber) {
+			displayedAddress += '.';
+		}
+		return displayedAddress;
+	}
+
+	static create(poiRelevantContent) {
 		const shareUrl = true;
 
-		let html = `<div id="popup-content-${element.type}-${element.id}" class="popup-content">`;
+		let html = `<div id="popup-content-${poiRelevantContent.osmElementId.toObjectPropertyName()}" class="popup-content">`;
 
-		html += Wheelchair.createLogo(element.id, element.type, element.tags);
+		html += Wheelchair.createLogo(poiRelevantContent);
 
-		const names = NiceDisplay.names(element.tags);
-		html += '<h1 class="title">' + StringUtil.upperCaseFirstLetter(names.primaryName) + '</h1>';
-		if (names.secondaryName) {
-			html += '<p class="type">' + names.secondaryName + '</p>';
+		html += '<h1 class="title">' + poiRelevantContent.primaryName + '</h1>';
+		if (poiRelevantContent.secondaryName && poiRelevantContent.secondaryName.length > 0) {
+			html += '<p class="type">' + poiRelevantContent.secondaryName + '</p>';
 		}
-
-		try {
-			const address = NiceDisplay.address(element.tags);
-			html += '<p class="addr">' + address + '</p>';
-		} catch (error) {
-			if (error.message !== 'Necessary tags missing') {
-				log.error('Failed to parse address on', element.type, element.id, error);
-			}
+		if (poiRelevantContent.address && poiRelevantContent.address.length > 0) {
+			html += '<p class="addr">' + poiRelevantContent.address + '</p>';
 		}
-
 		html += '<div class="details">';
-		const phone = element.tags.phone || element.tags['contact:phone'];
-		if (phone) {
-			html += '<p class="phone">Telefon: <i>' + phone + '</i></p>';
+		if (poiRelevantContent.phone && poiRelevantContent.phone.length > 0) {
+			html += '<p class="phone">Telefon: <i>' + poiRelevantContent.phone + '</i></p>';
 		}
-		const website = element.tags.website || element.tags['contact:website'];
-		if (website) {
+		if (poiRelevantContent.website && poiRelevantContent.website.length > 0) {
 			html += '<p class="website">';
 			html += '<span class="website-label">Weboldal:&nbsp;</span>';
-			html += WebsiteUrl.shrink(website, 34);
+			html += WebsiteUrl.shrink(poiRelevantContent.website, 34);
 			html += '</p>';
 		}
 		html += '</div>';
-		const openingHours = element.tags.opening_hours;
+		const openingHours = poiRelevantContent.opening_hours;
 		if (openingHours) {
 			const isoDayOfWeekForToday = getISODay(new Date());
 			try {
@@ -56,7 +70,8 @@ export default class PopupHtmlCreatorSingle {
 					html += '</div>';
 				}
 			} catch (error) {
-				log.info('Failed to parse opening_hours tag on', element.type, element.id, 'https://openstreetmap.org/' + element.type + '/' + element.id, error);
+				const osmOrgUrl = OsmOrgUrl.browseUrlFromOsmElementId(poiRelevantContent.osmElementId);
+				log.info('Failed to parse opening_hours tag on', poiRelevantContent.osmElementId.toString(), osmOrgUrl, error);
 			}
 		}
 		html += '<div class="options">';
@@ -67,10 +82,8 @@ export default class PopupHtmlCreatorSingle {
 			html += '<button onclick="' + onClick + '">Megosztás</button>';
 			html += '</span>';
 		}
-		const browseUrl = PopupHtmlCreatorSingle.osmBrowseUrl(element);
-		html += '<button onclick="window.open(\'' + browseUrl + '\')">Minden adat</button>';
-		const editUrl = PopupHtmlCreatorSingle.osmEditUrl(element);
-		html += '<button onclick="window.open(\'' + editUrl + '\')">Szerkesztés</button>';
+		html += '<button onclick="window.open(\'' + poiRelevantContent.osmOrgBrowseUrl + '\')">Minden adat</button>';
+		html += '<button onclick="window.open(\'' + poiRelevantContent.osmOrgEditUrl + '\')">Szerkesztés</button>';
 		if (shareUrl) {
 			html += '<div class="share">';
 			html += '<p>Megosztáshoz használd az alábbi hivatkozást:</p>';
@@ -81,13 +94,5 @@ export default class PopupHtmlCreatorSingle {
 		html += '</div>';
 		html += '</div>';
 		return html;
-	}
-
-	static osmBrowseUrl(element) {
-		return `https://www.openstreetmap.org/browse/${element.type}/${element.id}`;
-	}
-
-	static osmEditUrl(element) {
-		return `https://www.openstreetmap.org/edit?${element.type}=${element.id}`;
 	}
 }

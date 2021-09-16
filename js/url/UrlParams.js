@@ -1,5 +1,7 @@
 import queryString from 'query-string';
 
+import OsmElementId from '../common/OsmElementId';
+
 const defaultCenterAndZoomForHungary = {
 	lat: 47.17,
 	lon: 19.49,
@@ -15,7 +17,7 @@ export default class UrlParams {
 
 		this.parseMapParameters();
 		this.parseOverlayParameters();
-		this.parseOsmObjectParameters();
+		this.parseOsmElementParameters();
 		this.parsePoiParameters();
 	}
 
@@ -52,10 +54,9 @@ export default class UrlParams {
 		});
 	}
 
-	parseOsmObjectParameters() {
-		if (this.isOsmObjectDefined()) {
-			this.osmObjectType = this.params.type;
-			this.osmObjectId = this.params.id;
+	parseOsmElementParameters() {
+		if (this.isOsmElementDefined()) {
+			this.osmElementId = new OsmElementId(this.params.type, this.params.id);
 		}
 	}
 
@@ -73,7 +74,7 @@ export default class UrlParams {
 		return this.activeOverlays.indexOf(overlayId) !== -1;
 	}
 
-	isOsmObjectDefined() {
+	isOsmElementDefined() {
 		return this.params.type && this.params.id;
 	}
 

@@ -3,15 +3,20 @@
 
 import 'core-js/features/object/values'; // IE 11 polyfill
 
+import OsmElement from '../common/OsmElement';
+
+import PoiRelevantContent from './PoiRelevantContent';
 import PopupHtmlCreatorSingle from './PopupHtmlCreatorSingle';
 
 onmessage = (event) => {
-	const osmElements = event.data;
+	const osmElementsData = event.data;
 	const results = {};
 
-	Object.values(osmElements).forEach((osmElement) => {
-		const popupHtml = PopupHtmlCreatorSingle.create(osmElement);
-		results[osmElement.id] = popupHtml;
+	Object.values(osmElementsData).forEach((osmElementData) => {
+		const osmElement = OsmElement.fromRawObject(osmElementData);
+		const poiRelevantContent = PoiRelevantContent.createFromOsmElement(osmElement);
+		const popupHtml = PopupHtmlCreatorSingle.create(poiRelevantContent);
+		results[osmElement.id.toObjectPropertyName()] = popupHtml;
 	});
 
 	postMessage(results);

@@ -37,7 +37,7 @@ export default class PoiLayerSelector {
 	}
 
 	refreshTitle() {
-		const activeCount = this.poiLayers.getAllSearchIds().length;
+		const activeCount = this.poiLayers.getAllLayerIds().length;
 		let newTitle = 'Helyek <span class="verbose">keresése</span>';
 		if (activeCount > 0) {
 			newTitle += `<span class="active-count">&nbsp;(${activeCount} aktív)</span>`;
@@ -111,7 +111,7 @@ export default class PoiLayerSelector {
 	}
 
 	toggle(searchId) {
-		const searchIdIsActive = this.poiLayers.getAllSearchIds().some((id) => id === searchId);
+		const searchIdIsActive = this.poiLayers.getAllLayerIds().some((id) => id === searchId);
 		if (searchIdIsActive) {
 			this.inactivate(searchId);
 		} else {
@@ -125,18 +125,18 @@ export default class PoiLayerSelector {
 
 	inactivate(searchId) {
 		this.getElementBySearchId(searchId).removeClass('active');
-		this.poiLayers.removeBySearchId(searchId);
+		this.poiLayers.remove(searchId);
 		this.refreshTitle();
 	}
 
 	activate(searchId) {
 		this.getElementBySearchId(searchId).addClass('active');
-		this.poiLayers.addBySearchId(searchId);
+		this.poiLayers.add(searchId);
 		this.refreshTitle();
 	}
 
 	appendSearchToggle(searchId, searchObject, parentToAppendTo) {
-		const activeClass = this.poiLayers.getAllSearchIds().some((id) => id === searchId) ? ' active' : '';
+		const activeClass = this.poiLayers.getAllLayerIds().some((id) => id === searchId) ? ' active' : '';
 		const icon = '/kepek/mapicons/simple/' + searchObject.icon + '.png';
 
 		let htmlTitle = '';

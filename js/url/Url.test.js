@@ -73,11 +73,3 @@ describe('query string', () => {
 		Marker.getActivePoiPopup = originalGetActivePoiPopupFn;
 	});
 });
-
-describe('osm org parameters', () => {
-	test('should be calculated from map', () => {
-		const mockedMap = MockedMap.build(5, 47.498434568, 19.0411589423);
-		const url = new Url(mockedMap, MockedShare.buildClosed());
-		expect(url.createOsmDotOrgQueryString()).toEqual('#map=5/47.49843/19.04116');
-	});
-});

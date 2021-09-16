@@ -49,11 +49,7 @@ export default class OverpassQuery {
 		return queryStart + queryBody + queryEnd;
 	}
 
-	static generateQueryByTypeAndId(type, id) {
-		if (type !== 'node' && type !== 'way' && type !== 'relation') {
-			throw new Error('Invalid element type', type, 'expected node, way or relation');
-		}
-
-		return 'interpreter?data=[out:json];(' + type + '(' + id + '););out geom qt 10000;';
+	static generateQueryByOsmElementId(osmElementId) {
+		return 'interpreter?data=[out:json];(' + osmElementId.type + '(' + osmElementId.id + '););out geom qt 10000;';
 	}
 }

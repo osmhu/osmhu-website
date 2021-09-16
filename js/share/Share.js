@@ -118,18 +118,18 @@ export default class Share {
 	popupHtmlContent() {
 		const uniqueId = this.uniqueId();
 		return `
-			<div class="share-popup">
-				<a id="share-popup-${uniqueId}-close" class="leaflet-popup-close-button" href="#close">×</a>
+			<div class="send-location-popup">
+				<a id="send-location-popup-${uniqueId}-close" class="leaflet-popup-close-button" href="#close">×</a>
 				<h1>Hely küldése:</h1>
-				<textarea id="share-popup-${uniqueId}-text" rows="2" placeholder="Megjelenő szöveg"></textarea>
-				<p>Hivatkozás: <input type="text" id="share-popup-${uniqueId}-url" class="share-url" readonly="readonly" ></p>
-				<button id="share-popup-${uniqueId}-copy" type="button" data-clipboard-target="share-popup-${uniqueId}-url">Hivatkozás másolása</button>
+				<textarea id="send-location-popup-${uniqueId}-text" rows="2" placeholder="Megjelenő szöveg"></textarea>
+				<p>Hivatkozás: <input type="text" id="send-location-popup-${uniqueId}-url" class="send-location-url" readonly="readonly" ></p>
+				<button id="send-location-popup-${uniqueId}-copy" type="button" data-clipboard-target="send-location-popup-${uniqueId}-url">Hivatkozás másolása</button>
 			</div>
 		`;
 	}
 
 	getHtmlElement(htmlContentSelector) {
-		const htmlElement = document.getElementById('share-popup-' + this.uniqueId() + '-' + htmlContentSelector);
+		const htmlElement = document.getElementById('send-location-popup-' + this.uniqueId() + '-' + htmlContentSelector);
 		if (!htmlElement) {
 			log.debug('html element ' + htmlContentSelector + ' not found on share popup: ' + this.uniqueId());
 			throw new Error('html element not found');

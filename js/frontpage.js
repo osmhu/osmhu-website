@@ -45,8 +45,8 @@ if (urlParams.isMarkerDefined()) {
 	Marker.displayRedMarker(map, [urlParams.lat, urlParams.lon], urlParams.markerText);
 }
 
-if (urlParams.isOsmObjectDefined()) {
-	Marker.fromTypeAndId(urlParams.osmObjectType, urlParams.osmObjectId, map);
+if (urlParams.isOsmElementDefined()) {
+	Marker.fromOsmElementId(urlParams.osmElementId, map);
 }
 
 const share = new Share(map);

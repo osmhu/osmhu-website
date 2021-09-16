@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+import OsmElementId from '../common/OsmElementId';
 import LoadingIndicator from '../common/LoadingIndicator';
 import Marker from '../marker/Marker';
 import MobileDetector from '../common/MobileDetector';
@@ -51,9 +52,10 @@ export default class SearchResults {
 			this.$searchResults.hide(200);
 		}
 
-		LoadingIndicator.setLoading(true);
-		this.visibleSearchResultLayerOnMap = await Marker.fromTypeAndId(result.type, result.id, this.map);
-		LoadingIndicator.setLoading(false);
+		LoadingIndicator.show();
+		const osmElementId = new OsmElementId(result.type, result.id);
+		this.visibleSearchResultLayerOnMap = await Marker.fromOsmElementId(osmElementId, this.map);
+		LoadingIndicator.hide();
 	}
 
 	static generateHtmlForResult(result) {
