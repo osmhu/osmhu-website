@@ -1,0 +1,9 @@
+.vagrant
+.vscode
+node_modules
+*.pbf
+
+/build
+/coverage
+/report
+/development/self-signed-ssl/*.pem
