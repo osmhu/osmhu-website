@@ -13,7 +13,7 @@ module.exports = (env) => ({
 	stats: env.development ? 'normal' : 'minimal', // console output verbosity
 	output: {
 		filename: '[name].js',
-		path: path.resolve(__dirname, '../build'),
+		path: path.resolve(__dirname, '../distribution/js'),
 		environment: { // IE 11 compatibility (exclude es6 features in output)
 			arrowFunction: false,
 			destructuring: false,

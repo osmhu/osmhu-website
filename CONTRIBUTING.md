@@ -49,7 +49,7 @@ A projektben számos hasznos parancs található a [Makefile](/Makefile) -ban.
 #### Production build létrehozása
 
 ```shell
-npm run build
+make build
 ```
 
 #### Adatbázis feltöltése korábban exportált adatokkal

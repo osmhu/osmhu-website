@@ -2,6 +2,45 @@ mysql-password = Eidoh5zo
 mysql-root-password = root
 postgresql-password = Eidoh5zo
 
+.PHONY: build
+build:
+	rm -rf distribution
+	mkdir -p distribution
+
+	mkdir -p distribution/vendor/normalize distribution/vendor/leaflet
+
+#	Copy directly used static vendor files from node_modules to distribution
+	cp node_modules/normalize.css/normalize.css distribution/vendor/normalize
+	cp node_modules/leaflet/dist/leaflet.css distribution/vendor/leaflet
+	cp node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css distribution/vendor/leaflet
+	cp node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css.map distribution/vendor/leaflet
+	cp node_modules/leaflet.markercluster/dist/MarkerCluster.css distribution/vendor/leaflet
+	cp node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css distribution/vendor/leaflet
+
+	cp -R node_modules/leaflet/dist/images distribution/vendor/leaflet/images
+
+#	Copy all directories
+	mkdir -p distribution/config distribution/css distribution/includes distribution/kepek distribution/query
+	cp -R config distribution
+	cp -R css distribution
+	cp -R includes distribution
+	cp -R kepek distribution
+	cp -R query distribution
+
+#	Copy root files
+	cp .htaccess distribution
+	cp favicon.ico distribution
+	cp lib.php distribution
+	cp terkep.php distribution
+	cp validatestreetnames.php distribution
+
+# Copy content html files
+	cp *.shtml distribution
+
+# Install dependencies & build js bundle
+	npm install
+	npm run build
+
 # Enable https site in apache2 (needs valid private and public keys inside ./development/self-signed-ssl/ directory)
 .PHONY: https-enable
 https-enable:
