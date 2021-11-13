@@ -17,15 +17,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: make build
+
+    - name: Install npm dependencies
+      run: npm ci
+
+    - name: Build distribution artifact
+      run: make build
+
+    - name: Tar distribution artifact (to preserve file permissions)
+      run: tar -cvf distribution.tar distribution
+
     - name: Upload distribution artifact
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v2
       with:
         name: distribution
-        path: distribution
+        path: distribution.tar
