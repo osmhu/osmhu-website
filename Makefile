@@ -17,7 +17,7 @@ build:
 	cp node_modules/leaflet.markercluster/dist/MarkerCluster.css distribution/vendor/leaflet
 	cp node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css distribution/vendor/leaflet
 
-	cp -R node_modules/leaflet/dist/images distribution/vendor/leaflet/images
+	cp -R node_modules/leaflet/dist/images distribution/vendor/leaflet
 
 #	Copy all directories
 	mkdir -p distribution/config distribution/css distribution/includes distribution/kepek distribution/query
@@ -34,12 +34,17 @@ build:
 	cp terkep.php distribution
 	cp validatestreetnames.php distribution
 
-# Copy content html files
+#	Copy content html files
 	cp *.shtml distribution
 
-# Install dependencies & build js bundle
+#	Install dependencies & build js bundle
 	npm install
 	npm run build
+
+#	Add read permission for other users (eg. www-data)
+	chmod --recursive o+r distribution
+#	+X sets execute/search only if the file is a directory (or already has execute permission for some user)
+	chmod --recursive +X distribution
 
 # Enable https site in apache2 (needs valid private and public keys inside ./development/self-signed-ssl/ directory)
 .PHONY: https-enable
