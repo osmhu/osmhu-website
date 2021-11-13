@@ -26,9 +26,9 @@ a2enmod -q include # server side includes
 a2enmod -q rewrite # support rewrite rules
 a2enmod -q ssl # HTTPS
 
-echo "Copy apache site configs..."
-cp /vagrant/development/apache2/osmhu-http.conf /etc/apache2/sites-available/osmhu-http.conf
-cp /vagrant/development/apache2/osmhu-ssl.conf /etc/apache2/sites-available/osmhu-ssl.conf
+echo "Create symlinks for apache site configs..."
+ln -s /vagrant/development/apache2/osmhu-http.conf /etc/apache2/sites-available/osmhu-http.conf
+ln -s /vagrant/development/apache2/osmhu-ssl.conf /etc/apache2/sites-available/osmhu-ssl.conf
 
 echo "Remove default apache2 config..."
 a2dissite -q 000-default.conf

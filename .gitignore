@@ -3,7 +3,7 @@
 node_modules
 *.pbf
 
-/build
+/distribution
 /coverage
 /report
 /development/self-signed-ssl/*.pem

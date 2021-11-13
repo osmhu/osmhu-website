@@ -4,15 +4,12 @@
 
 	<!--#include virtual="includes/head_scripts.html" -->
 	<!-- Leaflet stylesheet -->
-	<link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css?rev=325">
+	<link rel="stylesheet" href="/vendor/leaflet/leaflet.css?rev=417">
 	<!-- Leaflet.Locate stylesheet -->
-	<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css?rev=325">
-	<!--[if lt IE 9]>
-		<link rel="stylesheet" href="/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.ie.min.css?rev=325">
-	<![endif]-->
+	<link rel="stylesheet" href="/vendor/leaflet/L.Control.Locate.min.css?rev=417">
 	<!-- Leaflet.markercluster stylesheet -->
-	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.css?rev=371">
-	<link rel="stylesheet" href="/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css?rev=371">
+	<link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css?rev=417">
+	<link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css?rev=417">
 	<!-- Map stylesheet -->
 	<link rel="stylesheet" href="/css/frontpage/map.css?rev=405">
 	<!-- Send location popup stylesheet -->
@@ -191,7 +188,7 @@
 	</div>
 
 	<!-- Load frontpage javascript bundle -->
-	<script src="/build/vendor.js?rev=416"></script>
-	<script src="/build/frontpage.js?rev=416"></script>
+	<script src="/js/vendor.js?rev=417"></script>
+	<script src="/js/frontpage.js?rev=417"></script>
 </body>
 </html>
