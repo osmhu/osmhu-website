@@ -24,7 +24,7 @@ export default class DirectionsNarrative {
 				const maneuver = legs[i].maneuvers[j];
 				if (maneuver) {
 					const focusCoordinate = maneuver.startPoint;
-					html += `<tr onclick="map.setView([${focusCoordinate.lat}, ${focusCoordinate.lng}],14);">`;
+					html += `<tr onclick="window.osmhu.map.setView([${focusCoordinate.lat}, ${focusCoordinate.lng}],14);">`;
 					if (maneuver.iconUrl) {
 						maneuver.iconUrl = maneuver.iconUrl.replace(/^http:\/\//i, 'https://');
 						html += `<td><img src="${maneuver.iconUrl}"></td>`;
