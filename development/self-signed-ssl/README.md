@@ -27,4 +27,4 @@ Host gépen (linux):
     ```
 
 5. Kulcspár bemásolása a [development/self-signed-ssl](/development/self-signed-ssl) mappába  
-   Az [alapértelmezett apache2 https site config](/development/apache2/osmhu-ssl.conf) ebben a mappában keresi.
+    Az [alapértelmezett apache2 https site config](/development/apache2/osmhu-ssl.conf) ebben a mappában keresi.

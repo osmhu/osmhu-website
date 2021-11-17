@@ -53,11 +53,11 @@
 		</ul>
 
 		<p>Ha <strong>Androidos</strong> telefonod van <a href="https://play.google.com/store/apps/details?id=net.osmand&hl=en_US" target="_blank">OsmAnd</a> GPS trackek rögzítésére is alkalmas:
-		Ha nem látható a GPX feliratú gombod a jobb felső sarokban, kapcsold be a menüben: 
+		Ha nem látható a GPX feliratú gombod a jobb felső sarokban, kapcsold be a menüben:
 		<em>Képernyő beállítása -> Jobb panel -> GPX naplózás</em>.
 		Most már csak ezt a gombot kell megnyomnod a rögzítés indításához és megállításához. Ha rögzítés
 		befejezése után megint megnyomod, akkor ad lehetőséget a rögzített nyomvonal kimentésére.
-		A nyomvonalak a <code>Android/data/net.osmand/files/tracks/rec</code> könyvtárban lesznek. Ezeket vagy 
+		A nyomvonalak a <code>Android/data/net.osmand/files/tracks/rec</code> könyvtárban lesznek. Ezeket vagy
 		adatkábellel áttöltheted vagy egyszerűen elküldöd magadnak e-mailben.
 		De rözítéshez sokkal egyszerűbb programokat is használhatsz, próbáld ki az <a href="https://play.google.com/store/apps/details?id=net.osmtracker&hl=en_US" target="_blank">OSM Tracker</a> nevűt.</p>
 
