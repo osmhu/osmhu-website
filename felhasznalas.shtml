@@ -17,24 +17,24 @@
 	<div id="content">
 		<h1>Az OpenStreetMap felhasználása</h1>
 
-		<p>Az OpenStreetMap nem egy térkép, amit megnézhetünk egy weblapon 
+		<p>Az OpenStreetMap nem egy térkép, amit megnézhetünk egy weblapon
 		vagy láthatunk 1-2 mobil alkalmazásban. Az OpenStreetMap egy
 		- apró részletekig lemenő - térképi adatbázis, amelybe az önkéntes
 		aktivisták összegyűjtik a milliónyi objektumot és adatot.</p>
-		
+
 		<p>A térképi adatok sokszínűségéből adódóan minden OSM-es weblap és alkalmazás
 		csak egy részlete a rendelekzésre álló adatoknak és lehetőségeknek. Beleértve ezt
 		a weblapot és a <a href="http://www.openstreetmap.org/">www.openstreetmap.org</a>
 		oldalt is.</p>
 
-		<p>Látványosabb felhasználási módokat találhatunk más OSM adatokat 
-		használó weboldalakon vagy letölthető szoftverekben. Ezen az oldalon 
+		<p>Látványosabb felhasználási módokat találhatunk más OSM adatokat
+		használó weboldalakon vagy letölthető szoftverekben. Ezen az oldalon
 		néhány érdekesebb megvalósítást is felsorolunk.</p>
 
 		<h2>Letöltés</h2>
 
 		<p>Ha saját GPS-en vagy mobiltelefonon szeretnéd az OSM-et használni,
-		vagy a nyers térképi adatokra van szükséged, nézd meg a 
+		vagy a nyers térképi adatokra van szükséged, nézd meg a
 		<a href="/letoltesek">Letöltések oldalt</a>.</p>
 
 		<h2>Internetes példák</h2>
