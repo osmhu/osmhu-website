@@ -76,9 +76,7 @@ if ! [ -L /var/www ]; then
 fi
 
 echo "Set default directory when connecting from ssh..."
-if ! [ -e /home/vagrant/.bash_profile ]; then
-  echo "cd /var/www" >> /home/vagrant/.bash_profile
-fi
+echo "cd /var/www" >> ~/.profile
 
 if [ ! -d /var/www/node_modules ]; then
   echo "Install npm packages needed by frontend..."
@@ -102,3 +100,6 @@ npm completion >> ~/.bashrc
 
 echo "Install htop..."
 apt-get install -qq htop > /dev/null
+
+echo "Install fswatch for running commands on file change..."
+apt-get install -qq fswatch > /dev/null

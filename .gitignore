@@ -1,5 +1,6 @@
 .vagrant
 .vscode
+.tmp
 node_modules
 *.pbf
 

@@ -12,7 +12,13 @@ A továbbiakban elsősorban a forráskódok továbbfejlesztéshez szükséges es
 
 ### Fejlesztés Vagrant alapú virtuális gép segítségével
 
-A projekt tartalmaz egy Vagrantfile állományt, ezzel egy olyan virtuális gép hozható létre, ami fejlesztéshez használható.
+A Vagrant használata jelentősen megkönnyíti a fejlesztőkörnyezet telepítését, segítségével egy fejlesztéshez használható virtuális gép hozható létre.
+
+> **A fejlesztési feladatok egy része csak Linux rendszeren végezhető el.**  
+> Más rendszeren történő fejlesztés teljeskörű beüzemelése rendkívül fáradságos,
+> ilyen esetben ajánlott inkább egy Virtuális gépet használni Ubuntu 20.04-el, majd vagrant használata helyett
+> közvetlenül telepíteni az eszközöket a [vagrant.sh](/development/vagrant.sh) és [Makefile](/Makefile) segítségével.
+
 A Vagrant használata esetén a gazdagépre szükséges a vagrant telepítése:
 
 [Vagrant letöltése](https://www.vagrantup.com/downloads.html)
@@ -52,6 +58,12 @@ A projektben számos hasznos parancs található a [Makefile](/Makefile) -ban.
 make build
 ```
 
+#### Fejlesztés (újrafordítás minden szerkesztésnél)
+
+```shell
+make watch
+```
+
 #### Adatbázis feltöltése korábban exportált adatokkal
 
 ```shell
@@ -64,13 +76,7 @@ make init-existing-db
 npm run test
 ```
 
-#### JavaScript frontend fejlesztése (újrafordítás minden szerkesztésnél)
-
-```shell
-npm run watch
-```
-
-#### Tesztek futtatása fejlesztés közben (újrafuttatás minden szerkesztésnél)
+#### JavaScript tesztek futtatása fejlesztés közben (újrafuttatás minden szerkesztésnél)
 
 ```shell
 npm run test-watch
@@ -110,9 +116,9 @@ Fejlesztés közben a HTTPS bekapcsolásához:
 
 2. **virtuális gépen**, a `vagrant ssh` kapcsolaton keresztül:
 
-   ```shell
-   make https-enable
-   ```
+    ```shell
+    make https-enable
+    ```
 
 *Gazdagép felé kiszolgált HTTPS port:  
 [http://localhost:8443/](http://localhost:8443/)*
