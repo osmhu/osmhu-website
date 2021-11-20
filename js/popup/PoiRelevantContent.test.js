@@ -33,13 +33,13 @@ it.each([
 });
 
 describe('address parsing', () => {
-	it('should throw Error when no tag exists', () => {
+	it('should not be displayable when no tag exists', () => {
 		const address = PoiRelevantContent.parseAddress(createOsmElementWithTags({}));
 
 		expect(address.displayable).toEqual(false);
 	});
 
-	it('should throw Error when only housenumber tag exists', () => {
+	it('should not be displayable when only housenumber tag exists', () => {
 		const address = PoiRelevantContent.parseAddress(createOsmElementWithTags({
 			'addr:housenumber': '9',
 		}));
@@ -67,7 +67,7 @@ describe('address parsing', () => {
 		expect(address.displayable).toEqual(true);
 		expect(address.city).toEqual('testCity');
 		expect(address.street).toHaveLength(0);
-		expect(address.housenumber).toEqual('1');
+		expect(address.housenumber).toHaveLength(0);
 	});
 
 	it('should return street when no other tag exists', () => {
@@ -97,14 +97,26 @@ describe('address parsing', () => {
 		const address = PoiRelevantContent.parseAddress(createOsmElementWithTags({
 			'addr:city': 'testCity',
 			'addr:street': 'Kossuth tér',
-			'addr:housenumber': '1',
 		}));
 
 		expect(address.displayable).toEqual(true);
 		expect(address.city).toEqual('testCity');
 		expect(address.street).toEqual('Kossuth tér');
-		expect(address.housenumber).toEqual('1');
+		expect(address.housenumber).toHaveLength(0);
 	});
+});
+
+it('should return city, street and housenumber when all tags exist', () => {
+	const address = PoiRelevantContent.parseAddress(createOsmElementWithTags({
+		'addr:city': 'testCity',
+		'addr:street': 'Kossuth tér',
+		'addr:housenumber': '1',
+	}));
+
+	expect(address.displayable).toEqual(true);
+	expect(address.city).toEqual('testCity');
+	expect(address.street).toEqual('Kossuth tér');
+	expect(address.housenumber).toEqual('1');
 });
 
 it('parses phone tag', () => {
