@@ -93,10 +93,13 @@ export default class PoiLayer {
 			const osmElementId = new OsmElementId(overpassResult.type, overpassResult.id);
 
 			const noMarkerYet = !this.popupHtmlStore.hasId(osmElementId);
-			if (noMarkerYet && overpassResult.tags
-				&& (overpassResult.tags.amenity || overpassResult.tags.shop
-					|| overpassResult.tags.leisure || overpassResult.tags.tourism
-					|| overpassResult.tags.natural) && overpassResult.tags.amenity !== 'parking_entrance'
+			if (noMarkerYet && overpassResult.tags &&
+				(
+					overpassResult.tags.amenity || overpassResult.tags.shop ||
+					overpassResult.tags.leisure || overpassResult.tags.tourism ||
+					overpassResult.tags.natural
+				) &&
+				overpassResult.tags.amenity !== 'parking_entrance'
 			) {
 				const marker = Marker.createFromOverpassResult(overpassResult);
 				markers.add(marker);

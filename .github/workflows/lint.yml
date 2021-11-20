@@ -1,4 +1,4 @@
-name: Lint CI
+name: Lint
 
 on:
   push:
@@ -29,5 +29,5 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Check if js files meet ESLint rules
+      - name: Check if js files meet lint rules
         run: npm run lint

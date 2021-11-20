@@ -11,10 +11,10 @@ const parseWebsite = (osmElement) => osmElement.tags?.website || osmElement.tags
 
 const parseWheelchair = (osmElement) => {
 	let wheelchair = osmElement.tags?.wheelchair;
-	if (osmElement.tags?.wheelchair !== undefined
-			&& osmElement.tags?.wheelchair !== 'yes'
-			&& osmElement.tags?.wheelchair !== 'limited'
-			&& osmElement.tags?.wheelchair !== 'no') {
+	if (osmElement.tags?.wheelchair !== undefined &&
+			osmElement.tags?.wheelchair !== 'yes' &&
+			osmElement.tags?.wheelchair !== 'limited' &&
+			osmElement.tags?.wheelchair !== 'no') {
 		log.warn('Unknown wheelchair tag ' + osmElement.tags?.wheelchair + '. Possible values are [yes, limited, no], osm element: ' + osmElement.id.toString());
 		wheelchair = 'unknown';
 	}

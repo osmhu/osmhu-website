@@ -23,8 +23,8 @@ export default class Overpass {
 				}
 				success = true;
 			} catch (error) {
-				log.warn('Retrying because of error: Could not fetch Overpass for ' + osmElementId.toString()
-					+ ': ' + error.statusText, error);
+				log.warn('Retrying because of error: Could not fetch Overpass for ' + osmElementId.toString() +
+					': ' + error.statusText, error);
 			}
 		} while (!success);
 
