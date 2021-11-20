@@ -1,13 +1,5 @@
 import OpeningHoursTable from './OpeningHoursTable';
 
-it('ensures leading zeros for values', () => {
-	expect(OpeningHoursTable.ensureLeadingZero('0')).toEqual('00');
-	expect(OpeningHoursTable.ensureLeadingZero('1')).toEqual('01');
-	expect(OpeningHoursTable.ensureLeadingZero('9')).toEqual('09');
-	expect(OpeningHoursTable.ensureLeadingZero('10')).toEqual('10');
-	expect(OpeningHoursTable.ensureLeadingZero('60')).toEqual('60');
-});
-
 it('throws error for invalid opening hours string', () => {
 	expect(() => {
 		OpeningHoursTable.generateTable('invalidString', 1);

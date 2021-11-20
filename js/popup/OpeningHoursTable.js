@@ -26,14 +26,6 @@ function nonStopTable() {
 }
 
 export default class OpeningHoursTable {
-	static ensureLeadingZero(datePart) {
-		let datePartWithLeadingZero = datePart;
-		if (datePart < 10) {
-			datePartWithLeadingZero = '0' + datePart; // eslint-disable-line prefer-template
-		}
-		return datePartWithLeadingZero;
-	}
-
 	/*
 	 * Highligted ISO day of week: 1 - Monday, 7 - Sunday
 	 * Reference: https://date-fns.org/docs/getISODay
@@ -67,10 +59,10 @@ export default class OpeningHoursTable {
 				Object.values(intervals).forEach((interval) => {
 					const openFrom = new Date(interval[0]);
 					const openTo = new Date(interval[1]);
-					const fromHour = OpeningHoursTable.ensureLeadingZero(openFrom.getHours());
-					const fromMinute = OpeningHoursTable.ensureLeadingZero(openFrom.getMinutes());
-					let toHour = OpeningHoursTable.ensureLeadingZero(openTo.getHours());
-					const toMinute = OpeningHoursTable.ensureLeadingZero(openTo.getMinutes());
+					const fromHour = openFrom.getHours().toString().padStart(2, '0');
+					const fromMinute = openFrom.getMinutes().toString().padStart(2, '0');
+					let toHour = openTo.getHours().toString().padStart(2, '0');
+					const toMinute = openTo.getMinutes().toString().padStart(2, '0');
 					if (toHour === '00' && toMinute === '00') {
 						toHour = '24';
 					}

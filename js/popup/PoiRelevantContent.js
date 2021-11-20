@@ -45,10 +45,10 @@ export default class PoiRelevantContent {
 		}
 
 		return {
-			displayable: !!city || !!street || (!!street && !!housenumber),
+			displayable: !!city || !!street || !!housenumber,
 			city,
 			street,
-			housenumber,
+			housenumber: (!!street && !!housenumber) ? housenumber : '',
 		};
 	}
 
