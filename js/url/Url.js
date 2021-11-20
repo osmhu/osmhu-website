@@ -82,7 +82,7 @@ export default class Url {
 
 	update() {
 		const queryString = this.createQueryString();
-		let shareUrl = 'https://' + window.SITE_DOMAIN + queryString;
+		const shareUrl = 'https://' + window.SITE_DOMAIN + queryString;
 		$('input.send-location-url').val(shareUrl);
 		$('input.share-url').val(shareUrl);
 		HistoryApi.replaceState(queryString);
