@@ -14,6 +14,3 @@ window.$ = $;
 
 // eslint-disable-next-line no-underscore-dangle
 window.__DEV__ = true;
-
-// eslint-disable-next-line no-underscore-dangle
-window.__DEV_SHARE_URL__ = 'https://osmhu.lan';

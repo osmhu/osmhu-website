@@ -82,12 +82,7 @@ export default class Url {
 
 	update() {
 		const queryString = this.createQueryString();
-		let shareUrl = 'https://www.openstreetmap.hu' + queryString;
-		// eslint-disable-next-line no-underscore-dangle
-		if (window.__DEV__) {
-			// eslint-disable-next-line no-underscore-dangle
-			shareUrl = window.__DEV_SHARE_URL__ + queryString;
-		}
+		let shareUrl = 'https://' + window.SITE_DOMAIN + queryString;
 		$('input.send-location-url').val(shareUrl);
 		$('input.share-url').val(shareUrl);
 		HistoryApi.replaceState(queryString);
