@@ -52,6 +52,7 @@ create-distribution:
 
 .PHONY: develop
 develop:
+	mkdir -p .tmp && \
 	make create-distribution && \
 	npm run install-if-changed && \
 	npm run build-development

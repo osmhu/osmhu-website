@@ -7,7 +7,7 @@ import MapControl from './MapControl';
 import 'leaflet.locatecontrol';
 
 function navigateToHttps() {
-	document.location.replace(`https:${document.location.href.substring(document.location.protocol.length)}`);
+	document.location.protocol = 'https:';
 }
 
 export default class LocateControl extends MapControl {
@@ -27,6 +27,8 @@ export default class LocateControl extends MapControl {
 						if (answeredYes) {
 							navigateToHttps();
 						}
+					} else if (error.message === 'Geolocation error: User denied Geolocation.') { // Chrome
+						log.info('Could not get Geolocation, user denied prompt');
 					} else {
 						log.error('Error getting location', error);
 					}

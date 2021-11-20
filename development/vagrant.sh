@@ -2,6 +2,8 @@
 
 # Script to initialize virtual machine for development
 
+SOURCE_CODE_DIR='/vagrant'
+
 # unattended install
 # source: https://serverfault.com/questions/500764/dpkg-reconfigure-unable-to-re-open-stdin-no-file-or-directory
 export DEBIAN_FRONTEND=noninteractive
@@ -27,8 +29,8 @@ a2enmod -q rewrite # support rewrite rules
 a2enmod -q ssl # HTTPS
 
 echo "Create symlinks for apache site configs..."
-ln -s /vagrant/development/apache2/osmhu-http.conf /etc/apache2/sites-available/osmhu-http.conf
-ln -s /vagrant/development/apache2/osmhu-ssl.conf /etc/apache2/sites-available/osmhu-ssl.conf
+ln -s "${SOURCE_CODE_DIR}/development/apache2/osmhu-http.conf" /etc/apache2/sites-available/osmhu-http.conf
+ln -s "${SOURCE_CODE_DIR}/development/apache2/osmhu-ssl.conf" /etc/apache2/sites-available/osmhu-ssl.conf
 
 echo "Remove default apache2 config..."
 a2dissite -q 000-default.conf
@@ -57,6 +59,7 @@ echo "Install build-essential required by nodejs native code..."
 apt-get install -qq build-essential > /dev/null
 
 echo "Install node.js for frontend development..."
+apt-get install -qq curl > /dev/null
 # https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
 curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn apt-key --quiet add -
 VERSION=node_14.x
@@ -69,10 +72,10 @@ apt-get install -qq nodejs > /dev/null
 echo "Update npm..."
 npm install --silent --global npm
 
-echo "Create /var/www as a link to synced /vagrant dir..."
+echo "Create /var/www as a link to source code dir..."
 if ! [ -L /var/www ]; then
   rm -rf /var/www
-  ln -fs /vagrant /var/www
+  ln -fs "${SOURCE_CODE_DIR}" /var/www
 fi
 
 echo "Set default directory when connecting from ssh..."
@@ -97,6 +100,9 @@ fi
 echo "Install tab completion for npm..."
 # source: https://docs.npmjs.com/cli/completion
 npm completion >> ~/.bashrc
+
+echo "Install git client..."
+apt-get install -qq git > /dev/null
 
 echo "Install htop..."
 apt-get install -qq htop > /dev/null

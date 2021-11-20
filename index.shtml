@@ -190,5 +190,8 @@
 	<!-- Load frontpage javascript bundle -->
 	<script src="/js/vendor.js?rev=417"></script>
 	<script src="/js/frontpage.js?rev=417"></script>
+	<script>
+		window.SITE_DOMAIN = 'www.openstreetmap.hu';
+	</script>
 </body>
 </html>
