@@ -79,9 +79,7 @@ export default class NominatimResult {
 				if (nominatimResult.address.city !== 'Budapest' && nominatimResult.address.county) {
 					surroundingArea.push(nominatimResult.address.county);
 				}
-			} else if (nominatimResult.address.country
-				&& primaryName !== nominatimResult.address.country
-			) {
+			} else if (nominatimResult.address.country && primaryName !== nominatimResult.address.country) {
 				surroundingArea.push(nominatimResult.address.country);
 			}
 		}

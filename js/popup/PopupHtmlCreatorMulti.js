@@ -7,7 +7,7 @@ export default class PopupHtmlCreatorMulti {
 	/* istanbul ignore next */
 	static async create(osmElements) {
 		return new Promise((resolve) => {
-			const popupHtmlCreatorWorker = new PopupHtmlCreatorWorker();
+			const popupHtmlCreatorWorker = new PopupHtmlCreatorWorker(); // lgtm [js/call-to-non-callable]
 
 			const start = present();
 
