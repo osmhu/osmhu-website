@@ -7,7 +7,7 @@ on:
     branches: [ 'main' ]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-20.04
 
     strategy:
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Check if all files meet Editorconfig rules
+      - name: Check if all files meet EditorConfig rules
         uses: editorconfig-checker/action-editorconfig-checker@v1.0.0
 
       - name: Use Node.js ${{ matrix.node-version }}
