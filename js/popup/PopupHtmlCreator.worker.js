@@ -2,6 +2,7 @@
 /* eslint-env worker */
 
 import 'core-js/features/object/values'; // IE 11 polyfill
+import 'core-js/features/promise'; // IE 11 polyfill
 
 import OsmElement from '../common/OsmElement';
 
