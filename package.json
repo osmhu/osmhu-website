@@ -6,6 +6,7 @@
 	"browser": "js/frontpage.js",
 	"dependencies": {
 		"autocomplete.js": "^0.38.0",
+		"browser-update": "^3.3.33",
 		"clipboard": "^2.0.8",
 		"coordinate-parser": "^1.0.7",
 		"core-js": "^3.17.3",
