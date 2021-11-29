@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Enable provisioning with a shell script
-  config.vm.provision "shell", path: "development/vagrant.sh"
+  config.vm.provision "shell", path: "development/provision.sh"
 
   # Sync folders
   config.vm.synced_folder ".", "/vagrant", fsnotify: true

@@ -3,20 +3,69 @@
 
 	<?php include 'includes/head_scripts.html' ?>
 	<link rel="stylesheet" href="/css/info/info.css?rev=412">
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="/testing/old/overpass.js?rev=249"></script>
+	<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-	function changeTool(ddl) {
-		var tool = ddl[ddl.selectedIndex].value;
-		var url = "/terkep/";
-		if(page) {
-			url += page;
+		var overpassUrl = 'https://lz4.overpass-api.de/api/interpreter';
+		var keepRightUrlTemplate = 'https://keepright.at/report_map.php?zoom=13&lat={lat}&lon={lon}&layers=B0T&ch=0%2C30%2C40%2C50%2C70%2C90%2C120%2C130%2C150%2C160%2C170%2C180%2C191%2C194%2C195%2C196%2C201%2C202%2C203%2C204%2C205%2C206%2C207%2C208%2C210%2C220%2C231%2C232%2C270%2C281%2C282%2C283%2C284%2C285%2C291%2C292%2C293%2C294%2C311%2C312%2C313%2C320%2C350%2C370%2C380%2C401%2C402%2C411%2C412%2C413&show_ign=1&show_tmpign=1';
+		//var bingCompareUrlTemplate = 'https://tools.geofabrik.de/mc/?mt0=mapnik&mt1=bingsat&lon={lon}&lat={lat}&zoom=16';
+		var bingCompareUrlTemplate = 'https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom=16&num=2&mt0=mapnik&mt1=bing-satellite';
+
+		function openKeepRight(placeId) {
+			openToolInNewWindow(placeId, keepRightUrlTemplate);
 		}
-		if(tool) {
-			url += "?tool=" + tool;
+
+		function openBingCompare(placeId) {
+			openToolInNewWindow(placeId, bingCompareUrlTemplate);
 		}
-		document.location.href = url;
-	}
+
+		function openToolInNewWindow(placeId, toolUrlTemplate) {
+			getSingleNode(placeId, function(osmElement) {
+				var toolUrl = toolUrlTemplate
+					.replace('{lat}', osmElement.lat)
+					.replace('{lon}', osmElement.lon);
+
+				var newWindow = window.open(toolUrl, '_blank');
+				if (newWindow != null) {
+					newWindow.focus();
+				}
+			});
+		}
+
+		function getSingleNode(nodeId, callback) {
+			var data = {
+				data: '[out:json];node(' + nodeId + ');out body;'
+			};
+
+			$.get(overpassUrl, data, function(response) {
+				if (response.elements.length == 1) {
+					callback(response.elements[0]);
+				} else {
+					console.error('Overpass returned ' + response.elements.length + ' elements for this node id: ' + nodeId);
+				}
+			});
+		}
+
+		function highlight(node, type) {
+			if (type == 'p') {
+				$(node).parent().addClass('highlight');
+			} else if (type == 'pp') {
+				$(node).parent().parent().addClass('highlight');
+			} else {
+				$(node).addClass('highlight');
+			}
+		}
+
+		function changeTool(selectHtmlElement) {
+			var tool = selectHtmlElement[selectHtmlElement.selectedIndex].value;
+			var url = '/terkep/';
+			if (page) {
+				url += page;
+			}
+			if (tool) {
+				url += '?tool=' + tool;
+			}
+			document.location.href = url;
+		}
 	</script>
 </head>
 <body class="info citylist">
@@ -126,7 +175,7 @@ if($page) {
 
 		// Show selected tool
 		if($tool == "keepright") {
-			echo("<td><a href=\"javascript:openKeepRight(".$city->osm_id.");\">kr</a></td>");
+			echo("<td><a href=\"javascript:openKeepRight(".$city->osm_id.");\" onclick=\"highlight(this, 'pp');\">KeepRight</a></td>");
 		} else if($tool == "tags") {
 			echo("<td>");
 			$tagids = array();
@@ -146,7 +195,7 @@ if($page) {
 		} else if($tool == "rewrite") {
 			echo("<td>RewriteRule ^terkep\/".genregex($city->name)."/?$ \/?zoom=15\&lat=".$city->lat."\&lon=".$city->lon." [R]</td>");
 		} else {
-			echo("<td>http://www.openstreetmap.hu/terkep/$city_lc</td>");
+			echo("<td>https://www.openstreetmap.hu/terkep/$city_lc</td>");
 		}
 		echo("</tr>\n");
 	}

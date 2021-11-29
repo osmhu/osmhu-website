@@ -10,14 +10,38 @@ Készíthetsz Issue-t is, ahol bedobhatod az ötleteidet, vagy megvitathatsz bá
 
 A továbbiakban elsősorban a forráskódok továbbfejlesztéshez szükséges eszközök leírása található.
 
-### Fejlesztés Vagrant alapú virtuális gép segítségével
-
-A Vagrant használata jelentősen megkönnyíti a fejlesztőkörnyezet telepítését, segítségével egy fejlesztéshez használható virtuális gép hozható létre.
+A fejlesztéshez ajánlott operációs rendszer: **Ubuntu Linux 20.04**  
+Az alábbi parancsok is ezen a rendszeren működnek módosítás nélkül.
 
 > **A fejlesztési feladatok egy része csak Linux rendszeren végezhető el.**  
 > Más rendszeren történő fejlesztés teljeskörű beüzemelése rendkívül fáradságos,
 > ilyen esetben ajánlott inkább egy Virtuális gépet használni Ubuntu 20.04-el, majd vagrant használata helyett
-> közvetlenül telepíteni az eszközöket a [vagrant.sh](/development/vagrant.sh) és [Makefile](/Makefile) segítségével.
+> közvetlenül telepíteni az eszközöket a [development/provision.sh](/development/provision.sh) és [Makefile](/Makefile) segítségével.
+
+### Forráskód klónozása
+
+A forráskód verziózása [Git](https://git-scm.com/) segítségével történik.
+
+- Telepítés:
+
+    ```shell
+    sudo apt install git
+    ```
+
+- Forráskód klónozása:
+
+    ```shell
+    git clone https://github.com/osmhu/osmhu-website.git
+    ```
+
+### Módosítások beküldése
+
+Módosítások beküldéséhez GitHub fiók szükséges.  
+[Hasznos segédlet a módosítások beküldésével kapcsolatban.](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
+
+### Fejlesztés Vagrant alapú virtuális gép segítségével
+
+A Vagrant használata jelentősen megkönnyíti a fejlesztőkörnyezet telepítését, segítségével egy fejlesztéshez használható virtuális gép hozható létre.
 
 A Vagrant használata esetén a gazdagépre szükséges a vagrant telepítése:
 
@@ -34,7 +58,7 @@ A projekt könyvtárában:
 A gazdagépen található projektkönyvtár automatikusan szinkronizálva van a vagrant virtuális gépen található `/var/www` mappába.  
 Így a gazdagépen történt minden változtatás azonnal szinkronizálva van a virtuális gép számára és fordítva.  
 A virtuális gépre automatikusan feltelepítésre kerültek a szükséges webszerver, a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
-Ezek a jelszavak a [vagrant.sh](/development/vagrant.sh) fájlban és a [Makefile](/Makefile)-ban szerkeszthetőek.
+Ezek a jelszavak a [provision.sh](/development/provision.sh) fájlban és a [Makefile](/Makefile)-ban szerkeszthetőek.
 
 #### Vagrant virtuális gép által kiszolgált fejlesztési weboldal elérése
 
@@ -45,12 +69,24 @@ Gazdagépen:
 
 A projektben számos hasznos parancs található a [Makefile](/Makefile) -ban.
 
-*Minden itt felsorolt parancsot a projekt gyökérkönyvtárában állva kell futtatni.*
-
 > **Vagrant használata esetén:**
 >
 > - a virtuális gépen belül, a `vagrant ssh` kapcsolaton keresztül kell futtatni a parancsokat
 > - a virtuális gépben található, folyamatosan szinkronizált `/var/www` könyvtárában állva kell futtatni
+
+*Minden itt felsorolt parancsot a projekt gyökérkönyvtárában állva kell futtatni.*
+
+#### JavaScript függősségek telepítése
+
+```shell
+npm install
+```
+
+> **Vagrant** virtuális gépen belül az alábbi parancssal **helyettesítendő**:
+
+```shell
+make npm-install-in-tmp
+```
 
 #### Production build létrehozása
 

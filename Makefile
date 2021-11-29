@@ -31,7 +31,7 @@ create-distribution:
 	cp -R config distribution
 	cp -R css distribution
 	cp -R includes distribution
-	cp -R kepek distribution
+	rsync -av kepek distribution --exclude *.xcf
 	cp -R query distribution
 
 #	Copy root files
@@ -64,6 +64,21 @@ watch:
 	fswatch --one-per-batch --recursive --monitor poll_monitor --event Created --event Updated \
 		config css includes js kepek query .htaccess lib.php terkep.php validatestreetnames.php \
 		Makefile package.json *.shtml | xargs -n1 -I{} make develop
+
+
+# Inside vagrant virtualbox machine, need to do npm install in a directory that is not synced
+# https://github.com/laravel/homestead/issues/1239#issuecomment-523320952
+.PHONY: npm-install-in-tmp
+npm-install-in-tmp:
+	mkdir -p /tmp/npm_install/ && \
+	cp package.json /tmp/npm_install && \
+	cp package-lock.json /tmp/npm_install && \
+	cd /tmp/npm_install && \
+	npm i --silent && \
+	cp -r /tmp/npm_install/node_modules ${CURDIR} && \
+	rm -rf /tmp/npm_install/ && \
+	cd ${CURDIR} && \
+	npm i --silent
 
 
 # Enable https site in apache2 (needs valid private and public keys inside ./development/self-signed-ssl/ directory)
