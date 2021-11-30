@@ -193,7 +193,7 @@ if($page) {
 		} else if($tool == "bingcompare") {
 			echo("<td><a href=\"javascript:openBingCompare(".$city->osm_id.");\" onclick=\"highlight(this, 'pp');\">Bing</a></td>");
 		} else if($tool == "rewrite") {
-			echo("<td>RewriteRule ^terkep\/".genregex($city->name)."/?$ \/?zoom=15\&lat=".$city->lat."\&lon=".$city->lon." [R]</td>");
+			echo("<td>RewriteRule ^terkep\/".genregex($city->name)."/?$ \/?zoom=15\&lat=".number_format($city->lat, 5, '.', ',')."\&lon=".number_format($city->lon, 5, '.', ',')." [R]</td>");
 		} else {
 			echo("<td>https://www.openstreetmap.hu/terkep/$city_lc</td>");
 		}
