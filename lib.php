@@ -95,7 +95,7 @@ class StreetsDB
 			$dbErrorCode = $stmt->errorInfo()[1];
 			// On unique constraint fail for osm_id or name
 			if ($e->getCode() == 23000 && $dbErrorCode == 1062) {
-				echo $city->name . ' has already been inserted. New osm id would have been: ' . $city->osm_id . ". Skipping \n";
+				echo $city->name . ' has already been inserted. New osm id would have been: ' . $city->osm_id . ". Skipping ";
 			} else {
 				printf('MYSQL INSERT error in create_city(%d, %s): ', $city->osm_id, $city->name);
 				die($e->getMessage());
@@ -392,7 +392,7 @@ class BoundaryIterator implements Iterator {
 		$query.= " ST_Y(ST_Transform(ST_Centroid(way), 4326)) as boundlat";
 		$query.= " FROM planet_osm_polygon WHERE boundary = 'administrative'";
 		$query.= " AND admin_level IN ('8','9') AND name != 'Budapest'";
-		$query.= " ORDER BY name";
+		$query.= " ORDER BY name COLLATE \"hu_HU\"";
 		$this->stmt = $this->gis->prepare($query);
 		$this->stmt->execute();
 		$this->curr = $this->stmt->fetch();
