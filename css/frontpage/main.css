@@ -184,28 +184,6 @@ span.svg-icon.caret-up-icon {
 
 /* Map layout on mobile or small screen */
 @media all and (max-width: 699px) {
-	.panel, #menu li.mobile-hidden, .mobile-hidden, #logo, #separator, .toggler {
-		display: none;
-	}
-	#header {
-		height: auto;
-		margin-bottom: 0;
-		border-bottom-color: #ccc;
-	}
-	#menu li a {
-		padding: 5px 8px;
-		line-height: 32px;
-		font-size: 15px;
-	}
-	#menu .name1 {
-		display: inline;
-	}
-	#menu {
-		position: initial;
-		height: auto;
-		width: 100%;
-		text-align: center;
-	}
 	#search-area {
 		position: initial;
 		padding: 0;
