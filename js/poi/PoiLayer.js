@@ -40,17 +40,7 @@ export default class PoiLayer {
 	}
 
 	remove() {
-		if (typeof this.overpassLayer !== 'undefined') {
-			// OverpassLayer does not itself remove MinZoomIndicator during remove
-			if (this.overpassLayer._zoomControl) { // eslint-disable-line no-underscore-dangle
-				try {
-					this.map.removeControl(this.overpassLayer._zoomControl); // eslint-disable-line no-underscore-dangle
-				} catch (error) {
-					// no problem, remove throws an error
-				}
-				this.map.zoomIndicator = null; // New zoom indicator is created by next instance
-			}
-
+		if (this.overpassLayer) {
 			this.map.removeLayer(this.overpassLayer);
 		}
 
