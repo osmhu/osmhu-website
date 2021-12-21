@@ -1,5 +1,5 @@
 /* Info pages are pages with text information */
-body.info #logo .brand, body.info #logo .slogan {
+body.info .header-logo .brand, body.info .header-logo .slogan {
 	display: block;
 }
 body.info h1, body.info #content h2 {
@@ -11,7 +11,7 @@ body.info h3 {
 	color: #942F43;
 }
 body.info #nav, body.info #content {
-	font-size: 15px;
+	font-size: 16px;
 	font-family: Arial;
 }
 body.info #nav {

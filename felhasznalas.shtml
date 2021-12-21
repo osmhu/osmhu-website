@@ -6,9 +6,7 @@
 	<link rel="stylesheet" href="/css/info.css?rev=413">
 </head>
 <body class="info">
-	<div id="header">
 	<!--#include virtual="includes/header.html" -->
-	</div>
 
 	<div id="nav" class="felhasznalas">
 		<!--#include virtual="includes/submenu.html" -->
