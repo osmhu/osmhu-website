@@ -7,41 +7,35 @@ import OverpassEndpoint from './OverpassEndpoint';
 jest.mock('../common/Ajax');
 jest.mock('present');
 
-it('should ensure url has trailing slash', () => {
-	expect(OverpassEndpoint.ensureUrlHasTrailingSlash('https://domain.test/api')).toEqual('https://domain.test/api/');
-	expect(OverpassEndpoint.ensureUrlHasTrailingSlash('https://domain.test/api/')).toEqual('https://domain.test/api/');
+beforeEach(() => {
+	jest.restoreAllMocks();
+	Ajax.mockReset();
+	present.mockReset();
 });
 
 it('should return the fastest endpoint', async () => {
 	const fastestTestEndpoint = 'https://z.overpass-api.de/api/';
 
-	const originalMeasureEndpointFn = OverpassEndpoint.measureEndpoint;
-	OverpassEndpoint.measureEndpoint = jest.fn((endpoint) => {
+	const measureEndpointLoadTimeSpy = jest.spyOn(OverpassEndpoint, 'measureEndpointLoadTime').mockImplementation((endpoint) => {
 		if (endpoint === fastestTestEndpoint) {
 			return 100;
 		}
 		return 1000;
 	});
 
-	await OverpassEndpoint.measureEndpointLoadTimes();
-	expect(OverpassEndpoint.measureEndpoint).toHaveBeenCalledTimes(OverpassEndpoint.all.length);
+	await OverpassEndpoint.measureAllEndpointLoadTimes();
+	expect(measureEndpointLoadTimeSpy).toHaveBeenCalledTimes(OverpassEndpoint.all.length);
 	expect(OverpassEndpoint.fastestEndpoint).toEqual(fastestTestEndpoint);
-
-	// Reset mocking
-	OverpassEndpoint.measureEndpoint = originalMeasureEndpointFn;
 });
 
 it('measure should call endpoint and calculate elapsed milliseconds for query', async () => {
-	Ajax.mockReset();
 	Ajax.get.mockResolvedValue({});
-
-	present.mockReset();
 
 	// Manipulate timer
 	present.mockReturnValueOnce(1000) // start call
 		.mockReturnValueOnce(1100); // +100 ms end call
 
-	const elapsedMilliseconds = await OverpassEndpoint.measureEndpoint('http://test/');
+	const elapsedMilliseconds = await OverpassEndpoint.measureEndpointLoadTime('http://test/');
 	expect(present).toHaveBeenCalledTimes(2);
 	expect(elapsedMilliseconds).toEqual(100);
 

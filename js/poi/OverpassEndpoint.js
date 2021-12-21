@@ -22,17 +22,19 @@ const asyncForEach = async (array, callback) => {
 	}
 };
 
+const ensureTrailingSlash = (url) => (url + (url.endsWith('/') ? '' : '/'));
+
 export default class OverpassEndpoint {
 	static get all() {
 		return overpassEndpoints;
 	}
 
-	static async measureEndpointLoadTimes() {
+	static async measureAllEndpointLoadTimes() {
 		endpointLoadTimes = {};
 
 		await asyncForEach(overpassEndpoints, async (measuredEndpoint) => {
 			try {
-				const endpointLoadTime = await OverpassEndpoint.measureEndpoint(measuredEndpoint);
+				const endpointLoadTime = await OverpassEndpoint.measureEndpointLoadTime(measuredEndpoint);
 
 				log.debug(`Endpoint ${measuredEndpoint} load time was ${Math.round(endpointLoadTime)}ms`);
 
@@ -49,20 +51,20 @@ export default class OverpassEndpoint {
 		});
 	}
 
-	static async measureEndpoint(endpoint) {
-		const measureQuery = 'interpreter?data=[out:json];node(47.48,19.02,47.5,19.05)["amenity"="cafe"];out;';
+	static async measureEndpointLoadTime(endpoint) {
+		const measureUrl = endpoint + 'interpreter?data=[out:json];node(47.48,19.02,47.5,19.05)["amenity"="cafe"];out;';
 
 		const start = present();
 
-		const measureUrl = endpoint + measureQuery;
 		const result = await Ajax.get(measureUrl);
+
+		const end = present();
 
 		const resultIsValid = result instanceof Object;
 		if (!resultIsValid) {
 			throw new Error('Response is not Object, it was ' + (typeof result) + ': ' + result);
 		}
 
-		const end = present();
 		const elapsedMilliseconds = end - start;
 		return elapsedMilliseconds;
 	}
@@ -71,7 +73,7 @@ export default class OverpassEndpoint {
 		const roundedLoadTime = Math.round(endpointLoadTimes[fastestEndpoint]);
 		const measurement = Number.isNaN(roundedLoadTime) ? ' not measured' : ` with ${roundedLoadTime}ms`;
 		log.debug(`Fastest endpoint is ${fastestEndpoint}` + measurement);
-		return OverpassEndpoint.ensureUrlHasTrailingSlash(fastestEndpoint);
+		return ensureTrailingSlash(fastestEndpoint);
 	}
 
 	static get randomEndpoint() {
@@ -80,14 +82,6 @@ export default class OverpassEndpoint {
 		if (!randomOverpassEndpoint) {
 			log.error(`Could not select random endpoint from ${overpassEndpoints} with index ${randomEndpointIndex}`);
 		}
-		return OverpassEndpoint.ensureUrlHasTrailingSlash(randomOverpassEndpoint);
-	}
-
-	static ensureUrlHasTrailingSlash(url) {
-		let returnedUrl = url;
-		if (url.substring(url.length - 1) !== '/') {
-			returnedUrl += '/';
-		}
-		return returnedUrl;
+		return ensureTrailingSlash(randomOverpassEndpoint);
 	}
 }

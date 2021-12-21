@@ -12,19 +12,16 @@
   "rules": {
     "indent": [ "error", "tab" ],
     "no-tabs": [ "off" ],
-    "no-plusplus": [
-      "error",
-      {
-        "allowForLoopAfterthoughts": true
-      }
-    ],
+    "no-plusplus": [ "error", {
+      "allowForLoopAfterthoughts": true
+    }],
     "prefer-template": "off",
     "operator-linebreak": [
       "error", "after", {
         "overrides": { "=": "none" }
       }
     ],
-    "max-len": ["error", 120, 2, {
+    "max-len": [ "error", 120, 2, {
       "ignoreUrls": true,
       "ignoreComments": false,
       "ignoreRegExpLiterals": true,

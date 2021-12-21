@@ -103,7 +103,7 @@ $(document).ready(() => {
 	}
 
 	setTimeout(() => {
-		OverpassEndpoint.measureEndpointLoadTimes();
+		OverpassEndpoint.measureAllEndpointLoadTimes();
 	}, 1000);
 });
 
