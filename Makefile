@@ -6,6 +6,7 @@ postgresql-password = Eidoh5zo
 build:
 	make create-distribution && \
 	npm install && \
+	npm run build-css && \
 	npm run build
 
 
@@ -14,25 +15,15 @@ create-distribution:
 	rm -rf distribution
 	mkdir -p distribution
 
-	mkdir -p distribution/vendor/normalize distribution/vendor/leaflet
-
-#	Copy directly used static vendor files from node_modules to distribution
-	cp node_modules/normalize.css/normalize.css distribution/vendor/normalize
-	cp node_modules/leaflet/dist/leaflet.css distribution/vendor/leaflet
-	cp node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css distribution/vendor/leaflet
-	cp node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css.map distribution/vendor/leaflet
-	cp node_modules/leaflet.markercluster/dist/MarkerCluster.css distribution/vendor/leaflet
-	cp node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css distribution/vendor/leaflet
-
-	cp -R node_modules/leaflet/dist/images distribution/vendor/leaflet
-
 #	Copy all directories
-	mkdir -p distribution/config distribution/css distribution/includes distribution/js distribution/kepek distribution/query
+	mkdir -p distribution/config distribution/includes distribution/js distribution/kepek distribution/query
 	cp -R config distribution
-	cp -R css distribution
 	cp -R includes distribution
-	rsync -av kepek distribution --exclude *.xcf
+	rsync -a kepek distribution --exclude *.xcf
 	cp -R query distribution
+
+	mkdir -p distribution/css
+	cp -R node_modules/leaflet/dist/images distribution/css
 
 #	Copy root files
 	cp .htaccess distribution
@@ -55,6 +46,7 @@ develop:
 	mkdir -p .tmp && \
 	make create-distribution && \
 	npm run install-if-changed && \
+	npm run build-css && \
 	npm run build-development
 
 

@@ -2,7 +2,7 @@
 	<title>OpenStreetMap.hu térkép rétegek</title>
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info/info.css?rev=412">
+	<link rel="stylesheet" href="/css/info.css?rev=413">
 </head>
 <body class="info">
 	<div id="header">
