@@ -2,7 +2,7 @@
 	<title>Magyarországi városok és falvak térképe</title>
 
 	<?php include 'includes/head_scripts.html' ?>
-	<link rel="stylesheet" href="/css/info/info.css?rev=412">
+	<link rel="stylesheet" href="/css/info.css?rev=413">
 	<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		var overpassUrl = 'https://lz4.overpass-api.de/api/interpreter';

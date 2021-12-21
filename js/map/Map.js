@@ -15,7 +15,7 @@ import TileLayers from './layers/TileLayers';
 import Overlays from './layers/Overlays';
 import GeoJsonLayer from './layers/GeoJsonLayer';
 
-L.Icon.Default.imagePath = '/vendor/leaflet/images/';
+L.Icon.Default.imagePath = '/css/images/';
 
 const tileLayers = new TileLayers();
 const overlays = new Overlays();

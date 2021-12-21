@@ -3,31 +3,7 @@
 	<meta name="description" content="Szabadon letölthető és felhasználható, közösségi szerkesztésű térkép Magyarországról és az egész világról.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<!-- Leaflet stylesheet -->
-	<link rel="stylesheet" href="/vendor/leaflet/leaflet.css?rev=417">
-	<!-- Leaflet.Locate stylesheet -->
-	<link rel="stylesheet" href="/vendor/leaflet/L.Control.Locate.min.css?rev=417">
-	<!-- Leaflet.markercluster stylesheet -->
-	<link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css?rev=417">
-	<link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css?rev=417">
-	<!-- Map stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/map.css?rev=405">
-	<!-- Send location popup stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/send-location-popup.css?rev=405">
-	<!-- Poi popup stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/poi-popup.css?rev=373">
-	<!-- Poi layer selector stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/poi-layer-selector.css?rev=405">
-	<!-- Introduction stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/introduction.css?rev=411">
-	<!-- AutoComplete stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/autocomplete.css?rev=371">
-	<!-- Search results stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/search-results.css?rev=351">
-	<!-- Direction results stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/direction-results.css?rev=351">
-	<!-- Main stylesheet -->
-	<link rel="stylesheet" href="/css/frontpage/main.css?rev=373">
+	<link rel="stylesheet" href="/css/frontpage.css?rev=418">
 
 	<!-- Preconnect to default OSM tile servers and default overpass api -->
 	<link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin>
@@ -188,8 +164,8 @@
 	</div>
 
 	<!-- Load frontpage javascript bundle -->
-	<script src="/js/vendor.js?rev=417"></script>
-	<script src="/js/frontpage.js?rev=417"></script>
+	<script src="/js/vendor.js?rev=418"></script>
+	<script src="/js/frontpage.js?rev=418"></script>
 	<script>
 		window.SITE_DOMAIN = 'www.openstreetmap.hu';
 	</script>
