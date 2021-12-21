@@ -8,65 +8,63 @@ html {
 	font-family: 'Arial';
 }
 
-#header {
+@media all and (min-width: 699px) {
+	.desktop-hidden {
+		display: none !important;
+	}
+}
+
+.page-header {
 	display: block;
 	background: #eeeeee;
 	height: 80px;
 	border-bottom: 1px solid #8c8c8c;
 }
-/* Logo and branding */
-#logo {
+
+.page-header .header-logo {
 	padding: 16px 0 0 16px;
 	width: 260px;
-	font-family: Arial;
+	font-family: 'Arial';
 }
-#logo a {
+.page-header .header-logo a {
 	text-decoration: none;
 }
-#logo img {
+.page-header .header-logo img {
 	float: left;
 	width: 52px;
 	height: 51px;
 	margin-right: 10px;
 }
-#logo h1.brand {
+.page-header .header-logo h1.brand {
 	margin: 0;
-	font-size: 130%;
+	font-size: 1.3rem;
 	color: #577449;
 	font-weight: bold;
 }
-#logo:hover h1.brand {
+.page-header .header-logo:hover h1.brand {
 	text-shadow: 0px 0px #909090;
 }
-#logo h2.slogan {
+.page-header .header-logo h2.slogan {
 	margin: 4px 0 0;
-	font-size: 90%;
+	font-size: 0.9rem;
 	color: black;
 	font-weight: bold;
 }
 
-/* Top menu */
-#menu {
+.page-header .header-menu {
 	position: absolute;
 	top: 0;
 	right: 0;
 	height: 25px;
 	font-family: Arial;
 }
-#menu li.name1 a {
-	color: #577449;
-	font-size: 100%;
-}
-#menu .name1 {
-	display: none;
-}
-#menu ul {
+.page-header .header-menu ul {
 	text-align: center;
 	margin: 0;
 	padding: 0;
 	font-size: 0;
 }
-#menu ul li {
+.page-header .header-menu ul li {
 	display: inline;
 	margin: 0;
 	list-style-type: none;
@@ -74,54 +72,61 @@ html {
 	position: relative;
 	font-size: 14px;
 }
-#menu ul li:before {
+.page-header .header-menu ul li:before {
 	content: "|";
 	color: #ddd;
 }
-#menu ul li:first-child:before {
+.page-header .header-menu ul li:first-child:before {
 	content: "";
 }
-#menu li a {
+.page-header .header-menu li a {
 	line-height: 25px;
 	padding: 3px 6px;
 	text-align: center;
 	text-decoration: none;
 	color: blue;
 }
-#menu li a:hover {
+.page-header .header-menu li a:hover {
 	text-decoration: underline;
 	background-color: #f0f0f0;
 }
 
 /* Header layout on smaller screens */
 @media all and (max-width: 910px) {
-	#logo .brand, #logo .slogan {
+	.page-header .header-logo .brand, .page-header .header-logo .slogan {
 		display: none;
   }
 }
 
 /* Layout on mobile or small screen */
 @media all and (max-width: 699px) {
-	.panel, #menu li.mobile-hidden, .mobile-hidden, #logo, #separator, .toggler {
+	.mobile-hidden {
+		display: none !important;
+	}
+	.mobile-visible-inline {
+		display: inline;
+	}
+	.panel, .page-header .header-logo, .toggler {
 		display: none;
 	}
-	#header {
+	.page-header {
 		height: auto;
 		margin-bottom: 0;
 		border-bottom-color: #ccc;
 	}
-	#menu li a {
-		padding: 5px 8px;
-		line-height: 32px;
-		font-size: 15px;
-	}
-	#menu .name1 {
-		display: inline;
-	}
-	#menu {
+	.page-header .header-menu {
 		position: initial;
 		height: auto;
 		width: 100%;
 		text-align: center;
+	}
+	.page-header .header-menu li a {
+		padding: 5px 8px;
+		line-height: 32px;
+		font-size: 15px;
+	}
+	.page-header .header-menu li.brand-name a {
+		color: #577449;
+		font-size: 100%;
 	}
 }

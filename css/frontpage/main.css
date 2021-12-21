@@ -1,3 +1,7 @@
+.js-license-information {
+	display: none;
+}
+
 /* Search area */
 #search-area {
 	position: absolute;
@@ -27,14 +31,12 @@ span.svg-icon.caret-down-icon {
 	background-image: url('/kepek/font-awesome-icons/caret-down-solid.svg');
 	width: 15px;
 	height: 15px;
-	vertical-align: middle;
 }
 
 span.svg-icon.caret-up-icon {
 	background-image: url('/kepek/font-awesome-icons/caret-up-solid.svg');
 	width: 15px;
 	height: 15px;
-	vertical-align: middle;
 }
 
 #search-area label {
@@ -184,8 +186,15 @@ span.svg-icon.caret-up-icon {
 
 /* Map layout on mobile or small screen */
 @media all and (max-width: 699px) {
+	.page-header {
+		margin-bottom: 0;
+		border-bottom-color: #ccc;
+	}
+
 	#search-area {
-		position: initial;
+		position: absolute;
+		top: 32px;
+		left: 0;
 		padding: 0;
 		border: 0 none;
 		width: 100%;
@@ -197,20 +206,14 @@ span.svg-icon.caret-up-icon {
 		border-top: 1px solid #ccc;
 	}
 	#search-area #search-options {
-		display: table;
-		border-collapse: collapse;
+		display: flex;
 		width: 100%;
 	}
-	#search-area #mode-selector a {
-		display: block;
-		font-size: 15px;
-		padding: 6px 16px;
-	}
-	#search-area #mode-selector a i {
-		margin-right: 3px;
+	#search-area #mode-selector {
+		display: none;
 	}
 	#search-area #modes {
-		display: table-cell;
+		flex-grow: 1;
 	}
 	#search-area #search form {
 		display: table;
@@ -234,15 +237,11 @@ span.svg-icon.caret-up-icon {
 		vertical-align: top;
 		padding: 0;
 	}
-	#search-area #directions .fields {
-		display: table-cell;
-		width: 100%;
+	#search-area .poi-layer-selector {
+		min-width: 165px;
 	}
-	#search-area #directions .fields .autocomplete {
-		width: 100%;
-	}
-	#search-area #directions .search-button-container .search-button {
-		height: 60px;
+	#map-container {
+		top: 66px;
 	}
 	.leaflet-left {
 		right: 0;
