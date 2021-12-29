@@ -39,13 +39,16 @@ Vagrant.configure("2") do |config|
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
 
-  # Enable provisioning with a shell script
-  config.vm.provision "shell", path: "development/provision.sh"
+  # Provision with shell script (root)
+  config.vm.provision "provision", type: "shell", path: "development/provision.sh"
+
+  # Provision with shell script (normal user)
+  config.vm.provision "provision-user", type: "shell", path: "development/provision-user.sh", privileged: false
 
   # Sync folders
-  config.vm.synced_folder ".", "/vagrant", fsnotify: true
+  config.vm.synced_folder ".", "/home/vagrant/osmhu-website", fsnotify: true
 
-  # Restart apache2 after startup (sites-enabled only becomes available after mounting /vagrant)
+  # Restart apache2 after startup (sites-enabled only becomes available after mounting synced folders)
   config.trigger.after :up do |trigger|
     trigger.name = "Restart apache2"
     trigger.info = "Restarting apache2..."
