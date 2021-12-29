@@ -55,10 +55,9 @@ A projekt könyvtárában:
 
 #### Vagrant virtuális gép felépítése
 
-A gazdagépen található projektkönyvtár automatikusan szinkronizálva van a vagrant virtuális gépen található `/var/www` mappába.  
+A gazdagépen található projektkönyvtár automatikusan szinkronizálva van a vagrant virtuális gépen található `/home/vagrant/osmhu-website` mappába.  
 Így a gazdagépen történt minden változtatás azonnal szinkronizálva van a virtuális gép számára és fordítva.  
-A virtuális gépre automatikusan feltelepítésre kerültek a szükséges webszerver, a MySQL és a PostgreSQL szerverek alapértelmezett jelszavakkal.
-Ezek a jelszavak a [provision.sh](/development/provision.sh) fájlban és a [Makefile](/Makefile)-ban szerkeszthetőek.
+A virtuális gépre létrehozáskor automatikusan telepítésre kerülnek a szükséges webszerver, a MySQL és a PostgreSQL szerverek az alapértelmezett beállításokkal.
 
 #### Vagrant virtuális gép által kiszolgált fejlesztési weboldal elérése
 
@@ -67,12 +66,12 @@ Gazdagépen:
 
 ### Fejlesztés során gyakran használt parancsok
 
-A projektben számos hasznos parancs található a [Makefile](/Makefile) -ban.
+A további telepítéshez és beállításhoz szükséges parancsok a [Makefile](/Makefile) -ban találhatóak.
 
 > **Vagrant használata esetén:**
 >
 > - a virtuális gépen belül, a `vagrant ssh` kapcsolaton keresztül kell futtatni a parancsokat
-> - a virtuális gépben található, folyamatosan szinkronizált `/var/www` könyvtárában állva kell futtatni
+> - a virtuális gépben található, folyamatosan szinkronizált `/home/vagrant/osmhu-website` könyvtárában állva kell futtatni
 
 *Minden itt felsorolt parancsot a projekt gyökérkönyvtárában állva kell futtatni.*
 
