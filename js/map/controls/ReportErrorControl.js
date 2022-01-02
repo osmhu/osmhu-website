@@ -10,7 +10,8 @@ export default class ReportErrorControl extends MapControl {
 			},
 			onAdd() {
 				const container = L.DomUtil.create('div', 'leaflet-bar');
-				const link = L.DomUtil.create('a', 'leaflet-bar-part leaflet-bar-part-single leaflet-control-report-error', container);
+				const link = L.DomUtil.create('a',
+					'leaflet-bar-part leaflet-bar-part-single leaflet-control-report-error', container);
 				link.innerHTML = '';
 				link.href = '#';
 				link.title = 'Hiba bejelentése';

@@ -7,7 +7,7 @@ import GeoJsonLayer from './GeoJsonLayer';
 
 jest.mock('../../common/Ajax');
 
-const validGeoJson = JSON.stringify({
+const validGeoJson = {
 	type: 'Feature',
 	geometry: {
 		type: 'Point',
@@ -16,7 +16,7 @@ const validGeoJson = JSON.stringify({
 	properties: {
 		name: 'Dinagat Islands',
 	},
-});
+};
 
 let originalLogLevel;
 
@@ -38,28 +38,30 @@ afterAll(() => {
 	log.setLevel(originalLogLevel);
 });
 
-test('getLayer returns a valid L.GeoJSON', () => {
-	const geoJsonLayer = new GeoJsonLayer(1, 'displayName', 'testUrl');
+const createGeoJsonLayer = () => new GeoJsonLayer(1, 'testTitle', 'testUrl');
 
-	expect(geoJsonLayer.getLayer()).toBeInstanceOf(L.GeoJSON);
+test('getLeafletLayer returns valid Leaflet L.GeoJSON', () => {
+	const geoJsonLayer = createGeoJsonLayer();
+
+	expect(geoJsonLayer.getLeafletLayer()).toBeInstanceOf(L.GeoJSON);
 });
 
-test('getLayer always returns the same object', () => {
-	const geoJsonLayer = new GeoJsonLayer(1, 'displayName', 'testUrl');
+test('getLeafletLayer always returns the same object', () => {
+	const geoJsonLayer = createGeoJsonLayer();
 
-	expect(geoJsonLayer.getLayer()).toBe(geoJsonLayer.getLayer());
+	expect(geoJsonLayer.getLeafletLayer()).toBe(geoJsonLayer.getLeafletLayer());
 });
 
-test('should not download if getLayer is called', () => {
-	const geoJsonLayer = new GeoJsonLayer(1, 'displayName', 'testUrl');
+test('should not download if getLeafletLayer is called', () => {
+	const geoJsonLayer = createGeoJsonLayer();
 
-	geoJsonLayer.getLayer();
+	geoJsonLayer.getLeafletLayer();
 
 	expect(Ajax.get).toHaveBeenCalledTimes(0);
 });
 
 test('ensureLoaded should start download if not loaded yet', () => {
-	const geoJsonLayer = new GeoJsonLayer(1, 'displayName', 'testUrl');
+	const geoJsonLayer = createGeoJsonLayer();
 
 	geoJsonLayer.ensureLoaded();
 
@@ -74,7 +76,7 @@ test('ensureLoaded should not start download while loading', () => {
 		}, 2000);
 	}));
 
-	const geoJsonLayer = new GeoJsonLayer(1, 'displayName', 'testUrl');
+	const geoJsonLayer = createGeoJsonLayer();
 
 	geoJsonLayer.ensureLoaded();
 
@@ -86,7 +88,7 @@ test('ensureLoaded should not start download while loading', () => {
 });
 
 test('ensureLoaded should not download same content if already downloaded', async () => {
-	const geoJsonLayer = new GeoJsonLayer(1, 'displayName', 'testUrl');
+	const geoJsonLayer = createGeoJsonLayer();
 
 	await geoJsonLayer.ensureLoaded();
 

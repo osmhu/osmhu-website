@@ -23,7 +23,8 @@ export default class LocateControl extends MapControl {
 					if (error.message === 'Geolocation error: Only secure origins are allowed (see: https://goo.gl/Y0ZkNV)..') { // Chrome
 						navigateToHttps();
 					} else if (error.message === 'Geolocation error: User denied geolocation prompt.') { // Firefox
-						const answeredYes = window.confirm('Pozíció meghatározása csak a HTTPS változaton működik.\nÁtirányítsuk?'); // eslint-disable-line no-alert
+						const confirmRedirectMessage = 'Pozíció meghatározása csak a HTTPS változaton működik.\nÁtirányítsuk?';
+						const answeredYes = window.confirm(confirmRedirectMessage); // eslint-disable-line no-alert
 						if (answeredYes) {
 							navigateToHttps();
 						}

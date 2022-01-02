@@ -1,23 +1,6 @@
-const attribution = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap közreműködők</a>';
-
 export default class Layer {
-	constructor(id, displayName, url) {
+	constructor(id, title) {
 		this.id = id;
-		this.displayName = displayName;
-		this.url = url;
-		this.maxZoom = null;
-		this.subdomains = 'abc';
-		this.attribution = attribution;
-		this.layer = null;
-	}
-
-	getLayer() {
-		if (this.url == null) throw new Error('Layer url must be set');
-
-		if (this.layer) {
-			return this.layer;
-		}
-
-		return false;
+		this.title = title;
 	}
 }

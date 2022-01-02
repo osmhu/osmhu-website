@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 
 import OsmElementId from '../common/OsmElementId';
+import Overlays from '../map/Overlays';
 
 const defaultCenterAndZoomForHungary = {
 	lat: 47.17,
@@ -16,6 +17,7 @@ export default class UrlParams {
 		this.params = queryString.parse(locationSearchQuery);
 
 		this.parseMapParameters();
+		this.parseBaseLayerParameter();
 		this.parseOverlayParameters();
 		this.parseOsmElementParameters();
 		this.parsePoiParameters();
@@ -43,11 +45,14 @@ export default class UrlParams {
 		}
 	}
 
+	parseBaseLayerParameter() {
+		this.layer = this.params.layer || undefined;
+	}
+
 	parseOverlayParameters() {
 		this.activeOverlays = [];
 
-		const possibleOverlays = ['tur', 'okt', 'ddk', 'akt'];
-		possibleOverlays.forEach((overlayId) => {
+		Object.values(Overlays.ids).forEach((overlayId) => {
 			if (this.params[overlayId] === '1') {
 				this.activeOverlays.push(overlayId);
 			}

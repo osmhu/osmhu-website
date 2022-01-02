@@ -1,6 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
+import BaseLayers from '../BaseLayers';
+
 export default class MockedMap {
 	constructor(zoom, lat, lng, baseLayerId, overlayIds) {
 		this._zoom = zoom;
@@ -26,7 +28,7 @@ export default class MockedMap {
 	}
 
 	getActiveBaseLayerId() {
-		return this._baseLayerId || 'M';
+		return this._baseLayerId || BaseLayers.defaultId;
 	}
 
 	getActiveOverlayIds() {
