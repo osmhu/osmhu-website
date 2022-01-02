@@ -20,6 +20,11 @@ jobs:
       - name: Check if all files meet EditorConfig rules
         uses: editorconfig-checker/action-editorconfig-checker@v1.0.0
 
+      - name: Check shell scripts with ShellCheck for errors
+        uses: ludeeus/action-shellcheck@1.1.0
+        with:
+          scandir: './development'
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:

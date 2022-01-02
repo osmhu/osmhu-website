@@ -7,73 +7,88 @@ import OverpassEndpoint from '../poi/OverpassEndpoint';
 import Coordinate from '../poi/Coordinate';
 import UrlParamChangeNotifier from '../url/UrlParamChangeNotifier';
 
+import BaseLayers from './BaseLayers';
+import Overlays from './Overlays';
 import ZoomControl from './controls/ZoomControl';
 import LocateControl from './controls/LocateControl';
 import ScaleControl from './controls/ScaleControl';
 import LoadingIndicatorControl from './controls/LoadingIndicatorControl';
-import TileLayers from './layers/TileLayers';
-import Overlays from './layers/Overlays';
 import GeoJsonLayer from './layers/GeoJsonLayer';
 
 L.Icon.Default.imagePath = '/css/images/';
 
-const tileLayers = new TileLayers();
-const overlays = new Overlays();
+export default class Map {
+	constructor(initialView, defaultBaseLayerIdOnLoad, defaultOverlaysOnLoad) {
+		this.baseLayers = new BaseLayers();
+		this.overlays = new Overlays();
 
-export default class Map extends L.Map {
-	constructor(initialView, defaultBaseLayerId, defaultOverlaysOnLoad) {
+		this.initLeafletMap();
+		this.initControls();
+		this.initMapView(initialView);
+		this.initBaseLayers(defaultBaseLayerIdOnLoad);
+		this.initOverlays(defaultOverlaysOnLoad);
+	}
+
+	initLeafletMap() {
 		const mapContainerHtmlElementId = 'map';
 
-		const map = super(mapContainerHtmlElementId, {
+		this.map = L.map(mapContainerHtmlElementId, {
 			zoomControl: false,
 		});
 
 		this.id = mapContainerHtmlElementId;
-		this.initializeLeafletMap(map, initialView, defaultBaseLayerId, defaultOverlaysOnLoad);
-	}
 
-	initializeLeafletMap(map, initialView, defaultBaseLayerId, defaultOverlaysOnLoad) {
-		map.addControl(new ZoomControl().getMapControl());
-
-		map.addControl(new LocateControl().getMapControl());
-
-		map.addControl(new ScaleControl().getMapControl());
-
-		map.addControl(new LoadingIndicatorControl().getMapControl());
-
-		// Create map controls for layers and overlays
-		map.addControl(L.control.layers(tileLayers.getLeafletLayersByDisplayName(),
-			overlays.getLeafletLayersByDisplayName()));
-
-		// Add initially active base layer to map
-		const initialBaseLayerId = defaultBaseLayerId || 'M'; // Mapnik if not defined
-		tileLayers.getById(initialBaseLayerId).getLayer().addTo(map);
-		this.activeBaseLayerId = initialBaseLayerId;
-
-		// Set the initial view area of the map
-		map.setView([initialView.lat, initialView.lon], initialView.zoom);
-
-		map.on('moveend', () => {
+		this.map.on('moveend', () => {
 			UrlParamChangeNotifier.trigger();
 		});
+	}
+
+	initControls() {
+		this.map.addControl(new ZoomControl().getMapControl());
+
+		this.map.addControl(new LocateControl().getMapControl());
+
+		this.map.addControl(new ScaleControl().getMapControl());
+
+		this.map.addControl(new LoadingIndicatorControl().getMapControl());
+
+		// Create map controls for layers and overlays
+		this.map.addControl(L.control.layers(
+			this.baseLayers.getTitleLeafletLayerMap(),
+			this.overlays.getTitleLeafletLayerMap(),
+		));
+	}
+
+	initMapView(initialView) {
+		// Set the initial view area of the map
+		this.map.setView([initialView.lat, initialView.lon], initialView.zoom);
+	}
+
+	initBaseLayers(defaultBaseLayerIdOnLoad) {
+		// Add initially active base layer to map
+		const initialBaseLayerId = defaultBaseLayerIdOnLoad || BaseLayers.defaultId;
+		this.baseLayers.getById(initialBaseLayerId).getLeafletLayer().addTo(this.map);
+		this.activeBaseLayerId = initialBaseLayerId;
 
 		// On base layer switch, zoom to maxZoom if the new layers maxZoom is exceeded
-		map.on('baselayerchange', (event) => {
-			const currentZoom = map.getZoom();
+		this.map.on('baselayerchange', (event) => {
+			const currentZoom = this.map.getZoom();
 			const newMaxZoom = parseInt(event.layer.options.maxZoom, 10);
 			if (currentZoom > newMaxZoom) {
-				map.setZoom(newMaxZoom);
+				this.map.setZoom(newMaxZoom);
 			}
 			this.activeBaseLayerId = event.layer.options.id;
 			UrlParamChangeNotifier.trigger();
 		});
+	}
 
+	initOverlays(defaultOverlaysOnLoad) {
 		this.activeOverlayIds = [];
 
 		// When GeoJson layer is added, ensure that it is loaded
-		map.on('overlayadd', (event) => {
+		this.map.on('overlayadd', (event) => {
 			const overlayId = event.layer.options.id;
-			const overlay = overlays.getById(overlayId);
+			const overlay = this.overlays.getById(overlayId);
 			if (overlay instanceof GeoJsonLayer) {
 				overlay.ensureLoaded();
 			}
@@ -81,22 +96,72 @@ export default class Map extends L.Map {
 			UrlParamChangeNotifier.trigger();
 		});
 
-		map.on('overlayremove', (event) => {
-			const overlayId = event.layer.options.id;
-			for (let i = this.activeOverlayIds.length; i >= 0; i--) {
-				if (this.activeOverlayIds[i] === overlayId) {
-					this.activeOverlayIds.splice(i, 1);
-				}
-			}
+		this.map.on('overlayremove', (event) => {
+			const overlayIdToRemove = event.layer.options.id;
+			this.activeOverlayIds = this.activeOverlayIds.filter(
+				(currentOverlayId) => currentOverlayId !== overlayIdToRemove,
+			);
 			UrlParamChangeNotifier.trigger();
 		});
 
 		// Display given overlays on load (must be called after 'overlayadd' listener is added)
-		overlays.getAllIds().forEach((overlayId) => {
+		this.overlays.getAllIds().forEach((overlayId) => {
 			if (defaultOverlaysOnLoad[overlayId]) {
-				map.addLayer(overlays.getById(overlayId).getLayer());
+				this.map.addLayer(this.overlays.getById(overlayId).getLeafletLayer());
 			}
 		});
+	}
+
+	addControl(control) {
+		return this.map.addControl(control);
+	}
+
+	getCenter() {
+		return this.map.getCenter();
+	}
+
+	getZoom() {
+		return this.map.getZoom();
+	}
+
+	getBounds() {
+		return this.map.getBounds();
+	}
+
+	fitBounds(bounds) {
+		return this.map.fitBounds(bounds);
+	}
+
+	getBoundsZoom(bounds) {
+		return this.map.getBoundsZoom(bounds);
+	}
+
+	invalidateSize() {
+		return this.map.invalidateSize();
+	}
+
+	setView(center, zoom) {
+		return this.map.setView(center, zoom);
+	}
+
+	addLayer(layer) {
+		return this.map.addLayer(layer);
+	}
+
+	hasLayer(layer) {
+		return this.map.hasLayer(layer);
+	}
+
+	removeLayer(layer) {
+		return this.map.removeLayer(layer);
+	}
+
+	project(position) {
+		return this.map.project(position);
+	}
+
+	unproject(point) {
+		return this.map.unproject(point);
 	}
 
 	getId() {

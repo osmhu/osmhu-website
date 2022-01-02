@@ -2,14 +2,16 @@ import L from 'leaflet';
 
 import TileLayer from './TileLayer';
 
-test('getLayer returns a valid L.tileLayer', () => {
-	const tileLayer = new TileLayer(1, 'displayName', 'url', 'maxZoom');
+const createTileLayer = () => new TileLayer(1, 'testTitle', 'OpenStreetMap.Mapnik');
 
-	expect(tileLayer.getLayer()).toBeInstanceOf(L.TileLayer);
+test('getLeafletLayer returns valid Leafet L.tileLayer', () => {
+	const tileLayer = createTileLayer();
+
+	expect(tileLayer.getLeafletLayer()).toBeInstanceOf(L.TileLayer);
 });
 
-test('getLayer always returns the same object', () => {
-	const tileLayer = new TileLayer(1, 'displayName', 'url', 'maxZoom');
+test('getLeafletLayer always returns the same object', () => {
+	const tileLayer = createTileLayer();
 
-	expect(tileLayer.getLayer()).toBe(tileLayer.getLayer());
+	expect(tileLayer.getLeafletLayer()).toBe(tileLayer.getLeafletLayer());
 });

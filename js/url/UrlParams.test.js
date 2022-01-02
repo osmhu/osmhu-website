@@ -1,3 +1,5 @@
+import BaseLayers from '../map/BaseLayers';
+
 import UrlParams from './UrlParams';
 
 describe('parsing map parameters', () => {
@@ -14,7 +16,8 @@ describe('parsing map parameters', () => {
 	});
 
 	it('should return marker position if normal position is also defined', () => {
-		testUrlMapParams('?zoom=11&mlat=47.4983815&mlon=19.0404707&lat=46.9080769&lon=19.6928133', 11, 47.4983815, 19.0404707);
+		testUrlMapParams('?zoom=11&mlat=47.4983815&mlon=19.0404707&lat=46.9080769&lon=19.6928133',
+			11, 47.4983815, 19.0404707);
 	});
 
 	it('should return position if defined', () => {
@@ -33,40 +36,51 @@ describe('parsing map parameters', () => {
 });
 
 it.each([
-	{ queryString: '?', activeOverlays: [] },
-	{ queryString: '?tur=1', activeOverlays: ['tur'] },
-	{ queryString: '?okt=1', activeOverlays: ['okt'] },
-	{ queryString: '?ddk=1', activeOverlays: ['ddk'] },
-	{ queryString: '?akt=1', activeOverlays: ['akt'] },
-	{ queryString: '?tur=1&okt=1', activeOverlays: ['tur', 'okt'] },
-	{ queryString: '?tur=1&ddk=1', activeOverlays: ['tur', 'ddk'] },
-	{ queryString: '?tur=1&okt=1&ddk=1', activeOverlays: ['tur', 'okt', 'ddk'] },
-	{ queryString: '?tur=1&okt=1&ddk=1&akt=1', activeOverlays: ['tur', 'okt', 'ddk', 'akt'] },
-])('should return active overlays', ({ queryString, activeOverlays }) => {
+	{ queryString: '?layer=M', expectedActiveBaseLayer: BaseLayers.ids.mapnik },
+	{ queryString: '?layer=C', expectedActiveBaseLayer: BaseLayers.ids.cycle },
+	{ queryString: '?layer=F', expectedActiveBaseLayer: BaseLayers.ids.osmfr },
+	{ queryString: '?layer=T', expectedActiveBaseLayer: BaseLayers.ids.transport },
+	{ queryString: '?layer=H', expectedActiveBaseLayer: BaseLayers.ids.humanitarian },
+])('should return active base layer', ({ queryString, expectedActiveBaseLayer }) => {
 	const urlParams = new UrlParams(queryString);
-	activeOverlays.forEach((overlayId) => {
+	expect(urlParams.layer).toEqual(expectedActiveBaseLayer);
+});
+
+it.each([
+	{ queryString: '?', expectedActiveOverlays: [] },
+	{ queryString: '?tur=1', expectedActiveOverlays: ['tur'] },
+	{ queryString: '?okt=1', expectedActiveOverlays: ['okt'] },
+	{ queryString: '?ddk=1', expectedActiveOverlays: ['ddk'] },
+	{ queryString: '?akt=1', expectedActiveOverlays: ['akt'] },
+	{ queryString: '?tur=1&okt=1', expectedActiveOverlays: ['tur', 'okt'] },
+	{ queryString: '?tur=1&ddk=1', expectedActiveOverlays: ['tur', 'ddk'] },
+	{ queryString: '?tur=1&okt=1&ddk=1', expectedActiveOverlays: ['tur', 'okt', 'ddk'] },
+	{ queryString: '?tur=1&okt=1&ddk=1&akt=1', expectedActiveOverlays: ['tur', 'okt', 'ddk', 'akt'] },
+])('should return active overlays', ({ queryString, expectedActiveOverlays }) => {
+	const urlParams = new UrlParams(queryString);
+	expectedActiveOverlays.forEach((overlayId) => {
 		expect(urlParams.isOverlayActive(overlayId)).toBeTruthy();
 	});
 });
 
 it.each([
-	{ queryString: '?zoom=11&type=relation&id=1244004', type: 'relation', id: 1244004 },
-	{ queryString: '?zoom=11&type=node&id=85788293', type: 'node', id: 85788293 },
-	{ queryString: '?zoom=15&type=way&id=197110386', type: 'way', id: 197110386 },
-])('should parse query string for osm element $type $id', ({ queryString, type, id }) => {
+	{ queryString: '?zoom=11&type=relation&id=1244004', expectedType: 'relation', expectedId: 1244004 },
+	{ queryString: '?zoom=11&type=node&id=85788293', expectedType: 'node', expectedId: 85788293 },
+	{ queryString: '?zoom=15&type=way&id=197110386', expectedType: 'way', expectedId: 197110386 },
+])('should parse query string for osm element $type $id', ({ queryString, expectedType, expectedId }) => {
 	const urlParams = new UrlParams(queryString);
 
 	expect(urlParams.isOsmElementDefined()).toBeTruthy();
-	expect(urlParams.osmElementId.type).toEqual(type);
-	expect(urlParams.osmElementId.id).toEqual(id);
+	expect(urlParams.osmElementId.type).toEqual(expectedType);
+	expect(urlParams.osmElementId.id).toEqual(expectedId);
 });
 
 it.each([
-	{ queryString: '?poi=restaurant', poiLayers: ['restaurant'] },
-	{ queryString: '?poi=restaurant,fast_food', poiLayers: ['restaurant', 'fast_food'] },
-	{ queryString: '?poi=bakery,florist,greengrocer', poiLayers: ['bakery', 'florist', 'greengrocer'] },
-])('should parse query string for poi layers', ({ queryString, poiLayers }) => {
+	{ queryString: '?poi=restaurant', expectedPoiLayers: ['restaurant'] },
+	{ queryString: '?poi=restaurant,fast_food', expectedPoiLayers: ['restaurant', 'fast_food'] },
+	{ queryString: '?poi=bakery,florist,greengrocer', expectedPoiLayers: ['bakery', 'florist', 'greengrocer'] },
+])('should parse query string for poi layers', ({ queryString, expectedPoiLayers }) => {
 	const urlParams = new UrlParams(queryString);
 
-	expect(urlParams.poiLayers).toEqual(poiLayers);
+	expect(urlParams.poiLayers).toEqual(expectedPoiLayers);
 });

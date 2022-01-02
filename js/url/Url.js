@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+import BaseLayers from '../map/BaseLayers';
 import Marker from '../marker/Marker';
 
 import OsmOrgUrl from './OsmOrgUrl';
@@ -49,7 +50,7 @@ export default class Url {
 			queryStringParts.push('mtext=' + markerText);
 		}
 
-		const activeBaseLayerIdDifferentFromDefault = this.map.getActiveBaseLayerId() !== 'M';
+		const activeBaseLayerIdDifferentFromDefault = this.map.getActiveBaseLayerId() !== BaseLayers.defaultId;
 		if (activeBaseLayerIdDifferentFromDefault) {
 			queryStringParts.push('layer=' + this.map.getActiveBaseLayerId());
 		}

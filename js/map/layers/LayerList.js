@@ -1,40 +1,33 @@
 import Layer from './Layer';
 
 export default class LayerList {
-	constructor(layers) {
-		Object.values(layers).forEach((layer) => {
-			if (!(layer instanceof Layer)) {
-				throw new Error('All values of layers parameter should be instance of Layer');
-			}
-		});
-
-		this.layers = layers;
+	constructor() {
+		this.layers = [];
 	}
 
-	getIdValueHash() {
-		const layersById = {};
-
-		Object.keys(this.layers).forEach((key) => {
-			const layer = this.layers[key];
-			layersById[layer.id] = layer;
-		});
-
-		return layersById;
+	addLayer(layer) {
+		if (!(layer instanceof Layer)) {
+			throw new Error('layer should be instance of Layer');
+		}
+		this.layers.push(layer);
 	}
 
-	getLeafletLayersByDisplayName() {
-		const layersByDisplayName = {};
+	getTitleLeafletLayerMap() {
+		const titleLeafletLayerMap = {};
 
-		Object.keys(this.layers).forEach((key) => {
-			const layer = this.layers[key];
-			layersByDisplayName[layer.displayName] = layer.getLayer();
+		this.layers.forEach((layer) => {
+			titleLeafletLayerMap[layer.title] = layer.getLeafletLayer();
 		});
 
-		return layersByDisplayName;
+		return titleLeafletLayerMap;
 	}
 
 	getById(id) {
-		const layersById = this.getIdValueHash();
+		const layersById = {};
+
+		this.layers.forEach((layer) => {
+			layersById[layer.id] = layer;
+		});
 
 		let layer;
 		if (Object.hasOwnProperty.call(layersById, id)) {
@@ -49,8 +42,7 @@ export default class LayerList {
 	getAllIds() {
 		const ids = [];
 
-		Object.keys(this.layers).forEach((key) => {
-			const layer = this.layers[key];
+		this.layers.forEach((layer) => {
 			ids.push(layer.id);
 		});
 

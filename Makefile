@@ -58,6 +58,12 @@ watch:
 		Makefile package.json *.shtml | xargs -n1 -I{} make develop
 
 
+.PHONY: lint
+lint:
+	npm run lint && \
+	npm run lint:editorconfig
+
+
 # Inside vagrant virtualbox machine, need to do npm install in a directory that is not synced
 # https://github.com/laravel/homestead/issues/1239#issuecomment-523320952
 .PHONY: npm-install-in-tmp

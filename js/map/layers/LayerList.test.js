@@ -1,79 +1,64 @@
 import LayerList from './LayerList';
 import Layer from './Layer';
+import TileLayer from './TileLayer';
 
-test('constructor only accepts instances of Layer', () => {
-	const invalidLayers = {};
+const createLayerListForLayerIds = (layerIds) => {
+	const layerList = new LayerList();
 
-	invalidLayers.testLayer = {};
+	layerIds.forEach((layerId) => {
+		layerList.addLayer(new Layer(layerId, 'testTitle'));
+	});
+
+	return layerList;
+};
+
+test('addLayer only accepts instance of Layer', () => {
+	const layerList = new LayerList();
 
 	expect(() => {
-		new LayerList(invalidLayers); // eslint-disable-line no-new
+		layerList.addLayer({});
 	}).toThrow();
-});
-
-test('can return values as {id}->{layer} hash', () => {
-	const layers = {};
-
-	layers.layerWithNumberId = new Layer(1, 'testName', 'testUrl');
-	layers.layerWithStringId = new Layer('stringId', 'testName', 'testUrl');
-
-	const testLayerList = new LayerList(layers);
-
-	expect(testLayerList.getIdValueHash()).toEqual({
-		1: layers.layerWithNumberId,
-		stringId: layers.layerWithStringId,
-	});
-});
-
-test('can return values as {displayname}->{layer} hash', () => {
-	const layers = {};
-
-	layers.testLayer = new Layer(1, 'testName', 'testUrl');
-	layers.testLayer.maxZoom = 18;
-
-	const testLayerList = new LayerList(layers);
-
-	expect(testLayerList.getLeafletLayersByDisplayName()).toEqual({
-		testName: layers.testLayer.getLayer(),
-	});
-});
-
-test('can return all contained layer ids as array', () => {
-	const layers = {};
-
-	layers.layerOne = new Layer(6, 'testName', 'testUrl');
-	layers.layerTwo = new Layer(84, 'testName', 'testUrl');
-
-	const testLayerList = new LayerList(layers);
-
-	expect(testLayerList.getAllIds()).toEqual([6, 84]);
-});
-
-test('can return layer by id', () => {
-	const layerId = 'testLayerId';
-
-	const layers = {};
-
-	layers.layer1 = new Layer('string id 1', 'testName', 'testUrl');
-	layers.searchedLayer = new Layer(layerId, 'testName', 'testUrl');
-	layers.layer3 = new Layer('string id 2', 'testName', 'testUrl');
-
-	const testLayerList = new LayerList(layers);
-
-	expect(testLayerList.getById(layerId)).toEqual(layers.searchedLayer);
-});
-
-test('throw error if id is not present', () => {
-	const invalidLayerId = 'invalidLayerId';
-
-	const layers = {};
-
-	layers.layer1 = new Layer('string id 1', 'testName', 'testUrl');
-	layers.layer2 = new Layer('string id 2', 'testName', 'testUrl');
-
-	const testLayerList = new LayerList(layers);
 
 	expect(() => {
-		testLayerList.getById(invalidLayerId);
+		layerList.addLayer(new Layer('testId'));
+	}).not.toThrow();
+});
+
+test('getTitleLeafletLayerMap returns {title}->{layer} map needed by Leaflet layers control', () => {
+	const layerList = new LayerList();
+	const layer = new TileLayer('testLayerId', 'testTitle');
+	layerList.addLayer(layer);
+
+	const leafletLayer = { test: 'mockedValue' };
+	const getLeafletLayerSpy = jest.spyOn(layer, 'getLeafletLayer').mockImplementation(() => leafletLayer);
+
+	const titleLeafletLayerMap = layerList.getTitleLeafletLayerMap();
+
+	expect(getLeafletLayerSpy).toHaveBeenCalledTimes(1);
+	expect(titleLeafletLayerMap).toEqual({
+		testTitle: leafletLayer,
+	});
+});
+
+test('getAllIds returns all contained layer ids', () => {
+	const layerList = createLayerListForLayerIds(['testLayerId', 'anotherTestLayerId']);
+
+	expect(layerList.getAllIds()).toEqual(['testLayerId', 'anotherTestLayerId']);
+});
+
+test('getById returns layer by id', () => {
+	const layerList = createLayerListForLayerIds(['testLayerId', 'anotherLayerId']);
+
+	const searchedLayer = new Layer('searchedLayerId');
+	layerList.addLayer(searchedLayer);
+
+	expect(layerList.getById('searchedLayerId')).toEqual(searchedLayer);
+});
+
+test('getById throws error when id is not present', () => {
+	const layerList = createLayerListForLayerIds(['testLayerId', 'anotherLayerId']);
+
+	expect(() => {
+		layerList.getById('notExistingLayerId');
 	}).toThrow();
 });

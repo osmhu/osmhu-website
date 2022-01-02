@@ -21,14 +21,17 @@
         "overrides": { "=": "none" }
       }
     ],
-    "max-len": [ "error", 120, 2, {
+    "max-len": [ "error", {
+      "code": 120,
+      "tabWidth": 2,
       "ignoreUrls": true,
       "ignoreComments": false,
+      "ignoreTrailingComments": true,
       "ignoreRegExpLiterals": true,
       "ignoreStrings": true,
       "ignoreTemplateLiterals": true
     }],
-    "import/order": ["warn", {
+    "import/order": [ "warn", {
       "newlines-between": "always"
     }]
   },
