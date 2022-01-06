@@ -39,9 +39,9 @@ a.leaflet-popup-close-button {
 	font-size: 12px;
 }
 .popup-content .website .website-url .hidden-part {
-  /* Transparent text, should work on any background colour */
-  color: rgba(0,0,0,0);
-  font-size: 0;
+	/* Transparent text, should work on any background colour */
+	color: rgba(0,0,0,0);
+	font-size: 0;
 }
 .popup-content .website .website-url .hidden-indicator:before {
 	content: '\2026';
