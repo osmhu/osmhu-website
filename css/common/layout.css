@@ -1,54 +1,59 @@
+/* General */
+
 /* Use border-box box model, more information: https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-*, *:before, *:after {
-	-moz-box-sizing: border-box;
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 }
+
 html {
+	font-family: Arial, sans-serif;
 	font-size: 1rem;
-	font-family: 'Arial';
 }
 
-@media all and (min-width: 699px) {
-	.desktop-hidden {
-		display: none !important;
-	}
-}
+/* Header */
 
 .page-header {
 	display: block;
-	background: #eeeeee;
 	height: 80px;
+	background: #eee;
 	border-bottom: 1px solid #8c8c8c;
 }
 
 .page-header .header-logo {
-	padding: 16px 0 0 16px;
 	width: 260px;
-	font-family: 'Arial';
+	padding: 16px 0 0 16px;
+	font-family: Arial, sans-serif;
 }
+
 .page-header .header-logo a {
 	text-decoration: none;
 }
+
 .page-header .header-logo img {
 	float: left;
 	width: 52px;
 	height: 51px;
 	margin-right: 10px;
 }
-.page-header .header-logo h1.brand {
+
+.page-header .header-logo .brand {
 	margin: 0;
 	font-size: 1.3rem;
+	font-weight: 700;
 	color: #577449;
-	font-weight: bold;
 }
-.page-header .header-logo:hover h1.brand {
-	text-shadow: 0px 0px #909090;
+
+.page-header .header-logo:hover .brand {
+	text-shadow: 0 0 #909090;
 }
-.page-header .header-logo h2.slogan {
+
+.page-header .header-logo .slogan {
 	margin: 4px 0 0;
-	font-size: 0.9rem;
-	color: black;
-	font-weight: bold;
+	font-size: .9rem;
+	font-weight: 700;
+	color: #000;
 }
 
 .page-header .header-menu {
@@ -56,77 +61,93 @@ html {
 	top: 0;
 	right: 0;
 	height: 25px;
-	font-family: Arial;
+	font-family: Arial, sans-serif;
 }
+
 .page-header .header-menu ul {
-	text-align: center;
-	margin: 0;
 	padding: 0;
+	margin: 0;
 	font-size: 0;
+	text-align: center;
 }
+
 .page-header .header-menu ul li {
+	position: relative;
 	display: inline;
 	margin: 0;
-	list-style-type: none;
-	text-align: center;
-	position: relative;
 	font-size: 14px;
+	text-align: center;
+	list-style-type: none;
 }
-.page-header .header-menu ul li:before {
-	content: "|";
+
+.page-header .header-menu ul li::before {
 	color: #ddd;
+	content: "|";
 }
-.page-header .header-menu ul li:first-child:before {
+
+.page-header .header-menu ul li:first-child::before {
 	content: "";
 }
+
 .page-header .header-menu li a {
-	line-height: 25px;
 	padding: 3px 6px;
+	line-height: 25px;
+	color: #00f;
 	text-align: center;
 	text-decoration: none;
-	color: blue;
 }
+
 .page-header .header-menu li a:hover {
 	text-decoration: underline;
 	background-color: #f0f0f0;
 }
 
-/* Header layout on smaller screens */
-@media all and (max-width: 910px) {
-	.page-header .header-logo .brand, .page-header .header-logo .slogan {
+/* Header on desktop screens */
+@media all and (min-width: 699px) {
+	.page-header .header-menu .brand-name {
 		display: none;
-  }
+	}
 }
 
-/* Layout on mobile or small screen */
-@media all and (max-width: 699px) {
-	.mobile-hidden {
-		display: none !important;
-	}
-	.mobile-visible-inline {
-		display: inline;
-	}
-	.panel, .page-header .header-logo, .toggler {
+/* Header on smaller screens */
+@media all and (max-width: 910px) {
+	.page-header .header-logo .brand,
+	.page-header .header-logo .slogan {
 		display: none;
 	}
+}
+
+/* Header on mobile or small screen */
+@media all and (max-width: 699px) {
 	.page-header {
 		height: auto;
 		margin-bottom: 0;
 		border-bottom-color: #ccc;
 	}
+
+	.page-header .header-logo {
+		display: none;
+	}
+
 	.page-header .header-menu {
 		position: initial;
-		height: auto;
 		width: 100%;
+		height: auto;
 		text-align: center;
 	}
+
+	.page-header .header-menu .mobile-hidden {
+		display: none;
+	}
+
 	.page-header .header-menu li a {
 		padding: 5px 8px;
-		line-height: 32px;
 		font-size: 15px;
+		line-height: 32px;
 	}
-	.page-header .header-menu li.brand-name a {
-		color: #577449;
+
+	.page-header .header-menu .brand-name a {
 		font-size: 100%;
+		color: #577449;
 	}
 }

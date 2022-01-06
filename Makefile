@@ -60,8 +60,9 @@ watch:
 
 .PHONY: lint
 lint:
-	npm run lint && \
-	npm run lint:editorconfig
+	npm run lint:editorconfig && \
+	npm run lint:css && \
+	npm run lint:js
 
 
 # Inside vagrant virtualbox machine, need to do npm install in a directory that is not synced

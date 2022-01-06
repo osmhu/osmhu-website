@@ -9,6 +9,9 @@ trim_trailing_whitespace = true
 [*.shtml]
 indent_style = tab
 
+[css/**.css]
+indent_style = tab
+
 [{js/**.js, package.json}]
 indent_style = tab
 
