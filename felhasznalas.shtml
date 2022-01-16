@@ -25,7 +25,7 @@
 		a weblapot és a <a href="http://www.openstreetmap.org/">www.openstreetmap.org</a>
 		oldalt is.</p>
 
-		<p>Látványosabb felhasználási módokat találhatunk más OSM adatokat
+		<p>Hasznosabb felhasználási módokat találhatunk más, OSM adatokat
 		használó weboldalakon vagy letölthető szoftverekben. Ezen az oldalon
 		néhány érdekesebb megvalósítást is felsorolunk.</p>
 
@@ -45,13 +45,16 @@
 					<a href="https://turistautak.openstreetmap.hu/">Turistautak.openstreetmap.hu</a>
 				</li>
 				<li>
-					<a href="http://hiking.waymarkedtrails.org/hu/?zoom=12&lat=47.30806&lon=17.80218&route=1&hill=1.07">Waymarked Trails turistatérkép</a> - turistatérkép (a régi Lonvia térképből)
+					<a href="https://hiking.waymarkedtrails.org/#?map=8.0/47.0127/19.7097">Waymarked Trails turistatérkép</a> - turistatérkép
+				</li>
+				<li>
+					<a href="https://tervezo.heyjoe.hu/index.php#8/47.300/19.500/freemap-turajel">HeyJoe - Túratervező</a>
+				</li>
+				<li>
+					<a href="https://www.freemap.sk/?map=7/47.103784/20.407104&layers=X">Freemap.sk - Térkép túrázoknak</a>
 				</li>
 				<li>
 					<a href="http://www.wanderreitkarte.de/">WanderReitKarte</a> - túra- és lovastérkép
-				</li>
-				<li>
-					<a href="http://www.4umaps.eu/map.htm?zoom=14&lat=48.06563&lon=20.7162&layers=B">4UMaps</a> - túra és bringatérkép, panoramio képekkel
 				</li>
 			</ul></li>
 
@@ -66,7 +69,7 @@
 					- bicikli alaptérkép
 				</li>
 				<li>
-					<a href="http://cycling.waymarkedtrails.org/hu/?zoom=11&lat=46.80866&lon=17.53437&hill=0">Waymarked Trails bringás</a>
+					<a href="https://cycling.waymarkedtrails.org/#?map=8.0/47.0127/19.7097">Waymarked Trails bringás</a>
 				</li>
 			</ul></li>
 
@@ -74,8 +77,8 @@
 
 			<ul class="links nodots">
 				<li>
-					<a href="http://map.project-osrm.org/">OSRM - OpenSource Routing Machine</a>
-					- autós tervező
+					<a href="https://map.project-osrm.org/?z=7&center=47.297859%2C21.527710&hl=en&alt=0&srv=1">OSRM - OpenSource Routing Machine</a>
+					- autós, kerékpáros, gyalogos tervező
 				</li>
 				<li>
 					<a href="https://www.freemap.sk/">Freemap.sk</a>
@@ -90,7 +93,7 @@
 			<li>Különleges felhasználás
 			<ul class="links nodots">
 				<li>
-					<a href="http://wheelmap.org/hu/map#/?lat=47.4983377&lon=19.0404712&zoom=17">Wheelmap</a>
+					<a href="https://wheelmap.org/?locale=hu#/?lat=47.4983377&lon=19.0404712&zoom=17">Wheelmap</a>
 					- Akadálymentes helyek keresése és felvitele.
 				</li>
 			</ul></li>
@@ -130,7 +133,6 @@
 			<li><a href="http://www.bkk.hu/bubi/">MOL Bubi</a></li>
 			<li><a href="http://futar.bkk.hu/">BKK FUTÁR Utazástervező</a></li>
 			<li><a href="http://www.utcakereso.hu">Utcakereso.hu térkép</a></li>
-			<li><a href="http://openmaps.eu">OpenMaps.eu</a></li>
 			<li><a href="http://www.otthonterkep.hu">Otthontérkép</a></li>
 			<li><a href="http://www.ingatlan.com">ingatlan.com</a></li>
 			<li><a href="http://idokep.hu">Időkép</a></li>
