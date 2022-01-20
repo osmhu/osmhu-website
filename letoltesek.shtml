@@ -28,8 +28,9 @@
 
 			<p>Telepítsd az <strong>OsmAnd</strong> nevű programot a <strong>Google Play áruházból</strong>, ezután
 			automatikusan felajánlja Magyarország letöltését (vagy a menüből válaszd a <em>Térképek letöltését</em>).</p>
-			<p>Javasolt Android alkalmazások még: MAPS.ME, Mapy.cz, Locus.
+			<p>Javasolt Android alkalmazások még: Organic Maps, MAPS.ME, Mapy.cz, Locus.
 			További ötleteket a <a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary/Android">wiki Android oldalán</a> találsz.</p>
+			<p>Ha <a href="https://f-droid.org/">F-Droidból</a> telepíted az alkalmazásokat, akkor egy teljes funkcionalitású <strong>OsmAnd</strong>-ot kapsz ingyen. Innen érdekelhet még az <strong>Organic Maps</strong> is.</p>
 
 
 			<img class="right logo" src="/kepek/apple.png" alt="apple logo">
@@ -43,7 +44,7 @@
 
 			<h3>Garmin GPS</h3>
 
-			<p>Magyarország térkép letöltése: <a href="http://openmaps.eu/">OpenMaps.eu</a> vagy <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a>.
+			<p>Magyarország vagy európai térképek letöltése: <a href="https://www.openhiking.eu/hu/">OpenHiking.eu</a> vagy <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a>. Bringázáshoz próbáld ki az <a href="https://www.osmbikemap.szerako.hu/">OSM Bike Map</a> térképét.</a>
 			</p>
 
 			<h3>Magyarország turistatérkép - rátét réteg</h3>
