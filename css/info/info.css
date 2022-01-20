@@ -1,232 +1,225 @@
 /* Info pages are pages with text information */
-body.info .header-logo .brand, body.info .header-logo .slogan {
+.info-page .header-logo .brand,
+.info-page .header-logo .slogan {
 	display: block;
 }
-body.info h1, body.info #content h2 {
+
+.info-page h1,
+.info-page .page-content h2 {
 	color: #444;
 }
-body.info h3 {
+
+.info-page h3 {
 	font-family: "Bitstream Vera Sans", sans-serif;
-	font-weight: normal;
-	color: #942F43;
+	font-weight: 400;
+	color: #942f43;
 }
-body.info #nav, body.info #content {
+
+.info-page .navigation,
+.info-page .page-content {
+	font-family: Arial, sans-serif;
 	font-size: 16px;
-	font-family: Arial;
 }
-body.info #nav {
-	margin: 0px 6px 6px 6px;
+
+.info-page .navigation {
 	float: left;
 	width: 256px;
+	margin: 0 6px 6px;
 }
-body.info #nav ul.submenu {
-	margin: 0;
-	padding: 0;
+
+.info-page .navigation .submenu {
 	width: 100%;
-}
-body.info #nav ul.submenu li {
-	list-style-type: none;
-	margin: 0;
 	padding: 0;
+	margin: 0;
 }
-body.info #nav ul.submenu li a {
-	display: block;
-	line-height: 22px;
-	padding: 2px 5px 3px;
-	text-decoration: none;
-	border: 1px solid #ccc;
-	color: #0000EE;
-	border-top-width: 0;
-	border-right-width: 0;
+
+.info-page .navigation .submenu li {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
 }
-body.info #nav ul.submenu li:hover {
+
+.info-page .navigation .submenu li:hover {
 	background-color: #f0f0f0;
 }
 
-body.info #content {
+.info-page .navigation .submenu a {
+	display: block;
+	padding: 2px 5px 3px;
+	line-height: 22px;
+	color: #00e;
+	text-decoration: none;
+	border: 1px solid #ccc;
+	border-top-width: 0;
+	border-right-width: 0;
+}
+
+.info-page a {
+	color: #00e;
+}
+
+.info-page .page-content {
+	padding: 5px 20px;
 	margin: 0 6px 6px 262px;
-	padding:5px 20px;
 	border-color: #8c8c8c;
 	border-style: solid;
 	border-width: 0 1px;
 }
-body.info #content .section {
+
+.info-page .page-content .section {
 	margin-left: 2em;
 }
-body.info #content .play-download-badge {
+
+.info-page .page-content .play-download-badge {
 	width: 160px;
 }
-body.info #content code, body.info em {
-	background-color: #f0f0f0;
-	color: #000;
+
+.info-page .page-content code,
+.info-page em {
 	padding: 0 4px;
+	color: #000;
+	background-color: #f0f0f0;
 }
-body.info #content dt {
-	font-weight: bold;
+
+.info-page .page-content dt {
+	font-weight: 700;
 }
-body.info #content dd {
+
+.info-page .page-content dd {
 	margin: 4px 0 4px 30px;
 }
-body.info #content ul.links {
+
+.info-page .page-content .links {
 	padding: 3px 0 0 30px;
 }
-body.info #content ul.nodots {
+
+.info-page .page-content .nodots {
 	padding: 0 0 0 20px;
 	list-style-type: none;
 }
-body.info #content ul.nodots li {
-	font-weight: bold;
+
+.info-page .page-content .nodots li {
 	margin-top: 10px;
-}
-body.info #content ul.links li {
-	font-weight: normal;
-	margin-top: 5px;
-}
-body.info #content ul.links li a, body.info #content ol.intructions li a {
-	color: #0000EE;
-	text-decoration: none;
-}
-body.info #content ul.links li a:hover, body.info #content ol.intructions li a:hover {
-	text-decoration: underline;
-}
-body.info #content ol.intructions li {
-	padding: 3px 0 3px;
-}
-body.info #content img.illustration {
-	border: 1px solid #8c8c8c;
-	max-width: 100%;
-}
-body.info #content img.right {
-	float: right;
-	margin: 0 0 0.5em 1em;
-}
-body.info #content img.left {
-	float: left;
-	margin: 0 1em 0.5em 0;
-}
-body.info #content img.logo {
-	border-width: 0;
-}
-body.info #content p.important {
-	color: #f00;
-	font-size: 18px;
-	font-weight: bold;
-	text-align: center;
-}
-body.info #content .clearfix {
-	clear: both;
-}
-body.info div.felhasznalas li.felhasznalas a,
-body.info div.rolunk li.rolunk a,
-body.info div.terkepek li.terkepek a,
-body.info div.terkep li.terkep a,
-body.info div.gpsbekuldes li.gpsbekuldes a,
-body.info div.szerkesztes li.szerkesztes a,
-body.info div.letoltesek li.letoltesek a {
-	background-color: #666;
-	color: #fff !important;
-	border: 0 none !important;
+	font-weight: 700;
 }
 
-/* Facebook, meetup, mailing list badges */
-a.fbpage, a.meetup, a.maillist, a.youtube, a.wikilink {
-	padding-left: 20px;
-	background-repeat: no-repeat;
-	background-position: left center;
+.info-page .page-content .links li {
+	margin-top: 5px;
+	font-weight: 400;
 }
-a.fbpage {
-	background-image: url("/kepek/fb-icon16.png");
+
+.info-page .page-content .links a,
+.info-page .page-content .ordered-instructions a {
+	color: #00e;
+	text-decoration: none;
 }
-a.meetup {
-	background-image: url("/kepek/meetup-icon2.png");
+
+.info-page .page-content .links a:hover,
+.info-page .page-content .ordered-instructions a:hover {
+	text-decoration: underline;
 }
-a.maillist {
-	background-image: url("/kepek/email-icon.png");
+
+.info-page .page-content .ordered-instructions li {
+	padding: 3px 0;
 }
-a.youtube {
-	background-image: url("/kepek/youtube-icon.png");
-	padding-left: 30px;
+
+.info-page .page-content .illustration {
+	max-width: 100%;
+	border: 1px solid #8c8c8c;
 }
-a.wikilink {
-	background-image: url("/kepek/osm-icon.png");
+
+.info-page .page-content .right {
+	float: right;
+	margin: 0 0 .5em 1em;
+}
+
+.info-page .page-content .left {
+	float: left;
+	margin: 0 1em .5em 0;
+}
+
+.info-page .page-content .logo {
+	border-width: 0;
+}
+
+.info-page .page-content .important {
+	font-size: 18px;
+	font-weight: 700;
+	color: #f00;
+	text-align: center;
+}
+
+.info-page .page-content .clearfix {
+	clear: both;
+}
+
+.info-page .navigation.active-felhasznalas .felhasznalas a,
+.info-page .navigation.active-rolunk .rolunk a,
+.info-page .navigation.active-terkepek .terkepek a,
+.info-page .navigation.active-terkep .terkep a,
+.info-page .navigation.active-gpsbekuldes .gpsbekuldes a,
+.info-page .navigation.active-szerkesztes .szerkesztes a,
+.info-page .navigation.active-letoltesek .letoltesek a {
+	color: #fff;
+	background-color: #666;
+	border: 0 none;
 }
 
 /* TODO remove: overpass.js used this for highlighting a tool, but that code no longer works */
 .highlight {
-	background-color: yellow;
-	color: black;
+	color: #000;
+	background-color: #ff0;
 }
 
-p.license {
-	text-align: center;
-	font-style: italic;
+.website-content-license {
 	margin: 15px 0;
-}
-
-/* Only on about page */
-body.about #meetblock {
-	display: inline-block;
-}
-body.about div.meetus {
-	width: 50%;
-	margin: 3px 0;
-	float: left;
+	font-style: italic;
 	text-align: center;
-}
-/* When using uneven badges */
-/*
-body.about div.meetus:last-child {
-	margin-left: auto;
-	margin-right: auto;
-	float: none;
-	clear: left;
-}*/
-body.about div.meetus > span {
-	border-width: 1px 10px;
-	border-color: #ccc;
-	border-style: solid;
-	background-color: #f3f3f3;
-	padding: 5px;
-	margin: 5px;
-	display: block;
 }
 
 /* Only on citylist page */
-body.citylist table.citylist td {
+.info-page.citylist .citylist-table td {
 	vertical-align: top;
 }
-body.citylist table.citylist.rewrite td {
-	font-size: 80%;
+
+.info-page.citylist .citylist-table.rewrite td {
 	font-family: monospace;
+	font-size: 80%;
 }
 
 /* On mobile or small screen */
 @media all and (max-width: 699px) {
-	body.info #header {
+	.info-page .page-header {
 		height: 32px;
 	}
-	body.info #menu,
-	body.info #nav,
-	body.info #content {
+
+	.info-page .header-menu,
+	.info-page .navigation,
+	.info-page .page-content {
 		position: static;
 		display: block;
-		clear: both;
 		float: none;
-		height: auto;
 		width: auto;
-		margin: 2px;
+		height: auto;
 		padding: 0;
+		margin: 2px;
+		clear: both;
 	}
-	body.info #menu, body.info #nav {
+
+	.info-page .header-menu,
+	.info-page .navigation {
 		margin: 0;
 	}
-	body.info #nav {
+
+	.info-page .navigation {
 		padding: 0 10px;
 	}
-	body.info #nav ul.submenu li a {
+
+	.info-page .navigation .submenu a {
 		border-right-width: 1px;
 	}
-	body.info #nav .submenu-description {
+
+	.info-page .navigation .submenu-description {
 		display: inline-block;
 		width: 100%;
 		padding: 0 10px;
@@ -234,40 +227,49 @@ body.citylist table.citylist.rewrite td {
 		border: 1px solid #ddd;
 		border-top-width: 0;
 	}
-	body.info #nav p {
+
+	.info-page .navigation p {
 		padding: 0 10px;
 	}
-	body.info #content {
+
+	.info-page .page-content {
 		padding: 0 10px;
 		border-width: 0;
 	}
-	body.info #content h1 {
+
+	.info-page .page-content h1 {
 		font-size: 1.3em;
 	}
-	body.info #content p {
+
+	.info-page .page-content p {
 		text-align: justify;
 	}
-	body.info #content .play-download-badge {
+
+	.info-page .page-content .play-download-badge {
 		width: 100%;
 	}
-	body.info #content .logo {
+
+	.info-page .page-content .logo {
 		display: none;
 	}
-	body.info #content .illustration {
+
+	.info-page .page-content .illustration {
 		max-width: 100%;
 	}
-	body.info #content .section {
+
+	.info-page .page-content .section {
 		margin-left: 0;
 	}
-	body.info #content code {
+
+	.info-page .page-content code {
 		word-wrap: break-word;
 	}
 }
 
 @media all and (max-width: 375px) {
-	img.illustration {
+	.illustration {
 		display: block;
-		float: none !important;
-		margin: 0 auto !important;
+		float: none;
+		margin: 0 auto;
 	}
 }

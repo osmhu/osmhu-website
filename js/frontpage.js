@@ -109,7 +109,7 @@ $(document).ready(() => {
 
 function repositionMap() {
 	if (MobileDetector.isMobile()) {
-		$('#map-container').css('top', $('#header').css('height'));
+		$('#map-container').css('top', $('.page-header').css('height'));
 	}
 }
 

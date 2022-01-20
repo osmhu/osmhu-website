@@ -4,10 +4,10 @@
 	<!--#include virtual="includes/head_scripts.html" -->
 	<link rel="stylesheet" href="/css/info.css?rev=413">
 </head>
-<body class="info">
+<body class="info-page">
 	<!--#include virtual="includes/header.html" -->
 
-	<div id="nav" class="szerkesztes">
+	<div class="navigation active-szerkesztes">
 		<!--#include virtual="includes/submenu.html" -->
 		<div class="submenu-description">
 			<h3>Szerkesztőprogramok</h3>
@@ -30,7 +30,7 @@
 		</div>
 	</div>
 
-	<div id="content">
+	<div class="page-content">
 		<h1>Az OpenStreetMap szerkesztése</h1>
 
 		<p>Az OpenStreetMapet önkéntesek szerkesztik, számuk jelenleg meghaladja a százezret. </p>
@@ -40,7 +40,7 @@
 
 		<h2>Mi kell a szerkesztéshez</h2>
 
-		<ol class="intructions">
+		<ol class="ordered-instructions">
 			<li>Információ arról, amit változtatni szeretnél a térképen.</li>
 			<li>Regisztrálj a <a href="https://www.openstreetmap.org/user/new" target="_blank">www.openstreetmap.org</a> weboldalon!</li>
 			<li>Menj az <a href="/">www.openstreetmap.hu főoldalára.</a></li>

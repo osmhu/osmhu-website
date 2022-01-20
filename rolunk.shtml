@@ -5,15 +5,15 @@
 	<!--#include virtual="includes/head_scripts.html" -->
 	<link rel="stylesheet" href="/css/info.css?rev=413">
 </head>
-<body class="info about">
+<body class="info-page about">
 	<!--#include virtual="includes/header.html" -->
 
-	<div id="nav" class="rolunk">
+	<div class="navigation active-rolunk">
 		<!--#include virtual="includes/submenu.html" -->
 		<p>Weblapunk tárolását a <a href="http://c64.rulez.org/" target="_blank">c64.rulez.org</a> biztosítja. Köszönjük!</p>
 	</div>
 
-	<div id="content">
+	<div class="page-content">
 		<h1>Mi az OpenStreetMap?</h1>
 
 		<p>Az OpenStreetMap célja, szabadon elérhető és felhasználható térképi adatok összegyűjtése és szolgáltatása.

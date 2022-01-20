@@ -68,16 +68,14 @@
 		}
 	</script>
 </head>
-<body class="info citylist">
-	<div id="header">
-		<?php include 'includes/header.html' ?>
-	</div>
+<body class="info-page citylist">
+	<?php include 'includes/header.html' ?>
 
-	<div id="nav" class="terkep">
+	<div class="navigation active-terkep">
 		<?php include 'includes/submenu.html' ?>
 	</div>
 
-	<div id="content">
+	<div class="page-content">
 		<h1>Település térkép gyorslinkek</h1>
 		<p>A városok, községek és falvak térképeire mutató gyorslinkek másolásával,
 		könnyen olvasható és begépelhető formában küldheted a térképet ismerőseinek.</p>
@@ -151,7 +149,7 @@ if ($tool == 'keepright') {
 // Show city list
 if($page) {
 	$list = $strdb->load_cities(($page == "*" ? "" : $page), $tool == "tags");
-	echo("<table class=\"citylist $tool\">\n");
+	echo("<table class=\"citylist-table $tool\">\n");
 	foreach($list as $city) {
 		if($city->name != "Kömörő") { // Conflicts with Komoró
 			$city_lc = strtolower(strtr($city->name, $hutrans));

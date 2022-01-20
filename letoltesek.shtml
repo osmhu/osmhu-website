@@ -5,14 +5,14 @@
 	<!--#include virtual="includes/head_scripts.html" -->
 	<link rel="stylesheet" href="/css/info.css?rev=413">
 </head>
-<body class="info">
+<body class="info-page">
 	<!--#include virtual="includes/header.html" -->
 
-	<div id="nav" class="letoltesek">
+	<div class="navigation active-letoltesek">
 		<!--#include virtual="includes/submenu.html" -->
 	</div>
 
-	<div id="content">
+	<div class="page-content">
 		<h1>Az OpenStreetMap adatok letöltése</h1>
 
 		<h2>Felhasználóknak</h2>
