@@ -3,12 +3,10 @@
 
 	<?php include 'includes/head_scripts.html' ?>
 </head>
-<body class="info">
-	<div id="header">
-		<?php include 'includes/header.html' ?>
-	</div>
+<body class="info-page">
+	<?php include 'includes/header.html' ?>
 
-	<div id="nav">
+	<div class="navigation">
 		<ul class="submenu">
 			<li><a href="validatestreetnames.php?mode=u">.u keresés</a></li>
 			<li><a href="validatestreetnames.php?mode=all">ellenőrzendők keresése</a></li>
@@ -19,7 +17,7 @@
 		</ul>
 	</div>
 
-	<div id="content">
+	<div class="page-content">
 		<h1>Nevek megjelölése jónak a helyi adatbázisban</h1>
 		<p>Figyelem: Amit megjelölsz, azt soha többé nem fogjuk látni ezen a listán!</p>
 		<p>Rosszat ne jelölj meg: javítsd az OSM-ben és majd frissítés után eltűnik!</p>
