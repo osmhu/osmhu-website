@@ -16,7 +16,7 @@ Az alábbi parancsok is ezen a rendszeren működnek módosítás nélkül.
 > **A fejlesztési feladatok egy része csak Linux rendszeren végezhető el.**  
 > Más rendszeren történő fejlesztés teljeskörű beüzemelése rendkívül fáradságos,
 > ilyen esetben ajánlott inkább egy Virtuális gépet használni Ubuntu 20.04-el, majd vagrant használata helyett
-> közvetlenül telepíteni az eszközöket a [development/provision.sh](/development/provision.sh) és [Makefile](/Makefile) segítségével.
+> közvetlenül telepíteni az eszközöket a [development/provision.sh](development/provision.sh) és [Makefile](Makefile) segítségével.
 
 ### Forráskód klónozása
 
@@ -66,7 +66,7 @@ Gazdagépen:
 
 ### Fejlesztés során gyakran használt parancsok
 
-A további telepítéshez és beállításhoz szükséges parancsok a [Makefile](/Makefile) -ban találhatóak.
+A további telepítéshez és beállításhoz szükséges parancsok a [Makefile](Makefile) -ban találhatóak.
 
 > **Vagrant használata esetén:**
 >
@@ -147,7 +147,7 @@ make mysql-export
 
 Fejlesztés közben a HTTPS bekapcsolásához:
 
-1. **gazdagépen** [self signed SSL kulcspár létrehozása](/development/self-signed-ssl/README.md)
+1. **gazdagépen** [self signed SSL kulcspár létrehozása](development/self-signed-ssl/README.md)
 
 2. **virtuális gépen**, a `vagrant ssh` kapcsolaton keresztül:
 
@@ -158,4 +158,4 @@ Fejlesztés közben a HTTPS bekapcsolásához:
 *Gazdagép felé kiszolgált HTTPS port:  
 [http://localhost:8443/](http://localhost:8443/)*
 
-### [Település lakosság adatok hozzáadása](/development/nepessegi_adatok.md)
+### [Település lakosság adatok hozzáadása](development/nepessegi_adatok.md)

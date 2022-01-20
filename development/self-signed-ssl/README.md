@@ -30,7 +30,7 @@
     mkcert osmhu.lan
     ```
 
-5. Kulcspár bemásolása a [development/self-signed-ssl](/development/self-signed-ssl) mappába  
-    Az [alapértelmezett apache2 https site config](/development/apache2/osmhu-ssl.conf) ebben a mappában keresi.
+5. Kulcspár bemásolása a [development/self-signed-ssl](.) mappába  
+    Az [alapértelmezett apache2 https site config](../apache2/osmhu-ssl.conf) ebben a mappában keresi.
 
 [Forrás](https://kifarunix.com/create-locally-trusted-ssl-certificates-with-mkcert-on-ubuntu-20-04/)

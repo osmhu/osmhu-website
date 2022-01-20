@@ -27,7 +27,7 @@ function nonStopTable() {
 
 export default class OpeningHoursTable {
 	/*
-	 * Highligted ISO day of week: 1 - Monday, 7 - Sunday
+	 * Highlighted ISO day of week: 1 - Monday, 7 - Sunday
 	 * Reference: https://date-fns.org/docs/getISODay
 	 */
 	static generateTable(openingHoursString, highlightedIsoDayOfWeek) {
