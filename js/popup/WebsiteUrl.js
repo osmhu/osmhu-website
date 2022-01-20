@@ -15,7 +15,7 @@ function removeTrailingSlash(url) {
 
 export default class WebsiteUrl {
 	/**
-	 * Return shrinked url HTML, but make the full url copyable
+	 * Return shrunk url HTML, but make the full url copyable
 	 */
 	static shrink(websiteUrl, maxLength) {
 		const href = addProtocolIfMissing(websiteUrl);

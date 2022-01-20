@@ -21,6 +21,7 @@ indent_size = 2
 
 [*.sh]
 indent_style = tab
+space_redirects = true
 
 [*.md]
 indent_style = space

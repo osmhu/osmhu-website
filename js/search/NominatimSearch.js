@@ -7,7 +7,7 @@ import SearchResults from './SearchResults';
 
 const nominatimUrl = 'https://nominatim.openstreetmap.org/search';
 const resultLimit = 50;
-const contactEmail = 'info@openstreetmap.hu'; // Adviced at https://nominatim.org/release-docs/latest/api/Search/#other
+const contactEmail = 'info@openstreetmap.hu'; // Advised at https://nominatim.org/release-docs/latest/api/Search/#other
 
 export default class NominatimSearch {
 	constructor(map, searchResults) {
