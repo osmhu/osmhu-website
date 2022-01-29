@@ -205,8 +205,6 @@ if($page) {
 	showPageLetters($letters, $pagenames, $page, $tool);
 }
 //echo("<input type=\"submit\" name=\"tagsubmit\"></form>");
-$strdb->free();
-
 
 // Shows tags and returns a simple array of IDs for have/nothave checks
 function showTags($tags) {
