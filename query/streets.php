@@ -49,7 +49,7 @@ if (isset($_GET['city'])) {
 			}
 		}
 
-		if ($place_in) {
+		if (isset($place_in)) {
 			$query = 'SELECT DISTINCT MAX(placestreets.osm_id) AS id, streetnames.name AS name '
 				.'FROM streetnames '
 				.'INNER JOIN placestreets ON streetnames.id=placestreets.streetname_id '

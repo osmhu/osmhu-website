@@ -50,7 +50,6 @@ if(false && array_key_exists("storevalidate", $_POST)) {
 			echo("Saved $id as OK.<br>");
 		}
 	}
-	$store_sth->free();
 }
 
 
