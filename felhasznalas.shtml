@@ -22,7 +22,7 @@
 
 		<p>A térképi adatok sokszínűségéből adódóan minden OSM-es weblap és alkalmazás
 		csak egy részlete a rendelekzésre álló adatoknak és lehetőségeknek. Beleértve ezt
-		a weblapot és a <a href="http://www.openstreetmap.org/">www.openstreetmap.org</a>
+		a weblapot és a <a href="https://www.openstreetmap.org">www.openstreetmap.org</a>
 		oldalt is.</p>
 
 		<p>Hasznosabb felhasználási módokat találhatunk más, OSM adatokat
@@ -54,18 +54,18 @@
 					<a href="https://www.freemap.sk/?map=7/47.103784/20.407104&layers=X">Freemap.sk - Térkép túrázoknak</a>
 				</li>
 				<li>
-					<a href="http://www.wanderreitkarte.de/">WanderReitKarte</a> - túra- és lovastérkép
+					<a href="https://www.wanderreitkarte.de/">WanderReitKarte</a> - túra- és lovastérkép
 				</li>
 			</ul></li>
 
 			<li>Kerékpár térképek
 			<ul class="links nodots">
 				<li>
-					<a href="http://merretekerjek.hu/">merretekerjek.hu</a>
+					<a href="https://merretekerjek.hu/">merretekerjek.hu</a>
 					&nbsp;- kerékpáros útvonalterv készítő
 				</li>
 				<li>
-					<a href="http://www.opencyclemap.org/?zoom=15&lat=47.49579&lon=19.05492&layers=B0">OpenCycleMap</a>
+					<a href="https://www.opencyclemap.org/?zoom=15&lat=47.49579&lon=19.05492&layers=B0">OpenCycleMap</a>
 					- bicikli alaptérkép
 				</li>
 				<li>
@@ -101,13 +101,13 @@
 			<li>3D térképek
 			<ul class="links nodots">
 				<li>
-					<a href="http://demo.f4map.com/#lat=47.5262287&lon=19.0589625&zoom=18&camera.theta=62.762">F4 Map</a>
+					<a href="https://demo.f4map.com/#lat=47.5262287&lon=19.0589625&zoom=18&camera.theta=62.762">F4 Map</a>
 					- Bejárható, forgatható, teljes 3D
 				</li>
 				<li>
-					<a href="http://osmbuildings.org/?lat=52.52111&lon=13.40988&zoom=17">OSMBuildings</a>
+					<a href="https://osmbuildings.org/?lat=52.52111&lon=13.40988&zoom=17">OSMBuildings</a>
 					- 3D épületek, például:
-					<a href="http://osmbuildings.org/?lat=47.51739&lon=19.05357&zoom=17">Budapest XIII.</a>
+					<a href="https://osmbuildings.org/?lat=47.51739&lon=19.05357&zoom=17">Budapest XIII.</a>
 				</li>
 			</ul></li>
 
@@ -118,7 +118,7 @@
 					- szép, nyomtatható térkép utcaindexszel
 				</li>
 				<li>
-					<a href="http://render.osmtippek.hu/">render(myMap)</a>
+					<a href="https://render.osmtippek.hu/">render(myMap)</a>
 					- nyomtatás helyszíni térképezéshez
 				</li>
 				<li>
@@ -130,23 +130,24 @@
 
 		<h2>OSM-et felhasználó, magyar szolgáltatások</h2>
 		<ul class="links">
-			<li><a href="http://www.bkk.hu/bubi/">MOL Bubi</a></li>
-			<li><a href="http://futar.bkk.hu/">BKK FUTÁR Utazástervező</a></li>
-			<li><a href="http://www.utcakereso.hu">Utcakereso.hu térkép</a></li>
-			<li><a href="http://www.otthonterkep.hu">Otthontérkép</a></li>
-			<li><a href="http://www.ingatlan.com">ingatlan.com</a></li>
-			<li><a href="http://idokep.hu">Időkép</a></li>
-			<li><a href="http://www.ksh.hu/apps/hntr.main?p_lang=HU">Magyarország helységnévtára (KSH)</a></li>
-			<li><a href="https://menetrendek.hu/">Menetrendek.hu</a></li>
+			<li><a href="https://molbubi.hu/hu/">MOL Bubi</a></li>
+			<li><a href="https://futar.bkk.hu">BKK FUTÁR Utazástervező</a></li>
+			<li><a href="https://utcakereso.hu">Utcakereso.hu térkép</a></li>
+			<li><a href="https://otthonterkep.hu">Otthontérkép</a></li>
+			<li><a href="https://ingatlan.com">ingatlan.com</a></li>
+			<li><a href="https://www.idokep.hu">Időkép</a></li>
+			<li><a href="https://www.ksh.hu/apps/hntr.main?p_lang=HU">Magyarország helységnévtára (KSH)</a></li>
+			<li><a href="https://menetrendek.hu">Menetrendek.hu</a></li>
 		</ul>
 
 		<h2>További listák</h2>
 		<ul class="links">
-			<li><a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary/Tal%C3%A1lkoz%C3%B3k/2014.06.07-08._L%C3%A1batlan_t%C3%A9rk%C3%A9pez%C3%A9s/press_release#.C3.89rdekess.C3.A9gek_az_OpenStreetMap_k.C3.A9pess.C3.A9geir.C5.91l">Lábatlan sok különböző OSM szolgáltatásban</a> - a helyi térképező összejövetel alkalmával gyűjtöttük össze</li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/User:Grin/bookmarks/hu">grin könyvjelzői</a> - még további hasznos linkekkel</li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services">OSM alapú szolgáltatások listája <sup>(en)</sup></a></li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Software/Desktop">OSM szoftverek listája <sup>(en)</sup></a></li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Software/Mobile">Mobil szoftverek listája <sup>(en)</sup></a></li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Hungary/Tal%C3%A1lkoz%C3%B3k/2014.06.07-08._L%C3%A1batlan_t%C3%A9rk%C3%A9pez%C3%A9s/press_release#.C3.89rdekess.C3.A9gek_az_OpenStreetMap_k.C3.A9pess.C3.A9geir.C5.91l">
+				Lábatlan sok különböző OSM szolgáltatásban</a> - a helyi térképező összejövetel alkalmával gyűjtöttük össze</li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/User:Grin/bookmarks/hu">grin könyvjelzői</a> - még további hasznos linkekkel</li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services">OSM alapú szolgáltatások listája <sup>(en)</sup></a></li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Software/Desktop">OSM szoftverek listája <sup>(en)</sup></a></li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Software/Mobile">Mobil szoftverek listája <sup>(en)</sup></a></li>
 		</ul>
 		<!--#include virtual="includes/cc0.html" -->
 	</div>

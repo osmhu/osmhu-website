@@ -12,20 +12,20 @@
 		<div class="submenu-description">
 			<h3>Szerkesztőprogramok</h3>
 			<ul>
-				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:iD">iD (online)</a></li>
-				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:JOSM">JOSM (offline)</a></li>
-				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Potlatch_2">Potlatch2 (régi, online)</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hu:iD">iD (online)</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hu:JOSM">JOSM (offline)</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Potlatch_2">Potlatch2 (régi, online)</a></li>
 			</ul>
 			<h3>Dokumentáció</h3>
 			<ul>
-				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Beginners%27_guide">Kezdők kézikönyve</a></li>
-				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Map_Making_Overview">Térképkészítés</a></li>
-				<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Map_Features">Térképelemek</a></li>
-				<li><a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary">Magyarországi térképezés</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Beginners%27_guide">Kezdők kézikönyve</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Map_Making_Overview">Térképkészítés</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Map_Features">Térképelemek</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hungary">Magyarországi térképezés</a></li>
 			</ul>
 			<h3>Egyéb weblapok</h3>
 			<ul>
-				<li><a href="https://www.osmtippek.hu/">OsmTippek.hu</a></li>
+				<li><a href="https://www.osmtippek.hu">OsmTippek.hu</a></li>
 			</ul>
 		</div>
 	</div>
@@ -50,9 +50,9 @@
 
 		<!-- <p><img src="kepek/josm.png" class="right illustration" title="JOSM - Java OpenStreetMap Editor - szerkesztőprogram" alt="JOSM szerkesztőprogram képernyőképe">
 		Kelleni fog egy szerkesztőprogram és információ arról amit be szeretnél rajzolni!
-		Regisztrálnod kell az <a href="http://www.openstreetmap.org">openstreetmap.org</a>
+		Regisztrálnod kell az <a href="https://www.openstreetmap.org">openstreetmap.org</a>
 		oldalon. Elindítani a szerkesztőprogramot, kinyitni a
-		<a href="http://wiki.openstreetmap.org/wiki/HU:Main_Page">openstreetmap wikit</a>
+		<a href="https://wiki.openstreetmap.org/wiki/Hu:Kezd%C5%91lap">openstreetmap wikit</a>
 		(itt keresheted meg, hogy egyes elemeket hogyan kell jelölni), és kezdődhet is
 		a rajzolás. Igen sok idő fog eltelni, mire átfogó képed lesz arról, hogy miket
 		lehet berajzolni és azt hogyan kell. De ez nem meglepő, ha
@@ -119,11 +119,11 @@
 		<p>Olvasnivalók:</p>
 
 		<ul>
-			<li><a href="http://wiki.openstreetmap.org/wiki/HU:Beginners%27_guide">Kezdők kézikönyve</a>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Beginners%27_guide">Kezdők kézikönyve</a>
 			- bemutatja az alapvető szerkesztési feladatokat és szerkesztőprogramokat</li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary">Magyarországi térképezés</a>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Hungary">Magyarországi térképezés</a>
 			- illetve megnézeted az éppen folyó munkákat és azok állapotát.</li>
-			<li><a href="http://wiki.openstreetmap.org/w/index.php?title=WikiProject_Hungary/Kapcsolat">Kapcsolat a közösséggel</a>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Hungary/Kapcsolat">Kapcsolat a közösséggel</a>
 			- kapcsolatba léphetsz a Magyarországon térképezőkkel, felteheted a kérdéseidet, legyen az
 			akármilyen egyszerű is.</li>
 		</ul>

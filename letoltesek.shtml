@@ -29,8 +29,9 @@
 			<p>Telepítsd az <strong>OsmAnd</strong> nevű programot a <strong>Google Play áruházból</strong>, ezután
 			automatikusan felajánlja Magyarország letöltését (vagy a menüből válaszd a <em>Térképek letöltését</em>).</p>
 			<p>Javasolt Android alkalmazások még: Organic Maps, MAPS.ME, Mapy.cz, Locus.
-			További ötleteket a <a href="http://wiki.openstreetmap.org/wiki/WikiProject_Hungary/Android">wiki Android oldalán</a> találsz.</p>
-			<p>Ha <a href="https://f-droid.org/">F-Droidból</a> telepíted az alkalmazásokat, akkor egy teljes funkcionalitású <strong>OsmAnd</strong>-ot kapsz ingyen. Innen érdekelhet még az <strong>Organic Maps</strong> is.</p>
+			További ötleteket a <a href="https://wiki.openstreetmap.org/wiki/Hungary/Android">wiki Android oldalán</a> találsz.</p>
+			<p>Ha <a href="https://f-droid.org/">F-Droidból</a> telepíted az alkalmazásokat, akkor egy teljes funkcionalitású
+			<strong>OsmAnd</strong>-ot kapsz ingyen. Innen érdekelhet még az <strong>Organic Maps</strong> is.</p>
 
 
 			<img class="right logo" src="/kepek/apple.png" alt="apple logo">
@@ -44,7 +45,9 @@
 
 			<h3>Garmin GPS</h3>
 
-			<p>Magyarország vagy európai térképek letöltése: <a href="https://www.openhiking.eu/hu/">OpenHiking.eu</a> vagy <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a>. Bringázáshoz próbáld ki az <a href="https://www.osmbikemap.szerako.hu/">OSM Bike Map</a> térképét.</a>
+			<p>Magyarország vagy európai térképek letöltése: <a href="https://www.openhiking.eu/hu/">OpenHiking.eu</a>
+			vagy <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a>.
+			Bringázáshoz próbáld ki az <a href="https://www.osmbikemap.szerako.hu">OSM Bike Map</a> térképét.</a>
 			</p>
 
 			<h3>Magyarország turistatérkép - rátét réteg</h3>
@@ -55,25 +58,31 @@
 			A weblapunkon is megnézhető Magyarországi turista réteg letöltése. (CC-BY-SA licenc alatt használható fel.)
 			Az OsmAnd enélkül is tartalmaz turistaút megjelenítést, de ez a letöltés Magyarországi jelzésekre optimalizált.</p>
 			<p><strong>Android (OsmAnd):</strong><br>
-			<a href="http://data2.openstreetmap.hu/TuraReteg.sqlitedb">TuraReteg.sqlitedb</a><br>
+			<a href="https://data2.openstreetmap.hu/TuraReteg.sqlitedb">TuraReteg.sqlitedb</a><br>
 			Telepítése: másold be a fájlt a telefonra a <code>osmand/tiles</code> könyvtrába, majd aktiváld a <em>Rétegek -&gt; Rátét térkép</em> menüben.
 			Ha ez a menü nem látható, kapcsold be az <em>Bővítmények -&gt; Online térkép</em> elemet.</p>
 			<p><strong>OpenStreetMap csempék:</strong><br>
-			<a href="http://data2.openstreetmap.hu/tt.zip">tt.zip</a>: Ezek a csempe (tile) fájlok használhatók ha saját formátumokra szeretnéd konvertálni.</p>
+			<a href="https://data2.openstreetmap.hu/tt.zip">tt.zip</a>:
+			Ezek a csempe (tile) fájlok használhatók ha saját formátumokra szeretnéd konvertálni.</p>
 
 			<h3>Beágyazás weboldalba</h3>
-			<a href="http://www.openstreetmap.org/">openstreetmap.org</a>: nagyíts a kívánt területre, majd a megosztás ikon alatt válaszd a HTML opciót
+
+			<p><a href="https://www.openstreetmap.org">openstreetmap.org</a>:
+			nagyíts a kívánt területre, majd a megosztás ikon alatt válaszd a HTML opciót</p>
+
 			<h3>Térképi adatok letöltése</h3>
+
 			<p>Az OpenStreetMap erejét a benne felhalmozott és folyamatosan frissített
 			térképi adatok és az azokhoz való licencdíjmentes hozzáférés jelenti.
 			Elérhető egyben az egész világtérkép (de ez óriási adatmennyiség!),
 			egész Európa térképi adatai, vagy Magyaroszág térképe leválogatva, illetve
 			kisebb terület esetén határolókat megadva nagyon egyszerűen letölthető.</p>
 			<ul>
-			<li><a href="http://download.geofabrik.de/europe/hungary.html">Magyarország téképi adatainak letöltése (Geofabrik)</a></li>
-			<li><a href="http://www.openstreetmap.org/export#map=14/47.9278/19.1392">Kis terület exportálása</a> - nagyíts a kívánt területre, majd nyomd meg az Export gombot</li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Downloading_data">Adatok letöltéséről</a> - angolul</li>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Osmosis">Osmosis - adatok leválogatása</a> - angolul</li>
+			<li><a href="https://download.geofabrik.de/europe/hungary.html">Magyarország térképi adatainak letöltése (Geofabrik)</a></li>
+			<li><a href="https://www.openstreetmap.org/export#map=14/47.9278/19.1392">Kis terület exportálása</a>
+				- nagyíts a kívánt területre, majd nyomd meg az Export gombot</li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Downloading_data">Adatok letöltéséről</a> - angolul</li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Osmosis">Osmosis - adatok leválogatása</a> - angolul</li>
 			</ul>
 		</div>
 
@@ -82,7 +91,7 @@
 		<div class="section">
 			<h3>JOSM szerkesztőprogram</h3>
 
-			<p><a href="http://josm.openstreetmap.de/josm-tested.jar"><img src="kepek/josm-gomb.png" alt="JOSM szerkesztő letöltése"></a>
+			<p><a href="https://josm.openstreetmap.de/josm-tested.jar"><img src="kepek/josm-gomb.png" alt="JOSM szerkesztő letöltése"></a>
 
 		</div>
 

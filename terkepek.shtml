@@ -22,15 +22,18 @@
 
 		<dl>
 			<dt>Mapnik (Alapértelmezett)</dt>
-			<dd>Alap OpenStreetMap.org megjelenítés, általános elemekkel, utak, bizonyos boltok, épületek stb.</dd>
+				<dd>Alap OpenStreetMap.org megjelenítés, általános elemekkel, utak, bizonyos boltok, épületek stb.</dd>
 			<dt>Kerékpáros térkép<dt>
-			<dd>Az <a href="http://www.opencyclemap.org/">OpenCycleMap</a> megjelenítése, amely a kerékpársávokat és kerékárutakat is mindig megjeleníti.</dd>
+				<dd>Az <a href="https://www.opencyclemap.org">OpenCycleMap</a> megjelenítése,
+					amely a kerékpársávokat és kerékárutakat is mindig megjeleníti.</dd>
 			<dt>OSM France stílus</dt>
-			<dd>A <a href="http://tile.openstreetmap.fr/">Franciaországi OpenStreetMap közösség weboldalán</a> használt megjelenítési stílus, mely az általános térképi elemeket tartalmazza.</dd>
+				<dd>A <a href="https://tile.openstreetmap.fr">Franciaországi OpenStreetMap közösség weboldalán</a>
+					használt megjelenítési stílus, mely az általános térképi elemeket tartalmazza.</dd>
 			<dt>Tömegközlekedés</dt>
-			<dd>Tömegközlekedési útvonalak és megállók statikus térképe.</dd>
+				<dd>Tömegközlekedési útvonalak és megállók statikus térképe.</dd>
 			<dt>Humanitárius</dt>
-			<dd>A <a href="http://hot.openstreetmap.org/"><abbr title="Humanitarian OpenStreetMap Team">HOT</abbr></a> katasztrófák után gyors térképkészítéssel segíti a hatóságok, segélyszervezetek munkáját a katasztrófa kezelésében.</dd>
+				<dd>A <a href="https://www.hotosm.org/"><abbr title="Humanitarian OpenStreetMap Team">HOT</abbr></a>
+					katasztrófák után gyors térképkészítéssel segíti a hatóságok, segélyszervezetek munkáját a katasztrófa kezelésében.</dd>
 		</dl>
 
 		<h2>Rávetítések</h2>
@@ -46,7 +49,7 @@
 
 		<p>
 		Az OpenStreetMap adatokból több ú.n.
-		<a href="http://wiki.openstreetmap.org/wiki/Rendering">renderelő</a>
+		<a href="https://wiki.openstreetmap.org/wiki/Rendering">renderelő</a>
 		(vagy raszterizáló)
 		programmal készíthető weben is megjeleníthető térkép, ez az alapréteg.
 		Ez sebesség és egyszerűség miatt ideális megoldás. Hátránya,
@@ -59,16 +62,15 @@
 		Elegendő kitartással és szakértelemmel bárki készíthet egyedi megjelenésű
 		térképet az OpenStreetMap adatokra alapozva.
 		Az adatbázis kívánt adatait saját szerverünkre kell másolni, majd onnan
-		<a href="http://switch2osm.org/serving-tiles/">megjeleníthető képekké alakítani</a>.</p>
+		<a href="https://switch2osm.org/serving-tiles/">megjeleníthető képekké alakítani</a>.</p>
 
 		<h3>Mi az a rávetítés?</h3>
 
 		<p>
-		A megjelenítést gyakran <a href="http://wiki.openstreetmap.org/wiki/Overlay_API">rávetítések</a> egészítik ki.
+		A megjelenítést gyakran <a href="https://wiki.openstreetmap.org/wiki/Overlay_API">rávetítések</a> egészítik ki.
 		A háttérben megjelenik az előre meghatározott alapréteg, amire különböző ikonok, vonalak, kattintható elemek helyezhetőek el. <br />
-		Készíthetőek így
-		hely keresők
-		vagy ilyen például a <a href="http://wheelmap.org/hu/map">wheelmap.org</a> is, amely a helyek kerekesszékkel való megközelíthetőségét jelzi.
+		Készíthetőek így hely keresők vagy ilyen például a <a href="https://wheelmap.org/?locale=hu">wheelmap.org</a> is,
+		amely a helyek kerekesszékkel való megközelíthetőségét jelzi.
 		</p>
 
 		<!--#include virtual="includes/cc0.html" -->
