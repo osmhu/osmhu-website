@@ -43,7 +43,7 @@ export default {
 	},
 	/**
 	 * Shops are ordered by shop key usage in Hungary
-	 * http://taginfo.openstreetmap.hu/keys/shop#values
+	 * https://taginfo.openstreetmap.hu/keys/shop#values
 	*/
 	shop: {
 		title: 'Boltok',

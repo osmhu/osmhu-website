@@ -119,8 +119,8 @@ export default class SignificantNames {
 		if (tags.highway === 'bus_stop' || tags.public_transport === 'stop_position') return 'Buszmegálló';
 
 		// Building types
-		// Source: http://wiki.openstreetmap.org/wiki/Hu:Key:building?uselang=hu
-		// Ordered by frequency: http://taginfo.openstreetmap.hu/keys/building
+		// Source: https://wiki.openstreetmap.org/wiki/Hu:Key:building?uselang=hu
+		// Ordered by frequency in Hungary: https://taginfo.openstreetmap.hu/keys/building
 		if (tags.building === 'apartments') return 'Társasház';
 		if (tags.building === 'farm') return 'Farm';
 		if (tags.building === 'house') return 'Családi ház';
@@ -137,7 +137,7 @@ export default class SignificantNames {
 		// Budapest
 		if (tags.name === 'Budapest' && tags.boundary === 'administrative' && tags.admin_level === '8') return 'Főváros';
 		// Places
-		// Ordered by frequency: http://taginfo.openstreetmap.hu/keys/place#values
+		// Ordered by frequency in Hungary: https://taginfo.openstreetmap.hu/keys/place#values
 		if (tags.place === 'locality') return 'Hely';
 		if (tags.place === 'village') return 'Falu';
 		if (tags.place === 'suburb') return 'Városrész';
@@ -151,7 +151,7 @@ export default class SignificantNames {
 		if (tags.place === 'city') return 'Város';
 		if (tags.place === 'district') return 'Kerület';
 		// Hungarian administrative rules
-		// Source: http://wiki.openstreetmap.org/wiki/Hu:Tag:boundary=administrative?uselang=hu
+		// Source: https://wiki.openstreetmap.org/wiki/Hu:Tag:boundary=administrative?uselang=hu
 		if (tags.boundary === 'administrative' && tags.admin_level === '6') return 'Megye';
 		if (tags.boundary === 'administrative' && tags.admin_level === '7') return 'Járás';
 		if (tags.boundary === 'administrative' && tags.admin_level === '8') return 'Város';

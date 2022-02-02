@@ -156,6 +156,6 @@ Fejlesztés közben a HTTPS bekapcsolásához:
     ```
 
 *Gazdagép felé kiszolgált HTTPS port:  
-[http://localhost:8443/](http://localhost:8443/)*
+[https://localhost:8443/](https://localhost:8443/)*
 
 ### [Település lakosság adatok hozzáadása](development/nepessegi_adatok.md)

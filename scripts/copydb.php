@@ -15,7 +15,7 @@ E.g. if a streetname is not used anylonger, it has to be deleted at the end.
  -----------------------
 
  Updating PostGIS database
-	http://download.geofabrik.de/europe/hungary.html
+	https://download.geofabrik.de/europe/hungary.html
 	osm2pgsql -d gis -U gis -W -H localhost --slim -m hungary-latest.osm.pbf
 
  Streets database (MySQL)

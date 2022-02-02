@@ -1,6 +1,6 @@
 # Település lakosság adatok hozzáadása
 
-1. letölteni a [KSH legfrissebb adatbázisát](http://www.ksh.hu/apps/hntr.main)
+1. letölteni a [KSH legfrissebb adatbázisát](https://www.ksh.hu/apps/hntr.main)
 2. törölni az összes munkalapot az elsőn kívül (Helységek)
     - a libreoffice-ban van egy alig észrevehető kijelölés Ctrl + egérrel ki lehet jelölni többet
 3. törölni az oszlopokat úgy, hogy csak a

@@ -10,7 +10,7 @@
 
 	<div class="navigation active-rolunk">
 		<!--#include virtual="includes/submenu.html" -->
-		<p>Weblapunk tárolását a <a href="http://c64.rulez.org/" target="_blank">c64.rulez.org</a> biztosítja. Köszönjük!</p>
+		<p>Weblapunk tárolását a <a href="https://c64.rulez.org" target="_blank">c64.rulez.org</a> biztosítja. Köszönjük!</p>
 	</div>
 
 	<div class="page-content">
@@ -29,26 +29,26 @@
 		<ul>
 			<li><a href="https://lists.openstreetmap.org/listinfo/talk-hu">Levelezési lista</a></li>
 			<li><a href="https://www.facebook.com/groups/164314157038254/">Facebook Csoport</a></li>
-			<li><a href="http://www.facebook.com/OpenStreetMap.hu">Facebook Oldalunk</a></li>
+			<li><a href="https://www.facebook.com/OpenStreetMap.hu">Facebook Oldalunk</a></li>
 			<li><a href="https://riot.grin.hu/index.html#/room/#osm:grin.hu">Riot.im / Matrix csevegő</a></li>
 		</ul>
 
 		<h3>Találkozók (személyes és online)</h3>
 		<ul>
-			<li><a href="http://www.meetup.com/OpenStreetMap-OSGeo-Hungary/">Meetup csoport</a></li>
+			<li><a href="https://www.meetup.com/OpenStreetMap-Hungary/">Meetup csoport</a></li>
 			<li><a href="https://gettogether.community/openstreetmap-hungary/">GetTogether</a></li>
 			<li><a href="https://wiki.openstreetmap.org/wiki/Hungary/Tal%C3%A1lkoz%C3%B3k">OSM Wiki - Találkozók oldala</a></li>
 		</ul>
 		<h3>Videók</h3>
 		<ul>
-			<li><a href="http://www.youtube.com/user/OpenStreetMapHungary">YouTube csatorna</a></li>
+			<li><a href="https://www.youtube.com/user/OpenStreetMapHungary">YouTube csatorna</a></li>
 			<li><a href="https://tube.grin.hu/video-channels/openstreetmap/videos">PeerTube - OpenStreetMap</a></li>
 			<li><a href="https://tube.grin.hu/video-channels/openstreetmap_hour/videos">PeerTube - OpenStreetMap Hour</a></li>
 		</ul>
 
 		<h3>Dokumentáció, oktatóanyagok</h3>
 		<ul>
-			<li><a href="http://wiki.openstreetmap.org/wiki/Hu:Kezd%C5%91lap">Wiki</a></li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Kezd%C5%91lap">Wiki</a></li>
 		</ul>
 
 		<h3>E-mail</h3>
@@ -83,8 +83,9 @@
 
 		<h2>Mire jó ez, ott a Google Maps, Bing meg a többiek?</h2>
 
-		<p>A legtöbb ilyen térkép <strong>nagyon korlátozott felhasználást enged meg</strong>.
-		Tömören például a <a href="http://www.google.com/intl/hu_hu/help/terms_maps.html">Google felhasználási feltételeiből</a> megtudhatjuk, hogy külön erre vonatkozó szerződés hiányában
+		<p>A legtöbb ilyen térkép <strong>nagyon korlátozott felhasználást enged meg</strong>. Tömören például a
+		<a href="https://www.google.com/intl/hu_hu/help/terms_maps/">Google felhasználási feltételeiből</a>
+		megtudhatjuk, hogy külön erre vonatkozó szerződés hiányában
 		<em>tilos mindennemű másolás, lefordítás, módosítás, származtatott munka készítése, terjesztés,
 			publikálás, eladás, bérbe adás, visszafejtés stb.</em>
 		Az ilyenekre feltöltő szerkesztők tehát egy-egy nekik kedves cég "zsebébe tömködik" a

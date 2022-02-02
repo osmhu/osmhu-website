@@ -64,7 +64,8 @@
 
 		<p>Az OpenStreetMapnek GPX formátumra van szüksége. Ha a készüléked
 		ilyet nem tud menteni, akkor konvertálni kell.
-		Ehhez próbáld ki a <a href="http://activityworkshop.net/software/gpsprune/download.html">GpsPrune</a> nevű programot. Ezzel a nyomvonal elejét vagy végét is könnyen eltávolíthatod, ha olyan pozíciókba vezet, amelyet nem szeretnél
+		Ehhez próbáld ki a <a href="https://activityworkshop.net/software/gpsprune/download.html">GpsPrune</a> nevű programot.
+		Ezzel a nyomvonal elejét vagy végét is könnyen eltávolíthatod, ha olyan pozíciókba vezet, amelyet nem szeretnél
 		megosztani vagy levághatod a haszontalannak tűnő részeket.</p>
 
 		<h3>GpsPrune</h3>
@@ -94,7 +95,7 @@
 		<a href="https://www.openstreetmap.org/user/new">OpenStreetMap.org</a> oldalon,
 		hogy személyesen
 		járulhass hozzá az adatok adott licenc alatti felhasználáshoz.</p>
-		<ol><li>Jelentkezz be az <a class="external text" href="http://www.openstreetmap.org">OSM főoldalán</a>
+		<ol><li>Jelentkezz be az <a class="external text" href="https://www.openstreetmap.org">OSM főoldalán</a>
 		</li><li>Kattints a <em>Nyomvonalak</em>-ra jobb oldali menüben.
 		</li><li>Kattints a <em>Nyomvonal feltöltésé</em>-re.</li>
 		<li>Válaszd ki a GPX fájlt, amit fel szeretnél tölteni.
@@ -111,10 +112,10 @@
 		út típusa, turistajelzések és még sokminden rögzíthet&#337;, amit mind
 		fel lehet rajzolni az OSM-re. Lásd a Kezd&#337;k kézikönyvét lentebb.</p>
 
-		<p>Ha elakadtál valahol, lépj <a href="http://wiki.openstreetmap.org/w/index.php?title=WikiProject_Hungary/Kapcsolat">kapcsolatba a közösséggel</a>.</p>
+		<p>Ha elakadtál valahol, lépj <a href="https://wiki.openstreetmap.org/wiki/Hungary/Kapcsolat">kapcsolatba a közösséggel</a>.</p>
 
 		<hr>
-		<p>A fentebbi szöveg részben a <a href="http://wiki.openstreetmap.org/wiki/Hu:Beginners_Guide_1.1.1">Kezdők kézikönyvéből</a>
+		<p>A fentebbi szöveg részben a <a href="https://wiki.openstreetmap.org/wiki/Hu:Beginners_Guide_1.1.1">Kezdők kézikönyvéből</a>
 		származik, CC-BY-SA licenc alatt, így ugyanazon alatt tovább terjeszthető.
 		Ugyanott további információkat is találhatsz.</p>
 
