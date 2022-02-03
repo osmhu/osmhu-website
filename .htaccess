@@ -38,8 +38,7 @@ RewriteRule ^letoltes/clc/clc_.*\.osm$ - [R=410,L]
 RewriteCond %{THE_REQUEST} ^.*/\.
 RewriteRule ^(.*)$ - [R=404]
 
-# These city short links are created with
-# https://www.openstreetmap.hu/terkep/*?tool=rewrite
+# The following city short links were generated with `make generate-city-rewrite-rules`
 RewriteRule ^terkep\/(A|a)ba/?$ \/?zoom=15\&lat=47.02922\&lon=18.52166 [R]
 RewriteRule ^terkep\/(A|a)b(á|a)dszal(ó|o)k/?$ \/?zoom=15\&lat=47.47601\&lon=20.59977 [R]
 RewriteRule ^terkep\/(A|a)baliget/?$ \/?zoom=15\&lat=46.14098\&lon=18.11674 [R]
@@ -3195,6 +3194,7 @@ RewriteRule ^terkep\/(Z|z)somb(ó|o)/?$ \/?zoom=15\&lat=46.32978\&lon=19.97199 [
 RewriteRule ^terkep\/(Z|z)sujta/?$ \/?zoom=15\&lat=48.50051\&lon=21.27937 [R]
 RewriteRule ^terkep\/(Z|z)surk/?$ \/?zoom=15\&lat=48.41063\&lon=22.21844 [R]
 RewriteRule ^terkep\/(Z|z)ubogy/?$ \/?zoom=15\&lat=48.38025\&lon=20.57490 [R]
+# End of generated city short links
 
 RewriteCond %{REQUEST_URI}  tt/(.*)
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -100,7 +100,7 @@ $hutrans = array(
 	"Ó" => "o", "Ö" => "o", "Ő" => "o",
 	"Ú" => "u", "Ü" => "u", "Ű" => "u"
 	);
-$tools = array('keepright', 'bingcompare', 'rewrite');
+$tools = array('keepright', 'bingcompare');
 
 // Read Query String parameters
 $page = "";
@@ -167,9 +167,7 @@ if($page) {
 
 		// Show friendly URL to city
 		echo("<tr>");
-		if($tool != "rewrite") {
-			echo("<td><a href=\"/terkep/$city_lc\">".$city->name."</a></td>");
-		}
+		echo("<td><a href=\"/terkep/$city_lc\">".$city->name."</a></td>");
 
 		// Show selected tool
 		if($tool == "keepright") {
@@ -190,8 +188,6 @@ if($page) {
 			echo("</td>");
 		} else if($tool == "bingcompare") {
 			echo("<td><a href=\"javascript:openBingCompare(".$city->osm_id.");\" onclick=\"highlight(this, 'pp');\">Bing</a></td>");
-		} else if($tool == "rewrite") {
-			echo("<td>RewriteRule ^terkep\/".genregex($city->name)."/?$ \/?zoom=15\&lat=".number_format($city->lat, 5, '.', ',')."\&lon=".number_format($city->lon, 5, '.', ',')." [R]</td>");
 		} else {
 			echo("<td>https://www.openstreetmap.hu/terkep/$city_lc</td>");
 		}
@@ -235,11 +231,11 @@ function showPageLetters($letters, $pagenames, $page, $tool) {
 }
 function showTools($tool) {
 ?>
-Segédeszköz: <select onchange="changeTool(this);">
+Segédeszköz:
+<select onchange="changeTool(this);">
 	<option value="">-</option>
 	<option value="keepright" <?php sel($tool == "keepright") ?>>KeepRight</option>
 	<option value="bingcompare" <?php sel($tool == "bingcompare") ?>>Bing műhold</option>
-	<option value="rewrite" <?php sel($tool == "rewrite") ?>>Rewrite szabály</option>
 </select>
 <?php
 }
@@ -247,45 +243,6 @@ Segédeszköz: <select onchange="changeTool(this);">
 function sel($select) {
 	if($select) { echo(" selected=\"selected\""); }
 }
-// Makes an accent insensitve, case insensitive converted regex for city name
-// Hardcoded Kömörő fix!
-function genregex($name) {
-	if($name == "Kömörő") {
-		return "(K|k)ömörő"; // Conflicts with Komoró otherwise
-	}
-
-	$n = str_replace("á", "(á|a)", $name);
-	$n = str_replace("é", "(é|e)", $n);
-	$n = str_replace("í", "(í|i)", $n);
-	$n = str_replace("ó", "(ó|o)", $n);
-	$n = str_replace("ö", "(ö|o)", $n);
-	$n = str_replace("ő", "(ő|o)", $n);
-	$n = str_replace("ú", "(ú|u)", $n);
-	$n = str_replace("ü", "(ü|u)", $n);
-	$n = str_replace("ű", "(ű|u)", $n);
-
-	$n = str_replace("Á", "(Á|A|á|a)", $n);
-	$n = str_replace("É", "(É|E|é|e)", $n);
-	$n = str_replace("Í", "(Í|I|í|i)", $n);
-	$n = str_replace("Ó", "(Ó|O|ó|o)", $n);
-	$n = str_replace("Ö", "(Ö|O|ö|o)", $n);
-	$n = str_replace("Ő", "(Ő|O|ő|o)", $n);
-	$n = str_replace("Ú", "(Ú|U|ú|u)", $n);
-	$n = str_replace("Ü", "(Ü|U|ü|u)", $n);
-	$n = str_replace("Ű", "(Ű|U|ű|u)", $n);
-
-	// Escape any space character in regex
-	$n = str_replace(" ", "\ ", $n);
-
-	// For non-accented first letters make case-insensitve start
-	if(substr($n, 0, 1) != "(") {
-		$n = "(".substr($name,0,1)."|".strtolower(substr($name, 0, 1)).")".substr($n, 1);
-	}
-	return $n;
-
-	//return "(".mb_substr($name,0,1, "UTF-8")."|".mb_strtolower(mb_substr($name, 0, 1, "UTF-8"), "UTF-8").")".mb_substr($n, 1, "UTF-8");
-}
-
 ?>
 	</div>
 </body>
