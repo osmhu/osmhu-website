@@ -177,3 +177,10 @@ convert-postgres-to-mysql:
 .PHONY: mysql-export
 mysql-export:
 	mysqldump -u osmhu -p$(mysql-password) osm_hu > development/mysql/export_`date +%Y-%m-%d_%H%M%S`.sql
+
+
+.PHONY: generate-city-rewrite-rules
+generate-city-rewrite-rules:
+	mkdir -p .tmp && \
+	APPLICATION_ENV="development" php scripts/city-rewrite-rules.php > .tmp/city-rewrite-rules.txt && \
+	echo "City rewrite rules saved to .tmp/city-rewrite-rules.txt"
