@@ -12,18 +12,18 @@ build:
 
 .PHONY: create-distribution
 create-distribution:
-	rm -rf distribution
-	mkdir -p distribution
+	rm --recursive --force distribution
+	mkdir --parents distribution
 
 #	Copy all directories
-	mkdir -p distribution/config distribution/includes distribution/js distribution/kepek distribution/query
-	cp -R config distribution
-	cp -R includes distribution
-	rsync -a kepek distribution --exclude *.xcf
-	cp -R query distribution
+	mkdir --parents distribution/config distribution/includes distribution/js distribution/kepek distribution/query
+	cp --recursive config distribution
+	cp --recursive includes distribution
+	rsync --archive kepek distribution --exclude *.xcf
+	cp --recursive query distribution
 
-	mkdir -p distribution/css
-	cp -R node_modules/leaflet/dist/images distribution/css
+	mkdir --parents distribution/css
+	cp --recursive node_modules/leaflet/dist/images distribution/css
 
 #	Copy root files
 	cp .htaccess distribution
@@ -43,7 +43,7 @@ create-distribution:
 
 .PHONY: develop
 develop:
-	mkdir -p .tmp && \
+	mkdir --parents .tmp && \
 	make create-distribution && \
 	npm run install-if-changed && \
 	npm run build-css && \
@@ -55,7 +55,7 @@ watch:
 	make develop && \
 	fswatch --one-per-batch --recursive --monitor poll_monitor --event Created --event Updated \
 		config css includes js kepek query .htaccess lib.php terkep.php validatestreetnames.php \
-		Makefile package.json *.shtml | xargs -n1 -I{} make develop
+		Makefile package.json *.shtml | xargs --max-args 1 -I{} make develop
 
 
 .PHONY: lint
@@ -69,13 +69,13 @@ lint:
 # https://github.com/laravel/homestead/issues/1239#issuecomment-523320952
 .PHONY: npm-install-in-tmp
 npm-install-in-tmp:
-	mkdir -p /tmp/npm_install/ && \
+	mkdir --parents /tmp/npm_install/ && \
 	cp package.json /tmp/npm_install && \
 	cp package-lock.json /tmp/npm_install && \
 	cd /tmp/npm_install && \
 	npm i --silent && \
-	cp -r /tmp/npm_install/node_modules ${CURDIR} && \
-	rm -rf /tmp/npm_install/ && \
+	cp --recursive /tmp/npm_install/node_modules ${CURDIR} && \
+	rm --recursive --force /tmp/npm_install/ && \
 	cd ${CURDIR} && \
 	npm i --silent
 
@@ -87,86 +87,83 @@ https-enable:
 	sudo systemctl reload apache2
 
 
-# Init databases for development environment
 .PHONY: init-empty-db
 init-empty-db:
-	make mysql-clean-db && \
+	make mysql-drop-db && \
 	make mysql-create-db && \
 	make mysql-init-empty
 
 
 .PHONY: init-existing-db
 init-existing-db:
-	make mysql-clean-db && \
+	make mysql-drop-db && \
 	make mysql-create-db && \
 	make mysql-import-existing
 
 
 .PHONY: init-from-scratch
 init-from-scratch:
-	make postgres-clean-db && \
+	make postgres-drop-db && \
 	make postgres-create-db && \
 	make import-osm-data-to-postgres && \
-	make mysql-clean-db && \
+	make mysql-drop-db && \
 	make mysql-create-db && \
 	make mysql-init-empty && \
 	make convert-postgres-to-mysql
 
 
-# Different database creation parts
-.PHONY: postgres-clean-db
-postgres-clean-db:
-	sudo -u postgres dropdb --if-exists gis
-	sudo -u postgres dropuser --if-exists osmhu
+.PHONY: postgres-drop-db
+postgres-drop-db:
+	sudo --user postgres dropdb --if-exists gis
+	sudo --user postgres dropuser --if-exists osmhu
 
 
+# Need to create user with cli command, using variable password in sql script is not easy
 .PHONY: postgres-create-db
 postgres-create-db:
-	sudo -u postgres createdb gis && \
-	sudo -u postgres psql -d gis -c "CREATE USER osmhu PASSWORD '$(postgresql-password)';" && \
-	sudo -u postgres psql -d gis -c "GRANT ALL PRIVILEGES ON DATABASE gis TO osmhu;" && \
-	sudo -u postgres psql -d gis -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO osmhu;" && \
-	sudo -u postgres psql -d gis -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO osmhu;" && \
-	sudo -u postgres psql -d gis -c "CREATE EXTENSION postgis; CREATE EXTENSION hstore;"
+	sudo --user postgres createdb gis && \
+	sudo --user postgres psql --dbname gis --command "CREATE USER osmhu PASSWORD '$(postgresql-password)'" && \
+	sudo --user postgres psql --dbname gis --file db/postgres/postgres-gis-setup.sql
 
 
 .PHONY: download-latest-osm-data
 download-latest-osm-data:
-	rm -f "development/hungary-latest.osm.pbf" && \
-	curl -o "development/hungary-latest.osm.pbf" "https://download.geofabrik.de/europe/hungary-latest.osm.pbf"
+	rm --force "development/hungary-latest.osm.pbf" && \
+	curl --output "development/hungary-latest.osm.pbf" "https://download.geofabrik.de/europe/hungary-latest.osm.pbf"
 
 
 .PHONY: import-osm-data-to-postgres
 import-osm-data-to-postgres:
 	if ! [ -f "development/hungary-latest.osm.pbf" ]; then \
-		echo "Latest OSM data is missing. Run 'make download-latest-osm-data' or download manually to development/hungary-latest.osm.pbf"; \
+		echo "Latest OSM data missing (searched at development/hungary-latest.osm.pbf)"; \
+		echo "Run 'make download-latest-osm-data' or download manually."; \
 		exit 1; \
 	fi && \
 	chmod +r development/hungary-latest.osm.pbf && \
-	sudo -u postgres osm2pgsql -s --create --database gis development/hungary-latest.osm.pbf
+	sudo --user postgres osm2pgsql --slim --create --database gis development/hungary-latest.osm.pbf
 
 
-.PHONY: mysql-clean-db
-mysql-clean-db:
-	mysql -u root -p$(mysql-root-password) -e "DROP USER IF EXISTS osmhu;"
-	mysql -u root -p$(mysql-root-password) -e "DROP DATABASE IF EXISTS osm_hu;"
+.PHONY: mysql-drop-db
+mysql-drop-db:
+	MYSQL_PWD="$(mysql-root-password)" mysql --user root < db/mysql/mysql-drop-db.sql
 
 
+# Need to create user with cli command, using variable password in sql script is not easy
 .PHONY: mysql-create-db
 mysql-create-db:
-	mysql -u root -p$(mysql-root-password) -e "CREATE DATABASE osm_hu CHARACTER SET utf8 COLLATE utf8_hungarian_ci;" && \
-	mysql -u root -p$(mysql-root-password) -e "CREATE USER IF NOT EXISTS osmhu IDENTIFIED BY '$(mysql-password)';" && \
-	mysql -u root -p$(mysql-root-password) -e "GRANT ALL ON osm_hu.* TO 'osmhu'@'%';"
+	MYSQL_PWD="$(mysql-root-password)" mysql --user root \
+		--execute "CREATE USER IF NOT EXISTS osmhu IDENTIFIED BY '$(mysql-password)';" && \
+	MYSQL_PWD="$(mysql-root-password)" mysql --user root < db/mysql/mysql-create-db.sql
 
 
 .PHONY: mysql-init-empty
 mysql-init-empty:
-	mysql -u osmhu -p$(mysql-password) osm_hu < scripts/db.txt
+	MYSQL_PWD="$(mysql-password)" mysql --user osmhu osm_hu < db/mysql/mysql-create-tables.sql
 
 
 .PHONY: mysql-import-existing
 mysql-import-existing:
-	mysql -u osmhu -p$(mysql-password) osm_hu < development/mysql/export.sql
+	MYSQL_PWD="$(mysql-password)" mysql --user osmhu osm_hu < db/mysql/mysql-dump.sql
 
 
 .PHONY: convert-postgres-to-mysql
@@ -174,13 +171,14 @@ convert-postgres-to-mysql:
 	APPLICATION_ENV="development" php scripts/copydb.php
 
 
-.PHONY: mysql-export
-mysql-export:
-	mysqldump -u osmhu -p$(mysql-password) osm_hu > development/mysql/export_`date +%Y-%m-%d_%H%M%S`.sql
+.PHONY: mysql-dump
+mysql-dump:
+	MYSQL_PWD="$(mysql-password)" mysqldump --user osmhu --skip-extended-insert \
+		--no-tablespaces osm_hu > db/mysql/mysql-dump_`date +%Y-%m-%d_%H%M%S`.sql
 
 
 .PHONY: generate-city-rewrite-rules
 generate-city-rewrite-rules:
-	mkdir -p .tmp && \
+	mkdir --parents .tmp && \
 	APPLICATION_ENV="development" php scripts/city-rewrite-rules.php > .tmp/city-rewrite-rules.txt && \
 	echo "City rewrite rules saved to .tmp/city-rewrite-rules.txt"

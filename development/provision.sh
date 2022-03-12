@@ -61,7 +61,7 @@ HTTP_SITE_CONFIG="${SOURCE_CODE_DIR}/development/apache2/osmhu-http.conf"
 if [ ! -r ${HTTP_SITE_CONFIG} ]; then
 	echo "ERROR! Apache2 site config not found at ${HTTP_SITE_CONFIG}" >&2
 	if [ "${SOURCE_CODE_DIR}" == "/home/vagrant/osmhu-website" ]; then
-		echo "Vagrant virtual machines should have the repository synced at /home/vagrant/osmhu-website, check this synchronization." >&2
+		echo "Vagrant machines should have the repository synced at /home/vagrant/osmhu-website, check it." >&2
 	fi
 	echo "Exiting" >&2
 	exit 1
@@ -119,7 +119,8 @@ if ! apt-get install -qq curl > /dev/null; then
 	exit 1
 fi
 # https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
-if ! curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn apt-key --quiet add -; then
+export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+if ! curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key --quiet add -; then
 	echo "ERROR! Failed to fetch Node.js installer key using curl. Exiting" >&2
 	exit 1
 fi

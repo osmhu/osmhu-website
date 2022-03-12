@@ -140,7 +140,7 @@ Az adatbázis feltöltése és az adatok MySQL -be történő sikeres áttölté
 ### Mysql export készítése a `mysqldump` használatával
 
 ```shell
-make mysql-export
+make mysql-dump
 ```
 
 ### HTTPS használata fejlesztéshez (Vagrant használata esetén)

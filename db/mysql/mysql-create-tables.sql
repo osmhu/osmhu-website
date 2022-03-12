@@ -34,7 +34,7 @@ CREATE TABLE placetags (
 	date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-# Comment out those that are integrated avove!!
+-- Comment out those that are integrated avove!!
 ALTER TABLE streetnames ADD COLUMN validated INT NOT NULL DEFAULT 0;
 ALTER TABLE streetnames ADD COLUMN name_case binary(255) NULL DEFAULT NULL;
 CREATE INDEX ix_placestreets_streetname_id ON placestreets (streetname_id);
