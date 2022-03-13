@@ -2,7 +2,7 @@
 	<title>OpenStreetMap.hu térkép rétegek</title>
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=413">
+	<link rel="stylesheet" href="/css/info.css?rev=414">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
@@ -16,9 +16,12 @@
 
 		<p>A következő megjelenítések közül lehet választani a térkép jobb felső sarkában.</p>
 
-		<h2>Alaprétegek</h2>
+		<hr />
 
-		<img class="right illustration" src="kepek/osmhu-layers.png" title="Réteg választó" alt="Képernyőkép az openstreetmap.hu-n található réteg választóról">
+		<h1>Alaprétegek</h1>
+
+		<img class="right illustration" src="kepek/osmhu-layers.png" title="Réteg választó"
+			alt="Képernyőkép az openstreetmap.hu-n található réteg választóról" />
 
 		<dl>
 			<dt>Mapnik (Alapértelmezett)</dt>
@@ -33,45 +36,56 @@
 				<dd>Tömegközlekedési útvonalak és megállók statikus térképe.</dd>
 			<dt>Humanitárius</dt>
 				<dd>A <a href="https://www.hotosm.org/"><abbr title="Humanitarian OpenStreetMap Team">HOT</abbr></a>
-					katasztrófák után gyors térképkészítéssel segíti a hatóságok, segélyszervezetek munkáját a katasztrófa kezelésében.</dd>
+					katasztrófák után gyors térképkészítéssel segíti a hatóságok,
+					segélyszervezetek munkáját a katasztrófa kezelésében.</dd>
 		</dl>
 
-		<h2>Rávetítések</h2>
+		<hr />
+
+		<h1>Rávetítések</h1>
 
 		<dl>
 			<dt>Turistautak</dt>
 			<dd>Rávetíti a kiválasztott alaprétegre a magyarországi turistautakat.</dd>
 		</dl>
 
-		<h3>Mi az az alapréteg?</h3>
+		<hr />
 
-		<a href="http://maps.stamen.com/toner/#16/47.4459/19.0298"><img class="right illustration" src="/kepek/stamen.png" alt="Térkép minta" title="Egy tetszetős megjelenésű fekete-fehér térkép"></a>
+		<h1>Mi az alapréteg?</h1>
 
-		<p>
-		Az OpenStreetMap adatokból több ú.n.
+		<a href="http://maps.stamen.com/toner/#16/47.4459/19.0298">
+			<img class="right illustration" src="/kepek/stamen.png" alt="Térkép minta"
+				title="Egy tetszetős megjelenésű fekete-fehér térkép"></a>
+
+		<p>Az OpenStreetMap adatokból több ú.n.
 		<a href="https://wiki.openstreetmap.org/wiki/Rendering">renderelő</a>
-		(vagy raszterizáló)
-		programmal készíthető weben is megjeleníthető térkép, ez az alapréteg.
+		(vagy raszterizáló) programmal készíthető weben is megjeleníthető térkép, ez az alapréteg.
 		Ez sebesség és egyszerűség miatt ideális megoldás. Hátránya,
 		hogy a megjelenítésre kerülő térképi elemek és azok stílusa utólag
 		nem kapcsolgatható (ellenben egy vektoros térképpel).
 		Ezért ha valamilyen speciális információra van szükség, akkor annak megfelelő
 		megjelenítést kell elkészíteni.</p>
 
-		<p>
-		Elegendő kitartással és szakértelemmel bárki készíthet egyedi megjelenésű
+		<p>Elegendő kitartással és szakértelemmel bárki készíthet egyedi megjelenésű
 		térképet az OpenStreetMap adatokra alapozva.
 		Az adatbázis kívánt adatait saját szerverünkre kell másolni, majd onnan
 		<a href="https://switch2osm.org/serving-tiles/">megjeleníthető képekké alakítani</a>.</p>
 
-		<h3>Mi az a rávetítés?</h3>
+		<hr />
 
-		<p>
-		A megjelenítést gyakran <a href="https://wiki.openstreetmap.org/wiki/Overlay_API">rávetítések</a> egészítik ki.
-		A háttérben megjelenik az előre meghatározott alapréteg, amire különböző ikonok, vonalak, kattintható elemek helyezhetőek el. <br />
-		Készíthetőek így hely keresők vagy ilyen például a <a href="https://wheelmap.org/?locale=hu">wheelmap.org</a> is,
-		amely a helyek kerekesszékkel való megközelíthetőségét jelzi.
-		</p>
+		<h1>Mi a rávetítés?</h1>
+
+		<p>A megjelenítést gyakran <a href="https://wiki.openstreetmap.org/wiki/Overlay_API">rávetítések</a>
+		egészítik ki. A háttérben megjelenik az előre meghatározott alapréteg, amire különböző ikonok,
+		vonalak, kattintható elemek helyezhetőek el.</p>
+
+		<p>Készíthetőek így hely keresők vagy ilyen például a
+		<a href="https://wheelmap.org/?locale=hu">wheelmap.org</a> is,
+		amely a helyek kerekesszékkel való megközelíthetőségét jelzi.</p>
+
+		<div class="clearfix"></div>
+
+		<hr />
 
 		<!--#include virtual="includes/cc0.html" -->
 	</div>

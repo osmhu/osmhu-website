@@ -2,7 +2,7 @@
 	<title>OpenStreetMap térkép szerkesztése</title>
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=413">
+	<link rel="stylesheet" href="/css/info.css?rev=414">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
@@ -36,19 +36,25 @@
 		<p>Az OpenStreetMapet önkéntesek szerkesztik, számuk jelenleg meghaladja a százezret. </p>
 		<p><strong>Nem kell térképésznek lenni a bekapcsolódáshoz!</strong></p>
 
-		<img class="right illustration" src="kepek/id-editor-hun1.png" title="openstreetmap.org szerkesztő" alt="openstreetmap.org szerkesztő képernyőképe">
+		<hr />
 
-		<h2>Mi kell a szerkesztéshez</h2>
+		<img class="right illustration" src="kepek/id-editor-hun1.png" title="openstreetmap.org szerkesztő"
+			alt="openstreetmap.org szerkesztő képernyőképe" />
+
+		<h1><span class="nowrap">Mi kell a szerkesztéshez</span></h1>
 
 		<ol class="ordered-instructions">
 			<li>Információ arról, amit változtatni szeretnél a térképen.</li>
-			<li>Regisztrálj a <a href="https://www.openstreetmap.org/user/new" target="_blank">www.openstreetmap.org</a> weboldalon!</li>
+			<li>Regisztrálj a
+				<a href="https://www.openstreetmap.org/user/new" target="_blank">www.openstreetmap.org</a>
+				weboldalon!</li>
 			<li>Menj az <a href="/">www.openstreetmap.hu főoldalára.</a></li>
 			<li>A zöld "Terület szerkesztése" gombbal már szerkesztheted is a térképet.</li>
 			<li><strong>Kész!</strong> Ennyire egyszerű elindulni!</li>
 		</ol>
 
-		<!-- <p><img src="kepek/josm.png" class="right illustration" title="JOSM - Java OpenStreetMap Editor - szerkesztőprogram" alt="JOSM szerkesztőprogram képernyőképe">
+		<!-- <p><img src="kepek/josm.png" class="right illustration"
+			title="JOSM - Java OpenStreetMap Editor - szerkesztőprogram" alt="JOSM szerkesztőprogram képernyőképe">
 		Kelleni fog egy szerkesztőprogram és információ arról amit be szeretnél rajzolni!
 		Regisztrálnod kell az <a href="https://www.openstreetmap.org">openstreetmap.org</a>
 		oldalon. Elindítani a szerkesztőprogramot, kinyitni a
@@ -59,23 +65,28 @@
 		figyelembe veszed, hogy országhatártól, autópályán át, telefonfülkékig vagy
 		padokig szinte mindent berajzolhatsz.</p> -->
 
-		<p class="important">Soha ne másolj SEMMIT olyan forrásból, amit annak felhasználási szerződése nem tesz lehetővé!</p>
+		<p class="important">Soha ne másolj SEMMIT olyan forrásból,
+			amit annak felhasználási szerződése nem tesz lehetővé!</p>
 
-		<p>Ha egy forrásban nem vagy biztos, megkérdezheted a <a href="https://www.facebook.com/groups/osm.hu" target="_blank">facebook csoportban</a> hogy felhasználod-e szerkesztéshez. Gyakorlatilag igen kevés olyan forrás van, amiből jogszerűen rajzolhatunk, legtöbbször a saját kútfőnkből történik.<br>
-		De pont ez teszi érdekessé a feladatot!
-		<p>
+		<p>Ha egy forrásban nem vagy biztos, megkérdezheted a
+		<a href="https://www.facebook.com/groups/osm.hu" target="_blank">facebook csoportban</a>
+		hogy felhasználod-e szerkesztéshez. Gyakorlatilag igen kevés olyan forrás van, amiből jogszerűen rajzolhatunk,
+		legtöbbször a saját kútfőnkből történik.<br />
+		De pont ez teszi érdekessé a feladatot!</p>
 
-		<h2>Segédeszközök</h2>
+		<hr />
 
-		<p>Attól függően, hogy mit szeretnél rajzolni, nem feltétlenül van szükség
-		technikai segédeszközökre. Például, ha már fel vannak rajzolva az utcák a
-		környékeden, de hiányoznak a boltok vagy hasonló részletek, azt megközelítőleg
-		szemre is könnyen
-		berajzolhatod, így akár egy <strong>notesszel és ceruzával</strong> is elkezdheted a
-		térképi munkát.</p>
+		<h1>Segédeszközök</h1>
 
-		<p><img class="right illustration" src="kepek/bing-minta.png" title="Szerkesztés a Bing vonalait követve" alt="Bing műholdkép részlete szerkesztés közben">
-		<strong>Bing műholdkép</strong> áll rendelkezésre Magyarország egy
+		<p>Attól függően, hogy mit szeretnél rajzolni, nem feltétlenül van szükség technikai segédeszközökre.
+		Például, ha már fel vannak rajzolva az utcák a környékeden, de hiányoznak a boltok vagy hasonló részletek,
+		azt megközelítőleg szemre is könnyen berajzolhatod, így akár egy <strong>notesszel és ceruzával</strong>
+		is elkezdheted a térképi munkát.</p>
+
+		<img class="right illustration" src="kepek/bing-minta.png" title="Szerkesztés a Bing vonalait követve"
+			alt="Bing műholdkép részlete szerkesztés közben" />
+
+		<p><strong>Bing műholdkép</strong> áll rendelkezésre Magyarország egy
 		részén. Bizonyos területeken csak az utcák, de máshol az épületek is
 		nagyon jól kivehetőek. Alátét rétegként használva már most
 		elkezdhetsz rajzolni, "karosszékből". De persze mindenképp lesz olyan
@@ -95,7 +106,9 @@
 		Ez egy amolyan "modern notesz", használatának egyszerűsége is vetekszik az
 		ősével.</p>
 
-		<h2>Miket rajzolunk fel?</h2>
+		<hr />
+
+		<h1>Miket rajzolunk fel?</h1>
 
 		<p>Amint az a <a href="felhasznalas">felhasználási oldalon</a>
 		is látszik, igen szerteágazó információk vannak az OpenStreetMapen.
@@ -114,7 +127,9 @@
 		<p>Egyetlen fontos dolgot kell megjegyezned: <strong>azt rajzold fel, amihez
 			kedved van, ami érdekel!</strong></p>
 
-		<h2>Hogyan kezdj hozzá</h2>
+		<hr />
+
+		<h1>Hogyan kezdj hozzá</h1>
 
 		<p>Olvasnivalók:</p>
 
@@ -127,6 +142,9 @@
 			- kapcsolatba léphetsz a Magyarországon térképezőkkel, felteheted a kérdéseidet, legyen az
 			akármilyen egyszerű is.</li>
 		</ul>
+
+		<hr />
+
 		<!--#include virtual="includes/cc0.html" -->
 	</div>
 </body>
