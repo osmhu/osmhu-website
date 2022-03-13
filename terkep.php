@@ -2,13 +2,18 @@
 	<title>Magyarországi városok és falvak térképe</title>
 
 	<?php include 'includes/head_scripts.html' ?>
-	<link rel="stylesheet" href="/css/info.css?rev=413">
+	<link rel="stylesheet" href="/css/info.css?rev=414">
 	<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		var overpassUrl = 'https://lz4.overpass-api.de/api/interpreter';
-		var keepRightUrlTemplate = 'https://keepright.at/report_map.php?zoom=13&lat={lat}&lon={lon}&layers=B0T&ch=0%2C30%2C40%2C50%2C70%2C90%2C120%2C130%2C150%2C160%2C170%2C180%2C191%2C194%2C195%2C196%2C201%2C202%2C203%2C204%2C205%2C206%2C207%2C208%2C210%2C220%2C231%2C232%2C270%2C281%2C282%2C283%2C284%2C285%2C291%2C292%2C293%2C294%2C311%2C312%2C313%2C320%2C350%2C370%2C380%2C401%2C402%2C411%2C412%2C413&show_ign=1&show_tmpign=1';
-		//var bingCompareUrlTemplate = 'https://tools.geofabrik.de/mc/?mt0=mapnik&mt1=bingsat&lon={lon}&lat={lat}&zoom=16';
-		var bingCompareUrlTemplate = 'https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom=16&num=2&mt0=mapnik&mt1=bing-satellite';
+		var keepRightUrlTemplate = 'https://keepright.at/report_map.php?zoom=13&lat={lat}&lon={lon}'
+			+ '&layers=B0T&ch=0%2C30%2C40%2C50%2C70%2C90%2C120%2C130%2C150%2C160%2C170%2C180%2C191%2C194%2C195%2C196'
+			+ '%2C201%2C202%2C203%2C204%2C205%2C206%2C207%2C208%2C210%2C220%2C231%2C232%2C270%2C281%2C282%2C283%2C284'
+			+ '%2C285%2C291%2C292%2C293%2C294%2C311%2C312%2C313%2C320%2C350%2C370%2C380%2C401%2C402%2C411%2C412%2C413'
+			+ '&show_ign=1&show_tmpign=1';
+		// var bingCompareUrlTemplate = 'https://tools.geofabrik.de/mc/?mt0=mapnik&mt1=bingsat&lon={lon}&lat={lat}&zoom=16';
+		var bingCompareUrlTemplate = 'https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom=16&num=2'
+			+ '&mt0=mapnik&mt1=bing-satellite';
 
 		function openKeepRight(placeId) {
 			openToolInNewWindow(placeId, keepRightUrlTemplate);
@@ -77,11 +82,13 @@
 
 	<div class="page-content">
 		<h1>Település térkép gyorslinkek</h1>
+
 		<p>A városok, községek és falvak térképeire mutató gyorslinkek másolásával,
 		könnyen olvasható és begépelhető formában küldheted a térképet ismerőseinek.</p>
 		<p>Például: <strong>www.openstreetmap.hu/terkep/godollo</strong> (ékezetekkel is működik)</p>
 		<p>Használd a jobb-gomb, "Link címének másolása" menüpontot a böngészőben.</p>
 
+		<hr />
 
 <?php
 include 'lib.php';

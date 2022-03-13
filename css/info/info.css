@@ -4,17 +4,6 @@
 	display: block;
 }
 
-.info-page h1,
-.info-page .page-content h2 {
-	color: #444;
-}
-
-.info-page h3 {
-	font-family: "Bitstream Vera Sans", sans-serif;
-	font-weight: 400;
-	color: #942f43;
-}
-
 .info-page .navigation,
 .info-page .page-content {
 	font-family: Arial, sans-serif;
@@ -64,6 +53,18 @@
 	border-color: #8c8c8c;
 	border-style: solid;
 	border-width: 0 1px;
+}
+
+.info-page .page-content h1 {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #333;
+}
+
+.info-page .page-content h2 {
+	font-size: 1.2rem;
+	font-weight: 400;
+	color: #600;
 }
 
 .info-page .page-content .section {
@@ -146,7 +147,10 @@
 	font-size: 18px;
 	font-weight: 700;
 	color: #f00;
-	text-align: center;
+}
+
+.info-page .page-content .nowrap {
+	white-space: nowrap;
 }
 
 .info-page .page-content .clearfix {

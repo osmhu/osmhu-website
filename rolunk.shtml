@@ -1,16 +1,18 @@
 <!--#include virtual="includes/top.html" -->
 	<title>Mi az OpenStreetMap?</title>
-	<meta name="description" content="Az OpenStreetMap egy közösségi szerkesztésű, szabadon letölthető és felhasználható térkép Magyarországról és az egész világról.">
+	<meta name="description"
+		content="Az OpenStreetMap egy közösségi szerkesztésű, szabadon letölthető és felhasználható térkép Magyarországról és az egész világról.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=413">
+	<link rel="stylesheet" href="/css/info.css?rev=414">
 </head>
 <body class="info-page about">
 	<!--#include virtual="includes/header.html" -->
 
 	<div class="navigation active-rolunk">
 		<!--#include virtual="includes/submenu.html" -->
-		<p>Weblapunk tárolását a <a href="https://c64.rulez.org" target="_blank">c64.rulez.org</a> biztosítja. Köszönjük!</p>
+		<p>Weblapunk tárolását a <a href="https://c64.rulez.org" target="_blank">c64.rulez.org</a> biztosítja.
+		Köszönjük!</p>
 	</div>
 
 	<div class="page-content">
@@ -21,59 +23,78 @@
 		valójában igen komoly jogi és technikai korlátokat állít a felhasználó elé. Ezzel megakadályozva
 		azt, hogy az emberek kreatív és produktív dolgokra a térképet felhasználhassák.</p>
 
-		<p>Az OpenStreetMap hasonlóan készül mint a Wikipédia: bárki szerkesztheti, kiegészítheti a saját tudásával, felrajzolhatja a környékét, vagy frissítheti az általa fontosnak ítélt részeket.</p>
+		<p>Az OpenStreetMap hasonlóan készül mint a Wikipédia: bárki szerkesztheti, kiegészítheti a saját tudásával,
+		felrajzolhatja a környékét, vagy frissítheti az általa fontosnak ítélt részeket.</p>
 
-		<h2>Elérhetőségek</h2>
-		<p>Aktív magyarországi közösségünknek köszönhetően elég sok felületen találhatók meg az aktív szerkesztők és oktatóanyagok</p>
-		<h3>Csevegés, tanácsok, beszélgetés</h3>
-		<ul>
-			<li><a href="https://lists.openstreetmap.org/listinfo/talk-hu">Levelezési lista</a></li>
-			<li><a href="https://www.facebook.com/groups/164314157038254/">Facebook Csoport</a></li>
-			<li><a href="https://www.facebook.com/OpenStreetMap.hu">Facebook Oldalunk</a></li>
-			<li><a href="https://riot.grin.hu/index.html#/room/#osm:grin.hu">Riot.im / Matrix csevegő</a></li>
-		</ul>
+		<hr />
 
-		<h3>Találkozók (személyes és online)</h3>
-		<ul>
-			<li><a href="https://www.meetup.com/OpenStreetMap-Hungary/">Meetup csoport</a></li>
-			<li><a href="https://gettogether.community/openstreetmap-hungary/">GetTogether</a></li>
-			<li><a href="https://wiki.openstreetmap.org/wiki/Hungary/Tal%C3%A1lkoz%C3%B3k">OSM Wiki - Találkozók oldala</a></li>
-		</ul>
-		<h3>Videók</h3>
-		<ul>
-			<li><a href="https://www.youtube.com/user/OpenStreetMapHungary">YouTube csatorna</a></li>
-			<li><a href="https://tube.grin.hu/video-channels/openstreetmap/videos">PeerTube - OpenStreetMap</a></li>
-			<li><a href="https://tube.grin.hu/video-channels/openstreetmap_hour/videos">PeerTube - OpenStreetMap Hour</a></li>
-		</ul>
+		<h1>Elérhetőségek</h1>
 
-		<h3>Dokumentáció, oktatóanyagok</h3>
-		<ul>
-			<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Kezd%C5%91lap">Wiki</a></li>
-		</ul>
+		<p>Aktív magyarországi közösségünknek köszönhetően elég sok felületen találhatók meg
+		az aktív szerkesztők és oktatóanyagok.</p>
 
-		<h3>E-mail</h3>
-		<ul>
-			<li><a href="mailto:kozosseg@openstreetmap.hu">kozosseg@openstreetmap.hu</a> - ezen a címen a fentebbi levelezési listára írhat a közösségnek!</li>
-		</ul>
+		<div class="section">
+			<h2>Csevegés, tanácsok, beszélgetés</h2>
+			<ul>
+				<li><a href="https://lists.openstreetmap.org/listinfo/talk-hu">Levelezési lista</a></li>
+				<li><a href="https://www.facebook.com/groups/164314157038254/">Facebook Csoport</a></li>
+				<li><a href="https://www.facebook.com/OpenStreetMap.hu">Facebook Oldalunk</a></li>
+				<li><a href="https://riot.grin.hu/index.html#/room/#osm:grin.hu">Riot.im / Matrix csevegő</a></li>
+			</ul>
 
-		<h2>Mire használható?</h2>
+			<h2>Találkozók (személyes és online)</h2>
+			<ul>
+				<li><a href="https://www.meetup.com/OpenStreetMap-Hungary/">Meetup csoport</a></li>
+				<li><a href="https://gettogether.community/openstreetmap-hungary/">GetTogether</a></li>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hungary/Tal%C3%A1lkoz%C3%B3k">OSM Wiki - Találkozók oldala</a></li>
+			</ul>
+			<h2>Videók</h2>
+			<ul>
+				<li><a href="https://www.youtube.com/user/OpenStreetMapHungary">YouTube csatorna</a></li>
+				<li><a href="https://tube.grin.hu/video-channels/openstreetmap/videos">PeerTube - OpenStreetMap</a></li>
+				<li><a href="https://tube.grin.hu/video-channels/openstreetmap_hour/videos">PeerTube - OpenStreetMap Hour</a></li>
+			</ul>
 
-		<p><img class="right illustration" src="kepek/osm-tervezes.png" title="Útvonaltervezés a www.yournaviation.org-on" alt="Térképrészlet utcákkal és berajzolt útvonaltervvel.">
-		Az összegyűjtött térképi adatok rengeteg szoftverben felhasználhatóak. Akár mobiltelefonon,
-		GPS egységen, asztali számítógépen, de van sok webes szolgáltatás is amely az OpenStreetMap adataiból dolgozik. Lehetnek ezek útvonaltervezők, „érdekes hely” keresők, térkép nézegetők stb.</p>
+			<h2>Dokumentáció, oktatóanyagok</h2>
+			<ul>
+				<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Kezd%C5%91lap">Wiki</a></li>
+			</ul>
+
+			<h2>E-mail</h2>
+			<ul>
+				<li><a href="mailto:kozosseg@openstreetmap.hu">kozosseg@openstreetmap.hu</a> - ezen a címen a fentebbi
+					levelezési listára írhat a közösségnek!</li>
+			</ul>
+		</div>
+
+		<hr />
+
+		<h1>Mire használható?</h1>
+
+		<img class="right illustration" src="kepek/osm-tervezes.png" title="Útvonaltervezés a www.yournaviation.org-on"
+			alt="Térképrészlet utcákkal és berajzolt útvonaltervvel." />
+		<p>Az összegyűjtött térképi adatok rengeteg szoftverben felhasználhatóak. Akár mobiltelefonon,
+		GPS egységen, asztali számítógépen, de van sok webes szolgáltatás is amely az OpenStreetMap adataiból dolgozik.
+		Lehetnek ezek útvonaltervezők, „érdekes hely” keresők, térkép nézegetők stb.</p>
 
 		<p>Ezt a térképet nem csak nézegetni lehet. A háttérben meghúzódó adatok is letölthetőek, így arra
 		bárki kifejleszthet speciális célt szolgáló alkalmazásokat, végezhet igény szerinti lekérdezéseket
 		vagy állíthat elő saját térképeket.</p>
 
-		<p>Az OpenStreetMap pontossága nagyon változó. Ahol sok önkéntes dolgozik, ott sokkal részletesebb, pontosabb és frissebb mint más térképek, ahol viszont nincs aktivista, ott lehet, hogy egyetlen utca sem szerepel a községből.</p>
+		<p>Az OpenStreetMap pontossága nagyon változó. Ahol sok önkéntes dolgozik, ott sokkal részletesebb,
+		pontosabb és frissebb mint más térképek, ahol viszont nincs aktivista, ott lehet, hogy egyetlen utca
+		sem szerepel a községből.</p>
 
 		<p><a href="/felhasznalas">Felhasználási példák</a></p>
 
-		<h2>Kik készítik?</h2>
+		<hr />
 
-		<p>Ezt a térképet bárki szerkesztheti, nem kell hozzá térképésznek lenni. A legtöbb szerkesztő először csak észrevesz valami apróságot a környékén és felrajzolja, hogy mások is megtalálhassák.
-		<em>"Nincs rajta a kedvenc boltom??"</em>. De van akinek az egész környéke nincs rajta, <em>"Tarthatatlan állapot, elő a GPS-t!"</em> - mondja, és már térképez is.</p>
+		<h1>Kik készítik?</h1>
+
+		<p>Ezt a térképet bárki szerkesztheti, nem kell hozzá térképésznek lenni. A legtöbb szerkesztő először csak
+		észrevesz valami apróságot a környékén és felrajzolja, hogy mások is megtalálhassák.
+		<em>"Nincs rajta a kedvenc boltom??"</em>. De van akinek az egész környéke nincs rajta,
+		<em>"Tarthatatlan állapot, elő a GPS-t!"</em> - mondja, és már térképez is.</p>
 
 		<p>Az alapvető lépések nagyon könnyen elsajátíthatóak,
 		így akár 30 perc alatt felrajzolhatsz valamit amit már most észrevettél, hogy hiányzik a környékeden.
@@ -81,19 +102,26 @@
 
 		<p><a href="/szerkesztes">A szerkesztés bemutatása</a></p>
 
-		<h2>Mire jó ez, ott a Google Maps, Bing meg a többiek?</h2>
+		<hr />
+
+		<h1>Mire jó ez, ott a Google Maps, Bing meg a többiek?</h1>
 
 		<p>A legtöbb ilyen térkép <strong>nagyon korlátozott felhasználást enged meg</strong>. Tömören például a
 		<a href="https://www.google.com/intl/hu_hu/help/terms_maps/">Google felhasználási feltételeiből</a>
 		megtudhatjuk, hogy külön erre vonatkozó szerződés hiányában
-		<em>tilos mindennemű másolás, lefordítás, módosítás, származtatott munka készítése, terjesztés,
-			publikálás, eladás, bérbe adás, visszafejtés stb.</em>
-		Az ilyenekre feltöltő szerkesztők tehát egy-egy nekik kedves cég "zsebébe tömködik" a
-		térképadatokat.</p>
+		<em>tilos mindennemű másolás, lefordítás, módosítás, származtatott munka készítése, terjesztés, publikálás,
+			eladás, bérbe adás, visszafejtés stb.</em>
+		Az ilyenekre feltöltő szerkesztők tehát egy-egy nekik kedves cég "zsebébe tömködik" a térképadatokat.</p>
 
-		<p>Ezzel a megközelítéssel szöges ellentétben áll az OpenStreetMap licencelése.
-		Az adatok nem csak hogy megtekinthetőek az interneten, de <strong>bármikor szabadon másolhatóak, bármilyen (üzleti és magán) célra felhasználhatóak, származtatott munka készíthető belőlük</strong> (a licencfeltételek betartásával).
-		Mindenkinek csak a kreativitásán vagy az épp üzleti lehetőségein múlik, hogy mit hoz ki az OSM térképadataiból. Emellett a szerkesztés is teljesen szabadon zajlik, bárki feltöltheti amit fontosnak tart és erre mások azonnal reagálhatnak pontosításokkal.</p>
+		<p>Ezzel a megközelítéssel szöges ellentétben áll az OpenStreetMap licencelése. Az adatok nem csak hogy
+		megtekinthetőek az interneten, de <strong>bármikor szabadon másolhatóak, bármilyen (üzleti és magán) célra
+		felhasználhatóak, származtatott munka készíthető belőlük</strong> (a licencfeltételek betartásával).
+		Mindenkinek csak a kreativitásán vagy az épp üzleti lehetőségein múlik, hogy mit hoz ki az OSM térképadataiból.
+		Emellett a szerkesztés is teljesen szabadon zajlik, bárki feltöltheti amit fontosnak tart és erre mások azonnal
+		reagálhatnak pontosításokkal.</p>
+
+		<hr />
+
 		<!--#include virtual="includes/cc0.html" -->
 	</div>
 </body>
