@@ -6,7 +6,7 @@
 <body class="info-page">
 	<?php include 'includes/header.html' ?>
 
-	<div class="navigation">
+	<div class="page-navigation">
 		<ul class="submenu">
 			<li><a href="validatestreetnames.php?mode=u">.u keresés</a></li>
 			<li><a href="validatestreetnames.php?mode=all">ellenőrzendők keresése</a></li>

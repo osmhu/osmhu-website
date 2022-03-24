@@ -4,12 +4,12 @@
 		content="Magyarország vagy más ország térképének letöltése Android, Apple, Garmin eszközökre. Szerkesztőprogramok letöltése.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=414">
+	<link rel="stylesheet" href="/css/info.css?rev=415">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
 
-	<div class="navigation active-letoltesek">
+	<div class="page-navigation active-letoltesek">
 		<!--#include virtual="includes/submenu.html" -->
 	</div>
 
@@ -59,11 +59,12 @@
 
 		<p>Magyarország vagy európai térképek letöltése: <a href="https://www.openhiking.eu/hu/">OpenHiking.eu</a>
 		vagy <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a>.
-		Bringázáshoz próbáld ki az <a href="https://www.osmbikemap.szerako.hu">OSM Bike Map</a> térképét.</a></p>
+		Bringázáshoz próbáld ki az <a href="https://www.osmbikemap.szerako.hu">OSM Bike Map</a> térképét.</p>
 
 		<hr />
 
-		<img class="right illustration" src="/kepek/osmand_turareteg_domcsi.png" />
+		<img class="right illustration" src="/kepek/osmand_turareteg_domcsi.png"
+			alt="Magyarország turistatérkép példa képernyőkép" />
 
 		<h1>Magyarország turistatérkép - rátét réteg</h1>
 
@@ -118,7 +119,7 @@
 			<h2>JOSM szerkesztőprogram</h2>
 
 			<p><a href="https://josm.openstreetmap.de/josm-tested.jar">
-				<img src="kepek/josm-gomb.png" alt="JOSM szerkesztő letöltése"></a></p>
+				<img src="kepek/josm-gomb.png" alt="JOSM szerkesztőprogram letöltés gomb" /></a></p>
 		</div>
 
 		<hr />
@@ -129,7 +130,8 @@
 			<h2>Háttérkép</h2>
 
 			<a href="/letoltes/wallpaper/osm-hungary-wallpaper.png">
-				<img src="/letoltes/wallpaper/osm-hungary-wallpaper-thumb.jpg" class="left illustration">
+				<img src="/letoltes/wallpaper/osm-hungary-wallpaper-thumb.jpg" class="left illustration"
+					alt="Magyarország térkép magyar nyelvű településnevekkel (háttérképként használható)" />
 				<p>Magyar nevek réteg 1920x1200 (3MB)</p>
 			</a>
 			<div class="clearfix"></div>
@@ -137,7 +139,8 @@
 			<h2>Letölthető névjegyek</h2>
 
 			<a href="/letoltes/openstreetmap_bizz_90x50_go_3a.pdf">
-				<img src="/letoltes/openstreetmap_hu_nevjegy_90x50.jpg" class="left illustration">
+				<img src="/letoltes/openstreetmap_hu_nevjegy_90x50.jpg" class="left illustration"
+					alt="Kapcsolati adatok nélküli névjegy" />
 				<p>Kapcsolati adatok nélküli névjegy, odaadható az érdeklődöknek terepen, rendezvényeken stb.</p>
 			</a>
 

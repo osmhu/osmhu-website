@@ -36,7 +36,7 @@
 	display: block;
 	top: -120px;
 	left: 45px;
-	font-size: 1.7em;
+	font-size: 1rem;
 	background-color: rgba(255, 255, 255, 0.75);
 	border-radius: 4px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
@@ -54,26 +54,23 @@
 
 /* Leaflet loading indicator */
 .leaflet-control-loading-indicator {
-	display: none;
-	position: absolute !important;
+	position: absolute;
 	left: 40px;
+	display: none;
+	align-items: center;
+	min-width: 100px;
 	padding: 5px 12px;
-	color: #0066FF;
+	font-size: .8rem;
+	color: #06f;
 	background-color: #fff;
-	font-size: 13px;
-	width: 120px;
 }
-.leaflet-control-loading-indicator img {
-	display: inline-block;
-	vertical-align: middle;
-}
+
 .leaflet-control-loading-indicator span {
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 8px;
+	margin-left: .5rem;
 }
+
 body.loading .leaflet-control-loading-indicator {
-	display: block;
+	display: flex;
 }
 
 .leaflet-control .easy-button-button {
@@ -96,14 +93,13 @@ body.loading .leaflet-control-loading-indicator {
 	color: #0000EE;
 }
 
-/* Side panel */
-.panel {
+.side-panel {
 	position: absolute;
 	top: 0;
-	left: 0;
 	bottom: 0;
+	left: 0;
 	width: 263px;
-	font-size: 14px;
+	font-size: .9rem;
 	border-right: 1px solid #8c8c8c;
 }
 

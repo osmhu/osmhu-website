@@ -22,11 +22,9 @@
 	color: #0066FF;
 	font-weight: bold;
 }
-#direction-results a.close {
-	font-size: 19px;
+#direction-results .close-icon {
 	float: right;
 	margin: 10px;
-	cursor: pointer;
 }
 #direction-results .results-container {
 	position: absolute;

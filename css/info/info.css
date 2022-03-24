@@ -4,55 +4,38 @@
 	display: block;
 }
 
-.info-page .navigation,
-.info-page .page-content {
-	font-family: Arial, sans-serif;
-	font-size: 16px;
-}
-
-.info-page .navigation {
+.info-page .page-navigation {
 	float: left;
 	width: 256px;
-	margin: 0 6px 6px;
+	padding-left: .5rem;
 }
 
-.info-page .navigation .submenu {
-	width: 100%;
-	padding: 0;
-	margin: 0;
+.info-page .page-navigation .nav {
+	flex-direction: column;
+	margin-bottom: .5rem;
 }
 
-.info-page .navigation .submenu li {
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
+.info-page .page-navigation .nav .nav-item:hover {
+	background-color: #d4d4d4;
 }
 
-.info-page .navigation .submenu li:hover {
-	background-color: #f0f0f0;
-}
-
-.info-page .navigation .submenu a {
-	display: block;
-	padding: 2px 5px 3px;
-	line-height: 22px;
-	color: #00e;
-	text-decoration: none;
+.info-page .page-navigation .nav .nav-link {
 	border: 1px solid #ccc;
 	border-top-width: 0;
 	border-right-width: 0;
 }
 
-.info-page a {
-	color: #00e;
+.info-page .page-navigation .hosting-attribution {
+	padding: 0 .5rem;
 }
 
 .info-page .page-content {
-	padding: 5px 20px;
-	margin: 0 6px 6px 262px;
+	padding: .5rem 1.5rem;
+	margin-left: 256px;
 	border-color: #8c8c8c;
 	border-style: solid;
-	border-width: 0 1px;
+	border-width: 0;
+	border-left-width: 1px;
 }
 
 .info-page .page-content h1 {
@@ -68,7 +51,7 @@
 }
 
 .info-page .page-content .section {
-	margin-left: 2em;
+	margin-left: 2rem;
 }
 
 .info-page .page-content .play-download-badge {
@@ -83,45 +66,11 @@
 }
 
 .info-page .page-content dt {
-	font-weight: 700;
+	margin-bottom: .25rem;
 }
 
 .info-page .page-content dd {
-	margin: 4px 0 4px 30px;
-}
-
-.info-page .page-content .links {
-	padding: 3px 0 0 30px;
-}
-
-.info-page .page-content .nodots {
-	padding: 0 0 0 20px;
-	list-style-type: none;
-}
-
-.info-page .page-content .nodots li {
-	margin-top: 10px;
-	font-weight: 700;
-}
-
-.info-page .page-content .links li {
-	margin-top: 5px;
-	font-weight: 400;
-}
-
-.info-page .page-content .links a,
-.info-page .page-content .ordered-instructions a {
-	color: #00e;
-	text-decoration: none;
-}
-
-.info-page .page-content .links a:hover,
-.info-page .page-content .ordered-instructions a:hover {
-	text-decoration: underline;
-}
-
-.info-page .page-content .ordered-instructions li {
-	padding: 3px 0;
+	margin-left: 1rem;
 }
 
 .info-page .page-content .illustration {
@@ -157,19 +106,17 @@
 	clear: both;
 }
 
-.info-page .navigation.active-felhasznalas .felhasznalas a,
-.info-page .navigation.active-rolunk .rolunk a,
-.info-page .navigation.active-terkepek .terkepek a,
-.info-page .navigation.active-terkep .terkep a,
-.info-page .navigation.active-gpsbekuldes .gpsbekuldes a,
-.info-page .navigation.active-szerkesztes .szerkesztes a,
-.info-page .navigation.active-letoltesek .letoltesek a {
-	color: #fff;
-	background-color: #666;
-	border: 0 none;
+.info-page .page-navigation.active-felhasznalas .felhasznalas a,
+.info-page .page-navigation.active-rolunk .rolunk a,
+.info-page .page-navigation.active-terkepek .terkepek a,
+.info-page .page-navigation.active-terkep .terkep a,
+.info-page .page-navigation.active-gpsbekuldes .gpsbekuldes a,
+.info-page .page-navigation.active-szerkesztes .szerkesztes a,
+.info-page .page-navigation.active-letoltesek .letoltesek a {
+	color: #243177;
+	background-color: #ccdeed;
 }
 
-/* TODO remove: overpass.js used this for highlighting a tool, but that code no longer works */
 .highlight {
 	color: #000;
 	background-color: #ff0;
@@ -186,19 +133,21 @@
 	vertical-align: top;
 }
 
-.info-page.citylist .citylist-table.rewrite td {
-	font-family: monospace;
-	font-size: 80%;
+/* Header on smaller screens */
+@media all and (max-width: 910px) {
+	.page-header .header-logo {
+		width: 256px;
+	}
+
+	.page-header .header-logo .brand-and-slogan-container {
+		display: block;
+	}
 }
 
 /* On mobile or small screen */
 @media all and (max-width: 699px) {
-	.info-page .page-header {
-		height: 32px;
-	}
-
 	.info-page .header-menu,
-	.info-page .navigation,
+	.info-page .page-navigation,
 	.info-page .page-content {
 		position: static;
 		display: block;
@@ -211,19 +160,15 @@
 	}
 
 	.info-page .header-menu,
-	.info-page .navigation {
+	.info-page .page-navigation {
 		margin: 0;
 	}
 
-	.info-page .navigation {
+	.info-page .page-navigation {
 		padding: 0 10px;
 	}
 
-	.info-page .navigation .submenu a {
-		border-right-width: 1px;
-	}
-
-	.info-page .navigation .submenu-description {
+	.info-page .page-navigation .submenu-description {
 		display: inline-block;
 		width: 100%;
 		padding: 0 10px;
@@ -232,7 +177,7 @@
 		border-top-width: 0;
 	}
 
-	.info-page .navigation p {
+	.info-page .page-navigation p {
 		padding: 0 10px;
 	}
 

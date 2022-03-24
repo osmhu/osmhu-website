@@ -12,6 +12,66 @@ html {
 	font-size: 1rem;
 }
 
+body {
+	line-height: 1.5rem;
+}
+
+a {
+	color: #0040ff;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #002bb5;
+	text-decoration: underline;
+}
+
+.nav {
+	padding-left: 0;
+	margin: 0;
+}
+
+.nav .nav-item {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.nav .nav-link {
+	display: block;
+	padding: .4rem 1rem;
+}
+
+.nav .nav-link:hover {
+	text-decoration: none;
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin-bottom: .5rem;
+}
+
+.close-icon {
+	font-size: 1.5rem;
+	color: #000;
+	cursor: pointer;
+}
+
+.close-icon:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+hr {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	border-top: 1px solid rgba(0, 0, 0, .2);
+}
+
 /* Header */
 
 .page-header {
@@ -22,23 +82,27 @@ html {
 }
 
 .page-header .header-logo {
-	width: 263px;
-	padding: 16px 0 0 16px;
+	width: 256px;
 	font-family: Arial, sans-serif;
 }
 
 .page-header .header-logo a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 79px;
 	text-decoration: none;
 }
 
 .page-header .header-logo img {
-	float: left;
+	display: block;
 	width: 52px;
 	height: 51px;
 	margin-right: 10px;
 }
 
 .page-header .header-logo .brand {
+	display: block;
 	margin: 0;
 	font-size: 1.3rem;
 	font-weight: 700;
@@ -50,60 +114,34 @@ html {
 }
 
 .page-header .header-logo .slogan {
-	margin: 4px 0 0;
+	display: block;
+	margin: 0;
 	font-size: .9rem;
 	font-weight: 700;
 	color: #000;
+}
+
+.page-header .header-menu .nav {
+	display: flex;
 }
 
 .page-header .header-menu {
 	position: absolute;
 	top: 0;
 	right: 0;
-	height: 25px;
-	font-family: Arial, sans-serif;
+	z-index: 200;
 }
 
-.page-header .header-menu ul {
-	padding: 0;
-	margin: 0;
-	font-size: 0;
-	text-align: center;
+.page-header .header-menu .nav .nav-item {
+	font-size: .9rem;
 }
 
-.page-header .header-menu ul li {
-	position: relative;
-	display: inline;
-	margin: 0;
-	font-size: 14px;
-	text-align: center;
-	list-style-type: none;
-}
-
-.page-header .header-menu ul li::before {
-	color: #ddd;
-	content: "|";
-}
-
-.page-header .header-menu ul li:first-child::before {
-	content: "";
-}
-
-.page-header .header-menu li a {
-	padding: 3px 6px;
-	line-height: 25px;
-	color: #00f;
-	text-align: center;
-	text-decoration: none;
-}
-
-.page-header .header-menu li a:hover {
-	text-decoration: underline;
-	background-color: #f0f0f0;
+.page-header .header-menu .nav-item .nav-link:hover {
+	background-color: #e0e0e0;
 }
 
 /* Header on desktop screens */
-@media all and (min-width: 699px) {
+@media all and (min-width: 700px) {
 	.page-header .header-menu .brand-name {
 		display: none;
 	}
@@ -111,8 +149,11 @@ html {
 
 /* Header on smaller screens */
 @media all and (max-width: 910px) {
-	.page-header .header-logo .brand,
-	.page-header .header-logo .slogan {
+	.page-header .header-logo {
+		width: 100px;
+	}
+
+	.page-header .header-logo .brand-and-slogan-container {
 		display: none;
 	}
 }
@@ -120,7 +161,7 @@ html {
 /* Header on mobile or small screen */
 @media all and (max-width: 699px) {
 	.page-header {
-		height: auto;
+		height: inherit;
 		margin-bottom: 0;
 		border-bottom-color: #ccc;
 	}
@@ -130,7 +171,7 @@ html {
 	}
 
 	.page-header .header-menu {
-		position: initial;
+		position: inherit;
 		width: 100%;
 		height: auto;
 		text-align: center;
@@ -140,14 +181,15 @@ html {
 		display: none;
 	}
 
-	.page-header .header-menu li a {
+	.page-header .header-menu .nav {
+		justify-content: center;
+	}
+
+	.page-header .header-menu .nav-item .nav-link {
 		padding: 5px 8px;
-		font-size: 15px;
-		line-height: 32px;
 	}
 
 	.page-header .header-menu .brand-name a {
-		font-size: 100%;
 		color: #577449;
 	}
 }

@@ -1,27 +1,32 @@
 .poi-layer-selector {
 	display: inline-block;
+	font-size: 1rem;
 	vertical-align: middle;
 }
 
 .poi-layer-selector .poi-layer-selector-trigger {
-	padding: 6px 8px 4px 8px;
-	border: 1px solid #aaa;
-	border-radius: 3px;
-	background: white;
+	height: 2rem;
+	padding-left: .5rem;
+	line-height: 1rem;
 	cursor: pointer;
 	user-select: none;
+	background: #fff;
+	border: 1px solid #aaa;
+	border-radius: 3px;
 }
 
-.poi-layer-selector .poi-layer-selector-trigger span, .poi-layer-selector .poi-layer-selector-trigger .poi-layer-selector-state {
+.poi-layer-selector .poi-layer-selector-trigger .title {
+	vertical-align: middle;
+}
+
+.poi-layer-selector .poi-layer-selector-trigger span,
+.poi-layer-selector .poi-layer-selector-trigger .poi-layer-selector-state {
 	display: inline-block;
 }
 
 .poi-layer-selector .poi-layer-selector-trigger .poi-layer-selector-state {
 	margin-left: 6px;
-}
-
-.poi-layer-selector .poi-layer-selector-trigger .poi-layer-selector-state .svg-icon {
-	vertical-align: text-top;
+	vertical-align: middle;
 }
 
 .poi-layer-selector .poi-layer-selector-dropdown {
@@ -111,7 +116,7 @@
 		z-index: 1000;
 		width: 365px;
 		right: 0;
-		left: initial;
+		left: inherit;
 	}
 
 	.poi-layer-selector .poi-layer-selector-dropdown .poi-layer-selector-category-title {

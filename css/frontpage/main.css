@@ -2,13 +2,14 @@
 	display: none;
 }
 
-/* Search area */
-#search-area {
+.search-area-container {
 	position: absolute;
-	top: 20px;
-	left: 264px;
+	top: 0;
+	left: 274px;
 	z-index: 100;
-	font-family: Arial;
+	display: flex;
+	align-items: center;
+	height: 80px;
 }
 
 span.svg-icon {
@@ -53,12 +54,15 @@ span.svg-icon.caret-up-icon {
 	font-weight: bold;
 	border-bottom: 0 none;
 }
-#search-area #search-mode a, #search-area #directions-mode a {
+
+#search-area #search-mode a,
+#search-area #directions-mode a {
 	padding: 4px 12px;
-	font-size: 13px;
+	font-size: .9rem;
+	color: #06f;
 	text-decoration: none;
-	color: #0066FF;
 }
+
 #search-area #modes {
 	display: inline-block;
 	vertical-align: middle;
@@ -69,13 +73,17 @@ span.svg-icon.caret-up-icon {
 #search-area #directions .fields {
 	display: inline-block;
 }
+
 #search-area input.autocomplete {
 	width: 260px;
-	padding: 6px 0 5px 6px;
+	height: 2rem;
+	padding: 0;
+	padding-left: 6px;
 	margin: 0;
 	border: 1px solid #aaa;
 	border-radius: 3px 0 0 3px;
 }
+
 #search-area input.searching {
 	background-image: url("/kepek/ajax-loader.gif");
 	background-repeat: no-repeat;
@@ -95,7 +103,6 @@ span.svg-icon.caret-up-icon {
 }
 #search-area .tt-dropdown-menu .tt-suggestion {
 	padding: 2px 8px;
-	font-size: 15px;
 	line-height: 24px;
 }
 #search-area .tt-suggestion.tt-cursor {
@@ -110,23 +117,26 @@ span.svg-icon.caret-up-icon {
 	margin: 0;
 	vertical-align: top;
 }
+
 #search-area .search-button-container .search-button {
-	cursor: pointer;
+	width: 2rem;
+	height: 2rem;
 	margin: 0;
-	padding: 6px 7px 5px;
-	border: 1px solid #aaa;
-	border-left-width: 0;
-	border-radius: 0 3px 3px 0;
-	line-height: 0;
 	color: #e8f0de;
+	cursor: pointer;
 	background: #64991e;
 	background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
 	background: -moz-linear-gradient(top,  #7db72f,  #4e7d0e);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+	border: 1px solid #aaa;
+	border-left-width: 0;
+	border-radius: 0 3px 3px 0;
 }
 
-#search-area .search-button-container .search-button svg.icon {
-	color: white;
+#search-area .search-button-container .search-button .svg-icon {
+	margin-bottom: .2rem;
+	color: #fff;
+	vertical-align: middle;
 }
 
 #search-area #directions input.autocomplete {
@@ -137,7 +147,7 @@ span.svg-icon.caret-up-icon {
 }
 
 /* Override panels */
-.panel {
+.side-panel {
 	top: 80px;
 }
 
@@ -179,7 +189,7 @@ span.svg-icon.caret-up-icon {
 
 /* Header layout on smaller screens */
 @media all and (max-width: 910px) {
-	#search-area {
+	.search-area-container {
 		left: 90px;
 	}
 }
@@ -187,18 +197,22 @@ span.svg-icon.caret-up-icon {
 /* Map layout on mobile or small screen */
 @media all and (max-width: 699px) {
 	.page-header {
+		height: 72px;
 		margin-bottom: 0;
 		border-bottom-color: #ccc;
 	}
 
-	#search-area {
+	.search-area-container {
 		position: absolute;
-		top: 32px;
+		top: 34px;
 		left: 0;
+		display: block;
+		width: 100%;
+		height: inherit;
 		padding: 0;
 		border: 0 none;
-		width: 100%;
 	}
+
 	#search-area #search-options-container {
 		display: block;
 		height: auto;
@@ -215,28 +229,15 @@ span.svg-icon.caret-up-icon {
 	#search-area #modes {
 		flex-grow: 1;
 	}
+
 	#search-area #search form {
-		display: table;
-		width: 100%;
+		display: flex;
 	}
+
 	#search-area input.autocomplete {
-		display: table-cell;
-		font-size: 15px;
-		padding: 6px 10px 5px;
-		height: 30px;
 		width: 100%;
 	}
-	#search-area .search-button-container {
-		display: table-cell;
-		width: 31px;
-	}
-	#search-area .search-button-container .search-button {
-		width: 31px;
-		height: 30px;
-		font-size: 80%;
-		vertical-align: top;
-		padding: 0;
-	}
+
 	#search-area .poi-layer-selector {
 		min-width: 165px;
 	}
@@ -256,7 +257,6 @@ span.svg-icon.caret-up-icon {
 	}
 	.leaflet-control-minZoomIndicator {
 		position: absolute;
-		font-size: 100%;
 		max-width: 370px;
 		top: 0;
 		right: 68px;
