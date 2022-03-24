@@ -3,7 +3,7 @@
 	<meta name="description" content="Szabadon letölthető és felhasználható, közösségi szerkesztésű térkép Magyarországról és az egész világról.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/frontpage.css?rev=418">
+	<link rel="stylesheet" href="/css/frontpage.css?rev=419">
 
 	<!-- Preconnect to default OSM tile servers and default overpass api -->
 	<link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin>
@@ -14,70 +14,72 @@
 <body>
 	<!--#include virtual="includes/header.html" -->
 
-	<div id="search-area">
-		<div id="mode-selector">
-			<div id="search-mode" class="active">
-				<a href="#">
-					<svg class="icon" width="13" height="13" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-						<use href="/kepek/font-awesome-icons/search-solid.svg#search-icon"></use>
-					</svg>
-					<span class="title">Keresés</span>
-				</a>
-			</div><div id="directions-mode">
-				<a href="#">
-					<svg class="icon" width="13" height="13" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-						<use href="/kepek/font-awesome-icons/car-solid.svg#car-icon"></use>
-					</svg>
-					<span class="title">Útvonalterv</span></a>
-			</div>
-		</div>
-		<div id="search-options-container">
-			<div id="search-options">
-				<div id="modes">
-					<div id="search">
-						<form>
-							<label for="text-search">Város, utca vagy keresőszó</label>
-							<input class="autocomplete" type="text" id="text-search" placeholder="Város, utca vagy keresőszó"><!--
-								// remove space between elements https://stackoverflow.com/q/5078239
-							--><div class="search-button-container">
-								<button class="search-button" type="submit" name="search-button" title="Keresés" aria-label="Keresés">
-									<span></span>
-									<svg class="icon" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-										<use href="/kepek/font-awesome-icons/search-solid.svg#search-icon"></use>
-									</svg>
-								</button>
-							</div>
-						</form>
-					</div>
-					<div id="directions">
-						<form>
-							<div class="fields">
-								<label for="directions-start-search">Indulás helye</label>
-								<label for="directions-end-search">Érkezés helye</label>
-								<input class="autocomplete" type="text" id="directions-start-search" placeholder="Indulás helye">
-								<input class="autocomplete" type="text" id="directions-end-search" placeholder="Érkezés helye">
-							</div><!--
-								// remove space between elements https://stackoverflow.com/q/5078239
-							--><div class="search-button-container">
-								<button class="search-button" type="submit" alt="Keresés" aria-label="Keresés">
-									<span></span>
-									<svg class="icon" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-										<use href="/kepek/font-awesome-icons/search-solid.svg#search-icon"></use>
-									</svg>
-								</button>
-							</div>
-						</form>
-					</div>
+	<div class="search-area-container">
+		<div id="search-area">
+			<div id="mode-selector">
+				<div id="search-mode" class="active">
+					<a href="#">
+						<svg class="svg-icon" width="13" height="13" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+							<use href="/kepek/font-awesome-icons/search-solid.svg#search-icon"></use>
+						</svg>
+						<span class="title">Keresés</span>
+					</a>
+				</div><div id="directions-mode">
+					<a href="#">
+						<svg class="svg-icon" width="13" height="13" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+							<use href="/kepek/font-awesome-icons/car-solid.svg#car-icon"></use>
+						</svg>
+						<span class="title">Útvonalterv</span></a>
 				</div>
-				<div class="poi-layer-selector">
-					<button class="poi-layer-selector-trigger">
-						<span class="title">Helyek keresése</span>
-						<span class="poi-layer-selector-state">
-							<span class="svg-icon caret-down-icon"></span>
-						</span>
-					</button>
-					<div class="poi-layer-selector-dropdown">
-						<div class="poi-layer-selector-categories"></div>
+			</div>
+			<div id="search-options-container">
+				<div id="search-options">
+					<div id="modes">
+						<div id="search">
+							<form>
+								<label for="text-search">Város, utca vagy keresőszó</label>
+								<input class="autocomplete" type="text" id="text-search" placeholder="Város, utca vagy keresőszó"><!--
+									// remove space between elements https://stackoverflow.com/q/5078239
+								--><div class="search-button-container">
+									<button class="search-button" type="submit" name="search-button" title="Keresés" aria-label="Keresés">
+										<span></span>
+										<svg class="svg-icon" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+											<use href="/kepek/font-awesome-icons/search-solid.svg#search-icon"></use>
+										</svg>
+									</button>
+								</div>
+							</form>
+						</div>
+						<div id="directions">
+							<form>
+								<div class="fields">
+									<label for="directions-start-search">Indulás helye</label>
+									<label for="directions-end-search">Érkezés helye</label>
+									<input class="autocomplete" type="text" id="directions-start-search" placeholder="Indulás helye">
+									<input class="autocomplete" type="text" id="directions-end-search" placeholder="Érkezés helye">
+								</div><!--
+									// remove space between elements https://stackoverflow.com/q/5078239
+								--><div class="search-button-container">
+									<button class="search-button" type="submit" alt="Keresés" aria-label="Keresés">
+										<span></span>
+										<svg class="svg-icon" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+											<use href="/kepek/font-awesome-icons/search-solid.svg#search-icon"></use>
+										</svg>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="poi-layer-selector">
+						<button class="poi-layer-selector-trigger">
+							<span class="title">Helyek keresése</span>
+							<span class="poi-layer-selector-state">
+								<span class="svg-icon caret-down-icon"></span>
+							</span>
+						</button>
+						<div class="poi-layer-selector-dropdown">
+							<div class="poi-layer-selector-categories"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -94,13 +96,15 @@
 	<div id="map-container">
 		<noscript>
 			<p>A weboldal használatához JavaScript szükséges.</p>
-			<p><a href="https://www.enable-javascript.com/hu/" target="_blank">Itt találhat segítséget, hogy hogyan engedélyezheti a JavaScriptet böngészőjében.</a></p>
+			<p><a href="https://www.enable-javascript.com/hu/" target="_blank">Itt találhat segítséget,
+				hogy hogyan engedélyezheti a JavaScriptet böngészőjében.</a>
+			</p>
 		</noscript>
 		<div id="map"></div>
 	</div>
 
-	<div id="search-results" class="panel">
-		<a class="close">×</a>
+	<div id="search-results" class="side-panel">
+		<a class="close-icon">×</a>
 		<p class="title">Keresés eredménye</p>
 		<div class="results-container">
 			<div class="no-results">
@@ -112,8 +116,8 @@
 		</div>
 	</div>
 
-	<div id="direction-results" class="panel">
-		<a class="close">×</a>
+	<div id="direction-results" class="side-panel">
+		<a class="close-icon">×</a>
 		<p class="title">Útvonaltervezés</p>
 		<div class="results-container">
 			<div class="choose-type">
@@ -139,26 +143,31 @@
 		</div>
 	</div>
 
-	<div id="introduction" class="panel">
+	<div id="introduction" class="side-panel">
 		<div class="description">
-			<p>Az <strong>OpenStreetMap</strong> egy világtérkép, amelyet hozzád hasonló emberek készítenek és szabad licenc alatt elérhető.</p>
-			<p>Ha hibát találsz vagy hiányzik egy fontos hely, <strong>Te is hozzáadhatod</strong> a szerkesztőprogrammal a hiányzó utcákat, boltokat, iskolákat, éttermeket és egyéb tereptárgyakat.</p>
+			<p>Az <strong>OpenStreetMap</strong> egy világtérkép,
+				amelyet hozzád hasonló emberek készítenek és szabad licenc alatt elérhető.</p>
+			<p>Ha hibát találsz vagy hiányzik egy fontos hely, <strong>Te is hozzáadhatod</strong>
+				a szerkesztőprogrammal a hiányzó utcákat, boltokat, iskolákat, éttermeket és egyéb tereptárgyakat.</p>
 		</div>
 		<div class="tryit">
 			<p><strong>Próbáld ki, és szerkessz valamit!</strong></p>
-			<div class="button"><a id="orgEditLink" href="https://openstreetmap.org/edit">Terület szerkesztése</a></div>
+			<p><a id="orgEditLink" href="https://openstreetmap.org/edit">Terület szerkesztése</a></p>
 		</div>
 		<div class="promotion" style="display: none;">
 			<!--
 			<p class="title"><strong>Kiemelt projekt</strong></p>
 			<p class="slogan">Kerekesszékes térkép</p>
-			<p class="link"><a href="https://route4u.org/" target="_blank"><img src="/kepek/route4u.jpg" alt="Route4U logó"><span>ROUTE4U</span></a></p>
+			<p class="link"><a href="https://route4u.org/" target="_blank">
+				<img src="/kepek/route4u.jpg" alt="Route4U logó"><span>ROUTE4U</span></a></p>
 			-->
 		</div>
 		<div class="facebook">
 			<p><strong>Facebook oldalunk:</strong></p>
-			<div class="button fbstyle"><a class="fbpage" href="https://www.facebook.com/OpenStreetMap.hu" title="OpenStreetMap.hu a Facebookon" target="_blank" rel="noreferrer">OpenStreetMap.hu</a></div>
-			<div class="button fbstyle"><a class="fbpage" href="https://www.facebook.com/groups/osm.hu" title="Szerkesztői csoport a Facebookon" target="_blank" rel="noreferrer">Szerkesztői csoport</a></div>
+			<p><a class="fbstyle" href="https://www.facebook.com/OpenStreetMap.hu" title="OpenStreetMap.hu a Facebookon"
+				target="_blank" rel="noreferrer"><span class="fbpage">OpenStreetMap.hu</span></a></p>
+			<p><a class="fbstyle" href="https://www.facebook.com/groups/osm.hu" title="Szerkesztői csoport a Facebookon"
+				target="_blank" rel="noreferrer"><span class="fbpage">Szerkesztői csoport</span></a></p>
 		</div>
 	</div>
 

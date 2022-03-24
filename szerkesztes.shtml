@@ -2,12 +2,12 @@
 	<title>OpenStreetMap térkép szerkesztése</title>
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=414">
+	<link rel="stylesheet" href="/css/info.css?rev=415">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
 
-	<div class="navigation active-szerkesztes">
+	<div class="page-navigation active-szerkesztes">
 		<!--#include virtual="includes/submenu.html" -->
 		<div class="submenu-description">
 			<h3>Szerkesztőprogramok</h3>
@@ -43,7 +43,7 @@
 
 		<h1><span class="nowrap">Mi kell a szerkesztéshez</span></h1>
 
-		<ol class="ordered-instructions">
+		<ol>
 			<li>Információ arról, amit változtatni szeretnél a térképen.</li>
 			<li>Regisztrálj a
 				<a href="https://www.openstreetmap.org/user/new" target="_blank">www.openstreetmap.org</a>

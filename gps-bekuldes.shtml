@@ -4,12 +4,12 @@
 		content="GPS nyomvonalak rögzítésével segítheted az OpenStreetMap térkép pontosítását, kiegészítését.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=414">
+	<link rel="stylesheet" href="/css/info.css?rev=415">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
 
-	<div class="navigation active-gpsbekuldes">
+	<div class="page-navigation active-gpsbekuldes">
 		<!--#include virtual="includes/submenu.html" -->
 	</div>
 

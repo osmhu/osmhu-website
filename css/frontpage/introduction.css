@@ -1,33 +1,37 @@
-/* Introduction */
 #introduction {
-	font-family: Helvetica, sans-serif;
 	z-index: 25;
-	background: white;
 	overflow: auto;
+	font-family: Helvetica, sans-serif;
+	background: #fff;
 }
+
 #introduction .description {
-	padding: 10px 9px 0 10px;
+	padding: .75rem;
+	padding-bottom: 0;
 }
-#introduction .description a {
-	color: black;
-}
+
 #introduction .description p {
+	margin-top: 0;
+	margin-bottom: .5rem;
+	line-height: 1.3rem;
 	text-align: justify;
-	line-height: 18px;
-	margin-top: 10px;
-	margin-bottom: 10px;
 }
-#introduction .tryit, #introduction .project {
+
+#introduction .tryit,
+#introduction .project {
 	border-bottom: 1px solid #aaa;
 }
+
 #introduction .tryit {
 	padding-bottom: 15px;
 }
+
 #introduction .tryit p {
+	margin-top: 0;
+	margin-bottom: .5rem;
 	text-align: center;
-	margin-top: 14px;
-	margin-bottom: 14px;
 }
+
 #introduction .tryit a#orgEditLink {
 	display: block;
 	border-radius: 2px;
@@ -81,32 +85,29 @@
 #introduction .facebook p {
 	text-align: center;
 }
-#introduction .facebook .button {
-	width: 180px;
-	margin: 12px auto;
-}
-#introduction .fbstyle {
+
+#introduction .facebook .fbstyle {
 	display: block;
-	text-align: center;
+	width: 180px;
 	padding: 8px 16px;
-	background-color: #3B5998;
+	margin: 12px auto;
 	font-family: Helvetica, sans-serif;
+	color: #fff;
+	text-align: center;
+	background-color: #3b5998;
 }
-#introduction .fbstyle a {
-	text-decoration: none;
-	color: white;
-}
-#introduction .fbstyle a.fbpage {
-	background-image: url("/kepek/fb-icon16.png");
+
+#introduction .facebook .fbstyle .fbpage {
 	padding-left: 20px;
+	background-image: url("/kepek/fb-icon16.png");
 	background-repeat: no-repeat;
 	background-position: left center;
 }
-/* Introduction toggler */
+
 #introduction-toggler {
-	display: block;
 	position: absolute;
 	bottom: 30%;
+	display: block;
 	margin-left: -4px;
 	border-radius: 4px;
 	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
@@ -119,18 +120,20 @@
 	left: 259px;
 	cursor: pointer;
 }
+
 #introduction-toggler .toggler-button {
 	padding: 16px 7px;
-	border: 0 none;
-	background: none;
 	cursor: pointer;
+	background: none;
+	border: 0 none;
 }
 
 @media all and (max-width: 699px) {
 	#introduction {
-		display: none !important;
+		display: none;
 	}
+
 	#introduction-toggler {
-		display: none !important;
+		display: none;
 	}
 }

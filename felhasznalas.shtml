@@ -4,12 +4,12 @@
 		content="OpenStreetMap alapú szolgáltatások listája, útvonaltervezők, turistatérképek, GPS navigációs rendszerek stb.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=414">
+	<link rel="stylesheet" href="/css/info.css?rev=415">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
 
-	<div class="navigation active-felhasznalas">
+	<div class="page-navigation active-felhasznalas">
 		<!--#include virtual="includes/submenu.html" -->
 	</div>
 
@@ -41,9 +41,10 @@
 
 		<h1>Internetes példák</h1>
 
-		<ul class="nodots">
-			<li>Turista térképek
-			<ul class="links nodots">
+		<div class="section">
+			<h2>Turista térképek</h2>
+
+			<ul>
 				<li>
 					<a href="https://turistautak.openstreetmap.hu/">Turistautak.openstreetmap.hu</a>
 				</li>
@@ -62,10 +63,11 @@
 				<li>
 					<a href="https://www.wanderreitkarte.de/">WanderReitKarte</a> - túra- és lovastérkép
 				</li>
-			</ul></li>
+			</ul>
 
-			<li>Kerékpár térképek
-			<ul class="links nodots">
+			<h2>Kerékpár térképek</h2>
+
+			<ul>
 				<li>
 					<a href="https://merretekerjek.hu/">merretekerjek.hu</a>
 					&nbsp;- kerékpáros útvonalterv készítő
@@ -77,11 +79,11 @@
 				<li>
 					<a href="https://cycling.waymarkedtrails.org/#?map=8.0/47.0127/19.7097">Waymarked Trails bringás</a>
 				</li>
-			</ul></li>
+			</ul>
 
-			<li>Útvonaltervezők, összetett alkalmazások
+			<h2>Útvonaltervezők, összetett alkalmazások</h2>
 
-			<ul class="links nodots">
+			<ul>
 				<li>
 					<a href="https://map.project-osrm.org/?z=7&center=47.297859%2C21.527710&hl=en&alt=0&srv=1">
 						OSRM - OpenSource Routing Machine</a> - autós, kerékpáros, gyalogos tervező
@@ -94,18 +96,20 @@
 					<a href="https://www.mapquest.com/">MapQuest</a>
 					- Autó, bicikli és gyalogos útvonal tervezés. Éttermek, szállodák keresése az útvonal mentén.
 				</li>
-			</ul></li>
+			</ul>
 
-			<li>Különleges felhasználás
-			<ul class="links nodots">
+			<h2>Különleges felhasználás</h2>
+
+			<ul>
 				<li>
 					<a href="https://wheelmap.org/?locale=hu#/?lat=47.4983377&lon=19.0404712&zoom=17">Wheelmap</a>
 					- Akadálymentes helyek keresése és felvitele.
 				</li>
-			</ul></li>
+			</ul>
 
-			<li>3D térképek
-			<ul class="links nodots">
+			<h2>3D térképek</h2>
+
+			<ul>
 				<li>
 					<a href="https://demo.f4map.com/#lat=47.5262287&lon=19.0589625&zoom=18&camera.theta=62.762">
 						F4 Map</a> - Bejárható, forgatható, teljes 3D
@@ -115,10 +119,10 @@
 					- 3D épületek, például:
 					<a href="https://osmbuildings.org/?lat=47.51739&lon=19.05357&zoom=17">Budapest XIII.</a>
 				</li>
-			</ul></li>
+			</ul>
 
-			<li>Nyomtatáshoz
-			<ul class="links nodots">
+			<h2>Nyomtatáshoz</h2>
+			<ul>
 				<li>
 					<a href="https://print.get-map.org/">MapOSMatic</a>
 					- szép, nyomtatható térkép utcaindexszel
@@ -131,14 +135,14 @@
 					<a href="https://wiki.openstreetmap.org/wiki/OSM_on_Paper">OSM_on_Paper (Wiki)</a>
 					- Válogatás a nyomtatással kapcsolatos programokból
 				</li>
-			</ul></li>
-		</ul>
+			</ul>
+		</div>
 
 		<hr />
 
 		<h1>OSM-et felhasználó, magyar szolgáltatások</h1>
 
-		<ul class="links">
+		<ul>
 			<li><a href="https://molbubi.hu/hu/">MOL Bubi</a></li>
 			<li><a href="https://futar.bkk.hu">BKK FUTÁR Utazástervező</a></li>
 			<li><a href="https://utcakereso.hu">Utcakereso.hu térkép</a></li>
@@ -153,7 +157,7 @@
 
 		<h1>További listák</h1>
 
-		<ul class="links">
+		<ul>
 			<li><a href="https://wiki.openstreetmap.org/wiki/Hungary/Tal%C3%A1lkoz%C3%B3k/2014.06.07-08._L%C3%A1batlan_t%C3%A9rk%C3%A9pez%C3%A9s/press_release#.C3.89rdekess.C3.A9gek_az_OpenStreetMap_k.C3.A9pess.C3.A9geir.C5.91l">
 				Lábatlan sok különböző OSM szolgáltatásban</a> - a helyi térképező összejövetel alkalmával gyűjtöttük össze</li>
 			<li><a href="https://wiki.openstreetmap.org/wiki/User:Grin/bookmarks/hu">grin könyvjelzői</a> - még további hasznos linkekkel</li>
