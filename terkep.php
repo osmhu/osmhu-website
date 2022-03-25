@@ -178,7 +178,8 @@ if($page) {
 
 		// Show selected tool
 		if($tool == "keepright") {
-			echo("<td><a href=\"javascript:openKeepRight(".$city->osm_id.");\" onclick=\"highlight(this, 'pp');\">KeepRight</a></td>");
+			echo('<td><a href="javascript:openKeepRight(' . $city->osm_id . ');" onclick="highlight(this, \'pp\');">');
+			echo('KeepRight</a></td>');
 		} else if($tool == "tags") {
 			echo("<td>");
 			$tagids = array();

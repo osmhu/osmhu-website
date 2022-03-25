@@ -1,25 +1,25 @@
 {
-  "esversion": 11,
-  "browser": true,
-  "overrides": {
-    "webpack.config.js": {
-      "node": true
-    },
-    "*.test.js": {
-      "globals": {
-        "jest": false,
-        "test": false,
-        "beforeAll": false,
-        "beforeEach": false,
-        "afterEach": false,
-        "afterAll": false,
-        "describe": false,
-        "it": false,
-        "expect": false
-      }
-    },
-    "*.worker.js": {
-      "worker": true
-    }
-  }
+	"esversion": 11,
+	"browser": true,
+	"overrides": {
+		"webpack.config.js": {
+			"node": true
+		},
+		"*.test.js": {
+			"globals": {
+				"jest": false,
+				"test": false,
+				"beforeAll": false,
+				"beforeEach": false,
+				"afterEach": false,
+				"afterAll": false,
+				"describe": false,
+				"it": false,
+				"expect": false
+			}
+		},
+		"*.worker.js": {
+			"worker": true
+		}
+	}
 }

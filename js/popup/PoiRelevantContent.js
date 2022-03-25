@@ -15,7 +15,8 @@ const parseWheelchair = (osmElement) => {
 			osmElement.tags?.wheelchair !== 'yes' &&
 			osmElement.tags?.wheelchair !== 'limited' &&
 			osmElement.tags?.wheelchair !== 'no') {
-		log.warn('Unknown wheelchair tag ' + osmElement.tags?.wheelchair + '. Possible values are [yes, limited, no], osm element: ' + osmElement.id.toString());
+		log.warn('Unknown wheelchair tag ' + osmElement.tags?.wheelchair + '. ' +
+			'Possible values are [yes, limited, no], osm element: ' + osmElement.id.toString());
 		wheelchair = 'unknown';
 	}
 	if (osmElement.tags?.wheelchair === undefined) {

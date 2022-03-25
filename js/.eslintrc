@@ -1,45 +1,45 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 11,
-    "sourceType": "module"
-  },
-  "extends": [
-    "eslint:recommended",
-    "airbnb-base",
-    "plugin:import/errors",
-    "plugin:import/warnings"
-  ],
-  "rules": {
-    "indent": [ "error", "tab" ],
-    "no-tabs": [ "off" ],
-    "no-plusplus": [ "error", {
-      "allowForLoopAfterthoughts": true
-    }],
-    "prefer-template": "off",
-    "operator-linebreak": [
-      "error", "after", {
-        "overrides": { "=": "none" }
-      }
-    ],
-    "max-len": [ "error", {
-      "code": 120,
-      "tabWidth": 2,
-      "ignoreUrls": true,
-      "ignoreComments": false,
-      "ignoreTrailingComments": true,
-      "ignoreRegExpLiterals": true,
-      "ignoreStrings": true,
-      "ignoreTemplateLiterals": true
-    }],
-    "import/order": [ "warn", {
-      "newlines-between": "always"
-    }]
-  },
-  "plugins": [
-    "jest"
-  ],
-  "env": {
-    "browser": true,
-    "jest/globals": true
-  }
+	"parserOptions": {
+		"ecmaVersion": 11,
+		"sourceType": "module"
+	},
+	"extends": [
+		"eslint:recommended",
+		"airbnb-base",
+		"plugin:import/errors",
+		"plugin:import/warnings"
+	],
+	"rules": {
+		"indent": [ "error", "tab" ],
+		"no-tabs": [ "off" ],
+		"no-plusplus": [ "error", {
+			"allowForLoopAfterthoughts": true
+		}],
+		"prefer-template": "off",
+		"operator-linebreak": [
+			"error", "after", {
+				"overrides": { "=": "none" }
+			}
+		],
+		"max-len": [ "error", {
+			"code": 120,
+			"tabWidth": 2,
+			"ignoreUrls": true,
+			"ignoreComments": false,
+			"ignoreTrailingComments": true,
+			"ignoreRegExpLiterals": true,
+			"ignoreStrings": true,
+			"ignoreTemplateLiterals": true
+		}],
+		"import/order": [ "warn", {
+			"newlines-between": "always"
+		}]
+	},
+	"plugins": [
+		"jest"
+	],
+	"env": {
+		"browser": true,
+		"jest/globals": true
+	}
 }

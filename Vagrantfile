@@ -30,7 +30,12 @@ Vagrant.configure("2") do |config|
   # Virtualbox specific configuration
   config.vm.provider :virtualbox do |vb|
     vb.name = "osmhu-development"
-    vb.customize ["modifyvm", :id, "--description", "Development machine for osmhu, start with vagrant up from project directory"]
+    vb.customize [
+      "modifyvm",
+      :id,
+      "--description",
+      "Development machine for osmhu, start with vagrant up from project directory"
+    ]
     vb.memory = "1024"
     # vb.memory = "4096" # need more RAM when running osm2pgsql (import OSM data into PostgreSQL)
 

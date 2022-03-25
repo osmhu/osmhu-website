@@ -8,14 +8,17 @@ describe('overpass combined search query generator', () => {
 	it('should generate valid query with one tag', () => {
 		expect(OverpassQuery.generateQuery([{
 			amenity: 'restaurant',
-		}])).toEqual('(node({{bbox}})["amenity"="restaurant"];way({{bbox}})["amenity"="restaurant"];rel({{bbox}})["amenity"="restaurant"];);out bb qt;');
+		}])).toEqual('(node({{bbox}})["amenity"="restaurant"];way({{bbox}})["amenity"="restaurant"];' +
+			'rel({{bbox}})["amenity"="restaurant"];);out bb qt;');
 	});
 
 	it('should generate valid query with two tags', () => {
 		expect(OverpassQuery.generateQuery([{
 			leisure: 'sports_centre',
 			sport: 'swimming',
-		}])).toEqual('(node({{bbox}})["leisure"="sports_centre"]["sport"="swimming"];way({{bbox}})["leisure"="sports_centre"]["sport"="swimming"];rel({{bbox}})["leisure"="sports_centre"]["sport"="swimming"];);out bb qt;');
+		}])).toEqual('(node({{bbox}})["leisure"="sports_centre"]["sport"="swimming"];' +
+			'way({{bbox}})["leisure"="sports_centre"]["sport"="swimming"];' +
+			'rel({{bbox}})["leisure"="sports_centre"]["sport"="swimming"];);out bb qt;');
 	});
 
 	it('should generate valid query multiple search criteria', () => {
@@ -24,7 +27,9 @@ describe('overpass combined search query generator', () => {
 		}, {
 			amenity: 'bank',
 			atm: 'yes',
-		}]))).toEqual('((node({{bbox}})["amenity"="atm"];node({{bbox}})["amenity"="bank"]["atm"="yes"];);(way({{bbox}})["amenity"="atm"];way({{bbox}})["amenity"="bank"]["atm"="yes"];);(rel({{bbox}})["amenity"="atm"];rel({{bbox}})["amenity"="bank"]["atm"="yes"];););out bb qt;');
+		}]))).toEqual('((node({{bbox}})["amenity"="atm"];node({{bbox}})["amenity"="bank"]["atm"="yes"];);' +
+			'(way({{bbox}})["amenity"="atm"];way({{bbox}})["amenity"="bank"]["atm"="yes"];);' +
+			'(rel({{bbox}})["amenity"="atm"];rel({{bbox}})["amenity"="bank"]["atm"="yes"];););out bb qt;');
 	});
 });
 

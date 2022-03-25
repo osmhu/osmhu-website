@@ -5,8 +5,12 @@ charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
+max_line_length = 140
 
-[*.shtml]
+[*.{shtml,html}]
+indent_style = tab
+
+[*.php]
 indent_style = tab
 
 [css/**.css]
@@ -15,7 +19,17 @@ indent_style = tab
 [{js/**.js, package.json}]
 indent_style = tab
 
+[*.json]
+indent_style = tab
+
+[.eslintrc,.jshintrc]
+indent_style = tab
+
 [*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[Vagrantfile]
 indent_style = space
 indent_size = 2
 
