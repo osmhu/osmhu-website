@@ -158,6 +158,7 @@
 		<h1>További listák</h1>
 
 		<ul>
+			<!--#set var="editorconfig-checker-disable-next-line" value="this line is invisible in html output" -->
 			<li><a href="https://wiki.openstreetmap.org/wiki/Hungary/Tal%C3%A1lkoz%C3%B3k/2014.06.07-08._L%C3%A1batlan_t%C3%A9rk%C3%A9pez%C3%A9s/press_release#.C3.89rdekess.C3.A9gek_az_OpenStreetMap_k.C3.A9pess.C3.A9geir.C5.91l">
 				Lábatlan sok különböző OSM szolgáltatásban</a> - a helyi térképező összejövetel alkalmával gyűjtöttük össze</li>
 			<li><a href="https://wiki.openstreetmap.org/wiki/User:Grin/bookmarks/hu">grin könyvjelzői</a> - még további hasznos linkekkel</li>

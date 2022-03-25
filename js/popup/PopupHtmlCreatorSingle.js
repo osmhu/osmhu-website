@@ -77,8 +77,8 @@ export default class PopupHtmlCreatorSingle {
 		html += '<div class="options">';
 		if (shareUrl) {
 			html += '<span class="mobile-hidden">';
-			// eslint-disable-next-line quotes
-			const onClick = `this.parentElement.parentElement.querySelector('.share').style.display = 'block'; this.parentElement.parentElement.querySelector('.share .share-url').select()`;
+			const onClick = "this.parentElement.parentElement.querySelector('.share').style.display = 'block'; " +
+				"this.parentElement.parentElement.querySelector('.share .share-url').select()";
 			html += '<button onclick="' + onClick + '">Megosztás</button>';
 			html += '</span>';
 		}

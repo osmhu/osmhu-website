@@ -14,7 +14,8 @@ const formattedTime = format(eventStart, 'HH:mm');
 const template = `
 	<div style="text-align: center; border-bottom: 1px solid #aaa;">
 		<p style="margin: 12px 0 8px" class="title"><strong>Élő térképszerkesztés</strong></p>
-		<p style="margin: 8px 0">az <a href="https://fsf.hu/" target="_blank" title="FSF.hu weboldal"><span style="color: #990000">FSF.hu</span></a> szervezésében:</p>
+		<p style="margin: 8px 0">az <a href="https://fsf.hu/" target="_blank" title="FSF.hu weboldal">
+			<span style="color: #990000">FSF.hu</span></a> szervezésében:</p>
 		<p style="margin: 16px 0 8px 0">
 			<a class="open-poi" style="text-decoration: underline; cursor: pointer;" title="Budapest, Dessewffy utca 18.">
 				<span><strong>Budapest</strong>, D18 Café</span>
@@ -24,7 +25,8 @@ const template = `
 		<p style="margin: 8px 0 16px" class="countdown">
 			<span class="remaining"></span>
 		</p>
-		<div class="fbstyle" style="margin: 8px 32px 16px"><a class="fbpage" href="https://www.facebook.com/events/272083416782262/" target="_blank">Facebook Esemény</a></div>
+		<p style="margin: 8px 32px 16px"><a href="https://www.facebook.com/events/272083416782262/" target="_blank">
+			<span class="fbpage">Facebook Esemény</span></a></p>
 	</div>
 `;
 

@@ -1,10 +1,10 @@
 {
-  "Exclude": [
-    "db\/mysql\/mysql-dump.*\\.sql$",
-    "distribution/",
-    "kepek/",
-    "letoltes/",
-    "scripts/",
-    "testing/"
-  ]
+	"Exclude": [
+		"db\/mysql\/mysql-dump.*\\.sql$",
+		"distribution/",
+		"kepek/",
+		"letoltes/",
+		"scripts/",
+		"testing/"
+	]
 }

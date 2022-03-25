@@ -34,7 +34,8 @@ export default class SearchResults {
 			this.$searchResults.find('.results').html('');
 			results.forEach((result) => {
 				this.$searchResults.find('.results').append(SearchResults.generateHtmlForResult(result));
-				this.$searchResults.find(`.results .result a#search-result-${result.type}-${result.id}`).on('click', () => this.showResultOnMap(result));
+				this.$searchResults.find(`.results .result a#search-result-${result.type}-${result.id}`)
+					.on('click', () => this.showResultOnMap(result));
 			});
 			this.$searchResults.find('.results').show();
 		}

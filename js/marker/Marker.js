@@ -91,12 +91,14 @@ export default class Marker {
 			customMarker.setIcon(matchingIcon);
 		} catch (error) {
 			customMarker.options.icon.options.popupAnchor = [0, -8];
-			log.info('No icon found for', osmElementId.toString(), OsmOrgUrl.browseUrlFromOsmElementId(osmElementId), 'tags were:', overpassResult.tags);
+			log.info('No icon found for ' + osmElementId.toString() + ' ' +
+				OsmOrgUrl.browseUrlFromOsmElementId(osmElementId) + ' tags were:', overpassResult.tags);
 		}
 
 		// On popup open activate copy button
 		customMarker.on('popupopen', async () => {
-			const copyTarget = await HtmlElement.singleElementFromSelectorWithRetry(`#popup-content-${osmElementId.toObjectPropertyName()} #popup-poi-share-url`);
+			const copyTargetElementId = `#popup-content-${osmElementId.toObjectPropertyName()} #popup-poi-share-url`;
+			const copyTarget = await HtmlElement.singleElementFromSelectorWithRetry(copyTargetElementId);
 			CopyButton.copyTargetOnButtonClick(`#popup-content-${osmElementId.toObjectPropertyName()} #popup-poi-copy`, copyTarget);
 
 			Marker.setActivePoi(osmElementId.type, osmElementId.id);

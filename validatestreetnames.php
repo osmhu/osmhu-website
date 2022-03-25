@@ -72,7 +72,7 @@ if($mode == "u") {
 		."name_case LIKE '%Û%' OR "
 		."name_case LIKE '%Ũ%')";
 } else if($mode == "diktator") {
-    // https://2015-2019.kormany.hu/download/c/fc/f0000/Onkenyuralmi_nevek_egyesitett_tabla-MTA_%C3%A1ll%C3%A1sfoglal%C3%A1sa.pdf
+	// https://2015-2019.kormany.hu/download/c/fc/f0000/Onkenyuralmi_nevek_egyesitett_tabla-MTA_%C3%A1ll%C3%A1sfoglal%C3%A1sa.pdf
 	$where = " AND ("
 		."name LIKE 'Alpári Gyula%' OR "
 		."name LIKE 'Április 4%' OR "

@@ -44,7 +44,9 @@ export default class DirectionsNarrative {
 		}
 		html += '</table>';
 
-		html += '<p class="copyright">Az útvonaltervezés a <a href="https://www.mapquest.com/" target="_blank">MapQuest</a> használatával történt. Köszönjük!</p>';
+		html += '<p class="copyright">Az útvonaltervezés a ';
+		html += '<a href="https://www.mapquest.com/" target="_blank">MapQuest</a>';
+		html += ' használatával történt. Köszönjük!</p>';
 
 		this.$container.find('.results').html(html);
 

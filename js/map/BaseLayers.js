@@ -21,7 +21,8 @@ export default class BaseLayers extends LayerList {
 		// CyclOSM tiles from https://www.cyclosm.org/
 		// this.addLayer(new TileLayer(baseLayerIds.cycle, 'Kerékpáros térkép', 'CyclOSM'));
 
-		// OpenCycleMap tiles from https://www.opencyclemap.org/, needs API key from https://manage.thunderforest.com (150,000 tile loads / month)
+		// OpenCycleMap tiles from https://www.opencyclemap.org/
+		// Needs API key from https://manage.thunderforest.com (150,000 tile loads / month)
 		this.addLayer(new TileLayer(baseLayerIds.cycle, 'Kerékpáros térkép', 'Thunderforest.OpenCycleMap', {
 			apikey: 'b91d55049c50482da2771ab941a3aeb4',
 		}));
@@ -29,7 +30,8 @@ export default class BaseLayers extends LayerList {
 		// OpenStreetMap France from https://tile.openstreetmap.fr/
 		this.addLayer(new TileLayer(baseLayerIds.osmfr, 'OSM France stílus', 'OpenStreetMap.France'));
 
-		// Transport tiles from https://www.thunderforest.com/transport/, needs API key from https://manage.thunderforest.com (150,000 tile loads / month)
+		// Transport tiles from https://www.thunderforest.com/transport/
+		// Needs API key from https://manage.thunderforest.com (150,000 tile loads / month)
 		this.addLayer(new TileLayer(baseLayerIds.transport, 'Tömegközlekedés', 'Thunderforest.Transport', {
 			apikey: 'b91d55049c50482da2771ab941a3aeb4',
 		}));
