@@ -4,7 +4,7 @@
 		"distribution/",
 		"kepek/",
 		"letoltes/",
-		"scripts/",
+		"scripts\/rendering_types.xml$",
 		"testing/"
 	]
 }

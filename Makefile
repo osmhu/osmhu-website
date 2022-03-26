@@ -62,7 +62,13 @@ watch:
 lint:
 	npm run lint:editorconfig && \
 	npm run lint:css && \
-	npm run lint:js
+	npm run lint:js && \
+	make lint-php
+
+
+.PHONY: lint-php
+lint-php:
+	vendor/bin/ecs check --config development/php-coding-standard.php
 
 
 # Inside vagrant virtualbox machine, need to do npm install in a directory that is not synced

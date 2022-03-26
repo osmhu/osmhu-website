@@ -111,15 +111,15 @@ $tools = array('keepright', 'bingcompare');
 
 // Read Query String parameters
 $page = "";
-if(array_key_exists("page", $_GET) && in_array($_GET["page"], $letters)) {
+if (array_key_exists("page", $_GET) && in_array($_GET["page"], $letters)) {
 	$page = $_GET["page"];
 }
 $tool = "";
-if(array_key_exists("tool", $_GET) && in_array($_GET["tool"], $tools)) {
+if (array_key_exists("tool", $_GET) && in_array($_GET["tool"], $tools)) {
 	$tool = $_GET["tool"];
 }
 $place = "";
-if(array_key_exists("place", $_GET)) {
+if (array_key_exists("place", $_GET)) {
 	$mode = "place";
 }
 
@@ -149,22 +149,22 @@ showTools($tool);
 
 if ($tool == 'keepright') {
 	echo '<p>A KeepRight használatához engedélyezd a felugró ablakokat, majd kattints a hivatkozásokra.</p>';
-} else if ($tool == 'bingcompare') {
+} elseif ($tool == 'bingcompare') {
 	echo '<p>A Bing összehasonlító nézet használatához engedélyezd a felugró ablakokat, majd kattints a hivatkozásokra.</p>';
 }
 
 // Show city list
-if($page) {
+if ($page) {
 	$list = $strdb->load_cities(($page == "*" ? "" : $page), $tool == "tags");
 	echo("<table class=\"citylist-table $tool\">\n");
-	foreach($list as $city) {
-		if($city->name != "Kömörő") { // Conflicts with Komoró
+	foreach ($list as $city) {
+		if ($city->name != "Kömörő") { // Conflicts with Komoró
 			$city_lc = strtolower(strtr($city->name, $hutrans));
 		} else {
 			$city_lc = "kömörő";
 		}
-		if(strpos($city_lc, 'budapest') === 0) {
-			if($city_lc != "budapest i.") {
+		if (strpos($city_lc, 'budapest') === 0) {
+			if ($city_lc != "budapest i.") {
 				continue;
 			}
 			$city->name = "Budapest"; // Fake budapest
@@ -174,28 +174,33 @@ if($page) {
 
 		// Show friendly URL to city
 		echo("<tr>");
-		echo("<td><a href=\"/terkep/$city_lc\">".$city->name."</a></td>");
+		echo('<td><a href="/terkep/' . $city_lc . '">' . $city->name . '</a></td>');
 
 		// Show selected tool
-		if($tool == "keepright") {
-			echo('<td><a href="javascript:openKeepRight(' . $city->osm_id . ');" onclick="highlight(this, \'pp\');">');
+		if ($tool == "keepright") {
+			echo("<td>");
+			echo('<a href="javascript:openKeepRight(' . $city->osm_id . ');" onclick="highlight(this, \'pp\');">');
 			echo('KeepRight</a></td>');
-		} else if($tool == "tags") {
+		} elseif ($tool == "tags") {
 			echo("<td>");
 			$tagids = array();
-			if(isset($city->tags)) {
+			if (isset($city->tags)) {
 				$tagids = showTags($city->tags);
 			}
 			//echo("<a href=\"javascript:tagedit(".$city->osm_id.");\">tags<a>");
-		/*	if(!in_array(3, $tagids)) {
+			/*
+			if(!in_array(3, $tagids)) {
 				echo("<input type=\"checkbox\" name=\"street_".$city->osm_id."\"> utcanevek kell");
 			}
 			if(!in_array(4, $tagids)) {
 				echo("<input type=\"checkbox\" name=\"bing_".$city->osm_id."\"> bingezni kell");
-			}*/
+			}
+			*/
 			echo("</td>");
-		} else if($tool == "bingcompare") {
-			echo("<td><a href=\"javascript:openBingCompare(".$city->osm_id.");\" onclick=\"highlight(this, 'pp');\">Bing</a></td>");
+		} elseif ($tool == "bingcompare") {
+			echo("<td>");
+			echo('<a href="javascript:openBingCompare(' . $city->osm_id . ');" onclick="highlight(this, \'pp\');">');
+			echo('Bing</a></td>');
 		} else {
 			echo("<td>https://www.openstreetmap.hu/terkep/$city_lc</td>");
 		}
@@ -205,40 +210,50 @@ if($page) {
 }
 
 
-if($page) {
+if ($page) {
 	showPageLetters($letters, $pagenames, $page, $tool);
 }
 //echo("<input type=\"submit\" name=\"tagsubmit\"></form>");
 
 // Shows tags and returns a simple array of IDs for have/nothave checks
-function showTags($tags) {
+function showTags($tags)
+{
 	$ids = array();
-	foreach($tags as $tag) {
-		if(count($ids) > 0) { echo("<br>"); }
-		echo("<strong>".$tag["name"]."</strong> = ".$tag["value"]." <span class=\"date\">(".$tag["date"].")</span>\n");
+	foreach ($tags as $tag) {
+		if (count($ids) > 0) {
+			echo("<br>");
+		}
+		echo("<strong>" . $tag["name"] . "</strong> = " . $tag["value"] . " ");
+		echo('<span class="date">( ' . $tag["date"] . ")</span>\n");
 		array_push($ids, $tag["id"]);
 	}
 	return $ids;
 }
 
-function showPageLetters($letters, $pagenames, $page, $tool) {
-
-	if($tool) { $tool = "?tool=".$tool; }
+function showPageLetters($letters, $pagenames, $page, $tool)
+{
+	if ($tool) {
+		$tool = "?tool=" . $tool;
+	}
 
 	echo("<p>");
-	for($i = 0; $i < count($letters); $i++) {
-		if($i > 0) { echo(" | "); }
-		if($page == $letters[$i]) {
-			echo("<strong>".$pagenames[$i]."</strong>");
+	for ($i = 0; $i < count($letters); $i++) {
+		if ($i > 0) {
+			echo(" | ");
+		}
+		if ($page == $letters[$i]) {
+			echo("<strong>" . $pagenames[$i] . "</strong>");
 		} else {
-			echo("<a href=\"/terkep/".$letters[$i].$tool."\">".$pagenames[$i]."</a>");
+			echo("<a href=\"/terkep/" . $letters[$i] . $tool . "\">" . $pagenames[$i] . "</a>");
 		}
 	}
 	echo("</p>");
-	echo("\n<script>\nvar page='$page';\n</script>\n");
+	echo("\n<script>\nvar page='" . $page . "';\n</script>\n");
 }
-function showTools($tool) {
-?>
+
+function showTools($tool)
+{
+	?>
 Segédeszköz:
 <select onchange="changeTool(this);">
 	<option value="">-</option>
@@ -248,8 +263,11 @@ Segédeszköz:
 <?php
 }
 // Render selected="selected" if true
-function sel($select) {
-	if($select) { echo(" selected=\"selected\""); }
+function sel($select)
+{
+	if ($select) {
+		echo(" selected=\"selected\"");
+	}
 }
 ?>
 	</div>
