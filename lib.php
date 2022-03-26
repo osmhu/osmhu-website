@@ -8,31 +8,34 @@ class DuplicateCityException extends Exception
 	private $alreadyLoadedNodeId;
 	private $newNodeId;
 
-	public function __construct($cityName, $alreadyLoadedNodeId, $newNodeId) {
+	public function __construct($cityName, $alreadyLoadedNodeId, $newNodeId)
+	{
 		$this->cityName = $cityName;
 		$this->alreadyLoadedNodeId = $alreadyLoadedNodeId;
 		$this->newNodeId = $newNodeId;
 		parent::__construct($this->getErrorMessage(), 0);
 	}
 
-	public function getErrorMessage() {
+	public function getErrorMessage()
+	{
 		$message = "#############################################\n";
-		$message.= "# ERROR! Duplicated city place: " . $this->cityName . "\n";
-		$message.= "#############################################\n";
-		$message.= "Already loaded node id: " . $this->alreadyLoadedNodeId ." ";
-		$message.= "[ https://www.openstreetmap.org/node/" . $this->alreadyLoadedNodeId . " ]\n";
-		$message.= "Node ID: " . $this->newNodeId . " ";
-		$message.= "[ https://www.openstreetmap.org/node/" . $this->newNodeId . " ]\n";
-		$message.= "Recommended steps to fix the problem:\n";
-		$message.= "1. Resolve the conflict in the global osm database\n";
-		$message.= "2. Delete your local copy of the city you deleted in the global osm db\n";
-		$message.= "   with ONE of the following commands:\n";
-		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->alreadyLoadedNodeId . ";\n";
-		$message.= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->newNodeId . ";\n";
+		$message .= "# ERROR! Duplicated city place: " . $this->cityName . "\n";
+		$message .= "#############################################\n";
+		$message .= "Already loaded node id: " . $this->alreadyLoadedNodeId . " ";
+		$message .= "[ https://www.openstreetmap.org/node/" . $this->alreadyLoadedNodeId . " ]\n";
+		$message .= "Node ID: " . $this->newNodeId . " ";
+		$message .= "[ https://www.openstreetmap.org/node/" . $this->newNodeId . " ]\n";
+		$message .= "Recommended steps to fix the problem:\n";
+		$message .= "1. Resolve the conflict in the global osm database\n";
+		$message .= "2. Delete your local copy of the city you deleted in the global osm db\n";
+		$message .= "   with ONE of the following commands:\n";
+		$message .= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->alreadyLoadedNodeId . ";\n";
+		$message .= "DELETE FROM planet_osm_point WHERE osm_id=" . $this->newNodeId . ";\n";
 		return $message;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->getErrorMessage();
 	}
 }
@@ -44,7 +47,8 @@ class StreetsDB
 {
 	public $mydb; // Connection to MySQL autocomplete database
 
-	function __construct() {
+	public function __construct()
+	{
 		require_once dirname(__FILE__) . '/config/mysql.php';
 		$this->mydb = $db;
 	}
@@ -54,7 +58,8 @@ class StreetsDB
 	 * Deletes place-street associations, use before importing new data.
 	 * Sets all cities as not processed.
 	 */
-	function clean_streets() {
+	public function clean_streets()
+	{
 		$stmt = $this->mydb->prepare('TRUNCATE TABLE placestreets'); // KILL data!
 		$stmt->execute();
 		$stmt = $this->mydb->prepare('UPDATE places SET processed = 0');
@@ -65,7 +70,8 @@ class StreetsDB
 	 * Sets a city as being processed, while importing
 	 * Can be used to manually identify non-processed, so deleted cities
 	 */
-	function set_city_processed($osm_id) {
+	public function set_city_processed($osm_id)
+	{
 		try {
 			$stmt = $this->mydb->prepare('UPDATE places SET processed = 1 WHERE osm_id = :id');
 			$stmt->execute(array(
@@ -80,16 +86,17 @@ class StreetsDB
 	/**
 	 * Inserts a new city and marks it being processed
 	 */
-	function create_city($city) {
+	public function create_city($city)
+	{
 		try {
 			$query = 'INSERT INTO places (osm_id, name, lat, lon, processed, population)';
-			$query.= ' VALUES (:id, :name, :lat, :lon, 2, 0)';
+			$query .= ' VALUES (:id, :name, :lat, :lon, 2, 0)';
 			$stmt = $this->mydb->prepare($query);
 			$stmt->execute(array(
-				':id'   => $city->osm_id,
+				':id' => $city->osm_id,
 				':name' => $city->name,
-				':lat'  => $city->lat,
-				':lon'  => $city->lon,
+				':lat' => $city->lat,
+				':lon' => $city->lon,
 			));
 		} catch (PDOException $e) {
 			$dbErrorCode = $stmt->errorInfo()[1];
@@ -106,16 +113,17 @@ class StreetsDB
 	/**
 	 * Updates an existing city and marks it being processed
 	 */
-	function update_city($city) {
+	public function update_city($city)
+	{
 		try {
 			$query = 'UPDATE places SET name = :name, lat = :lat, lon = :lon, processed = 2';
-			$query.= ' WHERE osm_id = :id AND (name != :name OR lat != :lat OR lon != :lon)';
+			$query .= ' WHERE osm_id = :id AND (name != :name OR lat != :lat OR lon != :lon)';
 			$stmt = $this->mydb->prepare($query);
 			$stmt->execute(array(
-				':id'   => $city->osm_id,
+				':id' => $city->osm_id,
 				':name' => $city->name,
-				':lat'  => $city->lat,
-				':lon'  => $city->lon,
+				':lat' => $city->lat,
+				':lon' => $city->lon,
 			));
 		} catch (PDOException $e) {
 			echo 'MySQL UPDATE error in update_city: ' . $e->getMessage();
@@ -123,7 +131,8 @@ class StreetsDB
 		}
 	}
 
-	function change_city_id($oldCity, $newCity) {
+	public function change_city_id($oldCity, $newCity)
+	{
 		try {
 			$stmt = $this->mydb->prepare('UPDATE places SET osm_id = :newId WHERE osm_id = :oldId');
 			$res = $stmt->execute(array(
@@ -144,15 +153,16 @@ class StreetsDB
 	 * @param $loadtags bool Whether to load tags of the cities
 	 * @returns Array of City objects extended with "tags" array.
 	 */
-	function load_cities($letter = "", $loadtags = false) {
+	public function load_cities($letter = "", $loadtags = false)
+	{
 		try {
 			$ret = array();
 			// Load places starting with a letter
 			$where = "";
-			if($letter) {
-				if($letter == "o") {
+			if ($letter) {
+				if ($letter == "o") {
 					$where = " WHERE (places.name LIKE 'o%' OR places.name LIKE 'ö%' OR places.name LIKE 'ő%')";
-				} else if($letter == "u") {
+				} elseif ($letter == "u") {
 					$where = " WHERE (places.name LIKE 'u%' OR places.name LIKE 'ú%' OR places.name LIKE 'ű%')";
 				} else {
 					$where = " WHERE places.name LIKE '" . $letter . "%' ";
@@ -160,21 +170,21 @@ class StreetsDB
 			}
 			$tags_join = "";
 			$tags_cols = "";
-			if($loadtags) {
+			if ($loadtags) {
 				$tags_join = " LEFT JOIN placetags ON places.osm_id = placetags.place_id "
-					."LEFT JOIN tags on placetags.tag_id = tags.id";
+					. "LEFT JOIN tags on placetags.tag_id = tags.id";
 				$tags_cols = ", placetags.date as keydate, tags.name as keyname, tags.value as keyvalue, tags.id as keyid";
 			}
 			$query = 'SELECT places.osm_id, places.name, places.lat, places.lat, places.lon';
-			$query.= $tags_cols . ' FROM places' . $tags_join . ' ' . $where . 'ORDER BY places.name';
+			$query .= $tags_cols . ' FROM places' . $tags_join . ' ' . $where . 'ORDER BY places.name';
 			$stmt = $this->mydb->prepare($query);
 			$stmt->execute();
 
 			$lastid = 0;
 			$city = null;
-			while($row = $stmt->fetch()) {
-				if($lastid != $row["osm_id"]) {
-					if($city) {
+			while ($row = $stmt->fetch()) {
+				if ($lastid != $row["osm_id"]) {
+					if ($city) {
 						array_push($ret, $city);
 					}
 					// New city, not key only
@@ -186,8 +196,8 @@ class StreetsDB
 					$lastid = $row["osm_id"];
 				}
 				// Add tags if any (repeated cities may occur)
-				if(array_key_exists('keyname', $row) && $row['keyname']) {
-					if(!isset($city->tags)) {
+				if (array_key_exists('keyname', $row) && $row['keyname']) {
+					if (!isset($city->tags)) {
 						$city->tags = array();
 					}
 					$tag = array(
@@ -198,7 +208,7 @@ class StreetsDB
 					array_push($city->tags, $tag);
 				}
 			}
-			if($city) {
+			if ($city) {
 				array_push($ret, $city);
 			}
 			return $ret;
@@ -213,7 +223,8 @@ class StreetsDB
 	 *
 	 * @returns array key=street name, value=local ID
 	 */
-	function load_streetnames() {
+	public function load_streetnames()
+	{
 		try {
 			$res = array();
 			$stmt = $this->mydb->prepare('SELECT id, name FROM streetnames');
@@ -233,7 +244,8 @@ class StreetsDB
 	 *
 	 * @returns int ID of the new street name
 	 */
-	function create_streetname($name) {
+	public function create_streetname($name)
+	{
 		try {
 			$stmt = $this->mydb->prepare('INSERT INTO streetnames (name) VALUES (:name)');
 			$stmt->execute(array(
@@ -249,10 +261,11 @@ class StreetsDB
 	/**
 	 * Assigns a section of a street (osm way) to a city
 	 */
-	function assign_street_way($osm_id, $place_id, $streetname_id) {
+	public function assign_street_way($osm_id, $place_id, $streetname_id)
+	{
 		try {
 			$query = 'INSERT INTO placestreets (osm_id, place_id, streetname_id)';
-			$query.= ' VALUES (:id, :placeId, :streetNameId)';
+			$query .= ' VALUES (:id, :placeId, :streetNameId)';
 			$stmt = $this->mydb->prepare($query);
 			$stmt->execute(array(
 				':id' => $osm_id,
@@ -268,7 +281,8 @@ class StreetsDB
 	/**
 	 * Copies all content of "name" to "name_case", which is a binary column for Case Senstive match.
 	 */
-	function copy_names_case() {
+	public function copy_names_case()
+	{
 		try {
 			$stmt = $this->mydb->prepare("UPDATE streetnames SET name_case = name");
 			$stmt->execute();
@@ -281,11 +295,12 @@ class StreetsDB
 	/**
 	 * Delete names that don't anymore belong to anything - at end of a new import
 	 */
-	function delete_unused_names() {
+	public function delete_unused_names()
+	{
 		try {
 			$query = 'DELETE streetnames.* FROM streetnames';
-			$query.= ' LEFT JOIN placestreets ON streetnames.id = placestreets.streetname_id';
-			$query.= ' WHERE placestreets.streetname_id IS NULL';
+			$query .= ' LEFT JOIN placestreets ON streetnames.id = placestreets.streetname_id';
+			$query .= ' WHERE placestreets.streetname_id IS NULL';
 			$stmt = $this->mydb->prepare($query);
 			$stmt->execute();
 		} catch (PDOException $e) {
@@ -297,7 +312,8 @@ class StreetsDB
 	/**
 	 * Adds a tag to a city
 	 */
-	function add_tag($place_id, $tag_id) {
+	public function add_tag($place_id, $tag_id)
+	{
 		try {
 			$stmt = $this->mydb->prepare('INSERT INTO placetags (place_id, tag_id) VALUES (:placeId, :tagId)');
 			$stmt->execute(array(
@@ -318,7 +334,8 @@ class GisDB
 	public $gis; // Connection
 	private $foreign;
 
-	function __construct() {
+	public function __construct()
+	{
 		require_once 'config/pgsql.php';
 		$this->gis = $db;
 		include dirname(__FILE__) . '/scripts/foreign.php';
@@ -327,21 +344,25 @@ class GisDB
 
 	// Load city "place" nodes from OSM database
 	// returns array: key=place name, value=City data
-	function load_cities() {
+	public function load_cities()
+	{
 		$centers = array();
 		$query = "SELECT osm_id, name,";
-		$query.= " ST_X(ST_Transform(way, 4326)) as lon,";
-		$query.= " ST_Y(ST_Transform(way, 4326)) as lat";
-		$query.= " FROM planet_osm_point";
-		$query.= " WHERE name != 'Budapest' AND place IN('city', 'town', 'village')";
+		$query .= " ST_X(ST_Transform(way, 4326)) as lon,";
+		$query .= " ST_Y(ST_Transform(way, 4326)) as lat";
+		$query .= " FROM planet_osm_point";
+		$query .= " WHERE name != 'Budapest' AND place IN('city', 'town', 'village')";
 		try {
 			$stmt = $this->gis->prepare($query);
 			$stmt->execute();
 
 			while ($row = $stmt->fetch()) {
 				if (array_key_exists($row['name'], $centers)) {
-					throw new DuplicateCityException($row["name"],
-						$centers[$row["name"]]->osm_id, $row["osm_id"]);
+					throw new DuplicateCityException(
+						$row["name"],
+						$centers[$row["name"]]->osm_id,
+						$row["osm_id"]
+					);
 				}
 				if (!in_array($row["osm_id"], $this->foreign)) {
 					$city = new City();
@@ -363,7 +384,8 @@ class GisDB
 		return $centers;
 	}
 
-	function get_boundary_iterator() {
+	public function get_boundary_iterator()
+	{
 		return new BoundaryIterator($this->gis);
 	}
 }
@@ -371,63 +393,71 @@ class GisDB
 /**
  * Iterates admin level boundaries that we import
  */
-class BoundaryIterator implements Iterator {
-
+class BoundaryIterator implements Iterator
+{
 	private $gis;
 	private $foreign;
 	private $stmt;
 	private $curr;
 	private $started = false;
 
-	function __construct($dbconn) {
+	public function __construct($dbconn)
+	{
 		$this->gis = $dbconn;
 		include dirname(__FILE__) . '/scripts/foreign.php';
 		$this->foreign = $foreign;
 	}
 
-	private function start() {
+	private function start()
+	{
 		// Get place boundaries from PostGIS (except Budapest)
 		$query = "SELECT osm_id,name,";
-		$query.= " ST_X(ST_Transform(ST_Centroid(way), 4326)) as boundlon,";
-		$query.= " ST_Y(ST_Transform(ST_Centroid(way), 4326)) as boundlat";
-		$query.= " FROM planet_osm_polygon WHERE boundary = 'administrative'";
-		$query.= " AND admin_level IN ('8','9') AND name != 'Budapest'";
-		$query.= " ORDER BY name COLLATE \"hu_HU\"";
+		$query .= " ST_X(ST_Transform(ST_Centroid(way), 4326)) as boundlon,";
+		$query .= " ST_Y(ST_Transform(ST_Centroid(way), 4326)) as boundlat";
+		$query .= " FROM planet_osm_polygon WHERE boundary = 'administrative'";
+		$query .= " AND admin_level IN ('8','9') AND name != 'Budapest'";
+		$query .= " ORDER BY name COLLATE \"hu_HU\"";
 		$this->stmt = $this->gis->prepare($query);
 		$this->stmt->execute();
 		$this->curr = $this->stmt->fetch();
 	}
 
-	private function fetch() {
+	private function fetch()
+	{
 		if (!$this->started) {
 			$this->start();
 			$this->started = true;
 		}
 		do {
 			$this->curr = $this->stmt->fetch();
-		} while($this->curr && in_array($this->curr["osm_id"], $this->foreign)); // Skip foreign cities
+		} while ($this->curr && in_array($this->curr["osm_id"], $this->foreign)); // Skip foreign cities
 	}
 
-	function rewind() {
-		if(!$this->curr) {
+	public function rewind()
+	{
+		if (!$this->curr) {
 			$this->start();
 		}
 	}
 
-	function current() {
+	public function current()
+	{
 		return $this->curr;
 	}
 
-	function key() {
+	public function key()
+	{
 		return $this->curr["osm_id"];
 	}
 
-	function next() {
+	public function next()
+	{
 		$this->fetch();
 		return $this->curr;
 	}
 
-	function valid() {
+	public function valid()
+	{
 		return ($this->curr != null);
 	}
 }
@@ -435,14 +465,15 @@ class BoundaryIterator implements Iterator {
 /**
  * Represents basic city data
  */
-class City {
+class City
+{
 	public $osm_id;
 	public $name;
 	public $lat;
 	public $lon;
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->name;
 	}
 }
-?>

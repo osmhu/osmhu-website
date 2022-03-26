@@ -39,3 +39,9 @@ jobs:
 
       - name: Check if js files meet lint rules
         run: npm run lint:js
+
+      - name: Install PHP dependencies with composer
+        uses: php-actions/composer@v6
+
+      - name: Check if PHP files meet coding standards
+        run: make lint-php

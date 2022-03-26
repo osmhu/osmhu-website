@@ -8,3 +8,4 @@ node_modules
 /coverage
 /report
 /development/self-signed-ssl/*.pem
+/vendor

@@ -38,7 +38,8 @@ foreach ($list as $city) {
 
 // Makes an accent insensitve, case insensitive converted regex for city name
 // Hardcoded Kömörő fix!
-function genregex($name) {
+function genregex($name)
+{
 	if ($name == 'Kömörő') {
 		return '(K|k)ömörő'; // Conflicts with Komoró otherwise
 	}

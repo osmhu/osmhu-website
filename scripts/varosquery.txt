@@ -14,5 +14,5 @@ select osm_id,name from planet_osm_polygon WHERE boundary = 'administrative' AND
 SELECT name,highway,osm_id FROM planet_osm_line WHERE highway != '' AND Length(name) < 3
 
 // Utcák 1 adott városban (DISTINCT!)
-select name,highway,osm_id from planet_osm_line where highway != '' and name != '' and 
-st_within(way, (select way from planet_osm_polygon where boundary='administrative' and name='Pécs'))
+select name,highway,osm_id from planet_osm_line where highway != '' and name != '' and
+ st_within(way, (select way from planet_osm_polygon where boundary='administrative' and name='Pécs'))

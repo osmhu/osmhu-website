@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_DATABASE;
-$options = array (
+$options = array(
 	PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
 );
 

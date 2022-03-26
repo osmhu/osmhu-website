@@ -51,13 +51,13 @@ if (isset($_GET['city'])) {
 
 		if (isset($place_in)) {
 			$query = 'SELECT DISTINCT MAX(placestreets.osm_id) AS id, streetnames.name AS name '
-				.'FROM streetnames '
-				.'INNER JOIN placestreets ON streetnames.id=placestreets.streetname_id '
-				.'WHERE placestreets.place_id IN (' . $place_in . ') '
-				.'AND streetnames.name LIKE ? '
-				.'GROUP BY name '
-				."ORDER BY streetnames.name REGEXP '^[a-z]' DESC, streetnames.name "
-				.'LIMIT 20';
+				. 'FROM streetnames '
+				. 'INNER JOIN placestreets ON streetnames.id=placestreets.streetname_id '
+				. 'WHERE placestreets.place_id IN (' . $place_in . ') '
+				. 'AND streetnames.name LIKE ? '
+				. 'GROUP BY name '
+				. "ORDER BY streetnames.name REGEXP '^[a-z]' DESC, streetnames.name "
+				. 'LIMIT 20';
 
 			$stmt = $db->prepare($query);
 			$params = array($_GET['term'] . '%');
