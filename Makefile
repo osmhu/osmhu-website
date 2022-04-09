@@ -2,6 +2,12 @@ mysql-password = Eidoh5zo
 mysql-root-password = root
 postgresql-password = Eidoh5zo
 
+.PHONY: install-dependencies
+install-dependencies:
+	npm install && \
+	composer install
+
+
 .PHONY: build
 build:
 	make create-distribution && \

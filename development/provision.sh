@@ -138,6 +138,20 @@ if ! apt-get install -qq nodejs > /dev/null; then
 fi
 
 
+echo "Installing composer for managing PHP dependencies..."
+# Source: https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
+COMPOSER_VERSION_GIT="87cd816aea1282eded203f49e3196a8505fdec9f" # 2.3.4
+COMPOSER_INSTALLER="https://raw.githubusercontent.com/composer/getcomposer.org/${COMPOSER_VERSION_GIT}/web/installer"
+if ! wget ${COMPOSER_INSTALLER} -O - -q | php -- --quiet; then
+	echo "ERROR! Failed to install composer. Exiting" >&2
+	exit 1
+fi
+if ! mv composer.phar /usr/local/bin/composer; then
+	echo "ERROR! Failed to move installed composer to global directory. Exiting" >&2
+	exit 1
+fi
+
+
 echo "Installing known stable npm version..."
 if ! command -v npm &> /dev/null; then
 	echo "ERROR! npm command could not be found. Exiting" >&2
