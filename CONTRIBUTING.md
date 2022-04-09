@@ -78,10 +78,10 @@ A további telepítéshez és beállításhoz szükséges parancsok a [Makefile]
 
 *Minden itt felsorolt parancsot a projekt gyökérkönyvtárában állva kell futtatni.*
 
-#### JavaScript függősségek telepítése
+#### Fejlesztéshez szükséges függősségek telepítése
 
 ```shell
-npm install
+make install-dependencies
 ```
 
 > **Vagrant** virtuális gépen belül az alábbi parancssal **helyettesítendő**:
