@@ -54,13 +54,15 @@ dd {
 	margin-bottom: .5rem;
 }
 
-.close-icon {
+.close-button {
 	font-size: 1.5rem;
 	color: #000;
 	cursor: pointer;
+	background-color: transparent;
+	border: 0 none;
 }
 
-.close-icon:hover {
+.close-button:hover {
 	color: #000;
 	text-decoration: none;
 }

@@ -12,7 +12,7 @@ export default class SearchResults {
 		this.map = map;
 		this.$searchResults = $(searchResultsSelector);
 
-		this.$searchResults.find('a.close').on('click', () => {
+		this.$searchResults.find('.close-button').on('click', () => {
 			this.$searchResults.hide();
 
 			$(window).trigger('search-results-hide');

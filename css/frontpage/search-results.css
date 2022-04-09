@@ -22,10 +22,12 @@
 	color: #0066FF;
 	font-weight: bold;
 }
-#search-results .close-icon {
+
+#search-results .close-button {
 	float: right;
-	margin: 10px;
+	margin: 8px 5px;
 }
+
 #search-results .results-container {
 	position: absolute;
 	top: 44px;
