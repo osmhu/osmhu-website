@@ -22,10 +22,12 @@
 	color: #0066FF;
 	font-weight: bold;
 }
-#direction-results .close-icon {
+
+#direction-results .close-button {
 	float: right;
-	margin: 10px;
+	margin: 8px 5px;
 }
+
 #direction-results .results-container {
 	position: absolute;
 	top: 44px;

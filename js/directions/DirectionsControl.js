@@ -45,7 +45,7 @@ export default class DirectionsControl {
 			this.startDirections();
 		});
 
-		$('#direction-results a.close').on('click', () => {
+		$('#direction-results .close-button').on('click', () => {
 			$('#direction-results').hide();
 
 			$(window).trigger('search-results-hide');
