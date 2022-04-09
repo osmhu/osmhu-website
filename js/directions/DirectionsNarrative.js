@@ -3,18 +3,28 @@ export default class DirectionsNarrative {
 		this.$container = narrativeContainer;
 	}
 
-	showRouteInfo(routeInfo) {
-		if (!routeInfo.legs) return;
+	showRouteInfo(route, info) {
+		if (!route.legs) return;
 
-		let html = '<p class="total-time">Útidő: <span class="time">';
-		html += routeInfo.formattedTime;
+		let html = '';
+
+		if (info && info.statuscode !== 0) {
+			html += `<div class="route-error">
+						<img src="/kepek/1391811435_Warning.png" alt="Figyelem" width="32" height="32"
+							class="route-error-warning-sign" />
+						<p class="text-danger font-weight-bold">Az útvonaltervezés során hiba történt.</p>
+					</div>`;
+		}
+
+		html += '<p class="total-time">Útidő: <span class="time">';
+		html += route.formattedTime;
 		html += '</span></p>';
 		html += '<p class="total-length">Útvonal: <span class="length">';
-		const distance = Math.round(parseFloat(routeInfo.distance) * 10) / 10;
+		const distance = Math.round(parseFloat(route.distance) * 10) / 10;
 		html += distance;
 		html += '</span> km</p>';
 
-		const { legs } = routeInfo;
+		const { legs } = route;
 
 		let i = 0;
 		let j = 0;

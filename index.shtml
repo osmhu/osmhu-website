@@ -92,7 +92,7 @@
 
 	<div id="loading-indicator"></div>
 
-	<div id="general-error"></div>
+	<div id="general-error" class="text-danger"></div>
 
 	<div id="map-container">
 		<noscript>

@@ -109,7 +109,7 @@ export default class DirectionsControl {
 				$('#general-error').html(html);
 				setTimeout(() => {
 					$('#general-error').fadeOut(200);
-				}, 15000);
+				}, 10000);
 			}
 			$endField.removeClass('searching');
 		}
@@ -121,7 +121,7 @@ export default class DirectionsControl {
 
 		let allOtherParts = '';
 		for (let i = 1; i < parts.length; i++) {
-			const part = parts[i];
+			const part = parts[i].trim();
 			allOtherParts += `${part}, `;
 		}
 

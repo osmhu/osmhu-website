@@ -52,6 +52,19 @@
 	font-size: 14px;
 	padding: 3px 6px;
 }
+
+#direction-results .results .route-error {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#direction-results .results .route-error .route-error-warning-sign {
+	flex-shrink: 0;
+	margin-right: 5px;
+	margin-left: 10px;
+}
+
 #direction-results .results p.total-time span.time, #direction-results .results p.total-length span.length {
 	color: #64991e;
 	font-weight: bold;

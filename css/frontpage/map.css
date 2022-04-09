@@ -17,18 +17,17 @@
 
 /* General error */
 #general-error {
-	display: none;
 	position: absolute;
+	top: 78px;
 	left: 300px;
-	top: 38px;
 	z-index: 200;
-	background-color: #f2dede;
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 5px;
-	border-color: #a94442;
-	color: #a94442;
+	display: none;
 	padding: 15px;
+	background-color: #f2dede;
+	border-color: #a94442;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
 }
 
 /* minZoomIdenticator Control */
