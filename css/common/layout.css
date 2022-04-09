@@ -67,6 +67,14 @@ dd {
 	text-decoration: none;
 }
 
+.text-danger {
+	color: #a94442;
+}
+
+.font-weight-bold {
+	font-weight: 700;
+}
+
 hr {
 	margin-top: 1rem;
 	margin-bottom: 1rem;

@@ -61,26 +61,28 @@ export default class DirectionsResultLayer {
 			this.directionsLayer.addTo(this.targetMap);
 
 			if (response.route) {
-				this.displayRoute(response.route);
+				this.displayRoute(response.route, response.info);
 			}
 
 			this.directionsLayer.on('directions_changed', (eventResponse) => {
 				if (eventResponse.route) {
-					this.displayRoute(eventResponse.route);
+					this.displayRoute(eventResponse.route, eventResponse.info);
 				}
 			});
 		}
 	}
 
-	displayRoute(route) {
+	displayRoute(route, info) {
 		const directionsNarrative = new DirectionsNarrative($('#direction-results'));
-		directionsNarrative.showRouteInfo(route);
+		directionsNarrative.showRouteInfo(route, info);
 
 		const { boundingBox } = route;
-		const upperLeftCorner = L.latLng(boundingBox.ul.lat, boundingBox.ul.lng);
-		const lowerRightCorner = L.latLng(boundingBox.lr.lat, boundingBox.lr.lng);
-		let latLngBounds = L.latLngBounds(upperLeftCorner, lowerRightCorner);
-		latLngBounds = latLngBounds.pad(0.1);
-		this.targetMap.fitBounds(latLngBounds);
+		if (boundingBox) {
+			const upperLeftCorner = L.latLng(boundingBox.ul.lat, boundingBox.ul.lng);
+			const lowerRightCorner = L.latLng(boundingBox.lr.lat, boundingBox.lr.lng);
+			let latLngBounds = L.latLngBounds(upperLeftCorner, lowerRightCorner);
+			latLngBounds = latLngBounds.pad(0.1);
+			this.targetMap.fitBounds(latLngBounds);
+		}
 	}
 }
