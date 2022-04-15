@@ -88,7 +88,9 @@
 	</div>
 
 	<!-- Introduction toggler icon -->
-	<div id="introduction-toggler"><button class="toggler-button" aria-label="Bemutatkozás bezárása"></button></div>
+	<div class="introduction-toggler js-introduction-toggler">
+		<button class="toggler-button" aria-label="Bemutatkozás bezárása"></button>
+	</div>
 
 	<div id="loading-indicator"></div>
 
@@ -144,18 +146,17 @@
 		</div>
 	</div>
 
-	<div id="introduction" class="side-panel">
-		<div class="description">
+	<div class="introduction side-panel">
+		<div class="description side-panel-block">
 			<p>Az <strong>OpenStreetMap</strong> egy világtérkép,
 				amelyet hozzád hasonló emberek készítenek és szabad licenc alatt elérhető.</p>
-			<p>Ha hibát találsz vagy hiányzik egy fontos hely, <strong>Te is hozzáadhatod</strong>
-				a szerkesztőprogrammal a hiányzó utcákat, boltokat, iskolákat, éttermeket és egyéb tereptárgyakat.</p>
+			<p><strong>Bárki szerkesztheti</strong>, kiegészítheti a saját tudásával, felrajzolhatja a környékét,
+				vagy frissítheti az általa fontosnak ítélt részeket, hasonlóan a Wikipédiához.</p>
+			<p>Ha hibát találsz vagy hiányzik egy fontos hely,
+				<strong><a href="/szerkesztes">Te is hozzáadhatod</a></strong>
+				a hiányzó utcákat, boltokat, iskolákat, éttermeket és egyéb tereptárgyakat.</p>
 		</div>
-		<div class="tryit">
-			<p><strong>Próbáld ki, és szerkessz valamit!</strong></p>
-			<p><a id="orgEditLink" href="https://openstreetmap.org/edit">Terület szerkesztése</a></p>
-		</div>
-		<div class="promotion" style="display: none;">
+		<div class="promotion js-promotion side-panel-block" style="display: none;">
 			<!--
 			<p class="title"><strong>Kiemelt projekt</strong></p>
 			<p class="slogan">Kerekesszékes térkép</p>
@@ -163,12 +164,16 @@
 				<img src="/kepek/route4u.jpg" alt="Route4U logó"><span>ROUTE4U</span></a></p>
 			-->
 		</div>
-		<div class="facebook">
+		<div class="community-sites side-panel-block">
 			<p><strong>Facebook oldalunk:</strong></p>
-			<p><a class="fbstyle" href="https://www.facebook.com/OpenStreetMap.hu" title="OpenStreetMap.hu a Facebookon"
-				target="_blank" rel="noreferrer"><span class="fbpage">OpenStreetMap.hu</span></a></p>
-			<p><a class="fbstyle" href="https://www.facebook.com/groups/osm.hu" title="Szerkesztői csoport a Facebookon"
-				target="_blank" rel="noreferrer"><span class="fbpage">Szerkesztői csoport</span></a></p>
+			<a class="facebook-button" href="https://www.facebook.com/OpenStreetMap.hu"
+					title="OpenStreetMap.hu a Facebookon" target="_blank" rel="noreferrer">
+				<span class="facebook-page">OpenStreetMap.hu</span>
+			</a>
+			<a class="facebook-button" href="https://www.facebook.com/groups/osm.hu"
+					title="Szerkesztői csoport a Facebookon" target="_blank" rel="noreferrer">
+				<span class="facebook-page">Szerkesztői csoport</span>
+			</a>
 		</div>
 	</div>
 

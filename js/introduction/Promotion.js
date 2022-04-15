@@ -35,7 +35,7 @@ export default class Promotion {
 		this.introduction = introduction;
 		this.searchResults = searchResults;
 
-		this.$promotion = $('.promotion');
+		this.$promotion = $('.js-promotion');
 	}
 
 	initUi() {

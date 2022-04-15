@@ -98,7 +98,7 @@ body.loading .leaflet-control-loading-indicator {
 	bottom: 0;
 	left: 0;
 	width: 263px;
-	font-size: .9rem;
+	font-size: .95rem;
 	border-right: 1px solid #8c8c8c;
 }
 

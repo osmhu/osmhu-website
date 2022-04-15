@@ -74,7 +74,7 @@ span.svg-icon.caret-up-icon {
 	display: inline-block;
 }
 
-#search-area input.autocomplete {
+#search-area .autocomplete {
 	width: 260px;
 	height: 2rem;
 	padding: 0;
@@ -82,6 +82,10 @@ span.svg-icon.caret-up-icon {
 	margin: 0;
 	border: 1px solid #aaa;
 	border-radius: 3px 0 0 3px;
+}
+
+#search-area .autocomplete::placeholder {
+	color: rgba(0, 0, 0, .5);
 }
 
 #search-area input.searching {
@@ -139,9 +143,10 @@ span.svg-icon.caret-up-icon {
 	vertical-align: middle;
 }
 
-#search-area #directions input.autocomplete {
+#search-area #directions .autocomplete {
 	width: 200px;
 }
+
 #search-area input#directions-start-search {
 	border-radius: 3px;
 }
@@ -234,7 +239,7 @@ span.svg-icon.caret-up-icon {
 		display: flex;
 	}
 
-	#search-area input.autocomplete {
+	#search-area .autocomplete {
 		width: 100%;
 	}
 

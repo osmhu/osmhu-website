@@ -1,127 +1,106 @@
-#introduction {
+.introduction {
 	z-index: 25;
 	overflow: auto;
-	font-family: Helvetica, sans-serif;
 	background: #fff;
 }
 
-#introduction .description {
-	padding: .75rem;
-	padding-bottom: 0;
-}
-
-#introduction .description p {
+.introduction .side-panel-block {
+	padding: .75rem .5rem;
 	margin-top: 0;
 	margin-bottom: .5rem;
-	line-height: 1.3rem;
-	text-align: justify;
-}
-
-#introduction .tryit,
-#introduction .project {
 	border-bottom: 1px solid #aaa;
 }
 
-#introduction .tryit {
-	padding-bottom: 15px;
-}
-
-#introduction .tryit p {
+.introduction .side-panel-block p {
 	margin-top: 0;
 	margin-bottom: .5rem;
+	line-height: 1.3rem;
+}
+
+.introduction .description p {
+	text-align: justify;
+}
+
+.introduction .promotion {
 	text-align: center;
 }
 
-#introduction .tryit a#orgEditLink {
-	display: block;
-	border-radius: 2px;
-	padding: 8px 16px;
-	background: #44AA55;
-	border: 1px solid gray;
-	width: 180px;
-	text-decoration: none;
-	margin: 0 auto;
-	text-align: center;
-	font-weight: bold;
-	color: white;
+.introduction .promotion .title {
+	font-size: 1rem;
 }
-#introduction .project {
-	text-align: center;
-	font-family: sans-serif;
-	padding-bottom: 8px;
-}
-#introduction .project .title {
-	font-size: 16px;
-	margin-bottom: 5px;
-}
-#introduction .project .slogan {
+
+.introduction .promotion .slogan {
 	font-size: 15px;
 }
-#introduction .project p.link a {
+
+.introduction .promotion .link a {
 	color: #9a33cc;
-	text-decoration: none;
 }
-#introduction .project p.link img {
+
+.introduction .promotion .link img {
 	display: inline-block;
 	width: 24px;
 	vertical-align: middle;
 }
-#introduction .project p.link span {
+
+.introduction .promotion .link span {
 	display: inline-block;
 	margin-left: 4px;
+	font-weight: 700;
 	vertical-align: middle;
-	font-size: 20px;
-	font-weight: bold;
-}
-#introduction .project .countdown {
-	font-size: 13px;
-}
-#introduction .facebook {
-	display: block;
-	margin-top: 15px;
-	text-align: center;
-	z-index: 1;
-}
-#introduction .facebook p {
-	text-align: center;
 }
 
-#introduction .facebook .fbstyle {
+.introduction .promotion .countdown {
+	font-size: .6rem;
+}
+
+.introduction .community-sites {
+	margin-top: .5rem;
+	text-align: center;
+	border-bottom-width: 0;
+}
+
+.introduction .community-sites .facebook-button {
 	display: block;
-	width: 180px;
+	width: 195px;
 	padding: 8px 16px;
-	margin: 12px auto;
-	font-family: Helvetica, sans-serif;
+	margin-right: auto;
+	margin-bottom: 1rem;
+	margin-left: auto;
 	color: #fff;
-	text-align: center;
+	text-align: left;
 	background-color: #3b5998;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
 }
 
-#introduction .facebook .fbstyle .fbpage {
-	padding-left: 20px;
+.introduction .community-sites .facebook-button:hover {
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+}
+
+.introduction .community-sites .facebook-button .facebook-page {
+	padding-left: 22px;
 	background-image: url("/kepek/fb-icon16.png");
 	background-repeat: no-repeat;
 	background-position: left center;
 }
 
-#introduction-toggler {
+.introduction-toggler {
 	position: absolute;
 	bottom: 30%;
-	display: block;
-	margin-left: -4px;
-	border-radius: 4px;
-	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
-	background: white;
-	padding-left: 4px;
-	color: black;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	z-index: 22;
 	left: 259px;
+	z-index: 22;
+	display: block;
+	padding-left: 4px;
+	margin-left: -4px;
+	font-weight: 700;
+	color: #000;
 	cursor: pointer;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, .65);
 }
 
-#introduction-toggler .toggler-button {
+.introduction-toggler .toggler-button {
 	padding: 16px 7px;
 	cursor: pointer;
 	background: none;
@@ -129,11 +108,11 @@
 }
 
 @media all and (max-width: 699px) {
-	#introduction {
+	.introduction {
 		display: none;
 	}
 
-	#introduction-toggler {
+	.introduction-toggler {
 		display: none;
 	}
 }

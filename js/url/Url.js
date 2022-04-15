@@ -92,6 +92,5 @@ export default class Url {
 
 	updateOrgUrls() {
 		$('a#orglink').attr('href', OsmOrgUrl.browseUrlFromMapCenterAndZoom(this.map.getCenter(), this.map.getZoom()));
-		$('a#orgEditLink').attr('href', OsmOrgUrl.editUrlFromMapCenterAndZoom(this.map.getCenter(), this.map.getZoom()));
 	}
 }

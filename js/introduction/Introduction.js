@@ -7,9 +7,9 @@ const animationOptions = { duration: 200,	queue: false };
 
 export default class Introduction {
 	constructor(searchResults, map) {
-		this.$panel = $('#introduction');
+		this.$panel = $('.introduction');
 		this.$mapContainer = $('#map-container');
-		this.$toggler = $('#introduction-toggler');
+		this.$toggler = $('.js-introduction-toggler');
 		this.searchResults = searchResults;
 		this.map = map;
 	}
