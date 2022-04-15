@@ -18,8 +18,4 @@ export default class OsmOrgUrl {
 	static browseUrlFromMapCenterAndZoom(mapCenter, mapZoom) {
 		return 'https://www.openstreetmap.org/' + createOsmDotOrgQueryString(mapCenter, mapZoom);
 	}
-
-	static editUrlFromMapCenterAndZoom(mapCenter, mapZoom) {
-		return 'https://www.openstreetmap.org/edit' + createOsmDotOrgQueryString(mapCenter, mapZoom);
-	}
 }
