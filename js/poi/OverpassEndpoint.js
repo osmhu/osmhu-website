@@ -15,12 +15,9 @@ const overpassEndpoints = [
 let fastestEndpoint = overpassEndpoints[0];
 let endpointLoadTimes = {};
 
-// Source: https://gist.github.com/Atinux/fd2bcce63e44a7d3addddc166ce93fb2
+// Source: https://gist.github.com/Atinux/fd2bcce63e44a7d3addddc166ce93fb2?permalink_comment_id=3194700#gistcomment-3194700
 const asyncForEach = async (array, callback) => {
-	for (let index = 0; index < array.length; index++) {
-		// eslint-disable-next-line no-await-in-loop
-		await callback(array[index], index, array);
-	}
+	await Promise.all(array.map(callback));
 };
 
 const ensureTrailingSlash = (url) => (url + (url.endsWith('/') ? '' : '/'));
@@ -47,7 +44,7 @@ export default class OverpassEndpoint {
 					fastestEndpoint = measuredEndpoint;
 				}
 			} catch (error) {
-				log.debug('Endpoint', measuredEndpoint, 'did not load with error: ', error);
+				log.debug(`Endpoint ${measuredEndpoint} did not load with error:`, error);
 			}
 		});
 	}
