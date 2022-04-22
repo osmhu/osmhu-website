@@ -7,8 +7,9 @@ import Ajax from '../common/Ajax';
 const overpassEndpoints = [
 	'https://lz4.overpass-api.de/api/',
 	'https://z.overpass-api.de/api/',
-	'https://overpass.openstreetmap.fr/api/',
 	'https://overpass.kumi.systems/api/',
+	'https://maps.mail.ru/osm/tools/overpass/api/',
+	'https://overpass.openstreetmap.ru/api/',
 ];
 
 let fastestEndpoint = overpassEndpoints[0];
