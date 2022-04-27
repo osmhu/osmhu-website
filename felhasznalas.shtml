@@ -89,6 +89,10 @@
 						OSRM - OpenSource Routing Machine</a> - autós, kerékpáros, gyalogos tervező
 				</li>
 				<li>
+					<a href="https://graphhopper.com/maps/">
+						Graphhopper</a> - autós, kerékpáros, gyalogos tervező, külön teherautós és más módokkal
+				</li>
+				<li>
 					<a href="https://www.freemap.sk/">Freemap.sk</a>
 					- autós, biciklis, gyalogos útvonal tervező. POI-k keresése stb.  Magyarul is működik.
 				</li>
