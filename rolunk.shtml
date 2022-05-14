@@ -4,7 +4,7 @@
 		content="Az OpenStreetMap egy közösségi szerkesztésű, szabadon letölthető és felhasználható térkép Magyarországról és az egész világról.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=415">
+	<link rel="stylesheet" href="/css/info.css?rev=416">
 </head>
 <body class="info-page about">
 	<!--#include virtual="includes/header.html" -->
@@ -63,8 +63,8 @@
 
 			<h2>E-mail</h2>
 			<ul>
-				<li><a href="mailto:kozosseg@openstreetmap.hu">kozosseg@openstreetmap.hu</a> - ezen a címen a fentebbi
-					levelezési listára írhat a közösségnek!</li>
+				<li><a href="mailto:kozosseg@openstreetmap.hu">kozosseg@openstreetmap.hu</a>
+					- ezen a címen a fentebbi levelezési listára írhat a közösségnek!</li>
 			</ul>
 		</div>
 
@@ -74,6 +74,7 @@
 
 		<img class="right illustration" src="kepek/osm-tervezes.png" title="Útvonaltervezés a www.yournaviation.org-on"
 			alt="Térképrészlet utcákkal és berajzolt útvonaltervvel." />
+
 		<p>Az összegyűjtött térképi adatok rengeteg szoftverben felhasználhatóak. Akár mobiltelefonon,
 		GPS egységen, asztali számítógépen, de van sok webes szolgáltatás is amely az OpenStreetMap adataiból dolgozik.
 		Lehetnek ezek útvonaltervezők, „érdekes hely” keresők, térkép nézegetők stb.</p>

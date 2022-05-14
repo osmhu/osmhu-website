@@ -2,7 +2,7 @@
 	<title>OpenStreetMap térkép szerkesztése</title>
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=415">
+	<link rel="stylesheet" href="/css/info.css?rev=416">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
@@ -33,7 +33,7 @@
 	<div class="page-content">
 		<h1>Az OpenStreetMap szerkesztése</h1>
 
-		<p>Az OpenStreetMapet önkéntesek szerkesztik, számuk jelenleg meghaladja a százezret. </p>
+		<p>Az OpenStreetMapet önkéntesek szerkesztik, számuk jelenleg meghaladja a százezret.</p>
 		<p><strong>Nem kell térképésznek lenni a bekapcsolódáshoz!</strong></p>
 
 		<hr />
@@ -67,8 +67,8 @@
 		figyelembe veszed, hogy országhatártól, autópályán át, telefonfülkékig vagy
 		padokig szinte mindent berajzolhatsz.</p> -->
 
-		<p class="important">Soha ne másolj SEMMIT olyan forrásból,
-			amit annak felhasználási szerződése nem tesz lehetővé!</p>
+		<p class="important"><strong>Soha ne másolj SEMMIT olyan forrásból,
+			amit annak felhasználási szerződése nem tesz lehetővé!</strong></p>
 
 		<p>Ha egy forrásban nem vagy biztos, megkérdezheted a
 		<a href="https://www.facebook.com/groups/osm.hu" target="_blank">facebook csoportban</a>
@@ -112,7 +112,7 @@
 
 		<h1>Miket rajzolunk fel?</h1>
 
-		<p>Amint az a <a href="felhasznalas">felhasználási oldalon</a>
+		<p>Amint az a <a href="/felhasznalas">felhasználási oldalon</a>
 		is látszik, igen szerteágazó információk vannak az OpenStreetMapen.
 		Többek között felrajzoljuk:</p>
 
@@ -133,7 +133,7 @@
 
 		<h1>Hogyan kezdj hozzá</h1>
 
-		<p>Olvasnivalók:</p>
+		<p>Olvasnivalók</p>
 
 		<ul>
 			<li><a href="https://wiki.openstreetmap.org/wiki/Hu:Beginners%27_guide">Kezdők kézikönyve</a>

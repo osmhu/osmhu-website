@@ -61,7 +61,8 @@
 								</div><!--
 									// remove space between elements https://stackoverflow.com/q/5078239
 								--><div class="search-button-container">
-									<button class="search-button" type="submit" alt="Keresés" aria-label="Keresés">
+									<button class="search-button" type="submit" title="Útvonaltervezés indítása"
+											aria-label="Útvonaltervezés indítása">
 										<span></span>
 										<svg class="svg-icon" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
 											<use href="/kepek/font-awesome-icons/search-solid.svg#search-icon"></use>
