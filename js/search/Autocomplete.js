@@ -108,7 +108,7 @@ export default class Autocomplete {
 		try {
 			result = await Ajax.getWithParams(url, params);
 
-			if (!result.length || result.length === 0) {
+			if (!result.length) {
 				return [];
 			}
 

@@ -60,7 +60,7 @@
 
 .info-page .page-content code,
 .info-page em {
-	padding: 0 4px;
+	padding: 0 .25rem;
 	color: #000;
 	background-color: #f0f0f0;
 }
@@ -93,7 +93,7 @@
 }
 
 .info-page .page-content .important {
-	font-size: 18px;
+	font-size: 1.25rem;
 	font-weight: 700;
 	color: #f00;
 }
@@ -123,7 +123,7 @@
 }
 
 .website-content-license {
-	margin: 15px 0;
+	margin: 1rem 0;
 	font-style: italic;
 	text-align: center;
 }

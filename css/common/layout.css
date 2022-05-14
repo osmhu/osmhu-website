@@ -75,11 +75,47 @@ dd {
 	font-weight: 700;
 }
 
+.indented {
+	margin-left: 2rem;
+}
+
+.badge {
+	display: inline-block;
+	padding: .25em .4em;
+	font-size: 75%;
+	font-weight: 700;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	border-radius: .25rem;
+}
+
+.badge-primary {
+	color: #fff;
+	background-color: #007bff;
+}
+
+.badge-primary:hover {
+	color: #fff;
+	background-color: #0062cc;
+}
+
+.svg-icon {
+	vertical-align: middle;
+}
+
 hr {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	border: 0;
 	border-top: 1px solid rgba(0, 0, 0, .2);
+}
+
+@media all and (max-width: 699px) {
+	.indented {
+		margin-left: 0;
+	}
 }
 
 /* Header */

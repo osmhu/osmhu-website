@@ -96,10 +96,10 @@ foreach ($bounds as $plc) {
 
 	/*
 	// Get streets of this place
-	$sth = $gis->query("SELECT name, osm_id FROM planet_osm_line WHERE highway != '' AND name != ''"
+	$sth = $source_db->query("SELECT name, osm_id FROM planet_osm_line WHERE highway != '' AND name != ''"
 		. " AND st_within(way, ("
 		. "SELECT way FROM planet_osm_polygon WHERE boundary='administrative'"
-		. " AND name=" . $gis->quote($plc['name'], 'text') LIMIT 1"
+		. " AND name='" . $source_db->quote($plc['name'], 'text') . "' LIMIT 1"
 		. "))",
 		array('text')
 	);
@@ -109,7 +109,7 @@ foreach ($bounds as $plc) {
 	$query = "SELECT ways.name as name,ways.osm_id as osm_id "
 			. "FROM planet_osm_line ways, planet_osm_polygon polys "
 			. "WHERE ST_Contains(polys.way, ways.way) "
-			. "AND ways.highway != '' AND ways.name != ''"
+			. "AND ways.highway != '' AND ways.name != '' "
 			. "AND polys.admin_level IN('8','9') "
 			. "AND polys.name = :name";
 	try {

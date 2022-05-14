@@ -4,7 +4,7 @@
 		content="GPS nyomvonalak rögzítésével segítheted az OpenStreetMap térkép pontosítását, kiegészítését.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=415">
+	<link rel="stylesheet" href="/css/info.css?rev=416">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
@@ -65,7 +65,7 @@
 		<em>Képernyő beállítása -> Jobb panel -> GPX naplózás</em>.
 		Most már csak ezt a gombot kell megnyomnod a rögzítés indításához és megállításához. Ha rögzítés
 		befejezése után megint megnyomod, akkor ad lehetőséget a rögzített nyomvonal kimentésére.
-		A nyomvonalak a <code>Android/data/net.osmand/files/tracks/rec</code> könyvtárban lesznek. Ezeket vagy
+		A nyomvonalak az <code>Android/data/net.osmand/files/tracks/rec</code> könyvtárban lesznek. Ezeket vagy
 		adatkábellel áttöltheted vagy egyszerűen elküldöd magadnak e-mailben.
 		De rögzítéshez sokkal egyszerűbb programokat is használhatsz, próbáld ki az
 		<a href="https://play.google.com/store/apps/details?id=net.osmtracker&hl=en_US" target="_blank">OSM Tracker</a>
@@ -84,7 +84,7 @@
 		Ezzel a nyomvonal elejét vagy végét is könnyen eltávolíthatod, ha olyan pozíciókba vezet, amelyet nem szeretnél
 		megosztani vagy levághatod a haszontalannak tűnő részeket.</p>
 
-		<h2>GpsPrune</h2>
+		<h2>GpsPrune használata</h2>
 
 		<img class="right illustration" src="/kepek/gps-track-edit.png" title="GPS track szerkesztése a GpsPrune-ban"
 			alt="Képernyőkép a GpsPrune -ról GPS track szerkesztése közben" />
@@ -113,12 +113,12 @@
 
 		<h1 id="feltoltes">Feltöltés</h1>
 
-		<p>A GPS nyomvonalaid beküldéséhez regisztrálni kell a
-		<a href="https://www.openstreetmap.org/user/new">OpenStreetMap.org</a> oldalon,
-		hogy személyesen járulhass hozzá az adatok adott licenc alatti felhasználáshoz.</p>
+		<p>A GPS nyomvonalaid beküldéséhez regisztrálni kell az
+		<a href="https://www.openstreetmap.org/user/new" target="_blank">OpenStreetMap.org</a> oldalon,
+		hogy személyesen járulhass hozzá az adatok adott licenc alatti felhasználásához.</p>
 
 		<ol>
-			<li>Jelentkezz be az <a class="external text" href="https://www.openstreetmap.org">OSM főoldalán</a></li>
+			<li>Jelentkezz be az <a href="https://www.openstreetmap.org" target="_blank">OSM főoldalán</a></li>
 			<li>Kattints a <em>Nyomvonalak</em>-ra jobb oldali menüben.</li>
 			<li>Kattints a <em>Nyomvonal feltöltésé</em>-re.</li>
 			<li>Válaszd ki a GPX fájlt, amit fel szeretnél tölteni.</li>
@@ -145,7 +145,7 @@
 
 		<p>A fentebbi szöveg részben a
 		<a href="https://wiki.openstreetmap.org/wiki/Hu:Beginners_Guide_1.1.1">Kezdők kézikönyvéből</a>
-		származik, CC-BY-SA licenc alatt, így ugyanazon alatt tovább terjeszthető.
+		származik, CC-BY-SA licenc alatt, így ugyanazon licenc alatt tovább terjeszthető.
 		Ugyanott további információkat is találhatsz.</p>
 
 		<hr />

@@ -1,10 +1,10 @@
 <!--#include virtual="includes/top.html" -->
 	<title>OpenStreetMap térképek letöltése</title>
 	<meta name="description"
-		content="Magyarország vagy más ország térképének letöltése Android, Apple, Garmin eszközökre. Szerkesztőprogramok letöltése.">
+		content="Magyarország és más országok térképének letöltése Android, Apple, Garmin eszközökre. Szerkesztőprogramok letöltése.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/info.css?rev=415">
+	<link rel="stylesheet" href="/css/info.css?rev=416">
 </head>
 <body class="info-page">
 	<!--#include virtual="includes/header.html" -->
@@ -20,25 +20,35 @@
 
 		<h1>Android telefonra <i>(Google Play, <span class="nowrap">F-Droid</span>)</i></h1>
 
-		<a href='https://play.google.com/store/apps/details?id=net.osmand'>
-			<img class="play-download-badge" src="/kepek/google-play-badge.png" alt="Letöltés a Google Play-ből">
-		</a>
-
-		<p>Telepítsd az <strong>OsmAnd</strong> nevű programot a <strong>Google Play áruházból</strong>, ezután
-		automatikusan felajánlja Magyarország letöltését (vagy a menüből válaszd a <em>Térképek letöltését</em>).</p>
-		<p>Tipp: Ha az <a href="https://f-droid.org/">F-Droid áruházból</a> telepíted, akkor a teljes funkcionalitású
-			<strong>OsmAnd</strong>-ot kapod ingyen.</p>
-
-		<p>További javasolt Android alkalmazások:</p>
 		<ul>
-			<li><strong>Organic Maps</strong> - Offline Túra, Bicikli</li>
+			<li><strong>OsmAnd</strong> - Térkép és Navigáció
+				<br />
+
+				<a href="https://play.google.com/store/apps/details?id=net.osmand" target="_blank">
+					<img class="play-download-badge" src="/kepek/google-play-badge.png"
+						title="OsmAnd letöltés a Google Play áruházból" alt="OsmAnd letöltés a Google Play áruházból" />
+				</a>
+
+				<br />
+
+				Telepítés után automatikusan felajánlja Magyarország letöltését.
+				(Ha mégsem: <em>Térképek letöltése</em> menüpont).
+
+				<p class="indented"><i>Tipp</i>: Az
+				<a href="https://f-droid.org/packages/net.osmand.plus/" target="_blank"
+				class="badge badge-primary">F-Droid</a>
+				áruházból telepítve a teljes funkcionalitású OsmAnd-ot kapod <strong>ingyen</strong>.</p></li>
+			<li><strong>Organic Maps</strong> - Offline Túra, Bicikli
+				<a href="https://f-droid.org/packages/app.organicmaps/" target="_blank"
+				class="badge badge-primary">F-Droid</a></li>
 			<li><strong>MAPS.ME</strong> - Offline térképek</li>
 			<li><strong>Mapy.cz</strong> - Navigáció és Offline térképek</li>
 			<li><strong>Locus Maps</strong></li>
 		</ul>
 
-		<p>További ötletek a
-			<a href="https://wiki.openstreetmap.org/wiki/Hungary/Android">Wiki oldalon</a> találhatóak.</p>
+		<p class="indented">További bevált Android programok a
+			<a href="https://wiki.openstreetmap.org/wiki/Hungary/Android"
+			target="_blank">Wiki oldalon</a> találhatóak.</p>
 
 		<hr />
 
@@ -46,8 +56,13 @@
 
 		<h1>Apple iPhone, iPad</h1>
 
-		<p>Telepítsd a <strong>MAPS.ME</strong> nevű programot.
-		Természetesen más OpenStreetMapes programok is elérhetőek.</p>
+		<ul>
+			<li><strong>MAPS.ME</strong></li>
+			<li>További ötletek a
+				<a href="https://wiki.openstreetmap.org/wiki/Apple_iOS#OpenStreetMap_applications"
+				target="_blank">Wiki oldalon</a>
+				- <i>angolul</i></li>
+		</ul>
 
 		<div class="clearfix"></div>
 
@@ -57,9 +72,12 @@
 
 		<img class="right logo" src="/kepek/garmin-logo2.png" alt="Garmin logo" />
 
-		<p>Magyarország vagy európai térképek letöltése: <a href="https://www.openhiking.eu/hu/">OpenHiking.eu</a>
-		vagy <a href="http://garmin.openstreetmap.nl/">OpenStreetMap.nl</a>.
-		Bringázáshoz próbáld ki az <a href="https://www.openbikemap.szerako.hu">Open Bike Map</a> térképét.</p>
+		<ul>
+			<li><a href="https://www.openhiking.eu/hu/" target="_blank">OpenHiking.eu</a>
+				- Magyarország és közép európai térképek letöltése</li>
+			<li><a href="http://garmin.openstreetmap.nl/" target="_blank">OpenStreetMap.nl</a></li>
+			<li><a href="https://www.openbikemap.szerako.hu/" target="_blank">Open Bike Map</a> - Bringázáshoz</li>
+		</ul>
 
 		<hr />
 
@@ -89,8 +107,18 @@
 
 		<h1>Beágyazás weboldalba</h1>
 
-		<p><a href="https://www.openstreetmap.org">openstreetmap.org</a>:
-		nagyíts a kívánt területre, majd a megosztás ikon alatt válaszd a HTML opciót</p>
+		<ol>
+			<li>Navigálj az <a href="https://www.openstreetmap.org" target="_blank">openstreetmap.org</a> oldalra</li>
+			<li>Nagyíts a kívánt területre</li>
+			<li>A jobb oldali ikonok közül válaszd ki a
+				<i>Megosztás ikont</i>
+				(<svg class="svg-icon" width="18" height="18" viewBox="0 0 1792 1792"
+					alt="Openstreetmap.org megosztás ikon képe" xmlns="http://www.w3.org/2000/svg">
+					<use href="/kepek/font-awesome-icons/share-square-o.svg#share-square-o-icon"></use>
+				</svg>)</li>
+			<li>A felső kiválasztóban válaszd a <strong>HTML</strong> opciót</li>
+			<li>A kapott kódot másolás után illeszd be weboldalad forráskódjába</li>
+		</ol>
 
 		<hr />
 
@@ -103,53 +131,56 @@
 		kisebb terület esetén határolókat megadva nagyon egyszerűen letölthető.</p>
 
 		<ul>
-			<li><a href="https://download.geofabrik.de/europe/hungary.html">
+			<li><a href="https://download.geofabrik.de/europe/hungary.html" target="_blank">
 				Magyarország térképi adatainak letöltése (Geofabrik)</a></li>
-			<li><a href="https://www.openstreetmap.org/export#map=14/47.9278/19.1392">Kis terület exportálása</a>
+			<li><a href="https://www.openstreetmap.org/export#map=14/47.9278/19.1392"
+				target="_blank">Kis terület exportálása</a>
 				- nagyíts a kívánt területre, majd nyomd meg az Export gombot</li>
-			<li><a href="https://wiki.openstreetmap.org/wiki/Downloading_data">Adatok letöltéséről</a> - angolul</li>
-			<li><a href="https://wiki.openstreetmap.org/wiki/Osmosis">Osmosis - adatok leválogatása</a> - angolul</li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Downloading_data"
+				target="_blank">Adatok letöltéséről</a> - <i>angolul</i></li>
+			<li><a href="https://wiki.openstreetmap.org/wiki/Osmosis"
+				target="_blank">Osmosis - adatok leválogatása</a> - <i>angolul</i></li>
 		</ul>
 
 		<hr />
 
-		<h1>Szerkesztőknek</h1>
+		<h1>Szerkesztőknek JOSM szerkesztőprogram</h1>
 
 		<div class="section">
-			<h2>JOSM szerkesztőprogram</h2>
-
-			<p><a href="https://josm.openstreetmap.de/josm-tested.jar">
+			<p><a href="https://josm.openstreetmap.de/josm-tested.jar" download>
 				<img src="kepek/josm-gomb.png" alt="JOSM szerkesztőprogram letöltés gomb" /></a></p>
 		</div>
 
 		<hr />
 
-		<h1>Egyéb letöltések</h1>
+		<h1>Háttérkép</h1>
 
-		<div class="section">
-			<h2>Háttérkép</h2>
+		<a href="/letoltes/wallpaper/osm-hungary-wallpaper.png" target="_blank">
+			<img src="/letoltes/wallpaper/osm-hungary-wallpaper-thumb.jpg" class="left illustration"
+				alt="Magyarország térkép magyar nyelvű településnevekkel (háttérképként használható)" />
+			<p>Magyarország térkép magyar nyelvű településnevekkel - 1920x1200 (3 MB)</p>
+		</a>
 
-			<a href="/letoltes/wallpaper/osm-hungary-wallpaper.png">
-				<img src="/letoltes/wallpaper/osm-hungary-wallpaper-thumb.jpg" class="left illustration"
-					alt="Magyarország térkép magyar nyelvű településnevekkel (háttérképként használható)" />
-				<p>Magyar nevek réteg 1920x1200 (3MB)</p>
-			</a>
-			<div class="clearfix"></div>
+		<div class="clearfix"></div>
 
-			<h2>Letölthető névjegyek</h2>
+		<hr />
 
-			<a href="/letoltes/openstreetmap_bizz_90x50_go_3a.pdf">
-				<img src="/letoltes/openstreetmap_hu_nevjegy_90x50.jpg" class="left illustration"
-					alt="Kapcsolati adatok nélküli névjegy" />
-				<p>Kapcsolati adatok nélküli névjegy, odaadható az érdeklődöknek terepen, rendezvényeken stb.</p>
-			</a>
+		<h1>Letölthető névjegyek</h1>
 
-			<div class="clearfix"></div>
-			<p>Új
-				<a href="/letoltes/openstreetmap_bizz_90x50_go_3a.pdf">két oldalas OSM biankó névjegy</a> (640 kB)</p>
-			<p>Régi: <a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf">A4 1 névjegy</a> (460 kB),
-					<a href="/letoltes/openstreetmap_hu_nevjegy_90x50_lap.pdf">A4 sok</a> (3.3 MB)</p>
-		</div>
+		<p>Kapcsolati adatok nélküli névjegyek, odaadhatóak az érdeklődőknek terepen, rendezvényeken.</p>
+
+		<a href="/letoltes/openstreetmap_bizz_90x50_go_3a.pdf" target="_blank">
+			<img src="/letoltes/openstreetmap_hu_nevjegy_90x50.jpg" alt="OpenStreetMap.hu Névjegy előnézet" />
+		</a>
+
+		<ul>
+			<li><a href="/letoltes/openstreetmap_bizz_90x50_go_3a.pdf" target="_blank">
+				Két oldalas OSM biankó névjegy</a> (640 kB)</li>
+			<li><a href="/letoltes/openstreetmap_hu_nevjegy_90x50.pdf" target="_blank">
+				1 db névjegy</a> - A4 (460 kB)</li>
+			<li><a href="/letoltes/openstreetmap_hu_nevjegy_90x50_lap.pdf" target="_blank">
+				Sok névjegy</a> - A4 (3.3 MB)</li>
+		</ul>
 
 		<hr />
 
