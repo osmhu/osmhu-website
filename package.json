@@ -33,12 +33,14 @@
 		"@babel/preset-env": "^7.15.6",
 		"babel-jest": "^27.2.0",
 		"babel-loader": "^8.2.2",
+		"chromedriver": "^101.0.0",
 		"editorconfig-checker": "^4.0.2",
 		"es6-plato": "^1.2.3",
 		"eslint": "^7.32.0",
 		"eslint-config-airbnb-base": "^14.2.1",
 		"eslint-plugin-import": "^2.24.2",
 		"eslint-plugin-jest": "^24.4.0",
+		"geckodriver": "^3.0.1",
 		"gulp": "^4.0.2",
 		"gulp-clean-css": "^4.3.0",
 		"gulp-concat": "^2.6.1",
@@ -49,6 +51,7 @@
 		"jest-serializer-html-string": "^1.0.1",
 		"jshint": "^2.13.1",
 		"package-changed": "^1.7.0",
+		"selenium-webdriver": "^4.1.2",
 		"stylelint": "^14.2.0",
 		"stylelint-config-twbs-bootstrap": "^3.0.1",
 		"terser-webpack-plugin": "^5.2.4",
@@ -66,8 +69,9 @@
 		"build": "webpack --config js/webpack.config.js --env production",
 		"build-css": "gulp --gulpfile js/gulpfile.js",
 		"build-development": "webpack --config js/webpack.config.js --env development",
-		"test": "jest --coverage",
-		"test-watch": "jest --watchAll --coverage"
+		"test": "jest --coverage --roots js/",
+		"test-watch": "jest --watchAll --coverage --roots js/",
+		"test-e2e": "jest --config test-e2e/jest.config.js"
 	},
 	"engines": {
 		"node": ">=14.15.3"

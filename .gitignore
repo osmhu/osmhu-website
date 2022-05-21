@@ -9,3 +9,4 @@ node_modules
 /report
 /development/self-signed-ssl/*.pem
 /vendor
+/test-e2e/report-*

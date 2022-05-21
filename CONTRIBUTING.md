@@ -114,10 +114,16 @@ make init-existing-db
 npm run test
 ```
 
-#### JavaScript tesztek futtatása fejlesztés közben (újrafuttatás minden szerkesztésnél)
+#### JavaScript unit tesztek futtatása fejlesztés közben (újrafuttatás minden szerkesztésnél)
 
 ```shell
 npm run test-watch
+```
+
+#### Frontend end-to-end funkcionális (Selenium) tesztek futtatása
+
+```shell
+make test-e2e
 ```
 
 #### JavaScript frontend kódjának ellenőrzése a kódolási szabályok szerint
