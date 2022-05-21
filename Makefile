@@ -77,6 +77,11 @@ lint-php:
 	vendor/bin/ecs check --config development/php-coding-standard.php
 
 
+.PHONY: test-e2e
+test-e2e:
+	npm run test-e2e
+
+
 # Inside vagrant virtualbox machine, need to do npm install in a directory that is not synced
 # https://github.com/laravel/homestead/issues/1239#issuecomment-523320952
 .PHONY: npm-install-in-tmp

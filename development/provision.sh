@@ -167,6 +167,13 @@ if ! apt-get install -qq git > /dev/null; then
 fi
 
 
+echo "Linking chromedriver alias for /snap/bin/chromium.chromedriver"
+if ! snap alias chromium.chromedriver chromedriver > /dev/null; then
+	echo "ERROR! Failed to alias chromium.chromedriver as chromedriver, required for running e2e tests. Exiting" >&2
+	exit 1
+fi
+
+
 echo "Installing htop..."
 if ! apt-get install -qq htop > /dev/null; then
 	echo "ERROR! Failed to install htop. Exiting" >&2
