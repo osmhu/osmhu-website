@@ -122,8 +122,9 @@ export default class Share {
 				<a id="send-location-popup-${uniqueId}-close" class="leaflet-popup-close-button" href="#close">×</a>
 				<h1>Hely küldése:</h1>
 				<textarea id="send-location-popup-${uniqueId}-text" rows="2" placeholder="Megjelenő szöveg"></textarea>
-				<p>Hivatkozás: <input type="text" id="send-location-popup-${uniqueId}-url"
-					class="send-location-url" readonly="readonly" ></p>
+				<p><label for="send-location-popup-${uniqueId}-url">Hivatkozás:</label>
+					<input type="text" id="send-location-popup-${uniqueId}-url"
+						class="send-location-url-field" readonly="readonly" /></p>
 				<button id="send-location-popup-${uniqueId}-copy" type="button"
 					data-clipboard-target="send-location-popup-${uniqueId}-url">Hivatkozás másolása</button>
 			</div>

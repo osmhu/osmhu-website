@@ -1,35 +1,35 @@
-/* Marker Control */
-.leaflet-control-marker-creator {
-	padding: 3px;
-	line-height: 1 !important;
+.leaflet-control-marker-creator img {
+	vertical-align: middle;
 }
 
-/* Share popup */
 .send-location-popup {
+	font-size: .8rem;
 	text-align: center;
 }
+
 .send-location-popup h1 {
-	font-size: 150%;
+	font-size: 1.1rem;
 	text-align: left;
 }
-.send-location-popup p {
-	font-size: 100%;
-}
+
 .send-location-popup textarea {
 	width: 100%;
 	padding: 5px;
+	margin-bottom: .5rem;
 }
-.send-location-popup input.send-location-url {
+
+.send-location-popup p {
+	margin: 0 0 1rem;
+}
+
+.send-location-popup .send-location-url-field {
 	width: 200px;
-	margin-left: 5px;
 	padding: 1px 3px;
-	border: 1px solid #AAA;
+	margin-left: 5px;
 	font-size: 75%;
+	border: 1px solid #aaa;
 }
+
 .send-location-popup button {
 	cursor: pointer;
-}
-.send-location-popup .help {
-	text-align: center;
-	font-size: 90%;
 }
