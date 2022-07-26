@@ -1,71 +1,95 @@
-/* Search results panel */
-#search-results {
-	display: none;
+.search-results {
 	position: absolute;
 	top: 80px;
-	left: 0;
-	bottom: 0;
 	right: 0;
-	padding: 0;
+	bottom: 0;
+	left: 0;
 	z-index: 30;
-	background: white;
-}
-#search-results p {
-	font-size: 15px;
-	text-align: left;
-	margin: 10px 0 10px 10px;
-}
-#search-results p.title {
-	font-size: 20px;
-	text-align: left;
-	margin: 10px 0 10px 10px;
-	color: #0066FF;
-	font-weight: bold;
+	display: none;
+	padding: 0;
+	background: #fff;
 }
 
-#search-results .close-button {
+.search-results .title {
+	margin: 10px 0 10px 10px;
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #06f;
+	text-align: left;
+}
+
+.search-results .close-button {
 	float: right;
 	margin: 8px 5px;
 }
 
-#search-results .results-container {
-	position: absolute;
-	top: 44px;
-	left: 0;
-	bottom: 10px;
-	right: 0;
-	margin: 0 10px 0 15px;
-	overflow: auto;
+.search-results .results-container {
+	width: 100%;
+	max-height: calc(100vh - 80px - 3.25rem); /* viewport height - header - 1.25rem */
+	padding: 0;
+	overflow-y: auto;
 }
-#search-results .no-results {
+
+.search-results .no-results {
 	display: none;
+	margin-right: 5px;
+	margin-bottom: 1rem;
 	color: #8a6d3b;
 	background-color: #fcf8e3;
 	border: 1px solid #faebcc;
 	border-radius: 2px;
-	margin-bottom: 15px;
-	margin-right: 5px;
 }
-#search-results .no-results p {
-	text-align: center;
-	font-weight: bold;
-	font-size: 14px;
+
+.search-results .no-results p {
 	padding: 3px 6px;
+	font-size: .8rem;
+	font-weight: 700;
+	text-align: center;
 }
-#search-results .result a {
+
+.search-results .results {
+	border-top: 1px solid rgba(0, 0, 0, .05);
+}
+
+.search-results .search-result {
+	border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.search-results .search-result a {
 	display: block;
-	padding: 10px 3px;
+	padding: 4px 3px 5px 10px;
+	margin: 3px 5px 3px 0;
+	color: #00f;
 	cursor: pointer;
-	color: blue;
 }
-#search-results .result a .icon {
-	margin-right: 8px;
+
+.search-results .search-result .search-result-icon-container {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	vertical-align: text-top;
 }
-#search-results .result a .icon img {
+
+.search-results .search-result .search-result-icon {
+	text-decoration: none;
+}
+
+.search-results .search-result .search-result-icon img {
 	height: 16px;
 }
+
+.search-results .search-result .search-result-name {
+	display: inline-block;
+	width: calc(100% - 24px);
+	vertical-align: top;
+}
+
+.search-results .search-result a:hover .search-result-name {
+	text-decoration: underline;
+}
+
 @media all and (max-width: 699px) {
-	#search-results {
+	.search-results {
 		top: 64px;
 		width: 100%;
 		border-right-width: 0;

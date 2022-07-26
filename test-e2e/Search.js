@@ -22,7 +22,7 @@ module.exports = class Search {
 	}
 
 	async waitForResults() {
-		await this.browser.findElementById('search-results');
+		await this.browser.findElementByClass('search-results');
 	}
 
 	async isSearchInProgress() {
@@ -38,13 +38,13 @@ module.exports = class Search {
 	}
 
 	async getFirstResultTitle() {
-		const firstResultXpath = '//div[@id="search-results"]//div[@class="results"]//div[@class="result"][1]//a';
+		const firstResultXpath = '//div[contains(@class, "search-results")]//div[@class="results"]//div[@class="search-result"][1]//a';
 		const firstResult = await this.browser.findElementByXPath(firstResultXpath);
 		return await firstResult.getText();
 	}
 
 	async selectFirstResult() {
-		const firstResultXpath = '//div[@id="search-results"]//div[@class="results"]//div[@class="result"][1]//a';
+		const firstResultXpath = '//div[contains(@class, "search-results")]//div[@class="results"]//div[@class="search-result"][1]//a';
 		const firstResult = await this.browser.findElementByXPath(firstResultXpath);
 		await firstResult.click();
 

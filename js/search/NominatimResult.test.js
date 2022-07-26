@@ -275,18 +275,39 @@ test('should use first part of displayname if differs from address', () => {
 	});
 });
 
-test('should use first part of displayname when city exists', () => {
+test('should use first part of displayname as primary name when city', () => {
+	const tatabanya = {
+		display_name: 'Tatabánya, Tatabányai járás, Komárom-Esztergom megye, Közép-Dunántúl, Dunántúl, Magyarország',
+		class: 'boundary',
+		type: 'administrative',
+		address: {
+			city: 'Tatabánya',
+			country: 'Magyarország',
+			country_code: 'hu',
+			county: 'Komárom-Esztergom megye',
+			municipality: 'Tatabányai járás',
+			region: 'Közép-Dunántúl',
+		},
+	};
+
+	expect(NominatimResult.niceNameFromResult(tatabanya)).toEqual({
+		primaryName: 'Tatabánya',
+		surroundingArea: ['Komárom-Esztergom megye'],
+	});
+});
+
+test('should use first part of displayname as primary name when town', () => {
 	const parkany = {
 		display_name: 'Párkány, Érsekújvári járás, Nyitrai kerület, Nyugat-Szlovákia, Szlovákia',
 		class: 'boundary',
 		type: 'administrative',
 		address: {
-			city: 'Érsekújvári járás',
-			city_district: 'Párkány',
 			country: 'Szlovákia',
 			country_code: 'sk',
+			county: 'Érsekújvári járás',
 			region: 'Nyugat-Szlovákia',
 			state: 'Nyitrai kerület',
+			town: 'Párkány',
 		},
 	};
 
@@ -296,7 +317,7 @@ test('should use first part of displayname when city exists', () => {
 	});
 });
 
-test('should use first part of displayname as primary name if village is found', () => {
+test('should use first part of displayname as primary name when village', () => {
 	const balatonVillage = {
 		display_name: 'Balaton, Bélapátfalvai járás, Heves megye, Észak-Magyarország, Alföld és Észak, 3347, Magyarország',
 		class: 'boundary',

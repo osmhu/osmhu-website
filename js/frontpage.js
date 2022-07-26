@@ -62,7 +62,7 @@ url.updateOrgUrls();
 
 const autocomplete = new Autocomplete(map);
 
-const searchResults = new SearchResults(map, '#search-results');
+const searchResults = new SearchResults(map, '.search-results');
 
 const nominatimSearch = new NominatimSearch(map, searchResults);
 

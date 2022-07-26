@@ -9,7 +9,9 @@ const LoadingIndicator = L.Control.extend({
 	onAdd: () => {
 		const container = L.DomUtil.create('div', 'leaflet-control-loading-indicator leaflet-bar leaflet-control');
 
-		container.innerHTML = '<img src="/kepek/ajax-loader.gif" width="16" height="16"><span>Betöltés</span>';
+		const loadingIcon = '<img src="/kepek/ajax-loader.gif" width="16" height="16" alt="Betöltés folyamatban" />';
+		const loadingMessage = '<span>Betöltés</span>';
+		container.innerHTML = loadingIcon + loadingMessage;
 
 		return container;
 	},
