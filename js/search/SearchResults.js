@@ -34,7 +34,7 @@ export default class SearchResults {
 			this.$searchResults.find('.results').html('');
 			results.forEach((result) => {
 				this.$searchResults.find('.results').append(SearchResults.generateHtmlForResult(result));
-				this.$searchResults.find(`.results .result a#search-result-${result.type}-${result.id}`)
+				this.$searchResults.find(`.results .search-result a#search-result-${result.type}-${result.id}`)
 					.on('click', () => this.showResultOnMap(result));
 			});
 			this.$searchResults.find('.results').show();
@@ -65,24 +65,26 @@ export default class SearchResults {
 		}
 
 		let row = `
-			<div class="result">
+			<div class="search-result">
 				<a id="search-result-${result.type}-${result.id}">
 		`;
 
+		row += '<div class="search-result-icon-container">';
+
 		if (result.icon) {
-			row += `
-				<span class="icon">
-					<img src="${result.icon}">
-				</span>
-			`;
+			row += `<span class="search-result-icon"><img src="${result.icon}"></span>`;
 		}
 
-		row += result.primaryName;
+		row += '</div><div class="search-result-name">';
+
+		row += `<span class="search-result-primary-name">${result.primaryName}</span>`;
+
 		if (result.surroundingArea.length > 0) {
-			row += ' - ' + result.surroundingArea.join(' - ');
+			const surroundingArea = result.surroundingArea.join(' - ');
+			row += ` - <span class="search-result-surrounding-area-name">${surroundingArea}</span>`;
 		}
 
-		row += `
+		row += `</div>
 				</a>
 			</div>
 		`;

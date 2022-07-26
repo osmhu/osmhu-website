@@ -54,7 +54,7 @@ export default class NominatimResult {
 
 			// Administrative areas
 			if (nominatimResult.class === 'boundary' && nominatimResult.type === 'administrative') {
-				if (nominatimResult.address.city || nominatimResult.address.village) {
+				if (nominatimResult.address.city || nominatimResult.address.village || nominatimResult.address.town) {
 					primaryName = NominatimResult.firstPartOfDisplayName(nominatimResult);
 				} else if (nominatimResult.address.country) {
 					primaryName = nominatimResult.address.country;

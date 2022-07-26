@@ -4,7 +4,7 @@
 		content="Szabadon letölthető és felhasználható, közösségi szerkesztésű térkép Magyarországról és az egész világról.">
 
 	<!--#include virtual="includes/head_scripts.html" -->
-	<link rel="stylesheet" href="/css/frontpage.css?rev=419">
+	<link rel="stylesheet" href="/css/frontpage.css?rev=420">
 
 	<!-- Preconnect to default OSM tile servers and default overpass api -->
 	<link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin>
@@ -107,7 +107,7 @@
 		<div id="map"></div>
 	</div>
 
-	<div id="search-results" class="side-panel">
+	<div class="search-results side-panel">
 		<button class="close-button">×</button>
 		<p class="title">Keresés eredménye</p>
 		<div class="results-container">
@@ -184,7 +184,7 @@
 
 	<!-- Load frontpage javascript bundle -->
 	<script src="/js/vendor.js?rev=418"></script>
-	<script src="/js/frontpage.js?rev=418"></script>
+	<script src="/js/frontpage.js?rev=419"></script>
 	<script>
 		window.SITE_DOMAIN = 'www.openstreetmap.hu';
 	</script>
