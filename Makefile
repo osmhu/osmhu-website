@@ -59,9 +59,7 @@ develop:
 .PHONY: watch
 watch:
 	make develop && \
-	fswatch --one-per-batch --recursive --monitor poll_monitor --event Created --event Updated \
-		config css includes js kepek query .htaccess lib.php terkep.php validatestreetnames.php \
-		Makefile package.json *.shtml | xargs --max-args 1 -I{} make develop
+	watchexec -- make develop
 
 
 .PHONY: lint
