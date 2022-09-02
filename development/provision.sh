@@ -109,13 +109,16 @@ systemctl reload apache2
 systemctl restart apache2
 
 
+echo "Installing curl for network installs..."
+if ! apt-get install -qq curl > /dev/null; then
+	echo "ERROR! Failed to install curl. Exiting" >&2
+	exit 1
+fi
+
+
 echo "Installing Node.js for frontend development..."
 if ! apt-get install -qq build-essential > /dev/null; then
 	echo "ERROR! Failed to install build-essential. Exiting" >&2
-	exit 1
-fi
-if ! apt-get install -qq curl > /dev/null; then
-	echo "ERROR! Failed to install curl. Exiting" >&2
 	exit 1
 fi
 # https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
@@ -177,12 +180,5 @@ fi
 echo "Installing htop..."
 if ! apt-get install -qq htop > /dev/null; then
 	echo "ERROR! Failed to install htop. Exiting" >&2
-	exit 1
-fi
-
-
-echo "Installing fswatch for running commands on file change..."
-if ! apt-get install -qq fswatch > /dev/null; then
-	echo "ERROR! Failed to install fswatch. Exiting" >&2
 	exit 1
 fi

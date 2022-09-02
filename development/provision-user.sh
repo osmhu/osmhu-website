@@ -14,6 +14,13 @@ fi
 npm completion >> ~/.bashrc
 
 
+echo "Installing watchexec for running commands on file change..."
+if ! curl --silent --show-error https://webinstall.dev/watchexec | bash > /dev/null; then
+	echo "ERROR! Failed to install watchexec. Exiting" >&2
+	exit 1
+fi
+
+
 echo "Setting default chromedriver snap filepath for npm install chromedriver..."
 {
 	echo "# Set default chromedriver snap filepath for npm install chromedriver"
@@ -29,9 +36,10 @@ if [ "${SOURCE_CODE_DIR}" == "/home/vagrant/osmhu-website" ]; then
 fi
 
 
-if [ ! -d ${SOURCE_CODE_DIR}/node_modules ]; then
+if [ ! -d "${SOURCE_CODE_DIR}/node_modules" ]; then
 	echo "Installing npm packages needed by frontend..."
-	make npm-install-in-tmp
+	cd "${SOURCE_CODE_DIR}" || exit
+	make --silent npm-install-in-tmp
 else
 	echo "Skipping npm install, because node_modules already exists in source directory"
 fi

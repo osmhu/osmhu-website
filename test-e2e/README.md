@@ -7,7 +7,7 @@ Háttérben futó (headless) automatizált böngésző tesztek. (Firefox, Chrome
 - megerősíteni hogy adott funkcionalitás használatakor a megadott feltételek teljesülnek
     - eredménye a futási konzol kimenetén látható
 - képernyőképeket készíteni a folyamat közben vizuális ellenőrzéshez
-    - eredménye a jelenlegi könyvtár alá kerül (`report-<futáskori időbélyeg>`)
+    - eredménye a [report](./report) könyvtár alá kerül (`report/<futáskori időbélyeg>`)
 
 ## Segédeszközök
 
