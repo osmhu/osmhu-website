@@ -3,35 +3,47 @@ import BaseLayers from '../map/BaseLayers';
 import UrlParams from './UrlParams';
 
 describe('parsing map parameters', () => {
-	const testUrlMapParams = (locationQueryString, expectedZoom, expectedLat, expectedLon) => {
-		const urlParams = new UrlParams(locationQueryString);
-
+	const assertZoomLatLon = (urlParams, expectedZoom, expectedLat, expectedLon) => {
 		expect(urlParams.lat).toEqual(expectedLat);
 		expect(urlParams.lon).toEqual(expectedLon);
 		expect(urlParams.zoom).toEqual(expectedZoom);
 	};
 
 	it('should return marker position if defined', () => {
-		testUrlMapParams('?zoom=11&mlat=47.4983815&mlon=19.0404707', 11, 47.4983815, 19.0404707);
+		const urlParams = new UrlParams('?zoom=11&mlat=47.4983815&mlon=19.0404707');
+
+		assertZoomLatLon(urlParams, 11, 47.4983815, 19.0404707);
 	});
 
 	it('should return marker position if normal position is also defined', () => {
-		testUrlMapParams('?zoom=11&mlat=47.4983815&mlon=19.0404707&lat=46.9080769&lon=19.6928133',
-			11, 47.4983815, 19.0404707);
+		const urlParams = new UrlParams('?zoom=11&mlat=47.4983815&mlon=19.0404707&lat=46.9080769&lon=19.6928133');
+
+		assertZoomLatLon(urlParams, 11, 47.4983815, 19.0404707);
 	});
 
 	it('should return position if defined', () => {
-		testUrlMapParams('?zoom=11&lat=47.4983815&lon=19.0404707', 11, 47.4983815, 19.0404707);
+		const urlParams = new UrlParams('?zoom=11&lat=47.4983815&lon=19.0404707');
+
+		assertZoomLatLon(urlParams, 11, 47.4983815, 19.0404707);
 	});
 
-	it('should return default parameters for hungary if only partially defined', () => {
-		testUrlMapParams('?zoom=11', 7, 47.17, 19.49);
-		testUrlMapParams('?lat=47.4983815', 7, 47.17, 19.49);
-		testUrlMapParams('?lon=19.0404707', 7, 47.17, 19.49);
+	it.each([
+		'?zoom=11',
+		'?lat=47.4983815',
+		'?lon=19.0404707',
+		'?zoom=11&lat=47.4983815',
+		'?zoom=11&lon=19.0404707',
+		'?lat=47.4983815&lon=19.0404707',
+	])('should return default parameters for hungary if only partially defined', (locationSearchQuery) => {
+		const urlParams = new UrlParams(locationSearchQuery);
+
+		assertZoomLatLon(urlParams, 7, 47.17, 19.49);
 	});
 
 	it('should return default parameters for hungary if not set otherwise', () => {
-		testUrlMapParams('', 7, 47.17, 19.49);
+		const urlParams = new UrlParams('');
+
+		assertZoomLatLon(urlParams, 7, 47.17, 19.49);
 	});
 });
 
@@ -43,6 +55,7 @@ it.each([
 	{ queryString: '?layer=H', expectedActiveBaseLayer: BaseLayers.ids.humanitarian },
 ])('should return active base layer', ({ queryString, expectedActiveBaseLayer }) => {
 	const urlParams = new UrlParams(queryString);
+
 	expect(urlParams.layer).toEqual(expectedActiveBaseLayer);
 });
 
@@ -58,6 +71,7 @@ it.each([
 	{ queryString: '?tur=1&okt=1&ddk=1&akt=1', expectedActiveOverlays: ['tur', 'okt', 'ddk', 'akt'] },
 ])('should return active overlays', ({ queryString, expectedActiveOverlays }) => {
 	const urlParams = new UrlParams(queryString);
+
 	expectedActiveOverlays.forEach((overlayId) => {
 		expect(urlParams.isOverlayActive(overlayId)).toBeTruthy();
 	});

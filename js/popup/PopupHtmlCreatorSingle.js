@@ -26,7 +26,7 @@ export default class PopupHtmlCreatorSingle {
 		if (address.street && address.housenumber) {
 			displayedAddress += ' ' + address.housenumber;
 		}
-		const housenumberLastCharacterIsNumber = new RegExp(/.*\d$/).test(address.housenumber);
+		const housenumberLastCharacterIsNumber = /.*\d$/.test(address.housenumber);
 		if (address.street && address.housenumber && housenumberLastCharacterIsNumber) {
 			displayedAddress += '.';
 		}
