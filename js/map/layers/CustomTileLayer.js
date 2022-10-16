@@ -5,10 +5,10 @@ import Layer from './Layer';
 const attribution = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> közreműködők';
 
 export default class CustomTileLayer extends Layer {
-	constructor(id, title, url, options) {
-		super(id, title);
+	constructor(options = {}) {
+		super(options.id, options.title);
 
-		this.url = url;
+		this.url = options.url || '';
 
 		this.maxZoom = options.maxZoom || 20;
 		this.maxNativeZoom = options.maxNativeZoom || this.maxZoom;

@@ -26,7 +26,10 @@ test('addLayer only accepts instance of Layer', () => {
 
 test('getTitleLeafletLayerMap returns {title}->{layer} map needed by Leaflet layers control', () => {
 	const layerList = new LayerList();
-	const layer = new TileLayer('testLayerId', 'testTitle');
+	const layer = new TileLayer({
+		id: 'testLayerId',
+		title: 'testTitle',
+	});
 	layerList.addLayer(layer);
 
 	const leafletLayer = { test: 'mockedValue' };

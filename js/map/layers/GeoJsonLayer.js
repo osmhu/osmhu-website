@@ -6,10 +6,10 @@ import Ajax from '../../common/Ajax';
 import Layer from './Layer';
 
 export default class GeoJsonLayer extends Layer {
-	constructor(id, title, url) {
-		super(id, title);
+	constructor(options = {}) {
+		super(options.id, options.title);
 
-		this.url = url;
+		this.url = options.url || '';
 		this.loading = false;
 		this.loaded = false;
 

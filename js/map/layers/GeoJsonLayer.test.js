@@ -38,7 +38,11 @@ afterAll(() => {
 	log.setLevel(originalLogLevel);
 });
 
-const createGeoJsonLayer = () => new GeoJsonLayer(1, 'testTitle', 'testUrl');
+const createGeoJsonLayer = () => new GeoJsonLayer({
+	id: 1,
+	title: 'testTitle',
+	url: 'testUrl',
+});
 
 test('getLeafletLayer returns valid Leaflet L.GeoJSON', () => {
 	const geoJsonLayer = createGeoJsonLayer();

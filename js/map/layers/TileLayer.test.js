@@ -2,7 +2,11 @@ import L from 'leaflet';
 
 import TileLayer from './TileLayer';
 
-const createTileLayer = () => new TileLayer(1, 'testTitle', 'OpenStreetMap.Mapnik');
+const createTileLayer = () => new TileLayer({
+	id: 1,
+	title: 'testTitle',
+	layerId: 'OpenStreetMap.Mapnik',
+});
 
 test('getLeafletLayer returns valid Leafet L.tileLayer', () => {
 	const tileLayer = createTileLayer();
