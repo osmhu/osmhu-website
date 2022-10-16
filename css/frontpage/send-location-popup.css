@@ -13,7 +13,10 @@
 }
 
 .send-location-popup textarea {
-	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 42px;
+	max-height: 100px;
 	padding: 5px;
 	margin-bottom: .5rem;
 }
