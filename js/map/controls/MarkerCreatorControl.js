@@ -10,8 +10,11 @@ export default class MarkerCreatorControl extends MapControl {
 			},
 			onAdd() {
 				const container = L.DomUtil.create('div', 'leaflet-bar');
-				const link = L.DomUtil.create('a',
-					'leaflet-bar-part leaflet-bar-part-single leaflet-control-marker-creator', container);
+				const link = L.DomUtil.create(
+					'a',
+					'leaflet-bar-part leaflet-bar-part-single leaflet-control-marker-creator',
+					container,
+				);
 				link.innerHTML = '<img src="/kepek/send-location-icon.png" alt="Hely küldése" width="24" height="24" />';
 				link.href = '#';
 				link.title = 'Hely küldése';

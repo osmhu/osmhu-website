@@ -20,7 +20,9 @@ export default class HtmlElement {
 		try {
 			return HtmlElement.singleElementFromSelector(selector);
 		} catch (error) {
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			await new Promise((resolve) => {
+				setTimeout(resolve, 1000);
+			});
 			return HtmlElement.singleElementFromSelectorWithRetry(selector);
 		}
 	}
