@@ -4,10 +4,10 @@ import 'leaflet-providers'; // Creates L.tileLayer.provider function
 import Layer from './Layer';
 
 export default class TileLayer extends Layer {
-	constructor(id, title, layerId, options = {}) {
-		super(id, title);
+	constructor(options = {}) {
+		super(options.id, options.title);
 
-		this.layerId = layerId;
+		this.layerId = options.layerId;
 		this.attribution = options.attribution || undefined;
 		this.apikey = options.apikey || undefined;
 		this.leafletLayer = null;
