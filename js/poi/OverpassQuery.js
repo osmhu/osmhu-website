@@ -50,6 +50,9 @@ export default class OverpassQuery {
 	}
 
 	static generateQueryByOsmElementId(osmElementId) {
+		if (Number.isNaN(osmElementId.id)) {
+			throw new Error('Osm element id is not a number: ' + osmElementId.id);
+		}
 		return 'interpreter?data=[out:json];(' + osmElementId.type + '(' + osmElementId.id + '););out geom qt 10000;';
 	}
 }
