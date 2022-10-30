@@ -2,66 +2,105 @@
 
 exports[`renders correctly for accessible node 1`] = `
 <div class="wheelchair">
-  <a href="https://wheelmap.org/nodes/10" target="_blank">
-    <img src="/kepek/wheelchair-green.png" alt="akadálymentes" title="akadálymentes">
+  <a href="https://wheelmap.org/nodes/10"
+     target="_blank"
+  >
+    <img src="/kepek/wheelchair-green.png"
+         alt="akadálymentes"
+         title="akadálymentes"
+    >
   </a>
 </div>
 `;
 
 exports[`renders correctly for accessible relation 1`] = `
 <div class="wheelchair">
-  <img src="/kepek/wheelchair-green.png" alt="akadálymentes" title="akadálymentes">
+  <img src="/kepek/wheelchair-green.png"
+       alt="akadálymentes"
+       title="akadálymentes"
+  >
 </div>
 `;
 
 exports[`renders correctly for accessible way 1`] = `
 <div class="wheelchair">
-  <a href="https://wheelmap.org/nodes/-10" target="_blank">
-    <img src="/kepek/wheelchair-green.png" alt="akadálymentes" title="akadálymentes">
+  <a href="https://wheelmap.org/nodes/-10"
+     target="_blank"
+  >
+    <img src="/kepek/wheelchair-green.png"
+         alt="akadálymentes"
+         title="akadálymentes"
+    >
   </a>
 </div>
 `;
 
 exports[`renders correctly for inaccessible node 1`] = `
 <div class="wheelchair">
-  <a href="https://wheelmap.org/nodes/30" target="_blank">
-    <img src="/kepek/wheelchair-red.png" alt="nem akadálymentes" title="nem akadálymentes">
+  <a href="https://wheelmap.org/nodes/30"
+     target="_blank"
+  >
+    <img src="/kepek/wheelchair-red.png"
+         alt="nem akadálymentes"
+         title="nem akadálymentes"
+    >
   </a>
 </div>
 `;
 
 exports[`renders correctly for inaccessible relation 1`] = `
 <div class="wheelchair">
-  <img src="/kepek/wheelchair-red.png" alt="nem akadálymentes" title="nem akadálymentes">
+  <img src="/kepek/wheelchair-red.png"
+       alt="nem akadálymentes"
+       title="nem akadálymentes"
+  >
 </div>
 `;
 
 exports[`renders correctly for inaccessible way 1`] = `
 <div class="wheelchair">
-  <a href="https://wheelmap.org/nodes/-30" target="_blank">
-    <img src="/kepek/wheelchair-red.png" alt="nem akadálymentes" title="nem akadálymentes">
+  <a href="https://wheelmap.org/nodes/-30"
+     target="_blank"
+  >
+    <img src="/kepek/wheelchair-red.png"
+         alt="nem akadálymentes"
+         title="nem akadálymentes"
+    >
   </a>
 </div>
 `;
 
 exports[`renders correctly for limited node 1`] = `
 <div class="wheelchair">
-  <a href="https://wheelmap.org/nodes/20" target="_blank">
-    <img src="/kepek/wheelchair-yellow.png" alt="részben akadálymentes" title="részben akadálymentes">
+  <a href="https://wheelmap.org/nodes/20"
+     target="_blank"
+  >
+    <img src="/kepek/wheelchair-yellow.png"
+         alt="részben akadálymentes"
+         title="részben akadálymentes"
+    >
   </a>
 </div>
 `;
 
 exports[`renders correctly for limited relation 1`] = `
 <div class="wheelchair">
-  <img src="/kepek/wheelchair-yellow.png" alt="részben akadálymentes" title="részben akadálymentes">
+  <img src="/kepek/wheelchair-yellow.png"
+       alt="részben akadálymentes"
+       title="részben akadálymentes"
+  >
 </div>
 `;
 
 exports[`renders correctly for limited way 1`] = `
 <div class="wheelchair">
-  <a href="https://wheelmap.org/nodes/-20" target="_blank">
-    <img src="/kepek/wheelchair-yellow.png" alt="részben akadálymentes" title="részben akadálymentes">
+  <a href="https://wheelmap.org/nodes/-20"
+     target="_blank"
+  >
+    <img src="/kepek/wheelchair-yellow.png"
+         alt="részben akadálymentes"
+         title="részben akadálymentes"
+    >
   </a>
 </div>
 `;
