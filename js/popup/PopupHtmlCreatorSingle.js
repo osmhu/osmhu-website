@@ -44,8 +44,8 @@ export default class PopupHtmlCreatorSingle {
 		if (poiRelevantContent.secondaryName && poiRelevantContent.secondaryName.length > 0) {
 			html += '<p class="type">' + poiRelevantContent.secondaryName + '</p>';
 		}
-		if (poiRelevantContent.address && poiRelevantContent.address.length > 0) {
-			html += '<p class="addr">' + poiRelevantContent.address + '</p>';
+		if (poiRelevantContent.address && poiRelevantContent.address.displayable) {
+			html += '<p class="addr">' + this.address(poiRelevantContent.address) + '</p>';
 		}
 		html += '<div class="details">';
 		if (poiRelevantContent.phone && poiRelevantContent.phone.length > 0) {
