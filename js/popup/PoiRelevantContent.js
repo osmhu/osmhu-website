@@ -69,7 +69,7 @@ export default class PoiRelevantContent {
 		poiRelevantContent.address = PoiRelevantContent.parseAddress(osmElement);
 		poiRelevantContent.phone = parsePhone(osmElement);
 		poiRelevantContent.website = parseWebsite(osmElement);
-		poiRelevantContent.opening_hours = osmElement.tags?.opening_hours;
+		poiRelevantContent.openingHours = osmElement.tags?.opening_hours;
 		poiRelevantContent.wheelchair = parseWheelchair(osmElement);
 		poiRelevantContent.osmOrgBrowseUrl = OsmOrgUrl.browseUrlFromOsmElementId(osmElement.id);
 		poiRelevantContent.osmOrgEditUrl = OsmOrgUrl.editUrlFromOsmElementId(osmElement.id);

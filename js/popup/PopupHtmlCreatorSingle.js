@@ -58,13 +58,13 @@ export default class PopupHtmlCreatorSingle {
 			html += '</p>';
 		}
 		html += '</div>';
-		const openingHours = poiRelevantContent.opening_hours;
+		const { openingHours } = poiRelevantContent;
 		if (openingHours) {
 			const isoDayOfWeekForToday = getISODay(new Date());
 			try {
 				const openingHoursTable = OpeningHoursTable.generateTable(openingHours, isoDayOfWeekForToday);
 				if (openingHoursTable) {
-					html += '<div class="opening_hours">';
+					html += '<div class="opening-hours">';
 					html += '<p>Nyitvatartás:</p>';
 					html += openingHoursTable;
 					html += '</div>';

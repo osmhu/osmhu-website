@@ -46,16 +46,16 @@ a.leaflet-popup-close-button {
 .popup-content .website .website-url .hidden-indicator:before {
 	content: '\2026';
 }
-.popup-content .opening_hours p {
+.popup-content .opening-hours p {
 	font-size: 13px;
 }
-.popup-content .opening_hours table {
+.popup-content .opening-hours table {
 	margin: 0 auto;
 }
-.popup-content .opening_hours table tr.highlighted {
+.popup-content .opening-hours table tr.highlighted {
 	font-weight: bold;
 }
-.popup-content .opening_hours table td.day {
+.popup-content .opening-hours table td.day {
 	padding-right: 10px;
 }
 .popup-content .options {

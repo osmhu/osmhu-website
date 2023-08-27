@@ -1,7 +1,7 @@
 import { addDays, startOfWeek } from 'date-fns';
 import OpeningHours from 'opening_hours';
 
-// For opening_hours localization
+// Used for opening_hours hungarian localization
 const nominatimObjectForHungary = {
 	class: 'boundary',
 	type: 'administrative',
