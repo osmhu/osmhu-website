@@ -1,99 +1,99 @@
-/* Popup on POI click */
-a.leaflet-popup-close-button {
-	font-size: 26px !important;
-	padding: 6px !important;
-	margin-top: 2px;
-	width: 28px !important;
+.leaflet-container .leaflet-popup .leaflet-popup-close-button {
+	width: 2rem;
+	height: 2rem;
+	font-size: 2rem;
+	line-height: 2rem;
 }
-.popup-content {
-	padding-bottom: 10px;
+
+.popup-content .popup-content-info {
+	margin-bottom: 1rem;
 }
-.popup-content h1.title {
-	font-size: 18px;
-	margin-bottom: 5px;
+
+.popup-content .popup-content-title {
+	display: inline-block;
+	margin: 0 0 .25rem;
+	font-size: 1.25rem;
 }
+
 .popup-content .wheelchair {
-	float: right;
-	margin-right: 6px;
+	display: inline-block;
+	margin: 0 0 0 1rem;
+	line-height: 1.25rem;
+	vertical-align: middle;
 }
+
+.popup-content .wheelchair img {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.popup-content .type {
+	margin-bottom: 1rem;
+	font-size: .8rem;
+}
+
 .popup-content p {
-	font-size: 14px;
-	margin: 10px 0 !important;
+	margin: 0 0 .5rem;
+	font-size: .9rem;
 }
-.popup-content p.type {
-	font-size: 10px;
-	margin-bottom: 15px;
-}
-.popup-content p.addr {
-	margin-bottom: 0;
-}
-.popup-content .details p {
-	font-size: 13px;
-}
+
 .popup-content .website .website-label {
 	display: inline-block;
 }
+
 .popup-content .website .website-url {
 	display: inline-block;
+	font-size: .9rem;
 	word-break: break-all;
-	font-size: 12px;
 }
+
 .popup-content .website .website-url .hidden-part {
-	/* Transparent text, should work on any background colour */
-	color: rgba(0,0,0,0);
 	font-size: 0;
+	color: rgba(0, 0, 0, 0); /* Transparent text, should work on any background colour */
 }
-.popup-content .website .website-url .hidden-indicator:before {
-	content: '\2026';
+
+.popup-content .website .website-url .hidden-indicator::before {
+	content: "\2026";
 }
-.popup-content .opening-hours p {
-	font-size: 13px;
-}
+
 .popup-content .opening-hours table {
 	margin: 0 auto;
 }
-.popup-content .opening-hours table tr.highlighted {
-	font-weight: bold;
+
+.popup-content .opening-hours table .highlighted {
+	font-weight: 700;
 }
-.popup-content .opening-hours table td.day {
-	padding-right: 10px;
+
+.popup-content .opening-hours table .day {
+	padding: 0 1rem 0 0;
 }
+
 .popup-content .options {
+	margin-bottom: .5rem;
 	text-align: center;
-	margin-top: 25px;
 }
+
 .popup-content .options button {
-	font-size: 12px;
-	margin: 0 2px;
+	margin: 0 .1rem;
+	font-size: .75rem;
 }
+
 .popup-content .share {
 	display: none;
-	margin-top: 12px;
+	margin-bottom: .5rem;
+	text-align: center;
 }
-.popup-content .share p {
-	font-size: 100%;
-	margin: 6px auto 0 !important;
-}
-.popup-content .share input.share-url {
+
+.popup-content .share .share-url {
 	width: 100%;
-	margin-left: 5px;
-	padding: 2px 3px;
-	border: 1px solid #AAA;
+	padding: .15rem .25rem;
+	margin-left: .25rem;
 	font-size: 75%;
+	border: 1px solid #aaa;
 }
-.popup-content .share button#popup-poi-copy {
-	font-size: 100%;
-}
-.popup-content .options #permalink-container {
-	display: none;
-	margin-top: 5px;
-}
-.popup-content .options #permalink-container #permalink {
-	font-size: 11px;
-	width: 100%;
-}
+
 @media all and (max-width: 699px) {
 	.leaflet-popup-content {
-		margin: 10px 19px 15px 12px;
+		margin: 1rem;
 	}
 }
