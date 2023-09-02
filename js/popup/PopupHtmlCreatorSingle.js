@@ -38,9 +38,12 @@ export default class PopupHtmlCreatorSingle {
 
 		let html = `<div id="popup-content-${poiRelevantContent.osmElementId.toObjectPropertyName()}" class="popup-content">`;
 
+		html += '<div class="popup-content-info">';
+
+		html += '<h1 class="popup-content-title">' + poiRelevantContent.primaryName + '</h1>';
+
 		html += Wheelchair.createLogo(poiRelevantContent);
 
-		html += '<h1 class="title">' + poiRelevantContent.primaryName + '</h1>';
 		if (poiRelevantContent.secondaryName && poiRelevantContent.secondaryName.length > 0) {
 			html += '<p class="type">' + poiRelevantContent.secondaryName + '</p>';
 		}
@@ -74,24 +77,26 @@ export default class PopupHtmlCreatorSingle {
 				log.info('Failed to parse opening_hours tag on', poiRelevantContent.osmElementId.toString(), osmOrgUrl, error);
 			}
 		}
+		html += '</div>';
 		html += '<div class="options">';
 		if (shareUrl) {
 			html += '<span class="mobile-hidden">';
-			const onClick = "this.parentElement.parentElement.querySelector('.share').style.display = 'block'; " +
-				"this.parentElement.parentElement.querySelector('.share .share-url').select()";
+			const shareId = `#popup-content-${poiRelevantContent.osmElementId.toObjectPropertyName()} .share`;
+			const onClick = `document.querySelector('${shareId}').style.display = 'block'; ` +
+				`document.querySelector('${shareId} .share-url').select()`;
 			html += '<button onclick="' + onClick + '">Megosztás</button>';
 			html += '</span>';
 		}
 		html += '<button onclick="window.open(\'' + poiRelevantContent.osmOrgBrowseUrl + '\')">Minden adat</button>';
 		html += '<button onclick="window.open(\'' + poiRelevantContent.osmOrgEditUrl + '\')">Szerkesztés</button>';
+		html += '</div>';
 		if (shareUrl) {
 			html += '<div class="share">';
 			html += '<p>Megosztáshoz használd az alábbi hivatkozást:</p>';
 			html += '<p><input type="text" id="popup-poi-share-url" class="share-url" onclick="this.select()" readonly="readonly" ></p>';
-			html += '<p><button id="popup-poi-copy" type="button">Másolás</button></p>';
+			html += '<p><button id="popup-poi-copy" class="popup-poi-share-url-copy" type="button">Másolás</button></p>';
 			html += '</div>';
 		}
-		html += '</div>';
 		html += '</div>';
 		return html;
 	}
