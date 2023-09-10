@@ -62,7 +62,7 @@
 		<a href="https://play.google.com/store/apps/details?id=net.osmand&hl=en_US" target="_blank">OsmAnd</a>
 		GPS trackek rögzítésére is alkalmas:
 		Ha nem látható a GPX feliratú gomb a jobb felső sarokban, kapcsold be a menüben:
-		<em>Képernyő beállítása -> Jobb panel -> GPX naplózás</em>.
+		<em>Képernyő beállítása -&gt; Jobb panel -&gt; GPX naplózás</em>.
 		Most már csak ezt a gombot kell megnyomnod a rögzítés indításához és megállításához. Ha rögzítés
 		befejezése után megint megnyomod, akkor ad lehetőséget a rögzített nyomvonal kimentésére.
 		A nyomvonalak az <code>Android/data/net.osmand/files/tracks/rec</code> könyvtárban lesznek. Ezeket vagy

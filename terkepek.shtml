@@ -26,7 +26,7 @@
 		<dl>
 			<dt>Mapnik (Alapértelmezett)</dt>
 				<dd>Alap OpenStreetMap.org megjelenítés, általános elemekkel, utak, bizonyos boltok, épületek stb.</dd>
-			<dt>Kerékpáros térkép<dt>
+			<dt>Kerékpáros térkép</dt>
 				<dd>Az <a href="https://www.opencyclemap.org">OpenCycleMap</a> megjelenítése,
 					amely a kerékpársávokat és kerékárutakat is mindig megjeleníti.</dd>
 			<dt>OSM France stílus</dt>
@@ -53,7 +53,7 @@
 
 		<h1>Mi az alapréteg?</h1>
 
-		<a href="http://maps.stamen.com/toner/#16/47.4459/19.0298">
+		<a href="https://maps.stamen.com/toner/#16/47.4459/19.0298">
 			<img class="right illustration" src="/kepek/stamen.png" alt="Térkép minta"
 				title="Egy tetszetős megjelenésű fekete-fehér térkép"></a>
 
