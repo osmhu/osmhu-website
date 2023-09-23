@@ -433,30 +433,29 @@ class BoundaryIterator implements Iterator
 		} while ($this->curr && in_array($this->curr["osm_id"], $this->foreign)); // Skip foreign cities
 	}
 
-	public function rewind()
+	public function rewind(): void
 	{
 		if (!$this->curr) {
 			$this->start();
 		}
 	}
 
-	public function current()
+	public function current(): mixed
 	{
 		return $this->curr;
 	}
 
-	public function key()
+	public function key(): mixed
 	{
 		return $this->curr["osm_id"];
 	}
 
-	public function next()
+	public function next(): void
 	{
 		$this->fetch();
-		return $this->curr;
 	}
 
-	public function valid()
+	public function valid(): bool
 	{
 		return ($this->curr != null);
 	}
