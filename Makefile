@@ -155,7 +155,10 @@ import-osm-data-to-postgres:
 		exit 1; \
 	fi && \
 	chmod +r development/hungary-latest.osm.pbf && \
-	sudo --user postgres osm2pgsql --slim --create --database gis development/hungary-latest.osm.pbf
+	PGPASSWORD="${postgresql-password}" osm2pgsql \
+		--host localhost --port 5432 \
+		--user osmhu --database gis \
+		--slim --create development/hungary-latest.osm.pbf
 
 
 .PHONY: mysql-drop-db
@@ -173,12 +176,14 @@ mysql-create-db:
 
 .PHONY: mysql-init-empty
 mysql-init-empty:
-	MYSQL_PWD="$(mysql-password)" mysql --user osmhu osm_hu < db/mysql/mysql-create-tables.sql
+	MYSQL_PWD="$(mysql-password)" mysql --host 127.0.0.1 \
+		--user osmhu osm_hu < db/mysql/mysql-create-tables.sql
 
 
 .PHONY: mysql-import-existing
 mysql-import-existing:
-	MYSQL_PWD="$(mysql-password)" mysql --user osmhu osm_hu < db/mysql/mysql-dump.sql
+	MYSQL_PWD="$(mysql-password)" mysql --host 127.0.0.1 \
+		--user osmhu osm_hu < db/mysql/mysql-dump.sql
 
 
 .PHONY: convert-postgres-to-mysql
@@ -188,7 +193,8 @@ convert-postgres-to-mysql:
 
 .PHONY: mysql-dump
 mysql-dump:
-	MYSQL_PWD="$(mysql-password)" mysqldump --user osmhu --skip-extended-insert \
+	MYSQL_PWD="$(mysql-password)" mysqldump --host 127.0.0.1 \
+		--user osmhu --skip-extended-insert \
 		--no-tablespaces osm_hu > db/mysql/mysql-dump_`date +%Y-%m-%d_%H%M%S`.sql
 
 
