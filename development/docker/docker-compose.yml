@@ -1,0 +1,72 @@
+services:
+  web:
+    build: ./web
+    restart: always
+    user: "1000:1000"
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - DB_HOST=mysql-db
+      - PGSQL_HOST=postgresql-db
+      - APPLICATION_ENV=development
+    volumes:
+      - ../../:/srv/osmhu-website
+      - ../apache2/osmhu-http.conf:/etc/apache2/sites-enabled/osmhu-http.conf
+      - ../apache2/osmhu-ssl.conf:/etc/apache2/sites-enabled/osmhu-ssl.conf
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8.0
+    restart: always
+    user: "1000:1000"
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=osmhu
+      - MYSQL_PASSWORD=Eidoh5zo
+      - MYSQL_DATABASE=osm_hu
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  # phpMyAdmin accessible at http://localhost:8080
+  mysql-phpmyadmin:
+    image: phpmyadmin:5
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql-db
+      - PMA_USER=osmhu
+      - PMA_PASSWORD=Eidoh5zo
+    depends_on:
+      - mysql-db
+
+  postgresql-db:
+    image: postgis/postgis:12-3.4
+    restart: always
+    user: "1000:999"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=osmhu
+      - POSTGRES_PASSWORD=Eidoh5zo
+      - POSTGRES_DB=gis
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+
+volumes:
+  mysql-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "${PWD}/data/mysql"
+  postgresql-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "${PWD}/data/postgresql"
