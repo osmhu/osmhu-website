@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "provision-user", type: "shell", path: "development/provision-user.sh", privileged: false
 
   # Sync folders
-  config.vm.synced_folder ".", "/home/vagrant/osmhu-website", fsnotify: true
+  config.vm.synced_folder ".", "/srv/osmhu-website", fsnotify: true
 
   # Restart apache2 after startup (sites-enabled only becomes available after mounting synced folders)
   config.trigger.after :up do |trigger|

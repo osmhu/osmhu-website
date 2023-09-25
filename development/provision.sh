@@ -2,7 +2,7 @@
 
 # Install all tools required for development on Ubuntu 20.04 (run as root user)
 
-SOURCE_CODE_DIR="/home/vagrant/osmhu-website"
+SOURCE_CODE_DIR="/srv/osmhu-website"
 
 # unattended install
 # source: https://serverfault.com/questions/500764/dpkg-reconfigure-unable-to-re-open-stdin-no-file-or-directory
@@ -60,8 +60,8 @@ echo "Creating symlinks for apache2 site configs..."
 HTTP_SITE_CONFIG="${SOURCE_CODE_DIR}/development/apache2/osmhu-http.conf"
 if [ ! -r ${HTTP_SITE_CONFIG} ]; then
 	echo "ERROR! Apache2 site config not found at ${HTTP_SITE_CONFIG}" >&2
-	if [ "${SOURCE_CODE_DIR}" == "/home/vagrant/osmhu-website" ]; then
-		echo "Vagrant machines should have the repository synced at /home/vagrant/osmhu-website, check it." >&2
+	if [ "${SOURCE_CODE_DIR}" == "/srv/osmhu-website" ]; then
+		echo "Vagrant machines should have the repository synced at /srv/osmhu-website, check it." >&2
 	fi
 	echo "Exiting" >&2
 	exit 1
@@ -86,7 +86,8 @@ fi
 a2ensite -q osmhu-http
 
 
-echo "Installing PhpMyAdmin for graphical db editing..."
+echo "Installing phpMyAdmin for graphical db editing..."
+echo "phpMyAdmin accessible at http://osmhu.lan/phpmyadmin/"
 if ! apt-get install -qq debconf-utils > /dev/null; then
 	echo "ERROR! Failed to install debconf-utils. Exiting" >&2
 	exit 1

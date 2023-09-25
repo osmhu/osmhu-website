@@ -56,7 +56,7 @@ A projekt könyvtárában:
 #### Vagrant virtuális gép felépítése
 
 A gazdagépen található projektkönyvtár automatikusan szinkronizálva van a vagrant virtuális gépen található
-`/home/vagrant/osmhu-website` mappába.  
+`/srv/osmhu-website` mappába.  
 Így a gazdagépen történt minden változtatás azonnal szinkronizálva van a virtuális gép számára és fordítva.  
 A virtuális gépre létrehozáskor automatikusan telepítésre kerülnek a szükséges webszerver, a MySQL és a
 PostgreSQL szerverek az alapértelmezett beállításokkal.
@@ -73,7 +73,7 @@ A további telepítéshez és beállításhoz szükséges parancsok a [Makefile]
 > **Vagrant használata esetén:**
 >
 > - a virtuális gépen belül, a `vagrant ssh` kapcsolaton keresztül kell futtatni a parancsokat
-> - a virtuális gépben található, folyamatosan szinkronizált `/home/vagrant/osmhu-website` könyvtárában
+> - a virtuális gépben található, folyamatosan szinkronizált `/srv/osmhu-website` könyvtárában
 >   állva kell futtatni
 
 *Minden itt felsorolt parancsot a projekt gyökérkönyvtárában állva kell futtatni.*
