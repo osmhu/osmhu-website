@@ -2,7 +2,7 @@
 
 # Script to initialize machine for development (run as normal user)
 
-SOURCE_CODE_DIR="/home/vagrant/osmhu-website"
+SOURCE_CODE_DIR="/srv/osmhu-website"
 
 
 echo "Installing tab completion for npm..."
@@ -30,7 +30,7 @@ echo "Setting default chromedriver snap filepath for npm install chromedriver...
 } >> ~/.bashrc
 
 
-if [ "${SOURCE_CODE_DIR}" == "/home/vagrant/osmhu-website" ]; then
+if [ "${SOURCE_CODE_DIR}" == "/srv/osmhu-website" ]; then
 	echo "Setting default directory when connecting from vagrant ssh..."
 	echo "cd ${SOURCE_CODE_DIR}" >> ~/.profile
 fi
