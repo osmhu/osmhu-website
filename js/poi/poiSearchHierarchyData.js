@@ -91,7 +91,7 @@ export default {
 				}],
 			},
 			car_repair: {
-				title: 'Autószervíz',
+				title: 'Autószerviz',
 				icon: 'carrepair',
 				overpassQuery: [{
 					shop: 'car_repair',

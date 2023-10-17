@@ -60,7 +60,7 @@ export default class SignificantNames {
 		if (tags.shop === 'clothes') return 'Ruházati bolt';
 		if (tags.shop === 'bakery') return 'Pékség';
 		if (tags.shop === 'hairdresser') return 'Fodrász';
-		if (tags.shop === 'car_repair') return 'Autószervíz';
+		if (tags.shop === 'car_repair') return 'Autószerviz';
 		if (tags.shop === 'florist') return 'Virágbolt';
 		if (tags.shop === 'greengrocer') return 'Zöldség-gyümölcs kereskedés';
 		if (tags.shop === 'confectionery') return 'Cukrászda';
