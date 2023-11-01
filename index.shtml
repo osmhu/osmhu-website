@@ -7,9 +7,7 @@
 	<link rel="stylesheet" href="/css/frontpage.css?rev=420">
 
 	<!-- Preconnect to default OSM tile servers and default overpass api -->
-	<link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin>
-	<link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin>
-	<link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin>
+	<link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin>
 	<link rel="preconnect" href="https://lz4.overpass-api.de" crossorigin>
 </head>
 <body>
