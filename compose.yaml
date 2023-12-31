@@ -1,8 +1,9 @@
+# Docker compose v2 definition
+# Run using docker compose up
+
 services:
   web:
-    build: ./web
-    restart: always
-    user: "1000:1000"
+    build: ./docker/web
     ports:
       - 80:80
       - 443:443
@@ -11,16 +12,14 @@ services:
       - PGSQL_HOST=postgresql-db
       - APPLICATION_ENV=development
     volumes:
-      - ../../:/srv/osmhu-website
-      - ../apache2/osmhu-http.conf:/etc/apache2/sites-enabled/osmhu-http.conf
-      - ../apache2/osmhu-ssl.conf:/etc/apache2/sites-enabled/osmhu-ssl.conf
+      - .:/srv/osmhu-website
+      - ./development/apache2/osmhu-http.conf:/etc/apache2/sites-enabled/osmhu-http.conf
+      - ./development/apache2/osmhu-ssl.conf:/etc/apache2/sites-enabled/osmhu-ssl.conf
     depends_on:
       - mysql-db
 
   mysql-db:
     image: mysql:8.0
-    restart: always
-    user: "1000:1000"
     ports:
       - 3306:3306
     environment:
@@ -34,7 +33,6 @@ services:
   # phpMyAdmin accessible at http://localhost:8080
   mysql-phpmyadmin:
     image: phpmyadmin:5
-    restart: always
     ports:
       - 8080:80
     environment:
@@ -46,8 +44,6 @@ services:
 
   postgresql-db:
     image: postgis/postgis:12-3.4
-    restart: always
-    user: "1000:999"
     ports:
       - 5432:5432
     environment:
@@ -59,14 +55,4 @@ services:
 
 volumes:
   mysql-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: "${PWD}/data/mysql"
   postgresql-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: "${PWD}/data/postgresql"
