@@ -8,6 +8,5 @@ node_modules
 /coverage
 /report
 /development/self-signed-ssl/*.pem
-/development/docker/data
 /vendor
 /test-e2e/report
