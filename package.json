@@ -16,7 +16,7 @@
 		"js-cookie": "^3.0.1",
 		"leaflet": "1.9.2",
 		"leaflet-overpass-layer": "^2.9.0",
-		"leaflet-providers": "^1.13.0",
+		"leaflet-providers": "^2.0.0",
 		"leaflet.locatecontrol": "^0.78.0",
 		"leaflet.markercluster": "^1.5.3",
 		"loglevel": "^1.8.1",
