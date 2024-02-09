@@ -75,7 +75,7 @@
 		"test-e2e": "jest --config test-e2e/jest.config.js"
 	},
 	"engines": {
-		"node": ">=14.15.3"
+		"node": ">=20.11.0"
 	},
 	"jest": {
 		"snapshotSerializers": [

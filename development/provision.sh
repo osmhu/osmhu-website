@@ -117,21 +117,19 @@ if ! apt-get install -qq curl > /dev/null; then
 fi
 
 
-echo "Installing Node.js for frontend development..."
-if ! apt-get install -qq build-essential > /dev/null; then
+echo "Installing Node.js..."
+if ! apt-get install -qq build-essential ca-certificates gnupg > /dev/null; then
 	echo "ERROR! Failed to install build-essential. Exiting" >&2
 	exit 1
 fi
-# https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
-export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
-if ! curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key --quiet add -; then
-	echo "ERROR! Failed to fetch Node.js installer key using curl. Exiting" >&2
-	exit 1
-fi
-VERSION=node_14.x
-DISTRO="$(lsb_release -s -c)"
-echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list > /dev/null
-echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list > /dev/null
+# Source: https://github.com/nodesource/distributions/wiki/Repository-Manual-Installation
+NODE_MAJOR=20
+mkdir -p /etc/apt/keyrings
+rm -f /etc/apt/keyrings/nodesource.gpg
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
+	| gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR}.x nodistro main" \
+	| tee /etc/apt/sources.list.d/nodesource.list > /dev/null
 if ! apt-get update > /dev/null; then
 	echo "ERROR! Failed to update apt package list after adding Node.js sources. Exiting" >&2
 	exit 1
@@ -156,12 +154,12 @@ if ! mv composer.phar /usr/local/bin/composer; then
 fi
 
 
-echo "Installing known stable npm version..."
+echo "Updating npm version..."
 if ! command -v npm &> /dev/null; then
 	echo "ERROR! npm command could not be found. Exiting" >&2
 	exit 1
 fi
-npm install --silent --global npm@latest-6
+npm install --silent --global npm@latest
 
 
 echo "Installing git for version control..."
