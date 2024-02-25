@@ -30,11 +30,11 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
-  # phpMyAdmin accessible at http://localhost:8080
+  # phpMyAdmin accessible at http://localhost:11780
   mysql-phpmyadmin:
     image: phpmyadmin:5
     ports:
-      - 8080:80
+      - 11780:80
     environment:
       - PMA_HOST=mysql-db
       - PMA_USER=osmhu
