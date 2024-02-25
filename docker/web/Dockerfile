@@ -2,7 +2,9 @@ FROM php:8.2-apache
 
 # Update the package lists and install the Postgresql dependencies
 RUN apt-get update && apt-get install -y \
-    libpq-dev
+    libpq-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Support server side includes
 RUN a2enmod -q include
