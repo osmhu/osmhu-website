@@ -14,7 +14,8 @@ services:
     volumes:
       - .:/srv/osmhu-website
       - ./development/apache2/osmhu-http.conf:/etc/apache2/sites-enabled/osmhu-http.conf
-      - ./development/apache2/osmhu-ssl.conf:/etc/apache2/sites-enabled/osmhu-ssl.conf
+      # To enable HTTPS during development create SSL certificates. Documentation: development/self-signed-ssl/README.md
+      #- ./development/apache2/osmhu-ssl.conf:/etc/apache2/sites-enabled/osmhu-ssl.conf
     depends_on:
       - mysql-db
 
