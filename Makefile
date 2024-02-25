@@ -163,15 +163,18 @@ import-osm-data-to-postgres:
 
 .PHONY: mysql-drop-db
 mysql-drop-db:
-	MYSQL_PWD="$(mysql-root-password)" mysql --user root < db/mysql/mysql-drop-db.sql
+	MYSQL_PWD="$(mysql-root-password)" mysql --host 127.0.0.1 \
+		--user root < db/mysql/mysql-drop-db.sql
 
 
 # Need to create user with cli command, using variable password in sql script is not easy
 .PHONY: mysql-create-db
 mysql-create-db:
-	MYSQL_PWD="$(mysql-root-password)" mysql --user root \
+	MYSQL_PWD="$(mysql-root-password)" mysql --host 127.0.0.1 \
+		--user root \
 		--execute "CREATE USER IF NOT EXISTS osmhu IDENTIFIED BY '$(mysql-password)';" && \
-	MYSQL_PWD="$(mysql-root-password)" mysql --user root < db/mysql/mysql-create-db.sql
+	MYSQL_PWD="$(mysql-root-password)" mysql --host 127.0.0.1 \
+		--user root < db/mysql/mysql-create-db.sql
 
 
 .PHONY: mysql-init-empty
