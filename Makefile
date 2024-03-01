@@ -10,47 +10,21 @@ install-dependencies:
 
 .PHONY: build
 build:
-	make create-distribution && \
+	make prepare-distribution && \
 	npm install && \
 	npm run build-css && \
 	npm run build
 
 
-.PHONY: create-distribution
-create-distribution:
-	rm --recursive --force distribution
-	mkdir --parents distribution
-
-#	Copy all directories
-	mkdir --parents distribution/config distribution/includes distribution/js distribution/kepek distribution/query
-	cp --recursive config distribution
-	cp --recursive includes distribution
-	rsync --archive kepek distribution --exclude *.xcf
-	cp --recursive query distribution
-
-	mkdir --parents distribution/css
-	cp --recursive node_modules/leaflet/dist/images distribution/css
-
-#	Copy root files
-	cp .htaccess distribution
-	cp favicon.ico distribution
-	cp lib.php distribution
-	cp terkep.php distribution
-	cp validatestreetnames.php distribution
-
-#	Copy content html files
-	cp *.shtml distribution
-
-#	Add read permission for other users (eg. www-data)
-	chmod --recursive o+r distribution
-#	+X sets execute/search only if the file is a directory (or already has execute permission for some user)
-	chmod --recursive +X distribution
+.PHONY: prepare-distribution
+prepare-distribution:
+	scripts/prepare-distribution.sh distribution
 
 
 .PHONY: develop
 develop:
 	mkdir --parents .tmp && \
-	make create-distribution && \
+	make prepare-distribution && \
 	npm run install-if-changed && \
 	npm run build-css && \
 	npm run build-development
