@@ -10,12 +10,12 @@ Készíthetsz Issue-t is, ahol bedobhatod az ötleteidet, vagy megvitathatsz bá
 
 A továbbiakban elsősorban a forráskódok továbbfejlesztéshez szükséges eszközök leírása található.
 
-A fejlesztéshez ajánlott operációs rendszer: **Ubuntu Linux 20.04**  
+A fejlesztéshez ajánlott operációs rendszer: **Ubuntu Linux 22.04**  
 Az alábbi parancsok is ezen a rendszeren működnek módosítás nélkül.
 
 > **A fejlesztési feladatok egy része csak Linux rendszeren végezhető el.**  
 > Más rendszeren történő fejlesztés teljeskörű beüzemelése rendkívül fáradságos,
-> ilyen esetben ajánlott inkább egy Virtuális gépet használni Ubuntu 20.04-el, majd vagrant használata helyett
+> ilyen esetben ajánlott inkább egy Virtuális gépet használni Ubuntu 22.04-el, majd vagrant használata helyett
 > közvetlenül telepíteni az eszközöket a [development/provision.sh](development/provision.sh)
 > és [Makefile](Makefile) segítségével.
 

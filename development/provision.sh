@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Install all tools required for development on Ubuntu 20.04 (run as root user)
+# Install all tools required for development on Ubuntu 22.04 (run as root user)
 
 SOURCE_CODE_DIR="/srv/osmhu-website"
 
@@ -26,7 +26,7 @@ fi
 
 
 echo "Installing PostgreSQL..."
-if ! apt-get install -qq postgresql-12 postgis postgresql-12-postgis-scripts > /dev/null; then
+if ! apt-get install -qq postgresql-14 postgis postgresql-14-postgis-scripts > /dev/null; then
 	echo "ERROR! Failed to install PostgreSQL. Exiting" >&2
 	exit 1
 fi
@@ -40,7 +40,7 @@ fi
 
 
 echo "Installing apache2 and PHP..."
-if ! apt-get install -qq apache2 php7.4 libapache2-mod-php php7.4-mysql php7.4-pgsql > /dev/null; then
+if ! apt-get install -qq apache2 php8.1 libapache2-mod-php php8.1-mysql php8.1-pgsql > /dev/null; then
 	echo "ERROR! Failed to install apache2 and PHP. Exiting" >&2
 	exit 1
 fi

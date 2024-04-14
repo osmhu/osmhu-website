@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
 # Update the package lists and install the Postgresql dependencies
 RUN apt-get update && apt-get install -y \
