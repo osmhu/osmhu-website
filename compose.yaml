@@ -44,7 +44,7 @@ services:
       - mysql-db
 
   postgresql-db:
-    image: postgis/postgis:12-3.4
+    image: postgis/postgis:14-3.4
     ports:
       - 5432:5432
     environment:
