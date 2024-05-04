@@ -9,6 +9,7 @@ import UrlParamChangeNotifier from '../url/UrlParamChangeNotifier';
 
 import BaseLayers from './BaseLayers';
 import Overlays from './Overlays';
+import AttributionControl from './controls/AttributionControl';
 import ZoomControl from './controls/ZoomControl';
 import LocateControl from './controls/LocateControl';
 import ScaleControl from './controls/ScaleControl';
@@ -34,6 +35,7 @@ export default class Map {
 
 		this.map = L.map(mapContainerHtmlElementId, {
 			zoomControl: false,
+			attributionControl: false,
 		});
 
 		this.id = mapContainerHtmlElementId;
@@ -49,6 +51,8 @@ export default class Map {
 		this.map.addControl(new LocateControl().getMapControl());
 
 		this.map.addControl(new ScaleControl().getMapControl());
+
+		this.map.addControl(new AttributionControl().getMapControl());
 
 		this.map.addControl(new LoadingIndicatorControl().getMapControl());
 
