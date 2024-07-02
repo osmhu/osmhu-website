@@ -5,6 +5,7 @@ import 'regenerator-runtime/runtime';
 import $ from 'jquery';
 import log from 'loglevel';
 
+import OldBrowserNotifier from './common/OldBrowserNotifier';
 import MobileDetector from './common/MobileDetector';
 import DirectionsApi from './directions/DirectionsApi';
 import DirectionsControl from './directions/DirectionsControl';
@@ -123,6 +124,8 @@ function popupResize() {
 
 $(window).on('resize', popupResize);
 $(window).on('popup-open', popupResize);
+
+OldBrowserNotifier.init();
 
 // Production debug variables
 window.osmhu = {};
