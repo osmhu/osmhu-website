@@ -1,5 +1,3 @@
-import './common/oldBrowserSupport';
-
 import 'regenerator-runtime/runtime';
 
 import $ from 'jquery';
