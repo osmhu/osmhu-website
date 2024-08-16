@@ -76,6 +76,9 @@
 	"engines": {
 		"node": ">=20.11.0"
 	},
+	"browserslist": [
+		">0.1% in hu"
+	],
 	"jest": {
 		"snapshotSerializers": [
 			"jest-serializer-html"

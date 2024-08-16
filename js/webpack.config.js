@@ -43,9 +43,6 @@ module.exports = (env) => ({
 							'@babel/preset-env',
 							{
 								// debug: true,
-								targets: {
-									browsers: '>0.1% in hu',
-								},
 							},
 						]],
 						plugins: [
