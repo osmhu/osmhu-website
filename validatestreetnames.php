@@ -191,7 +191,7 @@ try {
 	die();
 }
 ?>
-<form action="validatestreetnames.php?mode=<?php echo($mode) ?>&page=<?php echo($page); ?>" method="post">
+<form action="validatestreetnames.php?mode=<?php echo ($mode) ?>&page=<?php echo($page); ?>" method="post">
 	<table border='1'>
 		<thead>
 			<th>Jó</th>
@@ -230,7 +230,7 @@ try {
 				}
 				echo '</tr>';
 			}
-			?>
+?>
 		</tbody>
 	</table>
 	<br />

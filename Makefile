@@ -46,7 +46,7 @@ lint:
 
 .PHONY: lint-php
 lint-php:
-	vendor/bin/ecs check --config development/php-coding-standard.php
+	composer lint
 
 
 .PHONY: test-e2e
